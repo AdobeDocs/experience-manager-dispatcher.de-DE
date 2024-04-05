@@ -10,9 +10,9 @@ products: SG_EXPERIENCEMANAGER/6.4
 discoiquuid: ff3d38e0-71c9-4b41-85f9-fa896393aac5
 exl-id: b55c7a34-d57b-4d45-bd83-29890f1524de
 source-git-commit: 7bf3bf55abe5a015df9b9e99fe838388a4fe6360
-workflow-type: tm+mt
+workflow-type: ht
 source-wordcount: '1101'
-ht-degree: 91%
+ht-degree: 100%
 
 ---
 
@@ -23,9 +23,9 @@ ht-degree: 91%
 |  |  |
 |--- |--- |
 | Produkte | Adobe Experience Manager (AEM) Dispatcher |
-| Version | 4,3,7 |
+| Version | 4.3.7 |
 | Typ | Nebenversion |
-| Datum | Donnerstag, 27. März 2024 |
+| Datum | 27. März 2024 |
 | Download-URL | <ul><li>[Apache 2.4](release-notes.md#apache)</li><li>[Microsoft Internet Information Services (IIS)](release-notes.md#iis)</li></ul> |
 | Kompatibilität | AEM 6.1 oder höher |
 
@@ -41,14 +41,14 @@ Detaillierte Anweisungen finden Sie unter [Installieren des Dispatchers](dispatc
 
 ## Versionsverlauf {#release-history}
 
-### Version 4.3.7 (2024-27. März) {#march}
+### Version 4.3.7 (27. März 2024) {#march}
 
 **Verbesserungen**:
 
-* DISP-1009 - Festlegen der Header-Länge erneut
-* DISP-1013 - Hinzufügen von openssl 3.0-Unterstützung für Linux
-* DISP-1014 - Verarbeitung von response.location, die zu einer ungültigen Umleitung führt
-* DISP-1017 - Ändern der DTD-Definition
+* DISP-1009: Erneutes Festlegen der Kopfzeilenlänge
+* DISP-1013: Hinzufügen von OpenSSL 3.0-Unterstützung für Linux
+* DISP-1014: Verarbeitung von response.location führt zu ungültiger Umleitung
+* DISP-1017: Ändern der DTD-Definition
 
 ### Version 4.3.6 (25. Juli 2023) {#jyly}
 
