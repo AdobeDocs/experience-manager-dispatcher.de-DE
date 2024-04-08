@@ -2,7 +2,7 @@
 title: Konfigurieren des Dispatchers
 description: Erfahren Sie, wie Sie den Dispatcher konfigurieren. Erfahren Sie mehr über die Unterstützung für IPv4 und IPv6, Konfigurationsdateien, Umgebungsvariablen, Benennen der Instanz, Definieren von Farmen, Identifizieren von virtuellen Hosts und weitere Themen.
 exl-id: 91159de3-4ccb-43d3-899f-9806265ff132
-source-git-commit: 410346694a134c0f32a24de905623655f15269b4
+source-git-commit: 336e69a4635c9822a97bbffd0b1410807012f9e7
 workflow-type: ht
 source-wordcount: '8857'
 ht-degree: 100%
@@ -1885,3 +1885,4 @@ Der Farmcache wird von einem Sitzungsmanager verwaltet (die Konfiguration enthä
 Der Remote-Server gibt einen Header `Dispatcher: no_cache` zurück, der es dem Dispatcher untersagt, die Ausgabe zwischenzuspeichern.
 * **Nicht zwischenspeicherbar: Antwortinhaltslänge ist null**
 Die Inhaltslänge der Antwort ist null; der Dispatcher erstellt keine Datei mit einer Länge von null.
+
