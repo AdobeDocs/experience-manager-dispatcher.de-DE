@@ -2,10 +2,10 @@
 title: Konfigurieren des Dispatchers
 description: Erfahren Sie, wie Sie den Dispatcher konfigurieren. Erfahren Sie mehr über die Unterstützung für IPv4 und IPv6, Konfigurationsdateien, Umgebungsvariablen, Benennen der Instanz, Definieren von Farmen, Identifizieren von virtuellen Hosts und weitere Themen.
 exl-id: 91159de3-4ccb-43d3-899f-9806265ff132
-source-git-commit: 336e69a4635c9822a97bbffd0b1410807012f9e7
+source-git-commit: 002458d52df4680ded5cb84a8119bc000e3ca88a
 workflow-type: tm+mt
 source-wordcount: '8857'
-ht-degree: 100%
+ht-degree: 99%
 
 ---
 
@@ -1324,7 +1324,7 @@ Weitere Informationen zu glob-Eigenschaften finden Sie unter [Entwerfen von Must
 >
 >Diese Funktion ist in Version **4.1.11** des Dispatchers verfügbar.
 
-Mit der `/headers`-Eigenschaft können HTTP-Headertypen definiert werden, die vom Dispatcher zwischengespeichert werden sollen. Bei der ersten Anfrage an eine nicht zwischengespeicherte Ressource werden alle Header, die mit einem der konfigurierten Werte übereinstimmen (siehe Konfigurationsbeispiel unten), in einer separaten Datei neben der Cache-Datei gespeichert. Bei nachfolgenden Anfragen an die zwischengespeicherte Ressource werden die gespeicherten Header zur Antwort hinzugefügt.
+Mit der `/headers`-Eigenschaft können HTTP-Headertypen definiert werden, die vom Dispatcher zwischengespeichert werden sollen. Bei der ersten Anfrage an eine nicht zwischengespeicherte Ressource werden alle Header, die mit einem der konfigurierten Werte übereinstimmen (siehe Konfigurationsbeispiel unten), in einer separaten Datei neben der Cache-Datei gespeichert. Bei nachfolgenden Anfragen an die zwischengespeicherte Ressource werden die gespeicherten Header der Antwort hinzugefügt.
 
 Im Folgenden ein Beispiel aus der Standardkonfiguration:
 
