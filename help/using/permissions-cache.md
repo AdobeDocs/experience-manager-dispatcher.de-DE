@@ -1,19 +1,15 @@
 ---
 title: Zwischenspeichern von geschützten Inhalten
-seo-title: Caching Secured Content in AEM Dispatcher
 description: Erfahren Sie, wie die Zwischenspeicherung mit Berechtigungen im Dispatcher funktioniert.
-seo-description: Learn how permission-sensitive caching works in AEM Dispatcher.
-uuid: abfed68a-2efe-45f6-bdf7-2284931629d6
 contentOwner: User
 products: SG_EXPERIENCEMANAGER/DISPATCHER
 topic-tags: dispatcher
 content-type: reference
-discoiquuid: 4f9b2bc8-a309-47bc-b70d-a1c0da78d464
 exl-id: 3d8d8204-7e0d-44ad-b41b-6fec2689c6a6
-source-git-commit: 31eaa42b17838d97cacd5c535e04be01a3eb6807
-workflow-type: ht
+source-git-commit: 2d90738d01fef6e37a2c25784ed4d1338c037c23
+workflow-type: tm+mt
 source-wordcount: '910'
-ht-degree: 100%
+ht-degree: 89%
 
 ---
 
@@ -36,7 +32,7 @@ Die folgenden Abbildungen zeigen die Abfolge der Ereignisse, wenn ein Webbrowser
 ![](assets/chlimage_1.png)
 
 1. Der Dispatcher ermittelt, dass der angeforderte Inhalt zwischengespeichert wurde und gültig ist.
-1. Der Dispatcher sendet eine Anfragenachricht an den Renderer. Der HEAD-Abschnitt enthält alle Kopfzeilen aus der Browser-Anfrage.
+1. Der Dispatcher sendet eine Anfragenachricht an den Renderer. Der HEAD-Abschnitt enthält alle Kopfzeilen der Browser-Anforderung.
 1. Der Renderer ruft das Auth-Checker-Servlet auf, um die Sicherheitsprüfung durchzuführen, und antwortet dem Dispatcher. Die Antwortnachricht enthält den HTTP-Status-Code „200“, um anzuzeigen, dass die Person autorisiert ist.
 1. Der Dispatcher sendet eine Antwortnachricht an den Browser, die aus den Kopfzeilen der Renderer-Antwort und dem zwischengespeicherten Inhalt im Textkörper besteht.
 
@@ -73,8 +69,8 @@ Wenn Sie die Zwischenspeicherung unter Berücksichtigung von Berechtigungen impl
 
 >[!NOTE]
 >
->Wenn sich ein CDN (oder ein anderer Cache) vor dem Dispatcher befindet, sollten Sie die Caching-Header entsprechend festlegen, damit das CDN den privaten Inhalt nicht zwischenspeichert. Beispiel: `Header always set Cache-Control private`.
->Weitere Informationen zum Festlegen von privaten Cache-Control-Headern finden Sie auf der Seite [Caching in AEM as a Cloud Service](https://experienceleague.adobe.com/docs/experience-manager-cloud-service/content/implementing/content-delivery/caching.html?lang=de).
+>Wenn sich ein CDN (oder ein anderer Cache) vor dem Dispatcher befindet, sollten Sie die Zwischenspeicherkopfzeilen entsprechend festlegen, damit das CDN den privaten Inhalt nicht zwischenspeichert. Beispiel: `Header always set Cache-Control private`.
+>AEM as a Cloud Service Informationen finden Sie in der [Zwischenspeicherung](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/content-delivery/caching) Seite finden Sie weitere Informationen zum Festlegen von Headern für das private Zwischenspeichern.
 
 ## Erstellen des Auth-Checker-Servlets {#create-the-auth-checker-servlet}
 
@@ -82,7 +78,7 @@ Erstellen Sie ein Servlet, das die Authentifizierung und Autorisierung der Perso
 
 Alle Benutzenden müssen auf das Servlet zugreifen können. Daher sollte das Servlet die `org.apache.sling.api.servlets.SlingSafeMethodsServlet`-Klasse erweitern, die Lesezugriff auf das System bereitstellt.
 
-Das Servlet empfängt nur HEAD-Anforderungen vom Renderer, Sie müssen daher nur die `doHead`-Methode implementieren.
+Das Servlet empfängt nur HEAD-Anfragen vom Renderer, daher dürfen Sie nur die `doHead` -Methode.
 
 Der Renderer schließt den URI der angeforderten Ressource als Parameter der HTTP-Anforderung ein. Der Zugriff auf ein Autorisierungsservlet erfolgt z. B. über `/bin/permissioncheck`. Um eine Sicherheitsprüfung auf der Seite „/content/geometrixx-outdoors/en.html“ durchzuführen, schließt der Renderer die folgende URL in die HTTP-Anforderung ein:
 
@@ -151,7 +147,7 @@ public class AuthcheckerServlet extends SlingSafeMethodsServlet {
 
 >[!NOTE]
 >
->Wenn Ihre Anforderungen das Zwischenspeichern von authentifizierten Dokumenten zulassen, legen Sie unter „/cache“ für die Eigenschaft „/allowAuthorized“ den Wert `/allowAuthorized 1` fest. Weitere Informationen finden Sie unter [Zwischenspeicherung bei Verwendung von Authentifizierung](/help/using/dispatcher-configuration.md).
+>Wenn Ihre Anforderungen das Zwischenspeichern von authentifizierten Dokumenten zulassen, legen Sie unter „/cache“ für die Eigenschaft „/allowAuthorized“ den Wert `/allowAuthorized 1` fest. Siehe Thema [Zwischenspeicherung bei Verwendung der Authentifizierung](/help/using/dispatcher-configuration.md) für weitere Details.
 
 Der Abschnitt „auth_checker“ der Datei „dispatcher.any“ steuert das Verhalten beim Zwischenspeichern unter Berücksichtigung von Berechtigungen. Der Abschnitt „auth_checker“ enthält folgende Unterabschnitte:
 

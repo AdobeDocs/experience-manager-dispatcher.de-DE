@@ -5,10 +5,10 @@ type: Documentation
 git-repo: https://github.com/AdobeDocs/experience-manager-dispatcher.de-DE
 index: y
 recommendations: noDisplay
-source-git-commit: 70364ba7229e76ed8b30012029f9a5529b08312d
-workflow-type: ht
+source-git-commit: 2d90738d01fef6e37a2c25784ed4d1338c037c23
+workflow-type: tm+mt
 source-wordcount: '109'
-ht-degree: 100%
+ht-degree: 82%
 
 ---
 
@@ -20,9 +20,9 @@ Die metadata.md-Datei enthält Metadaten auf Repo-Ebene, die über die TOC.md-Da
 | metadata | Funktion |
 |--- |--- |
 | solution-title | Wird in der Artikelkopfzeile als Link verwendet |
-| solution-hub-url | Öffnet die helpx-Hub-Seite |
+| solution-hub-url | Öffnet Hilfeseite |
 | solution-icon | Zeigt das Lösungssymbol neben Lösungstitel an. Noch nicht implementiert |
-| getting-started-url | Link zur helpx-Seite „Erste Schritte“ |
-| tutorials-url | Link zu Video-Tutorials – entweder helpx-Tutorials oder KT-Tutorials |
+| getting-started-url | Link zur Hilfeseite für die ersten Schritte |
+| tutorials-url | Link zu Video-Tutorials - entweder Hilfe-Tutorials oder KT-Tutorials |
 | mini-toc-levels | Legt die Anzahl der Überschriftenebenen fest, die in der rechten Leiste angezeigt werden. Standard ist 2 |
 | git-repo | Gibt den Speicherort des primären Repo für die interne Verwendung an. |
