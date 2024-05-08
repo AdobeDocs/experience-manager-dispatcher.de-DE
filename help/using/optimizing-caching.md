@@ -10,9 +10,9 @@ index: y
 internal: n
 snippet: y
 source-git-commit: 2d90738d01fef6e37a2c25784ed4d1338c037c23
-workflow-type: tm+mt
+workflow-type: ht
 source-wordcount: '1125'
-ht-degree: 78%
+ht-degree: 100%
 
 ---
 
@@ -33,20 +33,20 @@ Last Modified Date: 2017-10-25T04:13:34.919-0400
 >
 >Dispatcher-Versionen sind unabhängig von AEM. Sie wurden möglicherweise zu dieser Seite umgeleitet, wenn Sie einem Link zur Dispatcher-Dokumentation gefolgt sind, der in der Dokumentation für eine frühere AEM-Version eingebettet ist.
 
-Der Dispatcher bietet mehrere integrierte Mechanismen, mit denen Sie die Leistung optimieren können. In diesem Abschnitt erfahren Sie, wie Sie Ihre Website gestalten können, um die Vorteile der Zwischenspeicherung zu maximieren.
+Der Dispatcher bietet verschiedene integrierte Mechanismen, mit denen Sie die Leistung optimieren können. In diesem Abschnitt erfahren Sie, wie Sie Ihre Website gestalten können, um die Vorteile der Zwischenspeicherung zu maximieren.
 
 >[!NOTE]
 >
 >Vielleicht erinnern Sie sich daran, dass der Dispatcher den Cache auf einem standardmäßigen Webserver speichert. Dies bedeutet, dass Sie:
 >
->* kann alles zwischenspeichern, das Sie als Seite speichern und mithilfe einer URL anfordern können
->* kann keine anderen Elemente speichern, wie HTTP-Header, Cookies, Sitzungsdaten und Formulardaten.
+>* alles zwischenspeichern können, was als Seite gespeichert und mit einer URL abgerufen werden kann
+>* keine anderen Elemente speichern können, z. B. HTTP-Header, Cookies, Sitzungs- und Formulardaten
 >
->Im Allgemeinen erfordern viele Cachestrategien die Auswahl guter URLs und nicht die Verwendung dieser zusätzlichen Daten.
+>Allgemein beinhalten viele Caching-Strategien die Auswahl geeigneter URLs, ohne dabei von diesen zusätzlichen Daten abhängig zu sein.
 
-## Verwenden einer einheitlichen Seitencodierung  {#using-consistent-page-encoding}
+## Verwenden einer einheitlichen Seitenkodierung  {#using-consistent-page-encoding}
 
-HTTP-Anfragekopfzeilen werden nicht zwischengespeichert. Daher können Probleme auftreten, wenn Sie Seitenkodierungsinformationen in der Kopfzeile speichern. In diesem Fall wird die Standardcodierung des Webservers für die Seite verwendet, wenn der Dispatcher eine Seite aus dem Cache bereitstellt. Es gibt zwei Möglichkeiten, dieses Problem zu vermeiden:
+HTTP-Anfrage-Header werden nicht zwischengespeichert. Daher können Probleme auftreten, wenn Sie Seiten-Codierungsinformationen im Header speichern. In diesem Fall wird die Standardcodierung des Webservers für die Seite verwendet, wenn der Dispatcher eine Seite aus dem Cache bereitstellt. Es gibt zwei Möglichkeiten, dieses Problem zu vermeiden:
 
 * Wenn Sie nur eine Codierung verwenden, stellen Sie sicher, dass die auf dem Webserver verwendete Codierung mit der Standardcodierung der AEM-Website übereinstimmt.
 * Verwenden Sie zum Festlegen der Codierung einen `<META>`-Tag im HTML-`head`-Abschnitt wie im folgenden Beispiel:
@@ -87,9 +87,9 @@ www.myCompany.com/news/main.large.html
 
 >[!NOTE]
 >
->Für die meisten Layoutaspekte ist es auch möglich, Stylesheets und/oder clientseitige Skripte zu verwenden. Diese funktionieren normalerweise gut mit dem Caching.
+>Bei den meisten Layout-Komponenten können auch Stylesheets und/oder Client-seitige Skripts verwendet werden. Diese Instrumente funktionieren in der Regel gut beim Caching.
 >
->Dies ist auch für Druckversionen nützlich, bei denen Sie eine URL wie die folgende verwenden können:
+>Dies ist auch für Druckversionen nützlich, für die Sie eine URL erstellen können, z. B.:
 >
 >`www.myCompany.com/news/main.print.html`
 >
@@ -112,13 +112,13 @@ Beispielsweise können Sie den Titel der Seite „myPage.html“ in der Datei �
 
 ## Invalidierung von Bilddateien für die Navigation  {#invalidating-image-files-used-for-navigation}
 
-Wenn Sie Bilder für die Navigationseinträge verwenden, ist die Methode im Wesentlichen die gleiche wie bei Titeln, nur etwas komplexer. Speichern Sie alle Navigationsbilder mit den Zielseiten. Wenn Sie zwei Bilder für „normal“ und „aktiv“ verwenden, können Sie die folgenden Skripte verwenden:
+Wenn Sie Bilder als Navigationseinträge verwenden, gehen Sie im Prinzip wie bei Titeln vor, das Verfahren ist nur ein wenig komplexer. Speichern Sie alle Navigationsbilder mit den Zielseiten. Wenn Sie zwei Bilder für „normal“ und „aktiv“ verwenden, können Sie die folgenden Skripte verwenden:
 
 * Ein Skript, das die Seite wie gewohnt anzeigt.
 * Ein Skript, das „.normal“-Anforderungen verarbeitet und das normale Bild zurückgibt.
 * Ein Skript, das „.active“-Anfragen verarbeitet und das aktivierte Bild zurückgibt.
 
-Es ist wichtig, dass Sie diese Bilder mit demselben Namensschild wie die Seite erstellen, um sicherzustellen, dass durch eine Inhaltsaktualisierung diese Bilder und die Seite gelöscht werden.
+Es ist wichtig, dass Sie diese Bilder mit demselben Namens-Handle wie die Seite erstellen, um sicherzustellen, dass durch eine Inhaltsaktualisierung diese Bilder und die Seite gelöscht werden.
 
 Bei Seiten, die nicht geändert werden, bleiben die Bilder im Cache, obwohl die Seiten selbst automatisch ungültig gemacht werden.
 
@@ -141,18 +141,18 @@ Der Dispatcher kann keine personalisierten Daten zwischenspeichern. Sie sollten 
 
 ## Sticky-Verbindungen  {#sticky-connections}
 
-[Sticky-Verbindungen](dispatcher.md#TheBenefitsofLoadBalancing) stellen sicher, dass die Dokumente für eine Benutzerin oder einen Benutzer alle auf demselben Server erstellt werden. Wenn eine Benutzerin oder ein Benutzer diesen Ordner verlässt und später zu ihm zurückkehrt, bleibt die Verbindung erhalten. Definieren Sie einen Ordner, damit er alle Dokumente enthalten kann, die Sticky-Verbindungen für die Website erfordern. Dieser sollte keine anderen Dokumente enthalten. Dies wirkt sich auf den Lastenausgleich aus, wenn Sie personalisierte Seiten und Sitzungsdaten verwenden.
+[Sticky-Verbindungen](dispatcher.md#TheBenefitsofLoadBalancing) stellen sicher, dass die Dokumente für eine Benutzerin oder einen Benutzer alle auf demselben Server erstellt werden. Wenn eine Benutzerin oder ein Benutzer diesen Ordner verlässt und später zu ihm zurückkehrt, bleibt die Verbindung erhalten. Definieren Sie einen Ordner zum Speichern aller Dokumente, die Sticky-Verbindungen für die Website benötigen. Dieser sollte keine anderen Dokumente enthalten. Dies wirkt sich auf den Lastenausgleich aus, wenn Sie personalisierte Seiten und Sitzungsdaten verwenden.
 
 ## MIME-Typen {#mime-types}
 
 Es gibt zwei Möglichkeiten, wie ein Browser den Typ einer Datei bestimmen kann:
 
-1. Durch seine Erweiterung (z. B. .html, .gif und .jpg)
+1. Über ihre Erweiterung (wie .html, .gif und .jpg)
 1. Über den MIME-Typ, den der Server mit der Datei sendet.
 
 Für die meisten Dateien wird der MIME-Typ durch die Dateierweiterung angegeben Das heißt:
 
-1. Durch seine Erweiterung (z. B. .html, .gif und .jpg)
+1. Über ihre Erweiterung (wie .html, .gif und .jpg)
 1. Über den MIME-Typ, den der Server mit der Datei sendet.
 
 Wenn der Dateiname keine Erweiterung aufweist, wird er als Nur-Text angezeigt.
@@ -162,5 +162,5 @@ Der MIME-Typ ist ein Bestandteil des HTTP-Headers. Daher wird er nicht vom Dispa
 Um sicherzustellen, dass Dateien ordnungsgemäß zwischengespeichert werden, befolgen Sie die folgenden Richtlinien:
 
 * Stellen Sie sicher, dass Dateien immer die richtige Erweiterung haben.
-* Verwenden Sie möglichst keine allgemeinen Dateibereitstellungsskripte mit URLs wie „download.jsp?file=2214“. Schreiben Sie das Skript so um, dass es URLs verwendet, die die Dateispezifikation enthalten. Im vorherigen Beispiel würde dies `download.2214.pdf`.
+* Verwenden Sie möglichst keine allgemeinen Dateibereitstellungsskripte mit URLs wie „download.jsp?file=2214“. Schreiben Sie das Skript so um, dass es URLs verwendet, die die Dateispezifikation enthalten. Für das vorherige Beispiel wäre dies `download.2214.pdf`.
 

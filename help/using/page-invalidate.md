@@ -1,6 +1,6 @@
 ---
-title: Invalidierung zwischengespeicherter Seiten aus AEM
-description: Erfahren Sie, wie Sie die Interaktion zwischen Dispatcher und Adobe Experience Manager konfigurieren, um eine effektive Cacheverwaltung sicherzustellen.
+title: Invalidieren zwischengespeicherter Seiten über AEM
+description: Erfahren Sie, wie Sie die Interaktion zwischen Dispatcher und Adobe Experience Manager konfigurieren, um eine effektive Cache-Verwaltung sicherzustellen.
 cmgrlastmodified: 01.11.2007 08 22 29 [aheimoz]
 pageversionid: 1193211344162
 template: /apps/docs/templates/contentpage
@@ -10,21 +10,21 @@ topic-tags: dispatcher
 content-type: reference
 exl-id: 90eb6a78-e867-456d-b1cf-f62f49c91851
 source-git-commit: 2d90738d01fef6e37a2c25784ed4d1338c037c23
-workflow-type: tm+mt
+workflow-type: ht
 source-wordcount: '1408'
-ht-degree: 65%
+ht-degree: 100%
 
 ---
 
-# Invalidierung zwischengespeicherter Seiten aus AEM {#invalidating-cached-pages-from-aem}
+# Invalidieren zwischengespeicherter Seiten über AEM {#invalidating-cached-pages-from-aem}
 
 Bei Verwendung des Dispatchers mit AEM muss die Interaktion konfiguriert werden, um eine effektive Cacheverwaltung zu ermöglichen. Je nach Umgebung kann die Konfiguration auch zu einer Leistungsverbesserung führen.
 
 ## Einrichten von AEM-Benutzerkonten  {#setting-up-aem-user-accounts}
 
-Das Standardbenutzerkonto `admin` wird zur Authentifizierung der Replikationsagenten verwendet, die standardmäßig installiert sind. Erstellen Sie ein dediziertes Benutzerkonto für die Verwendung mit Replikationsagenten.
+Das Standardbenutzerkonto `admin` wird zur Authentifizierung der Replikationsagenten verwendet, die standardmäßig installiert sind. Erstellen Sie ein dediziertes Benutzerkonto zur Verwendung mit Replikationsagenten. 
 
-Weitere Informationen finden Sie unter [Konfigurationsreplikations- und Transportbenutzer](https://experienceleague.adobe.com/en/docs/experience-manager-release-information/aem-release-updates/previous-updates/aem-previous-versions#VerificationSteps) der AEM Sicherheitscheckliste.
+Weitere Informationen finden Sie im Abschnitt [Konfigurieren von Replikations- und Transport-Benutzenden](https://experienceleague.adobe.com/de/docs/experience-manager-release-information/aem-release-updates/previous-updates/aem-previous-versions#VerificationSteps) der AEM-Sicherheitscheckliste.
 
 <!-- OLD URL from above https://helpx.adobe.com/experience-manager/6-3/sites/administering/using/security-checklist.html#VerificationSteps -->
 
@@ -58,30 +58,30 @@ Wenden Sie das folgende Verfahren an, um einen Replizierungsagenten auf der AEM-
 
 1. (Optional) Um Alias- oder Vanity Path-Invalidierungsanforderungen zu aktivieren, wählen Sie die Option **Alias-Aktualisierung**.
 1. Geben Sie auf der Registerkarte „Transport“ den für den Zugriff auf den Dispatcher erforderlichen URI ein.\
-   Wenn Sie den standardmäßigen Dispatcher Flush-Agenten verwenden, aktualisieren Sie den Hostnamen und Port, z. B. https://&lt;*dispatcherHost*>:&lt;*portApache*>/dispatcher/invalidate.cache
+   Wenn Sie den standardmäßigen Dispatcher-Flush-Agenten verwenden, aktualisieren Sie den Host-Namen und Port, z. B.: https://&lt;*dispatcherHost*>:&lt;*portApache*>/dispatcher/invalidate.cache
 
-   **Hinweis:** Bei Dispatcher Flush-Agenten wird die URI-Eigenschaft nur verwendet, wenn Sie pfadbasierte virtuelle Hosteinträge verwenden, um zwischen Farmen zu unterscheiden. Sie verwenden dieses Feld zum Bestimmen der Farm, die invalidiert werden soll. Beispiel: Farm 1 hat den virtuellen Host `www.mysite.com/path1/*` und Farm 2 den virtuellen Host `www.mysite.com/path2/*`. Mit der URL `/path1/invalidate.cache` können Sie die erste Farm und mit `/path2/invalidate.cache` die zweite Farm bestimmen. Weitere Informationen finden Sie unter [Verwenden des Dispatchers mit mehreren Domänen](dispatcher-domains.md).
+   **Hinweis:** Bei Dispatcher-Flush-Agenten wird die URI-Eigenschaft nur verwendet, wenn Sie pfadbasierte Einträge für den virtuellen Host verwenden, um zwischen den Farmen zu unterscheiden. Sie verwenden dieses Feld zum Bestimmen der Farm, die invalidiert werden soll. Beispiel: Farm 1 hat den virtuellen Host `www.mysite.com/path1/*` und Farm 2 den virtuellen Host `www.mysite.com/path2/*`. Mit der URL `/path1/invalidate.cache` können Sie die erste Farm und mit `/path2/invalidate.cache` die zweite Farm bestimmen. Weitere Informationen finden Sie unter [Verwenden des Dispatchers mit mehreren Domänen](dispatcher-domains.md).
 
 1. Konfigurieren Sie ggf. weitere Parameter. 
-1. Klicken Sie auf OK , damit Sie den Agenten aktivieren können.
+1. Klicken Sie auf „OK“, um den Agenten zu aktivieren.
 
-Sie können den Dispatcher-Flush-Agenten auch über die [Touch-optimierte Benutzeroberfläche von AEM](https://experienceleague.adobe.com/en/docs/experience-manager-65/content/implementing/deploying/configuring/replication#configuring-a-dispatcher-flush-agent) aufrufen und konfigurieren.
+Sie können den Dispatcher-Flush-Agenten auch über die [Touch-optimierte Benutzeroberfläche von AEM](https://experienceleague.adobe.com/de/docs/experience-manager-65/content/implementing/deploying/configuring/replication#configuring-a-dispatcher-flush-agent) aufrufen und konfigurieren.
 
-Weitere Informationen zum Aktivieren des Zugriffs auf Vanity-URLs finden Sie unter [Zugriff auf Vanity-URLs aktivieren](dispatcher-configuration.md#enabling-access-to-vanity-urls-vanity-urls).
+Weitere Informationen zum Aktivieren des Zugriffs auf Vanity-URLs finden Sie unter [Aktivieren des Zugriffs auf Vanity-URLs](dispatcher-configuration.md#enabling-access-to-vanity-urls-vanity-urls).
 
 >[!NOTE]
 >
->Der Agent zum Leeren des Dispatcher-Caches muss keinen Benutzernamen und kein Kennwort haben, aber wenn er konfiguriert ist, werden sie mit einfacher Authentifizierung gesendet.
+>Für den Agenten zum Leeren des Dispatcher-Caches ist kein Benutzername oder Kennwort erforderlich. Diese werden bei entsprechender Konfiguration aber mit Standardauthentifizierung gesendet.
 
 Dieser Ansatz hat zwei mögliche Probleme:
 
-* Der Dispatcher muss über die Autoreninstanz erreichbar sein. Wenn Ihr Netzwerk (z. B. die Firewall) so konfiguriert ist, dass der Zugriff zwischen den beiden eingeschränkt ist, ist dies möglicherweise nicht der Fall.
+* Der Dispatcher muss über die Autoreninstanz erreichbar sein. Wenn Ihr Netzwerk (z. B. die Firewall) so konfiguriert ist, dass der Zugriff zwischen den beiden eingeschränkt wird, ist dies u. U. nicht der Fall.
 
 * Die Veröffentlichung und die Invalidierung des Caches finden gleichzeitig statt. Eine Person kann eine Seite anfordern, nachdem diese gerade aus dem Cache entfernt wurde und kurz bevor die neue Seite veröffentlicht wird. AEM gibt dann die alte Seite zurück und der Dispatcher speichert sie erneut im Cache. Dies stellt vor allem für große Sites ein Problem dar.
 
 ## Invalidierung des Dispatcher-Caches von einer Veröffentlichungsinstanz  {#invalidating-dispatcher-cache-from-a-publishing-instance}
 
-Unter bestimmten Umständen können Leistungsverbesserungen erzielt werden, indem die Cacheverwaltung von der Authoring-Umgebung auf eine Publishing-Instanz übertragen wird. Dann sendet die Veröffentlichungsumgebung (nicht die AEM Authoring-Umgebung) eine Anforderung zur Invalidierung des Caches an den Dispatcher, wenn eine veröffentlichte Seite empfangen wird.
+Unter bestimmten Umständen lassen sich Leistungsverbesserungen erzielen, indem die Cache-Verwaltung von der Autorenumgebung in eine Veröffentlichungsinstanz verlagert wird. Dann sendet die Veröffentlichungsumgebung (nicht die AEM-Autorenumgebung) eine Anfrage zur Cache-Invalidierung an den Dispatcher, wenn eine veröffentlichte Seite empfangen wird.
 
 Beispiele:
 
@@ -94,24 +94,24 @@ Comment Type: draft
  -->
 
 * Verhindern möglicher Zeitkonflikte zwischen dem Dispatcher und der Veröffentlichungsinstanz (siehe [Invalidierung des Dispatcher-Caches aus der Autorenumgebung](#invalidating-dispatcher-cache-from-the-authoring-environment)).
-* Das System umfasst mehrere Veröffentlichungsinstanzen, die sich auf Hochleistungsservern befinden, und nur eine Autoreninstanz.
+* Das System umfasst eine Reihe von Veröffentlichungsinstanzen, die sich auf Hochleistungs-Servern befinden, und nur eine Autoreninstanz.
 
 >[!NOTE]
 >
 >Es sollte von erfahrenen AEM-Admins entschieden werden, ob diese Methode anzuwenden ist.
 
-Der Dispatcher-Flush wird von einem Replikationsagenten gesteuert, der auf der Veröffentlichungsinstanz ausgeführt wird. Allerdings erfolgt die Konfiguration in der Autorenumgebung und wird anschließend übertragen, indem der Agent aktiviert wird:
+Das Leeren des Dispatchers wird von einem Replikationsagenten gesteuert, der in der Veröffentlichungsinstanz ausgeführt wird. Allerdings erfolgt die Konfiguration in der Autorenumgebung und wird anschließend übertragen, indem der Agent aktiviert wird:
 
 1. Öffnen Sie die AEM-Tools-Konsole.
 1. Öffnen Sie den erforderlichen Replikationsagenten unter „Werkzeuge/Replikation/Agenten“ auf der Veröffentlichungsinstanz. Sie können den Dispatcher Flush-Agenten verwenden, der standardmäßig installiert ist.
 1. Klicken Sie auf „Bearbeiten“ und stellen Sie sicher, dass auf der Registerkarte „Einstellungen“ **Aktiviert** ausgewählt ist. 
 1. (Optional) Um Alias- oder Vanity Path-Invalidierungsanforderungen zu aktivieren, wählen Sie die Option **Alias-Aktualisierung**.
 1. Geben Sie auf der Registerkarte „Transport“ den für den Zugriff auf den Dispatcher erforderlichen URI ein.\
-   Wenn Sie den standardmäßigen Dispatcher Flush-Agenten verwenden, müssen Sie den Hostnamen und Port aktualisieren. Zum Beispiel:
+   Wenn Sie den standardmäßigen Dispatcher-Flush-Agenten verwenden, müssen Sie den Host-Namen und Port aktualisieren, z. B.:
 
    `http://<dispatcherHost>:<portApache>/dispatcher/invalidate.cache`
 
-   **Hinweis:** Bei Dispatcher Flush-Agenten wird die URI-Eigenschaft nur verwendet, wenn Sie pfadbasierte virtuelle Hosteinträge verwenden, um zwischen Farmen zu unterscheiden. Sie verwenden dieses Feld zum Bestimmen der Farm, die invalidiert werden soll. Beispiel: Farm 1 hat den virtuellen Host `www.mysite.com/path1/*` und Farm 2 den virtuellen Host `www.mysite.com/path2/*`. Mit der URL `/path1/invalidate.cache` können Sie die erste Farm und mit `/path2/invalidate.cache` die zweite Farm bestimmen. Weitere Informationen finden Sie unter [Verwenden des Dispatchers mit mehreren Domänen](dispatcher-domains.md).
+   **Hinweis:** Bei Dispatcher-Flush-Agenten wird die URI-Eigenschaft nur verwendet, wenn Sie pfadbasierte Einträge für virtuelle Hosts verwenden, um zwischen den Farmen zu unterscheiden. Sie verwenden dieses Feld zum Bestimmen der Farm, die invalidiert werden soll. Beispiel: Farm 1 hat den virtuellen Host `www.mysite.com/path1/*` und Farm 2 den virtuellen Host `www.mysite.com/path2/*`. Mit der URL `/path1/invalidate.cache` können Sie die erste Farm und mit `/path2/invalidate.cache` die zweite Farm bestimmen. Weitere Informationen finden Sie unter [Verwenden des Dispatchers mit mehreren Domänen](dispatcher-domains.md).
 
 1. Konfigurieren Sie ggf. weitere Parameter. 
 1. Melden Sie sich bei der Veröffentlichungsinstanz an und validieren Sie die Konfiguration des Flush-Agenten. Stellen Sie außerdem sicher, dass er aktiviert ist.
@@ -123,7 +123,7 @@ Wenn Sie nach der Konfiguration eine Seite von Author to Publish aktivieren, ini
 
 ## Manuelle Invalidierung des Dispatcher-Caches {#manually-invalidating-the-dispatcher-cache}
 
-Um den Dispatcher-Cache ungültig zu machen (oder zu leeren), ohne eine Seite zu aktivieren, können Sie eine HTTP-Anforderung an den Dispatcher senden. Sie können beispielsweise eine AEM-Anwendung erstellen, die es Admins oder anderen Anwendungen ermöglicht, den Cache zu leeren.
+Um den Dispatcher-Cache zu invalidieren (oder zu leeren), ohne eine Seite zu aktivieren, können Sie eine HTTP-Anfrage an den Dispatcher ausgeben. Sie können beispielsweise eine AEM-Anwendung erstellen, die es Admins oder anderen Anwendungen ermöglicht, den Cache zu leeren.
 
 Die HTTP-Anfrage veranlasst den Dispatcher zum Löschen bestimmter Dateien aus dem Cache. Der Dispatcher aktualisiert den Cache dann mit einer neuen Kopie (optional).
 
@@ -144,17 +144,17 @@ Der Dispatcher leert (löscht) die zwischengespeicherten Dateien und Ordner mit 
 
 * Allen Dateien (mit beliebiger Dateierweiterung) mit dem Namen `en` im Verzeichnis `geometrixx-outdoors`
 
-* Jedes Verzeichnis mit dem Namen &quot; `_jcr_content`&quot; unter dem Verzeichnis &quot;en&quot;(das, sofern vorhanden, zwischengespeicherte Renderings von Unterknoten der Seite enthält)
+* allen Verzeichnissen mit dem Namen `_jcr_content` unter dem Verzeichnis „en“ (das, sofern vorhanden, zwischengespeicherte Renderings von Unterknoten der Seite enthält)
 
-Alle anderen Dateien im Dispatcher-Cache (oder bis zu einer bestimmten Ebene, je nach `/statfileslevel` -Einstellung) durch Ändern der `.stat` -Datei. Das Datum der letzten Änderung dieser Datei wird mit dem Datum der letzten Änderung eines zwischengespeicherten Dokuments verglichen und das Dokument wird erneut aktualisiert, wenn die `.stat` -Datei ist neuer. Weitere Informationen finden Sie unter [Invalidierung von Dateien nach Ordnerebene](dispatcher-configuration.md#main-pars_title_26).
+Alle anderen Dateien im Dispatcher-Cache (bzw. bis zu einer bestimmten Ebene je nach `/statfileslevel`-Einstellung) werden durch Änderung der `.stat`-Datei invalidiert. Das Datum der letzten Änderung dieser Datei wird mit dem Datum der letzten Änderung eines zwischengespeicherten Dokuments verglichen. Das Dokument wird erneut abgerufen, wenn die `.stat`-Datei neuer ist. Weitere Informationen finden Sie unter [Invalidierung von Dateien nach Ordnerebene](dispatcher-configuration.md#main-pars_title_26).
 
-Die Invalidierung (d. h. das Ändern von STAT-Dateien) kann durch Senden eines zusätzlichen Headers verhindert werden `CQ-Action-Scope: ResourceOnly`. Dies kann verwendet werden, um bestimmte Ressourcen zu leeren, ohne andere Teile des Caches zu invalidieren, z. B. JSON-Daten, die dynamisch erstellt werden und eine regelmäßige Bereinigung unabhängig vom Cache erfordern. Beispiel: Daten, die von einem Drittanbietersystem zur Anzeige von Nachrichten und Börsentickern abgerufen werden.
+Die Invalidierung (d. h. das Ändern von STAT-Dateien) kann durch Senden des zusätzlichen Headers `CQ-Action-Scope: ResourceOnly` verhindert werden. Damit können bestimmte Ressourcen geleert werden, ohne andere Teile des Caches zu invalidieren, wie JSON-Daten, die dynamisch erstellt werden und unabhängig vom Cache regelmäßig geleert werden müssen. Das sind beispielsweise Daten, die aus Drittanbietersystemen abgerufen werden, um Nachrichten, Börsen-Ticker usw. anzuzeigen.
 
 ### Löschen und erneutes Zwischenspeichern von Dateien  {#delete-and-recache-files}
 
-Geben Sie eine HTTP-Anfrage aus, die den Dispatcher veranlasst, zwischengespeicherte Dateien zu löschen und die Datei unmittelbar abzurufen und erneut zwischenzuspeichern. Löschen Sie Dateien und speichern Sie sie sofort erneut, wenn Websites wahrscheinlich gleichzeitige Clientanforderungen für dieselbe Seite empfangen. Mit dem unmittelbaren erneuten Zwischenspeichern wird sichergestellt, dass der Dispatcher die Seite insgesamt nur einmal abruft und zwischenspeichert, anstatt einmal für jede der gleichzeitigen Client-Anfragen.
+Geben Sie eine HTTP-Anfrage aus, die den Dispatcher veranlasst, zwischengespeicherte Dateien zu löschen und die Datei unmittelbar abzurufen und erneut zwischenzuspeichern. Löschen Sie Dateien und speichern Sie sie sofort erneut im Cache, wenn es wahrscheinlich ist, dass Websites gleichzeitige Client-Anfragen für dieselbe Seite empfangen. Mit dem unmittelbaren erneuten Zwischenspeichern wird sichergestellt, dass der Dispatcher die Seite insgesamt nur einmal abruft und zwischenspeichert, anstatt einmal für jede der gleichzeitigen Client-Anfragen.
 
-**Hinweis:** Das Löschen und erneute Zwischenspeichern von Dateien sollte nur auf der Veröffentlichungsinstanz durchgeführt werden. Wenn dies auf der Autoreninstanz erfolgt, kann es zu Überschneidungen kommen, wenn versucht wird, Ressourcen erneut zwischenzuspeichern, bevor sie veröffentlicht wurden.
+**Hinweis:** Das Löschen und erneute Zwischenspeichern von Dateien sollte ausschließlich in der Veröffentlichungsinstanz erfolgen. Wenn dies auf der Autoreninstanz erfolgt, kann es zu Überschneidungen kommen, wenn versucht wird, Ressourcen erneut zwischenzuspeichern, bevor sie veröffentlicht wurden.
 
 Die HTTP-Anforderung sieht folgendermaßen aus:
 
@@ -184,7 +184,7 @@ Content-Length: 36
 
 ### Beispiel-Servlet für das Leeren des Caches {#example-flush-servlet}
 
-Der folgende Code implementiert ein Servlet, das eine Invalidierungsanforderung an den Dispatcher sendet. Das Servlet empfängt eine Meldung, die die Parameter `handle` und `page` enthält. Diese Parameter stellen den Wert des Headers `CQ-Handle` bereit und dementsprechend auch den Pfad zu der Datei, die erneut zwischengespeichert werden soll. Das Servlet verwendet die Werte, um die HTTP-Anfrage für den Dispatcher zu erstellen.
+Mit dem folgenden Code wird ein Servlet implementiert, das eine Invalidierungsanfrage an den Dispatcher sendet. Das Servlet empfängt eine Meldung, die die Parameter `handle` und `page` enthält. Diese Parameter stellen den Wert des Headers `CQ-Handle` bereit und dementsprechend auch den Pfad zu der Datei, die erneut zwischengespeichert werden soll. Das Servlet verwendet die Werte, um die HTTP-Anfrage für den Dispatcher zu erstellen.
 
 Wenn das Servlet für die Veröffentlichungsinstanz bereitgestellt wird, veranlasst die folgende URL den Dispatcher dazu, die Seite „/content/geometrixx-outdoors/en.html“ zu löschen und dann eine neue Kopie zwischenzuspeichern.
 

@@ -1,11 +1,11 @@
 ---
-title: Häufige Probleme beim Dispatcher
-description: Häufige Probleme beim Adobe Experience Manager Dispatcher.
+title: Häufige Dispatcher-Probleme
+description: Häufige Probleme bei Adobe Experience Manager Dispatcher
 exl-id: 4dcc7318-aba5-4b17-8cf4-190ffefbba75
 source-git-commit: 2d90738d01fef6e37a2c25784ed4d1338c037c23
-workflow-type: tm+mt
+workflow-type: ht
 source-wordcount: '1542'
-ht-degree: 89%
+ht-degree: 100%
 
 ---
 
@@ -17,7 +17,7 @@ ht-degree: 89%
 
 ### Was genau ist der Dispatcher?
 
-Der Dispatcher ist das Caching- bzw. Lastenausgleichs-Tool von Adobe Experience Manager, das für eine schnelle und dynamische Web-Authoring-Umgebung sorgt. Zum Zwischenspeichern fungiert der Dispatcher als Teil eines HTTP-Servers, z. B. Apache. Das Ziel besteht darin, so viele statische Website-Inhalte wie möglich zu speichern (oder &quot;zwischenspeichern&quot;) und so selten wie möglich auf das Layout der Engine der Website zuzugreifen. Beim Lastenausgleich verteilt der Dispatcher Benutzeranfragen (Lasten) auf verschiedene AEM-Instanzen (Renderer).
+Der Dispatcher ist das Caching- bzw. Lastenausgleichs-Tool von Adobe Experience Manager, das für eine schnelle und dynamische Web-Authoring-Umgebung sorgt. Zum Zwischenspeichern fungiert der Dispatcher als Teil eines HTTP-Servers, z. B. Apache. Er soll so viele statische Website-Inhalte wie möglich speichern (bzw. zwischenspeichern) und so selten wie möglich auf das Layout der Website-Engine zugreifen. Beim Lastenausgleich verteilt der Dispatcher Benutzeranfragen (Lasten) auf verschiedene AEM-Instanzen (Renderer).
 
 Zum Caching nutzt das Dispatcher-Modul die Fähigkeit des Webservers, statische Inhalte bereitzustellen. Der Dispatcher legt die zwischengespeicherten Dokumente im Basisverzeichnis des Webservers ab.
 
@@ -80,9 +80,9 @@ Für einige Anwendungen können sowohl Sticky-Verbindungen als auch Caching verw
 
 ### Können sich Dispatcher und eine AEM-Veröffentlichungsinstanz auf demselben physischen Computer befinden?
 
-Ja, wenn der Computer ausreichend leistungsfähig ist. Sie sollten jedoch den Dispatcher und die AEM Veröffentlichungsinstanz auf verschiedenen Computern einrichten.
+Ja, wenn der Computer ausreichend leistungsfähig ist. Sie sollten jedoch den Dispatcher und die AEM-Veröffentlichungsinstanz auf verschiedenen Computern einrichten.
 
-Normalerweise befindet sich die Veröffentlichungsinstanz in der Firewall und der Dispatcher in der DMZ. Wenn Sie sich dafür entscheiden, die Veröffentlichungsinstanz und den Dispatcher auf demselben physischen Computer zu installieren, stellen Sie sicher, dass die Firewall-Einstellungen den direkten Zugriff von externen Netzwerken auf die Veröffentlichungsinstanz verbieten.
+Normalerweise befindet sich die Veröffentlichungsinstanz in der Firewall und der Dispatcher in der DMZ. Wenn Sie sich dafür entscheiden, dass sich die Veröffentlichungsinstanz und der Dispatcher auf demselben physischen Computer befinden, ist sicherzustellen, dass die Firewall-Einstellungen den direkten Zugriff auf die Veröffentlichungsinstanz über externe Netzwerke verhindern.
 
 ### Kann ich nur Dateien mit bestimmten Erweiterungen zwischenspeichern?
 
@@ -115,7 +115,7 @@ Lesen Sie hierzu [Zwischenspeichern sicherer Inhalte](permissions-cache.md).
 
 ### Wie sichere ich die Kommunikation zwischen den Dispatcher- und CQ-Instanzen?
 
-Lesen Sie hierzu die Seiten [Checkliste für die Dispatcher-Sicherheit](security-checklist.md) sowie [Checkliste für die AEM-Sicherheit](https://experienceleague.adobe.com/en/docs/experience-manager-64/administering/security/security-checklist).
+Lesen Sie hierzu die Seiten [Checkliste für die Dispatcher-Sicherheit](security-checklist.md) sowie [Checkliste für die AEM-Sicherheit](https://experienceleague.adobe.com/de/docs/experience-manager-64/administering/security/security-checklist).
 
 ### Dispatcher-Problem `jcr:content` geändert in `jcr%3acontent`
 
@@ -129,7 +129,7 @@ Weitere Informationen: [https://sling.apache.org/documentation/the-sling-engine/
 
 ### Wie konfiguriere ich Dispatcher-Flush-Agenten auf einer Veröffentlichungsinstanz?
 
-Lesen Sie hierzu die Seite [Replikation](https://experienceleague.adobe.com/en/docs/experience-manager-65/content/implementing/deploying/configuring/replication#configuring-your-replication-agents).
+Lesen Sie hierzu die Seite [Replikation](https://experienceleague.adobe.com/de/docs/experience-manager-65/content/implementing/deploying/configuring/replication#configuring-your-replication-agents).
 
 ### Wie kann ich Probleme bei der Dispatcher-Leerung beheben?
 
@@ -139,7 +139,7 @@ Wenn der Dispatcher durch Löschvorgänge geleert wird, können Sie das Problem 
 
 ### Wie lösche ich DAM-Assets aus dem Dispatcher-Cache?
 
-Sie können die Funktion zur Kettenreplikation verwenden. Wenn diese Funktion aktiviert ist, sendet der Flush-Agent des Dispatchers eine Leerungsanfrage, wenn eine Replikation vom Autor empfangen wird.
+Sie können die Funktion zur Kettenreplikation verwenden. Ist diese Funktion aktiviert, sendet der Dispatcher-Flush-Agent eine Leerungsanfrage bei Empfang einer Replikation von Author.
 
 So aktivieren Sie ihn:
 
@@ -148,8 +148,8 @@ So aktivieren Sie ihn:
 
 ## Sonstiges
 
-Wie ermittelt der Dispatcher, ob ein Dokument aktuell ist?
-Um festzustellen, ob ein Dokument aktuell ist, führt der Dispatcher die folgenden Aktionen durch:
+Wie erkennt der Dispatcher, ob ein Dokument aktuell ist?
+Um zu bestimmen, ob ein Dokument aktuell ist, führt der Dispatcher diese Aktionen durch:
 
 Es wird geprüft, ob für das Dokument die automatische Invalidierung ausgeführt wird. Ist dies nicht der Fall, wird das Dokument als aktuell betrachtet.
 Wenn das Dokument für die automatische Invalidierung konfiguriert wurde, überprüft der Dispatcher, ob es älter oder neuer als die letzte verfügbare Änderung ist. Wenn es älter ist, ruft der Dispatcher die aktuelle Version von der AEM-Instanz ab und ersetzt die Version im Cache.

@@ -11,9 +11,9 @@ feature: Dispatcher
 topic: Administration
 role: Admin
 source-git-commit: 2d90738d01fef6e37a2c25784ed4d1338c037c23
-workflow-type: tm+mt
+workflow-type: ht
 source-wordcount: '78'
-ht-degree: 98%
+ht-degree: 100%
 
 ---
 
@@ -27,8 +27,8 @@ ht-degree: 98%
    + [Versionshinweise zu AEM Dispatcher](release-notes.md)
 + Konfiguration {#configuring}
    + [Konfigurieren des Dispatchers](dispatcher-configuration.md)
-   + [Invalidierung zwischengespeicherter Seiten aus AEM](page-invalidate.md)
-   + [Optimierung von Websites für die Cache-Leistung](https://experienceleague.adobe.com/en/docs/experience-manager-65/content/implementing/deploying/configuring/configuring-performance)
+   + [Invalidieren zwischengespeicherter Seiten über AEM](page-invalidate.md)
+   + [Optimierung von Websites für die Cache-Leistung](https://experienceleague.adobe.com/de/docs/experience-manager-65/content/implementing/deploying/configuring/configuring-performance)
    + [Zwischenspeichern von geschützten Inhalten](permissions-cache.md)
    + [Verwenden des Dispatchers mit mehreren Domains](dispatcher-domains.md)
    + [Verwenden von SSL mit dem Dispatcher](dispatcher-ssl.md)

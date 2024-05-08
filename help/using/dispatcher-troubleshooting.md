@@ -10,9 +10,9 @@ topic-tags: dispatcher
 content-type: reference
 exl-id: 29f338ab-5d25-48a4-9309-058e0cc94cff
 source-git-commit: 2d90738d01fef6e37a2c25784ed4d1338c037c23
-workflow-type: tm+mt
+workflow-type: ht
 source-wordcount: '538'
-ht-degree: 96%
+ht-degree: 100%
 
 ---
 
@@ -26,7 +26,7 @@ ht-degree: 96%
 
 >[!NOTE]
 >
->Überprüfen Sie die [Dispatcher-Wissensdatenbank](https://helpx.adobe.com/de/experience-manager/kb/index/dispatcher.html), [Beheben von Problemen beim Leeren des Dispatchers](https://experienceleague.adobe.com/search.html?lang=en#q=troubleshooting%20dispatcher%20flushing%20issues&amp;sort=relevancy&amp;lang=de&amp;f:el_product=[Experience%20Manager])und die [Häufig gestellte Fragen zu Dispatcher - Häufige Probleme](dispatcher-faq.md) für weitere Informationen.
+>Weitere Informationen erhalten Sie auch in der [Dispatcher-Wissensdatenbank](https://helpx.adobe.com/de/experience-manager/kb/index/dispatcher.html), unter [Fehlerbehebung bei Problemen mit dem Leeren des Dispatchers](https://experienceleague.adobe.com/search.html?lang=en#q=troubleshooting%20dispatcher%20flushing%20issues&amp;sort=relevancy&amp;lang=de&amp;f:el_product=[Experience%20Manager]) sowie in den [am häufigsten gestellten Fragen zu Dispatcher-Problemen](dispatcher-faq.md).
 
 ## Überprüfen der Basiskonfiguration {#check-the-basic-configuration}
 

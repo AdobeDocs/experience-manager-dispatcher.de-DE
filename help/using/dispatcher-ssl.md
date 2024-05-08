@@ -10,15 +10,15 @@ internal: n
 snippet: y
 exl-id: ec378409-ddb7-4917-981d-dbf2198aca98
 source-git-commit: 2d90738d01fef6e37a2c25784ed4d1338c037c23
-workflow-type: tm+mt
+workflow-type: ht
 source-wordcount: '1302'
-ht-degree: 90%
+ht-degree: 100%
 
 ---
 
 # Verwenden von SSL mit dem Dispatcher {#using-ssl-with-dispatcher}
 
-Verwenden Sie SSL-Verbindungen zwischen dem Dispatcher und dem Rendercomputer:
+Verwenden Sie SSL-Verbindungen zwischen Dispatcher und Render-Computer:
 
 * [Unidirektionale SSL-Kommunikation](#use-ssl-when-dispatcher-connects-to-aem)
 * [Bidirektionale SSL-Kommunikation](#configuring-mutual-ssl-between-dispatcher-and-aem)
@@ -129,14 +129,14 @@ Um die bidirektionale SSL-Kommunikation zu konfigurieren, benötigen Sie Zertifi
 
 Gehen Sie wie folgt vor, um die bidirektionale SSL-Kommunikation zu konfigurieren:
 
-1. [Installieren](dispatcher-install.md) Sie die neueste Version des Dispatchers für Ihre Plattform. Verwenden Sie eine Dispatcher-Binärdatei, die SSL unterstützt (SSL ist im Dateinamen enthalten, z. B. `dispatcher-apache2.4-linux-x86-64-ssl10-4.1.7.tar`).
-1. [Erstellen oder beziehen Sie ein von einer Zertifizierungsstelle signiertes Zertifikat](dispatcher-ssl.md#main-pars-title-3) für den Dispatcher und die Renderinstanz.
+1. [Installieren](dispatcher-install.md) Sie die neueste Dispatcher-Version für Ihre Plattform. Verwenden Sie eine Dispatcher-Binärdatei, die SSL unterstützt (SSL ist im Dateinamen enthalten, z. B. `dispatcher-apache2.4-linux-x86-64-ssl10-4.1.7.tar`).
+1. [Erstellen oder beziehen Sie ein von einer Zertifizierungsstelle signiertes Zertifikat](dispatcher-ssl.md#main-pars-title-3) für den Dispatcher und die Render-Instanz.
 1. [Erstellen Sie einen Keystore, der das Render-Zertifikat enthält](dispatcher-ssl.md#main-pars-title-6) und konfigurieren Sie den HTTP-Dienst der Render-Instanz.
 1. [Konfigurieren Sie das Dispatcher-Webservermodul](dispatcher-ssl.md#main-pars-title-4) für die bidirektionale SSL-Kommunikation.
 
 ### Erstellen oder Beziehen von von Zertifizierungsstellen signierten Zertifikaten  {#creating-or-obtaining-ca-signed-certificates}
 
-Erstellen oder beziehen Sie die von einer Zertifizierungsstelle signierten Zertifikate, die die Veröffentlichungsinstanz und den Dispatcher authentifizieren.
+Erstellen oder beziehen Sie von einer Zertifizierungsstelle signierte Zertifikate, die die Veröffentlichungsinstanz und den Dispatcher authentifizieren.
 
 #### Erstellen einer Zertifizierungsstelle  {#creating-your-ca}
 
@@ -157,10 +157,10 @@ Wenn Sie als Zertifizierungsstelle fungieren, verwenden Sie [OpenSSL](https://ww
 
 Verwenden Sie OpenSSL, um die Zertifikatanforderungen zu erstellen, die an die externe Zertifizierungsstelle gesendet oder von Ihrer Zertifizierungsstelle signiert werden sollen.
 
-Wenn Sie ein Zertifikat erstellen, verwendet OpenSSL die Eigenschaft für den allgemeinen Namen des Zertifikats, um die Inhaberin oder den Inhaber des Zertifikats zu identifizieren. Verwenden Sie für das Zertifikat der Renderinstanz den Hostnamen des Instanzcomputers als allgemeinen Namen, wenn Sie den Dispatcher so konfigurieren, dass das Zertifikat akzeptiert wird. Führen Sie dies nur aus, wenn es mit dem Hostnamen der Veröffentlichungsinstanz übereinstimmt. Siehe [DispatcherCheckPeerCN](dispatcher-ssl.md#main-pars-title-11) -Eigenschaft.
+Wenn Sie ein Zertifikat erstellen, verwendet OpenSSL die Eigenschaft für den allgemeinen Namen des Zertifikats, um die Inhaberin oder den Inhaber des Zertifikats zu identifizieren. Verwenden Sie für das Zertifikat der Render-Instanz den Host-Namen des Instanz-Computers als den allgemeinen Namen, wenn Sie den Dispatcher so konfigurieren, dass das Zertifikat akzeptiert wird. Verfahren Sie nur auf diese Weise, wenn es eine Übereinstimmung mit dem Host-Namen der Veröffentlichungsinstanz gibt. Siehe die Eigenschaft [DispatcherCheckPeerCN](dispatcher-ssl.md#main-pars-title-11).
 
 1. Öffnen Sie ein Terminal-Fenster und ändern Sie das aktuelle Verzeichnis in das Verzeichnis, in dem sich die Datei „CH.sh“ Ihrer OpenSSL-Bibliotheken befindet.
-1. Geben Sie den folgenden Befehl ein und legen Sie Werte fest, wenn Sie dazu aufgefordert werden. Verwenden Sie bei Bedarf den Hostnamen der Veröffentlichungsinstanz als allgemeinen Namen. Der Host-Name ist ein von DNS auflösbarer Name für die IP-Adresse des Render-Knotens:
+1. Geben Sie den folgenden Befehl ein und legen Sie Werte fest, wenn Sie dazu aufgefordert werden. Verwenden Sie ggf. den Host-Namen der Veröffentlichungsinstanz als allgemeinen Namen. Der Host-Name ist ein von DNS auflösbarer Name für die IP-Adresse des Render-Knotens:
 
    ```shell
    ./CA.sh -newreq
@@ -174,7 +174,7 @@ Wenn Sie ein Zertifikat erstellen, verwendet OpenSSL die Eigenschaft für den al
    ./CA.sh -sign
    ```
 
-   Es werden zwei Dateien mit den Namen `newcert.pem` und `newkey.pem` in dem Verzeichnis erstellt, das Ihre Dateien für die Verwaltung der Zertifizierungsstelle enthält. Diese beiden Dateien sind das öffentliche Zertifikat und der private Schlüssel für den Rendercomputer.
+   Es werden zwei Dateien mit den Namen `newcert.pem` und `newkey.pem` in dem Verzeichnis erstellt, das Ihre Dateien für die Verwaltung der Zertifizierungsstelle enthält. Bei diesen beiden Dateien handelt es sich um das öffentliche Zertifikat bzw. den privaten Schlüssel für den Render-Computer.
 
 1. Benennen Sie `newcert.pem` in `rendercert.pem` und `newkey.pem` in `renderkey.pem` um.
 1. Wiederholen Sie die Schritte 2 und 3, um ein Zertifikat und einen öffentlichen Schlüssel für das Dispatcher-Modul zu erstellen. Stellen Sie sicher, dass Sie einen allgemeinen Namen verwenden, der für die Dispatcher-Instanz spezifisch ist.
@@ -247,7 +247,7 @@ Last Modified Date: 2014-08-12T13:11:21.401-0400
 
 #### Konfigurieren der Renderinstanz  {#configuring-the-render-instance}
 
-Um den HTTP-Dienst der Renderinstanz für die Verwendung von SSL zu konfigurieren, verwenden Sie das Renderzertifikat mit den Anweisungen im Abschnitt *`Enable SSL on the Publish Instance`* Abschnitt:
+Um den HTTP-Dienst der Render-Instanz für SSL zu konfigurieren, verwenden Sie das Render-Zertifikat mit den Anweisungen im Abschnitt *`Enable SSL on the Publish Instance`*:
 
 * AEM 6.2: [Aktivieren von HTTP über SSL](https://experienceleague.adobe.com/de/docs/experience-manager-release-information/aem-release-updates/previous-updates/aem-previous-versions)
 * AEM 6.1: [Aktivieren von HTTP über SSL](https://experienceleague.adobe.com/de/docs/experience-manager-release-information/aem-release-updates/previous-updates/aem-previous-versions)
