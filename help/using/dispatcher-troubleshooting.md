@@ -9,10 +9,10 @@ products: SG_EXPERIENCEMANAGER/DISPATCHER
 topic-tags: dispatcher
 content-type: reference
 exl-id: 29f338ab-5d25-48a4-9309-058e0cc94cff
-source-git-commit: 2d90738d01fef6e37a2c25784ed4d1338c037c23
-workflow-type: ht
-source-wordcount: '538'
-ht-degree: 100%
+source-git-commit: 0a1aa854ea286a30c3527be8fc7c0998726a663f
+workflow-type: tm+mt
+source-wordcount: '539'
+ht-degree: 90%
 
 ---
 
@@ -20,9 +20,9 @@ ht-degree: 100%
 
 >[!NOTE]
 >
->Dispatcher-Versionen sind AEM-unabhängig, die Dispatcher-Dokumentation ist jedoch in die AEM-Dokumentation eingebettet. Verwenden Sie immer die Dispatcher-Dokumentation, die in der Dokumentation für die neueste Version von AEM eingebettet ist.
+>Dispatcher-Versionen sind unabhängig von AEM. Die Dispatcher-Dokumentation ist jedoch in die AEM-Dokumentation eingebettet. Verwenden Sie immer die Dispatcher-Dokumentation, die in der Dokumentation für die neueste Version von AEM eingebettet ist.
 >
->Sie wurden möglicherweise zu dieser Seite umgeleitet, wenn Sie einem Link zur Dispatcher-Dokumentation gefolgt sind, der in der Dokumentation für eine frühere AEM-Version eingebettet ist.
+>Möglicherweise wurden Sie auf diese Seite umgeleitet, wenn Sie einem Link zur Dispatcher-Dokumentation gefolgt sind. Dieser Link ist in die Dokumentation für eine frühere Version von AEM eingebettet.
 
 >[!NOTE]
 >
@@ -30,7 +30,7 @@ ht-degree: 100%
 
 ## Überprüfen der Basiskonfiguration {#check-the-basic-configuration}
 
-Wie immer müssen zunächst die Grundlagen überprüft werden:
+Wie immer besteht der erste Schritt darin, die Grundlagen zu überprüfen:
 
 * [Sicherstellen der grundlegenden Funktion](/help/using/dispatcher-configuration.md#confirming-basic-operation)
 * Überprüfen Sie alle Protokolldateien für den Webserver und den Dispatcher. Erhöhen Sie ggf. das `loglevel` für die Dispatcher-[Protokollierung](/help/using/dispatcher-configuration.md#logging).
@@ -78,7 +78,7 @@ Beim Löschen von Workflow-Modellen beim Zugriff auf eine AEM-Autoreninstanz dur
 
 1. Klicken Sie zur Bestätigung auf **Ja**.
 1. Es wird ein Fehlermeldungsfeld mit folgenden Informationen angezeigt:\
-   &quot; `ERROR 'Could not delete workflow model!!`&quot;.
+   `ERROR 'Could not delete workflow model!!`.
 
 **Problemlösung**
 

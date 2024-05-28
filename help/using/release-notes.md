@@ -5,10 +5,10 @@ topic-tags: release-notes
 content-type: reference
 products: SG_EXPERIENCEMANAGER/6.4
 exl-id: b55c7a34-d57b-4d45-bd83-29890f1524de
-source-git-commit: 2d90738d01fef6e37a2c25784ed4d1338c037c23
-workflow-type: ht
-source-wordcount: '1048'
-ht-degree: 100%
+source-git-commit: 0a1aa854ea286a30c3527be8fc7c0998726a663f
+workflow-type: tm+mt
+source-wordcount: '1089'
+ht-degree: 79%
 
 ---
 
@@ -41,10 +41,10 @@ Detaillierte Anweisungen finden Sie unter [Installieren des Dispatchers](dispatc
 
 **Verbesserungen**:
 
-* DISP-1009 – Erneutes Festlegen der Header-Länge
-* DISP-1013 – Hinzufügen von OpenSSL 3.0-Unterstützung für Linux®
-* DISP-1014 – Verarbeitung von response.location führt zu ungültiger Umleitung
-* DISP-1017 – Ändern der DTD-Definition
+* DISP-1009: Erneutes Festlegen der Kopfzeilenlänge
+* DISP-1013 - OpenSSL 3.0-Unterstützung für Linux® hinzufügen
+* DISP-1014: Verarbeitung von response.location führt zu ungültiger Umleitung
+* DISP-1017 - Änderung der DTD-Definition
 
 ### Version 4.3.6 (25. Juli 2023) {#jyly}
 
@@ -59,7 +59,7 @@ Detaillierte Anweisungen finden Sie unter [Installieren des Dispatchers](dispatc
 **Verbesserungen**:
 
 * DISP-954: Die Invalidierung wird unterstützt, auch wenn das Ablaufdatum nicht überschritten wurde.
-* DISP-949 – Der Dispatcher gibt den Code 200 statt 404 zurück, selbst wenn die POST-Anfrage durch einen Filter blockiert wird
+* DISP-949 - Dispatcher gibt 200 anstelle von 404 zurück, selbst wenn Filterblöcke eine POST-Anfrage sind
 
 ### Version 4.3.4 (29. November 2021) {#nov}
 
@@ -70,29 +70,29 @@ Detaillierte Anweisungen finden Sie unter [Installieren des Dispatchers](dispatc
 
 **Verbesserungen**:
 
-* DISP-874 – Erstellt eine Dispatcher-Konfiguration, um die Implementierung von DISP-818 über das Flag `DispatcherRestrictUncacheableContent` ein- oder auszuschalten. Der Standardwert ist „Off“. Wenn „On“ eingestellt ist, werden alle durch „mod_expires“ festgelegten Caching-Header für nicht zwischenspeicherbare Inhalte entfernt. Dies unterscheidet sich vom Verhalten in Version 4.3.3 (mit der Standardeinstellung „On“), entspricht aber dem Verhalten in früheren Versionen vor 4.3.3 (mit der Standardeinstellung „Off“). Es wird empfohlen, die Standardeinstellung „Off“ für `DispatcherRestrictUncacheableContent` zu belassen, damit der Browsercache flexibler ist. Wenn Sie beim Upgrade von Version 4.3.3 auf 4.3.4 das gleiche Verhalten wie in Version 4.3.3 beibehalten möchten, müssen Sie für `DispatcherRestrictUncacheableContent` explizit den Wert „On“ festlegen.
+* DISP-874 – Erstellt eine Dispatcher-Konfiguration, um die Implementierung von DISP-818 über das Flag `DispatcherRestrictUncacheableContent` ein- oder auszuschalten. Der Standardwert ist „Off“. Wenn „On“ eingestellt ist, werden alle durch „mod_expires“ festgelegten Caching-Header für nicht zwischenspeicherbare Inhalte entfernt. Diese Einstellung unterscheidet sich vom Verhalten in Version 4.3.3 (wo die Standardeinstellung &quot;Ein&quot;war), entspricht jedoch den Versionen vor 4.3.3 (wo die Standardeinstellung &quot;Aus&quot;war). Es wird empfohlen, die Standardeinstellung „Off“ für `DispatcherRestrictUncacheableContent` zu belassen, damit der Browsercache flexibler ist. Wenn Sie beim Upgrade von Version 4.3.3 auf 4.3.4 dasselbe Verhalten wie in Version 4.3.3 beibehalten möchten, müssen Sie explizit festlegen `DispatcherRestrictUncacheableContent` auf &quot;An&quot;.
 * DISP-841 – Dispatcher respektiert „/serverStaleOnError“ für den 504-Antwort-Code nicht.
 * DISP-874 – Erstellen einer Dispatcher-Konfiguration, um die Implementierung von DISP-818 ein- oder auszuschalten
 * DISP-883 – Verfolgen der Dekomposition von URL-Anfragen im Dispatcher.
-* DISP-944 – Vorabladen von Vanity-URLs
+* DISP-944 - Vanity-URLs vor dem Laden
 
 ### Version 4.3.3 (16. Oktober 2019) {#october}
 
 **Fehlerbehebungen**:
 
-* DISP-739 – LogLevel-Dispatcher: **level** funktioniert nicht
-* DISP-749 – Alpine Linux®-Dispatcher stürzt mit TRACE-Protokollebene ab
+* DISP-739 - LogLevel Dispatcher: **level** funktioniert nicht
+* DISP-749 - Alpine Linux® Dispatcher stürzt mit Trace Log Level ab
 
 **Verbesserungen**:
 
 * DISP-813 – Unterstützung im Dispatcher für OpenSSL 1.1.x.
 * DISP-814 – Apache 40x-Fehler beim Cache-Leeren.
 * DISP-818 – „mod_expires“ fügt Cache-Control-Header für nicht zwischenspeicherbare Inhalte hinzu.
-* DISP-821 – Protokollkontext wird nicht im Socket gespeichert.
+* DISP-821 - Protokollkontext nicht im Socket speichern
 * DISP-822 – Dispatcher sollte `ppoll` statt `pselect` verwenden
 * DISP-824 – Sicherheit bei DispatcherUseForwardedHost.
-* DISP-825 – Protokollieren einer speziellen Meldung, wenn kein Speicherplatz mehr auf der Festplatte vorhanden ist.
-* DISP-826 – Unterstützt erneutes Abrufen von URIs per Abfragezeichenfolge
+* DISP-825 - Melden Sie eine spezielle Meldung, wenn kein Speicherplatz mehr auf der Festplatte vorhanden ist.
+* DISP-826 - Unterstützt Refch-URIs mit einer Abfragezeichenfolge
 
 **Neue Funktionen**:
 
@@ -107,7 +107,7 @@ Detaillierte Anweisungen finden Sie unter [Installieren des Dispatchers](dispatc
 * DISP-734 – Dispatcher verursacht Absturz in insert_output_filter wenn nicht als Handler definiert
 * DISP-735 – REs funktionieren nicht bei Alpine Linux®
 * DISP-740 – Laden des Dispatchers in macOS Mojave ist standardmäßig deaktiviert
-* DISP-742 – Blockierte Anfragen übergeben ggf. Informationen an Auth-Checker-geschützte Ressourcen
+* DISP-742 – Blockierte Anfragen übergeben ggf. Informationen an authentifizierungsgeschützte Ressourcen
 
 **Verbesserungen**:
 
@@ -115,7 +115,7 @@ Detaillierte Anweisungen finden Sie unter [Installieren des Dispatchers](dispatc
 
 **Neue Funktion**:
 
-* DISP-747 – Bereitstellen von Anfrageinformationen in Apache-Umgebung
+* DISP-747 - Bereitstellen von Anfrageinformationen in der Apache-Umgebung
 
 ### Version 4.3.1 (16. Oktober 2018) {#oct}
 
@@ -123,16 +123,16 @@ Detaillierte Anweisungen finden Sie unter [Installieren des Dispatchers](dispatc
 
 * DISP-656 – Dispatcher gibt falsche ETag-Kopfzeile aus
 * DISP-694 – Warnungen im Falle unzureichender Keep-Alive-Verbindungen unterdrücken
-* DISP-714 – Cookie-basiertes Sitzungs-Management funktioniert nicht in IIS
+* DISP-714 - Cookie-basierte Sitzungsverwaltung funktioniert in IIS nicht
 * DISP-715 – Sichere Markierung für Renderid-Cookie
 * DISP-720 – Exhaustion durch nicht geschlossene temporäre Dateien (zu viele geöffnete Dateien)
 * DISP-721 – Dispatcher unterbricht poll() bei vollständigem Neustart des untergeordneten Elements durch Apache
 * DISP-722 – Erstellung von Cache-Dateien mit Oktalmodus 0600
 * DISP-723 – Implizites 10-minütiges Timeout (mit Wiederholung) bei Render-Timeouts auf 0
-* DISP-725 – Umwandlung von nachgestellten Zeichen in unbenannte Werte ohne Hinweis
+* DISP-725 - Nachfolgende Zeichen nach Zeichenfolgen werden still in einen unbenannten Wert konvertiert
 * DISP-726 – Protokollierung einer Warnung, wenn keine Farm dem eingehenden Host entspricht
 * DISP-727 – Überprüfung der Anfrageinhaltslänge leerer Cachedateien durch Dispatcher
-* DISP-730 – 404-Fehler beim Versuch, auf die Header-Datei per Dispatcher zuzugreifen
+* DISP-730-404 beim Versuch, über den Dispatcher auf eine Header-Datei zuzugreifen
 * DISP-731 – Dispatcher anfällig für Log Injection
 * DISP-732 – Dispatcher sollte aufeinanderfolgende „/“-Zeichen in der URL entfernen
 * DISP-733 – Dispatcher soll Age-Header festlegen (berechnen)
@@ -150,17 +150,17 @@ Detaillierte Anweisungen finden Sie unter [Installieren des Dispatchers](dispatc
 **Fehlerbehebungen**:
 
 * DISP-682 – Numerische Protokollierungsebene falsch angewendet
-* DISP-685 – 32-Bit Solaris™ SPARC-Binärdateien weisen einen nicht definierten Verweis auf __divdi3 auf
+* DISP-685 - 32-Bit Solaris™ SPARC®-Binärdateien haben einen undefinierten Verweis auf __divdi3
 * DISP-688 – Dispatcher gibt bei 404-Antwort nicht den Header „X-Cache-Info“ zurück
 * DISP-690 – Zuletzt geänderte Kopfzeile nicht zwischenspeicherbar
 * DISP-691 – Zugriffsverletzungen in w3wp.exe
-* DISP-693 – Aktualisieren der Architekturdetails für Solaris™-Server auf der Dispatcher-Download-Seite
+* DISP-693 - Aktualisierung der Architekturdetails für Solaris™-Server auf der Dispatcher-Download-Seite erforderlich
 * DISP-695 – Problem mit DispatcherLog-Ebene im Dispatcher-Modul 4.2.3
 * DISP-698 – Dispatcher-TTL muss s-maxage und private Anweisungen unterstützen
 * DISP-700 – Modul funktioniert nicht ordnungsgemäß bei Alpine Linux®
 * DISP-704 – Browser-Anfragen mit %2b werden nicht kodiert an den Publisher gesendet
-* DISP-705 – Dispatcher-Absturz aufgrund eines doppelten Aufrufs der Funktion „free“ oder einer Beschädigung (`fasttop`)
-* DISP-706 – Potenzielle Dauerschleife, da Dispatcher während der Invalidierung Rückverweis-Symlinks folgt
+* DISP-705 – Dispatcher-Absturz aufgrund doppeltem Aufruf der Funktion free oder Beschädigung (fasttop)
+* DISP-706 - Bei der Invalidierung folgt der Dispatcher Referenz-Symlinks, die eine Endlosschleife verursachen können
 * DISP-709 – Blockieren einiger Vanity-URL-Erweiterungen
 * DISP-710 – Builds für Linux® nicht verwendbar unter Cent OS 6
 
@@ -178,20 +178,20 @@ Detaillierte Anweisungen finden Sie unter [Installieren des Dispatchers](dispatc
 
 | Plattform | Architektur | OpenSSL-Unterstützung | Downloadlink |
 |---|---|---|---|
-| Linux® | i686 (32 Bit) | Keine | [`dispatcher-apache2.4-linux-i686-4.3.7.tar.gz`](https://download.macromedia.com/dispatcher/download/dispatcher-apache2.4-linux-i686-4.3.7.tar.gz) |
-| Linux® | i686 (32 Bit) | 1.0 | [`dispatcher-apache2.4-linux-i686-ssl1.0-4.3.7.tar.gz`](https://download.macromedia.com/dispatcher/download/dispatcher-apache2.4-linux-i686-ssl1.0-4.3.7.tar.gz) |
-| Linux® | i686 (32 Bit) | 1.1 | [`dispatcher-apache2.4-linux-i686-ssl1.1-4.3.7.tar.gz`](https://download.macromedia.com/dispatcher/download/dispatcher-apache2.4-linux-i686-ssl1.1-4.3.7.tar.gz) |
-| Linux® | i686 (32 Bit) | 3.0 | [`dispatcher-apache2.4-linux-i686-ssl3.0-4.3.7.tar.gz`](https://download.macromedia.com/dispatcher/download/dispatcher-apache2.4-linux-i686-ssl3.0-4.3.7.tar.gz) |
-| Linux® | x86_64 (64 Bit) | Keine | [`dispatcher-apache2.4-linux-x86_64-4.3.7.tar.gz`](https://download.macromedia.com/dispatcher/download/dispatcher-apache2.4-linux-x86_64-4.3.7.tar.gz) |
-| Linux® | x86_64 (64 Bit) | 1.0 | [`dispatcher-apache2.4-linux-x86_64-ssl1.0-4.3.7.tar.gz`](https://download.macromedia.com/dispatcher/download/dispatcher-apache2.4-linux-x86_64-ssl1.0-4.3.7.tar.gz) |
-| Linux® | x86_64 (64 Bit) | 1.1 | [`dispatcher-apache2.4-linux-x86_64-ssl1.1-4.3.7.tar.gz`](https://download.macromedia.com/dispatcher/download/dispatcher-apache2.4-linux-x86_64-ssl1.1-4.3.7.tar.gz) |
-| Linux® | x86_64 (64 Bit) | 3.0 | [`dispatcher-apache2.4-linux-x86_64-ssl3.0-4.3.7.tar.gz`](https://download.macromedia.com/dispatcher/download/dispatcher-apache2.4-linux-x86_64-ssl3.0-4.3.7.tar.gz) |
-| Linux® | aarch64 (64 Bit) | Keine | [`dispatcher-apache2.4-linux-aarch64-4.3.7.tar.gz`](https://download.macromedia.com/dispatcher/download/dispatcher-apache2.4-linux-aarch64-4.3.7.tar.gz) |
-| Linux® | aarch64 (64 Bit) | 1.0 | [`dispatcher-apache2.4-linux-aarch64-ssl1.0-4.3.7.tar.gz`](https://download.macromedia.com/dispatcher/download/dispatcher-apache2.4-linux-aarch64-ssl1.0-4.3.7.tar.gz) |
-| Linux® | aarch64 (64 Bit) | 1.1 | [`dispatcher-apache2.4-linux-aarch64-ssl1.1-4.3.7.tar.gz`](https://download.macromedia.com/dispatcher/download/dispatcher-apache2.4-linux-aarch64-ssl1.1-4.3.7.tar.gz) |
-| Linux® | aarch64 (64 Bit) | 3.0 | [`dispatcher-apache2.4-linux-aarch64-ssl3.0-4.3.7.tar.gz`](https://download.macromedia.com/dispatcher/download/dispatcher-apache2.4-linux-aarch64-ssl3.0-4.3.7.tar.gz) |
-| macOS | arm64 (64 Bit) | Keine | [`dispatcher-apache2.4-darwin-arm64-4.3.7.tar.gz`](https://download.macromedia.com/dispatcher/download/dispatcher-apache2.4-darwin-arm64-4.3.7.tar.gz) |
-| macOS | x86_64 (64 Bit) | Keine | [`dispatcher-apache2.4-darwin-x86_64-4.3.7.tar.gz`](https://download.macromedia.com/dispatcher/download/dispatcher-apache2.4-darwin-x86_64-4.3.7.tar.gz) |
+| Linux® | i686 (32 Bit) | Ohne | [dispatcher-apache2.4-linux-i686-4.3.7.tar.gz](https://download.macromedia.com/dispatcher/download/dispatcher-apache2.4-linux-i686-4.3.7.tar.gz) |
+| Linux® | i686 (32 Bit) | 1.0 | [dispatcher-apache2.4-linux-i686-ssl1.0-4.3.7.tar.gz](https://download.macromedia.com/dispatcher/download/dispatcher-apache2.4-linux-i686-ssl1.0-4.3.7.tar.gz) |
+| Linux® | i686 (32 Bit) | 1.1 | [dispatcher-apache2.4-linux-i686-ssl1.1-4.3.7.tar.gz](https://download.macromedia.com/dispatcher/download/dispatcher-apache2.4-linux-i686-ssl1.1-4.3.7.tar.gz) |
+| Linux® | i686 (32 Bit) | 3.0 | [dispatcher-apache2.4-linux-i686-ssl3.0-4.3.7.tar.gz](https://download.macromedia.com/dispatcher/download/dispatcher-apache2.4-linux-i686-ssl3.0-4.3.7.tar.gz) |
+| Linux® | x86_64 (64 Bit) | Ohne | [dispatcher-apache2.4-linux-x86_64-4.3.7.tar.gz](https://download.macromedia.com/dispatcher/download/dispatcher-apache2.4-linux-x86_64-4.3.7.tar.gz) |
+| Linux® | x86_64 (64 Bit) | 1.0 | [dispatcher-apache2.4-linux-x86_64-ssl1.0-4.3.7.tar.gz](https://download.macromedia.com/dispatcher/download/dispatcher-apache2.4-linux-x86_64-ssl1.0-4.3.7.tar.gz) |
+| Linux® | x86_64 (64 Bit) | 1.1 | [dispatcher-apache2.4-linux-x86_64-ssl1.1-4.3.7.tar.gz](https://download.macromedia.com/dispatcher/download/dispatcher-apache2.4-linux-x86_64-ssl1.1-4.3.7.tar.gz) |
+| Linux® | x86_64 (64 Bit) | 3.0 | [dispatcher-apache2.4-linux-x86_64-ssl3.0-4.3.7.tar.gz](https://download.macromedia.com/dispatcher/download/dispatcher-apache2.4-linux-x86_64-ssl3.0-4.3.7.tar.gz) |
+| Linux® | aarch64 (64-Bit) | Ohne | [dispatcher-apache2.4-linux-aarch64-4.3.7.tar.gz](https://download.macromedia.com/dispatcher/download/dispatcher-apache2.4-linux-aarch64-4.3.7.tar.gz) |
+| Linux® | aarch64 (64-Bit) | 1.0 | [dispatcher-apache2.4-linux-aarch64-ssl1.0-4.3.7.tar.gz](https://download.macromedia.com/dispatcher/download/dispatcher-apache2.4-linux-aarch64-ssl1.0-4.3.7.tar.gz) |
+| Linux® | aarch64 (64-Bit) | 1.1 | [dispatcher-apache2.4-linux-aarch64-ssl1.1-4.3.7.tar.gz](https://download.macromedia.com/dispatcher/download/dispatcher-apache2.4-linux-aarch64-ssl1.1-4.3.7.tar.gz) |
+| Linux® | aarch64 (64-Bit) | 3.0 | [dispatcher-apache2.4-linux-aarch64-ssl3.0-4.3.7.tar.gz](https://download.macromedia.com/dispatcher/download/dispatcher-apache2.4-linux-aarch64-ssl3.0-4.3.7.tar.gz) |
+| macOS | arm64 (64-Bit) | Ohne | [dispatcher-apache2.4-darwin-arm64-4.3.7.tar.gz](https://download.macromedia.com/dispatcher/download/dispatcher-apache2.4-darwin-arm64-4.3.7.tar.gz) |
+| macOS | x86_64 (64 Bit) | Ohne | [dispatcher-apache2.4-darwin-x86_64-4.3.7.tar.gz](https://download.macromedia.com/dispatcher/download/dispatcher-apache2.4-darwin-x86_64-4.3.7.tar.gz) |
 
 ### IIS {#iis}
 
