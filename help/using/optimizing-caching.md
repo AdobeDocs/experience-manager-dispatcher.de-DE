@@ -9,10 +9,10 @@ redirecttarget: https://helpx.adobe.com/experience-manager/6-4/sites/deploying/u
 index: y
 internal: n
 snippet: y
-source-git-commit: 2d90738d01fef6e37a2c25784ed4d1338c037c23
-workflow-type: ht
-source-wordcount: '1125'
-ht-degree: 100%
+source-git-commit: 0189feaf345495ba2f992d91eccf5690ec7581ce
+workflow-type: tm+mt
+source-wordcount: '1129'
+ht-degree: 82%
 
 ---
 
@@ -31,7 +31,7 @@ Last Modified Date: 2017-10-25T04:13:34.919-0400
 
 >[!NOTE]
 >
->Dispatcher-Versionen sind unabhängig von AEM. Sie wurden möglicherweise zu dieser Seite umgeleitet, wenn Sie einem Link zur Dispatcher-Dokumentation gefolgt sind, der in der Dokumentation für eine frühere AEM-Version eingebettet ist.
+>Dispatcher-Versionen sind unabhängig von AEM. Möglicherweise wurden Sie auf diese Seite umgeleitet, wenn Sie einem Link zur Dispatcher-Dokumentation gefolgt sind. Dieser Link wurde in die Dokumentation für eine frühere AEM eingebettet.
 
 Der Dispatcher bietet verschiedene integrierte Mechanismen, mit denen Sie die Leistung optimieren können. In diesem Abschnitt erfahren Sie, wie Sie Ihre Website gestalten können, um die Vorteile der Zwischenspeicherung zu maximieren.
 
@@ -46,7 +46,7 @@ Der Dispatcher bietet verschiedene integrierte Mechanismen, mit denen Sie die Le
 
 ## Verwenden einer einheitlichen Seitenkodierung  {#using-consistent-page-encoding}
 
-HTTP-Anfrage-Header werden nicht zwischengespeichert. Daher können Probleme auftreten, wenn Sie Seiten-Codierungsinformationen im Header speichern. In diesem Fall wird die Standardcodierung des Webservers für die Seite verwendet, wenn der Dispatcher eine Seite aus dem Cache bereitstellt. Es gibt zwei Möglichkeiten, dieses Problem zu vermeiden:
+HTTP-Anfrage-Header werden nicht zwischengespeichert. Daher können Probleme auftreten, wenn Sie Seiten-Codierungsinformationen im Header speichern. In diesem Fall wird die Standardkodierung des Webservers für die Seite verwendet, wenn der Dispatcher eine Seite aus dem Cache bereitstellt. Es gibt zwei Möglichkeiten, dieses Problem zu vermeiden:
 
 * Wenn Sie nur eine Codierung verwenden, stellen Sie sicher, dass die auf dem Webserver verwendete Codierung mit der Standardcodierung der AEM-Website übereinstimmt.
 * Verwenden Sie zum Festlegen der Codierung einen `<META>`-Tag im HTML-`head`-Abschnitt wie im folgenden Beispiel:
@@ -57,7 +57,7 @@ HTTP-Anfrage-Header werden nicht zwischengespeichert. Daher können Probleme auf
 
 ## Vermeiden von URL-Parametern {#avoid-url-parameters}
 
-Vermeiden Sie nach Möglichkeit URL-Parameter für Seiten, die Sie zwischenspeichern möchten. Wenn Sie beispielsweise über eine Bildergalerie verfügen, wird die folgende URL nie zwischengespeichert (es sei denn, der Dispatcher ist [entsprechend konfiguriert](dispatcher-configuration.md#main-pars_title_24)):
+Vermeiden Sie nach Möglichkeit URL-Parameter für Seiten, die Sie zwischenspeichern möchten. Wenn Sie beispielsweise über eine Bildergalerie verfügen, wird die folgende URL nie zwischengespeichert (es sei denn, der AEM Dispatcher ist [konfiguriert](dispatcher-configuration.md#main-pars_title_24)):
 
 ```xml
 www.myCompany.com/pictures/gallery.html?event=christmas&amp;page=1
@@ -87,9 +87,9 @@ www.myCompany.com/news/main.large.html
 
 >[!NOTE]
 >
->Bei den meisten Layout-Komponenten können auch Stylesheets und/oder Client-seitige Skripts verwendet werden. Diese Instrumente funktionieren in der Regel gut beim Caching.
+>Bei den meisten Layout-Aspekten ist es auch möglich, Stylesheets, Client-seitige Skripte oder beides zu verwenden. Das Zwischenspeichern funktioniert entweder oder beide gut.
 >
->Dies ist auch für Druckversionen nützlich, für die Sie eine URL erstellen können, z. B.:
+>Diese Methode ist auch für Druckversionen nützlich, bei denen Sie eine URL wie die folgende verwenden können:
 >
 >`www.myCompany.com/news/main.print.html`
 >
@@ -108,15 +108,15 @@ Beispielsweise können Sie den Titel der Seite „myPage.html“ in der Datei �
 
 >[!NOTE]
 >
->Die Bilddatei ist nicht unbedingt physisch auf der AEM-Instanz vorhanden. Sie können ein Skript verwenden, das die Bilddatei dynamisch erstellt. Der Dispatcher speichert die Datei dann auf dem Webserver.
+>Die Bilddatei ist nicht unbedingt in der AEM-Instanz vorhanden. Sie können ein Skript verwenden, das die Bilddatei dynamisch erstellt. Der Dispatcher speichert die Datei dann auf dem Webserver.
 
 ## Invalidierung von Bilddateien für die Navigation  {#invalidating-image-files-used-for-navigation}
 
 Wenn Sie Bilder als Navigationseinträge verwenden, gehen Sie im Prinzip wie bei Titeln vor, das Verfahren ist nur ein wenig komplexer. Speichern Sie alle Navigationsbilder mit den Zielseiten. Wenn Sie zwei Bilder für „normal“ und „aktiv“ verwenden, können Sie die folgenden Skripte verwenden:
 
 * Ein Skript, das die Seite wie gewohnt anzeigt.
-* Ein Skript, das „.normal“-Anforderungen verarbeitet und das normale Bild zurückgibt.
-* Ein Skript, das „.active“-Anfragen verarbeitet und das aktivierte Bild zurückgibt.
+* Ein Skript, das `.normal` fordert und gibt das normale Bild zurück.
+* Ein Skript, das `.active` fordert das aktivierte Bild an und gibt es zurück.
 
 Es ist wichtig, dass Sie diese Bilder mit demselben Namens-Handle wie die Seite erstellen, um sicherzustellen, dass durch eine Inhaltsaktualisierung diese Bilder und die Seite gelöscht werden.
 
@@ -133,7 +133,7 @@ Der Dispatcher kann keine personalisierten Daten zwischenspeichern. Sie sollten 
 >
 >Wenn Sie jede Seite personalisieren (z. B. durch Einfügen des Benutzernamens in der Titelleiste), können Sie sie nicht zwischenspeichern. Dies kann die Leistung erheblich beeinträchtigen.
 >
->Wenn dies jedoch erforderlich ist, haben Sie folgende Möglichkeiten:
+>Wenn Sie dies jedoch tun müssen, können Sie Folgendes tun:
 >
 >* Sie können die Seite mit iFrames aufteilen – in einen Teil, der für alle Benutzenden gleich ist, und einen Teil, der bei allen Seiten einer Person gleich ist. Diese beiden Teile können dann zwischengespeichert werden.
 >* Sie können mit Client-seitigem JavaScript personalisierte Informationen anzeigen. Sie müssen jedoch sicherstellen, dass die Seite weiterhin richtig angezeigt wird, wenn jemand JavaScript deaktiviert.
@@ -150,17 +150,17 @@ Es gibt zwei Möglichkeiten, wie ein Browser den Typ einer Datei bestimmen kann:
 1. Über ihre Erweiterung (wie .html, .gif und .jpg)
 1. Über den MIME-Typ, den der Server mit der Datei sendet.
 
-Für die meisten Dateien wird der MIME-Typ durch die Dateierweiterung angegeben Das heißt:
+Bei den meisten Dateien wird der MIME-Typ in die Dateierweiterung eingeschlossen:
 
 1. Über ihre Erweiterung (wie .html, .gif und .jpg)
 1. Über den MIME-Typ, den der Server mit der Datei sendet.
 
 Wenn der Dateiname keine Erweiterung aufweist, wird er als Nur-Text angezeigt.
 
-Der MIME-Typ ist ein Bestandteil des HTTP-Headers. Daher wird er nicht vom Dispatcher zwischengespeichert. Wenn Ihre AEM-Anwendung Dateien zurückgibt, deren Dateiendung nicht erkannt wird, sondern bei denen der MIME-Typ verwendet wird, werden diese Dateien möglicherweise nicht korrekt angezeigt.
+Der MIME-Typ ist ein Bestandteil des HTTP-Headers. Daher wird er nicht vom Dispatcher zwischengespeichert. Ihre AEM-Anwendung kann Dateien zurückgeben, die keine erkannte Dateierweiterung haben. Wenn die Dateien stattdessen vom MIME-Typ abhängen, werden diese Dateien möglicherweise falsch angezeigt.
 
 Um sicherzustellen, dass Dateien ordnungsgemäß zwischengespeichert werden, befolgen Sie die folgenden Richtlinien:
 
 * Stellen Sie sicher, dass Dateien immer die richtige Erweiterung haben.
-* Verwenden Sie möglichst keine allgemeinen Dateibereitstellungsskripte mit URLs wie „download.jsp?file=2214“. Schreiben Sie das Skript so um, dass es URLs verwendet, die die Dateispezifikation enthalten. Für das vorherige Beispiel wäre dies `download.2214.pdf`.
+* Verwenden Sie möglichst keine allgemeinen Dateibereitstellungsskripte mit URLs wie „download.jsp?file=2214“. Schreiben Sie das Skript so um, dass es URLs verwendet, die die Dateispezifikation enthalten. Im vorherigen Beispiel würde dies `download.2214.pdf`.
 

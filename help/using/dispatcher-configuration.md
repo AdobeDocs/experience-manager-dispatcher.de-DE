@@ -2,9 +2,9 @@
 title: AEM Dispatcher konfigurieren
 description: Erfahren Sie, wie Sie den AEM Dispatcher konfigurieren. Erfahren Sie mehr über die Unterstützung für IPv4 und IPv6, Konfigurationsdateien, Umgebungsvariablen und die Benennung der Instanz. Erfahren Sie mehr über das Definieren von Farmen, das Identifizieren von virtuellen Hosts und mehr.
 exl-id: 91159de3-4ccb-43d3-899f-9806265ff132
-source-git-commit: 0a1aa854ea286a30c3527be8fc7c0998726a663f
+source-git-commit: 0189feaf345495ba2f992d91eccf5690ec7581ce
 workflow-type: tm+mt
-source-wordcount: '8897'
+source-wordcount: '8898'
 ht-degree: 82%
 
 ---
@@ -1229,7 +1229,7 @@ Es wird mit folgenden Argumenten aufgerufen:
 
 Mit dieser Methode können mehrere unterschiedliche Anwendungsfälle abgedeckt werden, z. B. die Invalidierung anderer anwendungsspezifischer Caches oder für Fälle, in denen die externalisierte URL einer Seite und ihre Position im Basisverzeichnis nicht mit dem Inhaltspfad übereinstimmen.
 
-Beim Beispielskript unten wird jede für ungültig erklärte Anforderung in einer Datei protokolliert.
+Das folgende Beispielskript protokolliert jede ungültige Anforderung in eine Datei.
 
 ```xml
 /invalidateHandler "/opt/dispatcher/scripts/invalidate.sh"
