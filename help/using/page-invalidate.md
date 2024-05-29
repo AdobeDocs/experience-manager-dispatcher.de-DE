@@ -9,10 +9,10 @@ products: SG_EXPERIENCEMANAGER/DISPATCHER
 topic-tags: dispatcher
 content-type: reference
 exl-id: 90eb6a78-e867-456d-b1cf-f62f49c91851
-source-git-commit: 0a1aa854ea286a30c3527be8fc7c0998726a663f
+source-git-commit: 9be9f5935c21ebbf211b5da52280a31772993c2e
 workflow-type: tm+mt
-source-wordcount: '1411'
-ht-degree: 73%
+source-wordcount: '1407'
+ht-degree: 74%
 
 ---
 
@@ -124,11 +124,11 @@ Wenn Sie nach der Konfiguration eine Seite von Author to Publish aktivieren, ini
 
 Um den Dispatcher-Cache zu invalidieren (oder zu leeren), ohne eine Seite zu aktivieren, können Sie eine HTTP-Anfrage an den Dispatcher ausgeben. Sie können beispielsweise eine AEM-Anwendung erstellen, die es Admins oder anderen Anwendungen ermöglicht, den Cache zu leeren.
 
-Die HTTP-Anforderung veranlasst den AEM Dispatcher, bestimmte Dateien aus dem Cache zu löschen. Der Dispatcher aktualisiert den Cache dann mit einer neuen Kopie (optional).
+Die HTTP-Anforderung veranlasst den Dispatcher, bestimmte Dateien aus dem Cache zu löschen. Der Dispatcher aktualisiert den Cache dann mit einer neuen Kopie (optional).
 
 ### Löschen zwischengespeicherter Dateien  {#delete-cached-files}
 
-Geben Sie eine HTTP-Anforderung aus, die dazu führt, dass der AEM Dispatcher Dateien aus dem Cache löscht. Der Dispatcher speichert die Dateien nur dann erneut im Cache, wenn eine Clientanfrage für die Seite eingeht. Auf diese Weise zwischengespeicherte Dateien zu löschen, empfiehlt sich für Websites mit geringer Wahrscheinlichkeit, gleichzeitige Anfragen für ein und dieselbe Seite zu empfangen.
+Geben Sie eine HTTP-Anforderung aus, die den Dispatcher veranlasst, Dateien aus dem Cache zu löschen. Der Dispatcher speichert die Dateien nur dann erneut im Cache, wenn eine Clientanfrage für die Seite eingeht. Auf diese Weise zwischengespeicherte Dateien zu löschen, empfiehlt sich für Websites mit geringer Wahrscheinlichkeit, gleichzeitige Anfragen für ein und dieselbe Seite zu empfangen.
 
 Die HTTP-Anforderung sieht folgendermaßen aus:
 
@@ -151,7 +151,7 @@ Die Invalidierung (d. h. das Ändern von STAT-Dateien) kann durch Senden des zu
 
 ### Löschen und erneutes Zwischenspeichern von Dateien  {#delete-and-recache-files}
 
-Geben Sie eine HTTP-Anforderung aus, die dazu führt, dass der AEM Dispatcher zwischengespeicherte Dateien löscht und die Datei sofort abruft und erneut zwischenspeichert. Löschen Sie Dateien und speichern Sie sie sofort erneut im Cache, wenn es wahrscheinlich ist, dass Websites gleichzeitige Anfragen für ein und dieselbe Seite empfangen. Mit dem unmittelbaren erneuten Zwischenspeichern wird sichergestellt, dass der Dispatcher die Seite insgesamt nur einmal abruft und zwischenspeichert, anstatt einmal für jede der gleichzeitigen Client-Anfragen.
+Geben Sie eine HTTP-Anforderung aus, die den Dispatcher dazu veranlasst, zwischengespeicherte Dateien zu löschen und die Datei sofort abzurufen und erneut zwischenzuspeichern. Löschen Sie Dateien und speichern Sie sie sofort erneut im Cache, wenn es wahrscheinlich ist, dass Websites gleichzeitige Anfragen für ein und dieselbe Seite empfangen. Mit dem unmittelbaren erneuten Zwischenspeichern wird sichergestellt, dass der Dispatcher die Seite insgesamt nur einmal abruft und zwischenspeichert, anstatt einmal für jede der gleichzeitigen Client-Anfragen.
 
 **Hinweis:** Das Löschen und erneute Zwischenspeichern von Dateien sollte ausschließlich in der Veröffentlichungsinstanz erfolgen. Wenn dies auf der Autoreninstanz erfolgt, kann es zu Überschneidungen kommen, wenn versucht wird, Ressourcen erneut zwischenzuspeichern, bevor sie veröffentlicht wurden.
 
@@ -185,7 +185,7 @@ Content-Length: 36
 
 Mit dem folgenden Code wird ein Servlet implementiert, das eine Invalidierungsanfrage an den Dispatcher sendet. Das Servlet empfängt eine Meldung, die die Parameter `handle` und `page` enthält. Diese Parameter stellen den Wert des Headers `CQ-Handle` bereit und dementsprechend auch den Pfad zu der Datei, die erneut zwischengespeichert werden soll. Das Servlet verwendet die Werte, um die HTTP-Anfrage für den Dispatcher zu erstellen.
 
-Wenn das Servlet in der Veröffentlichungsinstanz bereitgestellt wird, bewirkt die folgende URL, dass der AEM Dispatcher die Seite /content/geometrixx-outdoors/en.html löscht und dann eine neue Kopie zwischenspeichert.
+Wenn das Servlet in der Veröffentlichungsinstanz bereitgestellt wird, bewirkt die folgende URL, dass der Dispatcher die Seite /content/geometrixx-outdoors/en.html löscht und dann eine neue Kopie zwischenspeichert.
 
 `10.36.79.223:4503/bin/flushcache/html?page=/content/geometrixx-outdoors/en.html&handle=/content/geometrixx-outdoors/en/men.html`
 

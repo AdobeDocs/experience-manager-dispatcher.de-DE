@@ -5,9 +5,9 @@ pageversionid: 1193211344162
 topic-tags: dispatcher
 content-type: reference
 exl-id: c9266683-6890-4359-96db-054b7e856dd0
-source-git-commit: 0a1aa854ea286a30c3527be8fc7c0998726a663f
+source-git-commit: 9be9f5935c21ebbf211b5da52280a31772993c2e
 workflow-type: tm+mt
-source-wordcount: '3083'
+source-wordcount: '3079'
 ht-degree: 82%
 
 ---
@@ -20,7 +20,7 @@ ht-degree: 82%
 
 Der Dispatcher ist das Werkzeug für das Caching und den Lastenausgleich von Adobe Experience Manager, das in Verbindung mit einem Webserver der Enterprise-Klasse verwendet werden kann.
 
-Die Bereitstellung des AEM Dispatchers ist unabhängig vom Webserver und der gewählten Betriebssystemplattform:
+Der Prozess für die Bereitstellung des Dispatchers ist unabhängig vom Webserver und der gewählten Betriebssystemplattform:
 
 1. Weitere Informationen zum Dispatcher (diese Seite). Weitere Informationen finden Sie außerdem in den [häufig gestellten Fragen zum Dispatcher](/help/using/dispatcher-faq.md).
 1. Installieren Sie einen [unterstützten Webserver](https://experienceleague.adobe.com/de/docs/experience-manager-65/content/implementing/deploying/introduction/technical-requirements) gemäß der Webserver-Dokumentation.
@@ -30,7 +30,7 @@ Die Bereitstellung des AEM Dispatchers ist unabhängig vom Webserver und der gew
 
 >[!NOTE]
 >
->So erhalten Sie ein besseres Verständnis, wie der AEM Dispatcher mit AEM funktioniert:
+>So erhalten Sie ein besseres Verständnis darüber, wie der Dispatcher mit AEM funktioniert:
 >
 >* Sehen Sie sich die [Fragen an AEM-Community-Fachleute vom Juli 2017](https://communities.adobeconnect.com/pf0gem7igw1f/) an.
 >* Greifen Sie auf [dieses Repository](https://github.com/adobe/aem-dispatcher-experiments) zu. Es enthält eine Sammlung von Experimenten in einem einsatzfähigen Laborformat.
@@ -41,7 +41,7 @@ Ziehen Sie bei Bedarf die folgenden Ressourcen hinzu:
 * [Die Dispatcher-Sicherheitscheckliste](security-checklist.md)
 * [Die Dispatcher-Wissensdatenbank](https://helpx.adobe.com/de/experience-manager/kb/index/dispatcher.html)
 * [Optimierung von Websites für die Cache-Leistung](https://experienceleague.adobe.com/de/docs/experience-manager-65/content/implementing/deploying/configuring/configuring-performance)
-* [Verwenden des AEM Dispatchers mit mehreren Domänen](dispatcher-domains.md)
+* [Verwenden des Dispatchers mit mehreren Domänen](dispatcher-domains.md)
 * [Verwenden von SSL mit dem Dispatcher](dispatcher-ssl.md)
 * [Implementieren der Zwischenspeicherung unter Berücksichtigung von Berechtigungen](permissions-cache.md)
 * [Beheben von Problemen beim Dispatcher](dispatcher-troubleshooting.md)
@@ -129,7 +129,7 @@ Bei einer Inhaltsaktualisierung werden ein oder mehrere AEM-Dokumente geändert.
 Beachten Sie die folgenden Punkte:
 
 * Inhaltsaktualisierungen werden in der Regel mit einem Authoring-System verwendet, das &quot;weiß&quot;, was ersetzt werden muss.
-* Inhaltsaktualisierungen, die sich auf Dateien auswirken, werden entfernt, aber nicht sofort ersetzt. Wenn eine solche Datei das nächste Mal angefordert wird, ruft der AEM Dispatcher die neue Datei aus der AEM-Instanz ab und legt sie im Cache ab, wodurch der alte Inhalt überschrieben wird.
+* Inhaltsaktualisierungen, die sich auf Dateien auswirken, werden entfernt, aber nicht sofort ersetzt. Wenn eine solche Datei das nächste Mal angefordert wird, ruft der Dispatcher die neue Datei aus der AEM-Instanz ab und legt sie im Cache ab, wodurch der alte Inhalt überschrieben wird.
 * In der Regel werden automatisch generierte Bilder, die Text von einer Seite enthalten, in den Bilddateien gespeichert, die mit demselben Handle beginnen. So wird gewährleistet, dass die Zuordnung zum Löschen vorhanden ist. Sie können z. B. den Titeltext der Seite „mypage.html“ als Bilddatei „mypage.titlePicture.gif“ im selben Ordner speichern. Auf diese Weise wird das Bild automatisch jedes Mal aus dem Cache gelöscht, wenn die Seite aktualisiert wird. So können Sie sicher sein, dass das Bild immer die aktuelle Version der Seite darstellt.
 * Sie können mehrere Stat-Dateien verwenden, z. B. eine pro Sprachen-Ordner. Wenn eine Seite aktualisiert wird, sucht AEM den nächsten übergeordneten Ordner, der eine Statfile enthält, und *ändert*  diese Datei.
 

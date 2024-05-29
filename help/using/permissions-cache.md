@@ -6,16 +6,16 @@ products: SG_EXPERIENCEMANAGER/DISPATCHER
 topic-tags: dispatcher
 content-type: reference
 exl-id: 3d8d8204-7e0d-44ad-b41b-6fec2689c6a6
-source-git-commit: 2d90738d01fef6e37a2c25784ed4d1338c037c23
-workflow-type: ht
-source-wordcount: '910'
-ht-degree: 100%
+source-git-commit: 9be9f5935c21ebbf211b5da52280a31772993c2e
+workflow-type: tm+mt
+source-wordcount: '924'
+ht-degree: 86%
 
 ---
 
 # Zwischenspeichern von geschützten Inhalten {#caching-secured-content}
 
-Mit dem Zwischenspeichern unter Beachtung von Berechtigungen können Sie gesicherte Seiten zwischenspeichern. Der Dispatcher prüft die Zugriffsberechtigungen der Benutzer für eine Seite, bevor die zwischengespeicherte Seite bereitgestellt wird.
+Mit dem Zwischenspeichern unter Beachtung von Berechtigungen können Sie gesicherte Seiten zwischenspeichern. Der Dispatcher überprüft die Zugriffsberechtigungen des Benutzers für eine Seite, bevor er die zwischengespeicherte Seite bereitstellt.
 
 Der Dispatcher umfasst das AuthChecker-Modul, das das Zwischenspeichern unter Berücksichtigung von Berechtigungen implementiert. Wenn das Modul aktiviert ist, ruft der Dispatcher ein AEM-Servlet auf, um die Benutzerauthentifizierung und -autorisierung für die angeforderten Inhalte durchzuführen. Die Servlet-Antwort bestimmt, ob der Inhalt aus dem Cache im Webbrowser bereitgestellt wird oder nicht.
 
@@ -42,7 +42,7 @@ Die folgenden Abbildungen zeigen die Abfolge der Ereignisse, wenn ein Webbrowser
 
 1. Der Dispatcher ermittelt, dass der Inhalt nicht zwischengespeichert wurde oder aktualisiert werden muss.
 1. Der Dispatcher leitet die ursprüngliche Anfrage an den Renderer weiter.
-1. Der Renderer ruft das autorisierende AEM-Servlet (dies ist nicht das Dispatcher-AuthChecker-Servlet) auf, um eine Sicherheitsprüfung durchzuführen. Wenn die Person autorisiert ist, schließt der Renderer die gerenderte Seite im Text der Antwortnachricht ein.
+1. Der Renderer ruft das Servlet AEM Autorisierer (dieses Servlet ist nicht das Dispatcher-AuthChcker-Servlet) auf, um eine Sicherheitsprüfung durchzuführen. Wenn die Person autorisiert ist, schließt der Renderer die gerenderte Seite im Text der Antwortnachricht ein.
 1. Der Dispatcher leitet die Antwort an den Browser weiter. Der Dispatcher fügt den Text der Antwortnachricht des Renderers zum Cache hinzu. 
 
 ## Der Benutzer ist nicht autorisiert  {#user-is-not-authorized}
@@ -51,9 +51,9 @@ Die folgenden Abbildungen zeigen die Abfolge der Ereignisse, wenn ein Webbrowser
 
 1. Der Dispatcher überprüft den Cache.
 1. Der Dispatcher sendet eine Anfragenachricht an den Renderer, die alle Kopfzeilen der Browser-Anfrage enthält.
-1. Der Renderer ruft das Auth-Checker-Servlet auf, eine Sicherheitsprüfung durchzuführen. Diese führt zu einem Fehler und der Renderer leitet die ursprüngliche Anfrage an den Dispatcher weiter.
+1. Der Renderer ruft das Auth-Checker-Servlet auf, um eine Sicherheitsprüfung durchzuführen, die fehlschlägt, und der Renderer leitet die ursprüngliche Anforderung an den Dispatcher weiter.
 1. Der Dispatcher leitet die ursprüngliche Anfrage an den Renderer weiter.
-1. Der Renderer ruft das autorisierende AEM-Servlet (dies ist nicht das Dispatcher-AuthChecker-Servlet) auf, um eine Sicherheitsprüfung durchzuführen. Wenn die Person autorisiert ist, schließt der Renderer die gerenderte Seite im Text der Antwortnachricht ein.
+1. Der Renderer ruft das Servlet AEM Autorisierer (dieses Servlet ist nicht das Dispatcher-AuthChcker-Servlet) auf, um eine Sicherheitsprüfung durchzuführen. Wenn die Person autorisiert ist, schließt der Renderer die gerenderte Seite im Text der Antwortnachricht ein.
 1. Der Dispatcher leitet die Antwort an den Browser weiter. Der Dispatcher fügt den Text der Antwortnachricht des Renderers zum Cache hinzu. 
 
 ## Implementieren der Zwischenspeicherung unter Berücksichtigung von Berechtigungen {#implementing-permission-sensitive-caching}
@@ -74,7 +74,7 @@ Wenn Sie die Zwischenspeicherung unter Berücksichtigung von Berechtigungen impl
 
 ## Erstellen des Auth-Checker-Servlets {#create-the-auth-checker-servlet}
 
-Erstellen Sie ein Servlet, das die Authentifizierung und Autorisierung der Person ausführt, die den Web-Inhalt anfordert. Stellen Sie dann das Servlet bereit. Das Servlet kann beliebige Authentifizierungs- und Autorisierungsmethoden verwenden, z. B. das AEM-Benutzerkonto und Repository-ACLs oder einen LDAP-Lookup-Dienst. Stellen Sie das Servlet in der AEM-Instanz bereit, die der Dispatcher als Renderer verwendet.
+Erstellen Sie ein Servlet, das die Authentifizierung und Autorisierung der Person ausführt, die den Web-Inhalt anfordert. Stellen Sie dann das Servlet bereit. Das Servlet kann jede Authentifizierung verwenden. Es kann auch jede beliebige Autorisierungsmethode verwendet werden. Beispielsweise können das AEM-Benutzerkonto und Repository-ACLs verwendet werden. Oder es kann einen LDAP-Lookup-Dienst verwenden. Stellen Sie das Servlet in der AEM-Instanz bereit, die der Dispatcher als Renderer verwendet.
 
 Alle Benutzenden müssen auf das Servlet zugreifen können. Daher sollte das Servlet die `org.apache.sling.api.servlets.SlingSafeMethodsServlet`-Klasse erweitern, die Lesezugriff auf das System bereitstellt.
 
@@ -161,7 +161,7 @@ Beim Start des Dispatchers enthält die Dispatcher-Protokolldatei die folgende N
 
 `AuthChecker: initialized with URL 'configured_url'.`
 
-Im folgenden „auth_checker“-Beispielabschnitt wird der Dispatcher für die Verwendung des Servlets aus dem vorherigen Thema konfiguriert. Durch die Angaben im Abschnitt „filter“ werden Berechtigungsprüfungen nur für sichere HTML-Ressourcen durchgeführt.
+Im folgenden beispielhaften Abschnitt auth_checker wird der Dispatcher für die Verwendung des Servlets des vorherigen Themas konfiguriert. Durch die Angaben im Abschnitt „filter“ werden Berechtigungsprüfungen nur für sichere HTML-Ressourcen durchgeführt.
 
 ### Beispielkonfiguration  {#example-configuration}
 

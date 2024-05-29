@@ -1,6 +1,6 @@
 ---
 title: Verwenden von SSL mit dem Dispatcher
-description: Erfahren Sie, wie der Dispatcher für die Kommunikation mit AEM mithilfe von SSL-Verbindungen konfiguriert wird.
+description: Erfahren Sie, wie Sie den Dispatcher für die Kommunikation mit AEM mithilfe von SSL-Verbindungen konfigurieren.
 contentOwner: User
 products: SG_EXPERIENCEMANAGER/DISPATCHER
 topic-tags: dispatcher
@@ -9,16 +9,16 @@ index: y
 internal: n
 snippet: y
 exl-id: ec378409-ddb7-4917-981d-dbf2198aca98
-source-git-commit: 2d90738d01fef6e37a2c25784ed4d1338c037c23
-workflow-type: ht
-source-wordcount: '1302'
-ht-degree: 100%
+source-git-commit: 9be9f5935c21ebbf211b5da52280a31772993c2e
+workflow-type: tm+mt
+source-wordcount: '1310'
+ht-degree: 89%
 
 ---
 
 # Verwenden von SSL mit dem Dispatcher {#using-ssl-with-dispatcher}
 
-Verwenden Sie SSL-Verbindungen zwischen Dispatcher und Render-Computer:
+Verwenden Sie SSL-Verbindungen zwischen dem Dispatcher und dem Rendercomputer:
 
 * [Unidirektionale SSL-Kommunikation](#use-ssl-when-dispatcher-connects-to-aem)
 * [Bidirektionale SSL-Kommunikation](#configuring-mutual-ssl-between-dispatcher-and-aem)
@@ -29,7 +29,7 @@ Verwenden Sie SSL-Verbindungen zwischen Dispatcher und Render-Computer:
 
 ## Verwenden von SSL, wenn der Dispatcher eine Verbindung zu AEM herstellt {#use-ssl-when-dispatcher-connects-to-aem}
 
-Konfigurieren Sie den Dispatcher für die Kommunikation mit der AEM- oder CQ-Render-Instanz mithilfe von SSL-Verbindungen.
+Konfigurieren Sie den Dispatcher für die Kommunikation mit der AEM- oder CQ-Renderinstanz mithilfe von SSL-Verbindungen.
 
 Bevor Sie den Dispatcher konfigurieren, konfigurieren Sie zunächst AEM oder CQ für die Verwendung von SSL:
 
@@ -117,11 +117,11 @@ Im folgenden Beispiel weist die Datei `dispatcher.any` die Eigenschaftswerte fü
 Konfigurieren Sie die Verbindungen zwischen dem Dispatcher und dem Render-Computer (normalerweise eine AEM- oder CQ-Veröffentlichungsinstanz) zur Verwendung der bidirektionalen SSL-Kommunikation:
 
 * Der Dispatcher stellt über SSL eine Verbindung zur Render-Instanz her.
-* Die Render-Instanz überprüft die Gültigkeit des Zertifikats des Dispatchers.
+* Die Renderinstanz überprüft die Gültigkeit des Dispatcher-Zertifikats.
 * Der Dispatcher überprüft, ob die Zertifizierungsstelle des Zertifikats der Render-Instanz als vertrauenswürdig eingestuft wird.
 * (Optional) Der Dispatcher überprüft, ob das Zertifikat der Render-Instanz mit der Server-Adresse der Render-Instanz übereinstimmt.
 
-Um die bidirektionale SSL-Kommunikation zu konfigurieren, benötigen Sie Zertifikate, die von einer vertrauenswürdigen Zertifizierungsstelle signiert sind. Selbstsignierte Zertifikate sind nicht ausreichend. Entweder können Sie als Zertifizierungsstelle fungieren oder Sie können eine externe Zertifizierungsstelle in Anspruch nehmen, um Ihre Zertifikate zu signieren. Um die bidirektionale SSL-Kommunikation zu konfigurieren, benötigen Sie Folgendes:
+Zum Konfigurieren der bidirektionalen SSL-Kommunikation benötigen Sie Zertifikate, die mit einer vertrauenswürdigen Zertifizierungsstelle signiert sind. Selbstsignierte Zertifikate sind nicht ausreichend. Entweder können Sie als Zertifizierungsstelle fungieren oder Sie können eine externe Zertifizierungsstelle in Anspruch nehmen, um Ihre Zertifikate zu signieren. Um die bidirektionale SSL-Kommunikation zu konfigurieren, benötigen Sie Folgendes:
 
 * Signierte Zertifikate für die Render-Instanz und den Dispatcher
 * Das Zertifikat der Zertifizierungsstelle (wenn Sie als Zertifizierungsstelle fungieren)
@@ -130,8 +130,8 @@ Um die bidirektionale SSL-Kommunikation zu konfigurieren, benötigen Sie Zertifi
 Gehen Sie wie folgt vor, um die bidirektionale SSL-Kommunikation zu konfigurieren:
 
 1. [Installieren](dispatcher-install.md) Sie die neueste Dispatcher-Version für Ihre Plattform. Verwenden Sie eine Dispatcher-Binärdatei, die SSL unterstützt (SSL ist im Dateinamen enthalten, z. B. `dispatcher-apache2.4-linux-x86-64-ssl10-4.1.7.tar`).
-1. [Erstellen oder beziehen Sie ein von einer Zertifizierungsstelle signiertes Zertifikat](dispatcher-ssl.md#main-pars-title-3) für den Dispatcher und die Render-Instanz.
-1. [Erstellen Sie einen Keystore, der das Render-Zertifikat enthält](dispatcher-ssl.md#main-pars-title-6) und konfigurieren Sie den HTTP-Dienst der Render-Instanz.
+1. [Erstellen oder Abrufen eines von einer Zertifizierungsstelle signierten Zertifikats](dispatcher-ssl.md#main-pars-title-3) für den Dispatcher und die Renderinstanz.
+1. [Erstellen eines Keystore, der das Renderzertifikat enthält](dispatcher-ssl.md#main-pars-title-6) und konfigurieren Sie den HTTP-Dienst des Renderers.
 1. [Konfigurieren Sie das Dispatcher-Webservermodul](dispatcher-ssl.md#main-pars-title-4) für die bidirektionale SSL-Kommunikation.
 
 ### Erstellen oder Beziehen von von Zertifizierungsstellen signierten Zertifikaten  {#creating-or-obtaining-ca-signed-certificates}
@@ -157,7 +157,7 @@ Wenn Sie als Zertifizierungsstelle fungieren, verwenden Sie [OpenSSL](https://ww
 
 Verwenden Sie OpenSSL, um die Zertifikatanforderungen zu erstellen, die an die externe Zertifizierungsstelle gesendet oder von Ihrer Zertifizierungsstelle signiert werden sollen.
 
-Wenn Sie ein Zertifikat erstellen, verwendet OpenSSL die Eigenschaft für den allgemeinen Namen des Zertifikats, um die Inhaberin oder den Inhaber des Zertifikats zu identifizieren. Verwenden Sie für das Zertifikat der Render-Instanz den Host-Namen des Instanz-Computers als den allgemeinen Namen, wenn Sie den Dispatcher so konfigurieren, dass das Zertifikat akzeptiert wird. Verfahren Sie nur auf diese Weise, wenn es eine Übereinstimmung mit dem Host-Namen der Veröffentlichungsinstanz gibt. Siehe die Eigenschaft [DispatcherCheckPeerCN](dispatcher-ssl.md#main-pars-title-11).
+Wenn Sie ein Zertifikat erstellen, verwendet OpenSSL die Eigenschaft für den allgemeinen Namen des Zertifikats, um die Inhaberin oder den Inhaber des Zertifikats zu identifizieren. Verwenden Sie für das Zertifikat der Render-Instanz den Host-Namen des Instanz-Computers als den allgemeinen Namen, wenn Sie den Dispatcher so konfigurieren, dass das Zertifikat akzeptiert wird. Führen Sie dieses Verfahren nur aus, wenn es mit dem Hostnamen der Veröffentlichungsinstanz übereinstimmt. Siehe die Eigenschaft [DispatcherCheckPeerCN](dispatcher-ssl.md#main-pars-title-11).
 
 1. Öffnen Sie ein Terminal-Fenster und ändern Sie das aktuelle Verzeichnis in das Verzeichnis, in dem sich die Datei „CH.sh“ Ihrer OpenSSL-Bibliotheken befindet.
 1. Geben Sie den folgenden Befehl ein und legen Sie Werte fest, wenn Sie dazu aufgefordert werden. Verwenden Sie ggf. den Host-Namen der Veröffentlichungsinstanz als allgemeinen Namen. Der Host-Name ist ein von DNS auflösbarer Name für die IP-Adresse des Render-Knotens:
@@ -285,8 +285,8 @@ Führen Sie das Dispatcher-Zertifikat und den unverschlüsselten privaten Schlü
 
 Fügen Sie die folgenden Eigenschaften zur [Konfiguration des Dispatcher-Moduls](dispatcher-install.md#main-pars-55-35-1022) (in der Datei `httpd.conf`) hinzu:
 
-* `DispatcherCertificateFile`: Der Pfad zu der Datei mit dem einheitlichen Dispatcher-Zertifikat, die das öffentliche Zertifikat und den unverschlüsselten privaten Schlüssel enthält. Diese Datei wird verwendet, wenn der SSL-Server das Dispatcher-Clientzertifikat anfordert.
-* `DispatcherCACertificateFile`: Der Pfad zur Datei mit dem Zertifizierungsstellenzertifikat, die verwendet wird, wenn der SSL-Server eine Zertifizierungsstelle präsentiert, die von einer Stammzertifizierungsstelle als nicht vertrauenswürdig eingestuft wird.
+* `DispatcherCertificateFile`: Der Pfad zu der Datei mit dem einheitlichen Dispatcher-Zertifikat, die das öffentliche Zertifikat und den unverschlüsselten privaten Schlüssel enthält. Diese Datei wird verwendet, wenn der SSL-Server das Dispatcher-Client-Zertifikat anfordert.
+* `DispatcherCACertificateFile`: Der Pfad zur Datei mit dem Zertifizierungsstellenzertifikat. Wird verwendet, wenn der SSL-Server eine Zertifizierungsstelle präsentiert, der eine Stammzertifizierungsstelle nicht vertraut.
 * `DispatcherCheckPeerCN`: Gibt an, ob die Überprüfung des Hostnamens für Remoteserverzertifikate aktiviert (`On`) oder deaktiviert (`Off`) werden soll.
 
 Der folgende Code weist eine Beispielkonfiguration auf:
