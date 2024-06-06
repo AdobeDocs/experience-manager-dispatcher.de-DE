@@ -1,11 +1,11 @@
 ---
-title: AEM Dispatcher konfigurieren
-description: Erfahren Sie, wie Sie den Dispatcher konfigurieren. Erfahren Sie mehr über die Unterstützung für IPv4 und IPv6, Konfigurationsdateien, Umgebungsvariablen und die Benennung der Instanz. Erfahren Sie mehr über das Definieren von Farmen, das Identifizieren von virtuellen Hosts und mehr.
+title: Konfigurieren des AEM Dispatchers
+description: Erfahren Sie, wie Sie den Dispatcher konfigurieren. Informationen über die Unterstützung für IPv4 und IPv6, Konfigurationsdateien, Umgebungsvariablen und die Benennung der Instanz. Weitere Informationen über das Definieren von Farmen, das Identifizieren von virtuellen Hosts und mehr.
 exl-id: 91159de3-4ccb-43d3-899f-9806265ff132
 source-git-commit: 9be9f5935c21ebbf211b5da52280a31772993c2e
 workflow-type: tm+mt
 source-wordcount: '8876'
-ht-degree: 82%
+ht-degree: 95%
 
 ---
 
@@ -13,7 +13,7 @@ ht-degree: 82%
 
 >[!NOTE]
 >
->Dispatcher-Versionen sind unabhängig von AEM (Adobe Experience Manager). Möglicherweise wurden Sie auf diese Seite umgeleitet, wenn Sie einem Link zur Dispatcher-Dokumentation gefolgt sind. Dieser Link wurde in die Dokumentation für eine frühere AEM eingebettet.
+>Dispatcher-Versionen sind unabhängig von AEM (Adobe Experience Manager). Möglicherweise wurden Sie auf diese Seite umgeleitet, da Sie einem Link zur Dispatcher-Dokumentation gefolgt sind. Dieser Link war in die Dokumentation für eine frühere AEM-Version eingebettet.
 
 In den folgenden Abschnitten wird beschrieben, wie Sie verschiedene Aspekte des Dispatchers konfigurieren.
 
@@ -103,7 +103,7 @@ Sie können auch andere Dateien in die Konfiguration einbeziehen:
 * Wenn die Konfigurationsdatei groß ist, können Sie sie in mehrere kleinere Dateien aufteilen (die einfacher zu verwalten sind) und diese jeweils einschließen.
 * So können Sie automatisch generierte Dateien aufnehmen.
 
-Um beispielsweise die Datei &quot;myFarm.any&quot;in die `/farms` -Konfiguration den folgenden Code verwenden:
+Zum Einbeziehen der Datei „myFarm.any“ in die `/farms`-Konfiguration verwenden Sie beispielsweise folgenden Code:
 
 ```xml
 /farms
@@ -133,7 +133,7 @@ Wenn sich beispielsweise die Datei „dispatcher.any“ im selben Verzeichnis wi
 /docroot "${PWD}/cache"
 ```
 
-Wenn Sie als weiteres Beispiel eine Umgebungsvariable mit dem Namen `PUBLISH_IP` , der den Hostnamen der AEM Veröffentlichungsinstanz speichert, wird die folgende Konfiguration der [`/renders`](#defining-page-renderers-renders) -Eigenschaft kann verwendet werden:
+Wenn Sie als weiteres Beispiel eine Umgebungsvariable mit dem Namen `PUBLISH_IP` erstellen, in der der Host-Name der AEM-Veröffentlichungsinstanz gespeichert ist, kann die folgende Konfiguration der Eigenschaft [`/renders`](#defining-page-renderers-renders) verwendet werden:
 
 ```xml
 /renders {
@@ -209,7 +209,7 @@ Jede Farmeigenschaft kann die folgenden untergeordneten Eigenschaften enthalten:
 | [/failover](#using-the-failover-mechanism) | Anfragen werden erneut an andere Renderer gesendet, wenn die ursprüngliche Anfrage fehlschlägt. |
 | [/auth_checker](permissions-cache.md) | Informationen zum Zwischenspeichern unter Berücksichtigung von Berechtigungen finden Sie unter [Zwischenspeichern von geschützten Inhalten](permissions-cache.md). |
 
-## Angeben einer Standardseite (nur IIS) - `/homepage` {#specify-a-default-page-iis-only-homepage}
+## Angeben einer Standardseite (nur IIS) – `/homepage` {#specify-a-default-page-iis-only-homepage}
 
 >[!CAUTION]
 >
@@ -257,9 +257,9 @@ Comment Type: draft
 
 ## Festlegen der HTTP-Header zur Durchleitung {#specifying-the-http-headers-to-pass-through-clientheaders}
 
-Die `/clientheaders`-Eigenschaft definiert eine Liste von HTTP-Headern, die der Dispatcher von der Client-HTTP-Anfrage an den Renderer (AEM-Instanz) übergibt.
+Die Eigenschaft `/clientheaders` definiert eine Liste von HTTP-Headern, die der Dispatcher von der Client-HTTP-Anfrage an den Renderer (AEM-Instanz) übergibt.
 
-Standardmäßig leitet der Dispatcher die standardmäßigen HTTP-Header an die AEM-Instanz weiter. In einigen Fällen möchten Sie möglicherweise zusätzliche Header weiterleiten oder bestimmte Header entfernen:
+Standardmäßig leitet der Dispatcher die standardmäßigen HTTP-Header an die AEM-Instanz weiter. In einigen Fällen kann es notwendig werden, zusätzliche Header weiterzuleiten oder bestimmte Header zu entfernen:
 
 * Hinzufügen von Headern, z. B. benutzerdefinierten Headern, die von der AEM-Instanz in der HTTP-Anfrage erwartet werden.
 * Entfernen von Headern wie Authentifizierungs-Headern, die nur für den Webserver relevant sind
@@ -312,7 +312,7 @@ Der folgende Code ist eine Beispielkonfiguration für `/clientheaders`:
 
 ## Identifizieren von virtuellen Hosts {#identifying-virtual-hosts-virtualhosts}
 
-Die `/virtualhosts` -Eigenschaft definiert eine Liste aller Hostname- und URI-Kombinationen, die der Dispatcher für diese Farm akzeptiert. Das Sternchen (`*`) kann als Platzhalter verwendet werden. Werte für /`virtualhosts` -Eigenschaft verwendet das folgende Format:
+Die Eigenschaft `/virtualhosts` definiert eine Liste aller Hostnamen- und URI-Kombinationen, die der Dispatcher für diese Farm akzeptiert. Das Sternchen (`*`) kann als Platzhalter verwendet werden. Die Werte für die /`virtualhosts`-Eigenschaft weisen folgendes Format auf:
 
 ```xml
 [scheme]host[uri][*]
@@ -355,7 +355,7 @@ Der Dispatcher ermittelt wie folgt den passendsten Wert für den virtuellen Host
 * Wenn keine `virtualhosts`-Werte die Teile `scheme` und `uri` aufweisen, die mit dem `scheme` und `uri` der Anfrage übereinstimmen, wird der erste virtuelle Host verwendet, der mit dem Teil `host` der Anfrage übereinstimmt.
 * Wenn keine `virtualhosts`-Werte einen Host-Teil haben, der mit dem Host der Anfrage übereinstimmt, wird der oberste virtuelle Host der obersten Farm verwendet.
 
-Daher sollten Sie Ihren standardmäßigen virtuellen Host oben in der `virtualhosts` -Eigenschaft. Es in der obersten Farm Ihrer `dispatcher.any` -Datei.
+Daher sollten Sie Ihren standardmäßigen virtuellen Host an den Anfang der Eigenschaft `virtualhosts` setzen. Platzieren Sie ihn in der obersten Farm Ihrer `dispatcher.any`-Datei.
 
 ### Beispiel für die Auflösung von virtuellen Hosts {#example-virtual-host-resolution}
 
@@ -398,7 +398,7 @@ In der folgenden Tabelle sind die virtuellen Hosts aufgeführt, die für die HTT
 | `https://www.mycompany.com/products/gloves.html` | `www.mycompany.com/products/` |
 | `https://www.mycompany.com/about.html` | `www.mycompany.com` |
 
-## Aktivieren sicherer Sitzungen - `/sessionmanagement` {#enabling-secure-sessions-sessionmanagement}
+## Aktivierung von Sicherheitssitzungen – `/sessionmanagement` {#enabling-secure-sessions-sessionmanagement}
 
 >[!CAUTION]
 >
@@ -455,7 +455,7 @@ Eine Beispielkonfiguration sieht wie folgt aus:
 
 ## Definieren von Seiten-Renderern {#defining-page-renderers-renders}
 
-Die `/renders` -Eigenschaft definiert die URL, an die der Dispatcher Anforderungen zum Rendern eines Dokuments sendet. Der folgende beispielhafte `/renders`-Abschnitt definiert eine einzelne AEM-Instanz zum Rendern:
+Die `/renders` -Eigenschaft definiert die URL, an die der Dispatcher Anforderungen zum Rendern eines Dokuments sendet. Im folgenden beispielhaften `/renders`-Abschnitt wird eine einzelne AEM-Instanz zum Rendern definiert:
 
 ```xml
 /renders
@@ -472,7 +472,7 @@ Die `/renders` -Eigenschaft definiert die URL, an die der Dispatcher Anforderung
   }
 ```
 
-Das folgende Beispiel `/renders` gibt eine AEM Instanz an, die auf demselben Computer wie der Dispatcher ausgeführt wird:
+Im folgenden beispielhaften `/renders`-Abschnitt wird eine AEM-Instanz definiert, die auf demselben Computer wie der Dispatcher ausgeführt wird:
 
 ```xml
 /renders
@@ -485,7 +485,7 @@ Das folgende Beispiel `/renders` gibt eine AEM Instanz an, die auf demselben Com
   }
 ```
 
-Das folgende Beispiel `/renders` -Abschnitt verteilt Renderanforderungen gleichmäßig auf zwei AEM Instanzen:
+Mit folgendem beispielhaften `/renders`-Abschnitt werden Renderanfragen gleichmäßig auf zwei AEM-Instanzen verteilt:
 
 ```xml
 /renders
@@ -511,7 +511,7 @@ Gibt die Verbindungszeitüberschreitung für den Zugriff auf die AEM-Instanz in 
 
 **/receiveTimeout**
 
-Gibt die Zeit in Millisekunden an, für die auf eine Antwort gewartet wird. Der Standardwert ist `"600000"`, d. h., der Dispatcher wartet 10 Minuten. Eine Einstellung von `"0"` eliminiert die Zeitüberschreitung.
+Gibt die Zeit in Millisekunden an, für die auf eine Antwort gewartet wird. Der Standardwert ist `"600000"`, d. h., der Dispatcher wartet 10 Minuten. Bei einem Wert von `"0"` gibt es keine Zeitüberschreitung.
 
 Wenn die Zeitüberschreitung beim Analysieren der Antwort-Header auftritt, wird der HTTP-Status 504 (fehlerhaftes Gateway) zurückgegeben. Wenn die Zeitüberschreitung beim Lesen des Antworttexts auftritt, gibt der Dispatcher die unvollständige Antwort an den Client zurück. Er löscht zudem alle Cache-Dateien, die ggf. geschrieben wurden.
 
@@ -519,7 +519,7 @@ Wenn die Zeitüberschreitung beim Analysieren der Antwort-Header auftritt, wird 
 
 Gibt an, ob der Dispatcher die `getaddrinfo`-Funktion (für IPv6) oder die `gethostbyname`-Funktion (für IPv4) zum Abrufen der IP-Adresse des Renderers nutzt. Ein Wert von 0 bewirkt, dass `getaddrinfo` verwendet wird. Ein Wert von `1` bewirkt, dass `gethostbyname` verwendet wird. Der Standardwert ist `0`.
 
-Die Funktion `getaddrinfo` gibt eine Liste von IP-Adressen zurück. Der Dispatcher durchläuft die Liste der Adressen, bis er eine TCP/IP-Verbindung herstellt. Daher wird die `ipv4` -Eigenschaft ist wichtig, wenn der Render-Hostname mit mehreren IP-Adressen verknüpft ist. Und der Host als Reaktion auf die `getaddrinfo` -Funktion eine Liste von IP-Adressen zurückgibt, die sich immer in derselben Reihenfolge befinden. In diesem Fall sollten Sie die Funktion `gethostbyname` verwenden, damit die IP-Adresse, mit der sich der Dispatcher verbindet, ein Zufallswert ist.
+Die Funktion `getaddrinfo` gibt eine Liste von IP-Adressen zurück. Der Dispatcher durchläuft die Liste der Adressen, bis er eine TCP/IP-Verbindung herstellt. Daher ist die Eigenschaft `ipv4` wichtig, wenn der Rendering-Host-Name mit mehreren IP-Adressen verbunden ist. Außerdem gibt der Host als Antwort auf die Funktion `getaddrinfo` eine Liste von IP-Adressen zurück, die immer in der gleichen Reihenfolge sind. In diesem Fall sollten Sie die Funktion `gethostbyname` verwenden, damit die IP-Adresse, mit der sich der Dispatcher verbindet, ein Zufallswert ist.
 
 Amazon Elastic Load Balancing (ELB) ist ein solcher Dienst, der auf „getaddrinfo“ mit einer potenziell gleich sortierten Liste von IP-Adressen reagiert.
 
@@ -555,7 +555,7 @@ Verwenden Sie den `/filter`-Abschnitt, um die HTTP-Anfragen anzugeben, die der D
 
 >[!CAUTION]
 >
->Siehe [Dispatcher-Sicherheitscheckliste](security-checklist.md) für weitere Überlegungen beim Eingrenzen des Zugriffs mithilfe des AEM Dispatcher. Lesen Sie dazu die [Checkliste für die AEM-Sicherheit](https://experienceleague.adobe.com/de/docs/experience-manager-65/content/security/security-checklist#security), um weitere Sicherheitsinformationen zu Ihrer AEM-Installation zu erhalten.
+>In der [Dispatcher-Sicherheits-Checkliste](security-checklist.md) finden Sie weitere Aspekte, wenn der Zugriff unter Verwendung des AEM-Dispatchers eingeschränkt ist. Lesen Sie dazu die [Checkliste für die AEM-Sicherheit](https://experienceleague.adobe.com/de/docs/experience-manager-65/content/security/security-checklist#security), um weitere Sicherheitsinformationen zu Ihrer AEM-Installation zu erhalten.
 
 Der Abschnitt `/filter` besteht aus einer Reihe von Regeln, die den Zugriff auf Inhalte zulassen oder verweigern, wozu Muster in der Anfragezeile der HTTP-Anfrage abgeglichen werden. Verwenden Sie eine Zulassungslisten-Strategie für den Abschnitt `/filter`:
 
@@ -572,7 +572,7 @@ Jedes Element im `/filter`-Abschnitt enthält einen Typ und ein Muster, die mit 
 
 * **Typ**: `/type` gibt an, ob Anforderungen, die mit dem Muster übereinstimmen, der Zugriff erlaubt oder verweigert wird. Der Wert kann entweder `allow` oder `deny` lauten.
 
-* **Element der Anforderungszeile:** Einschließen `/method`, `/url`, `/query`oder `/protocol`. Fügen Sie außerdem ein Muster zum Filtern von Anforderungen hinzu. Filtern Sie sie nach bestimmten Teilen des Anforderungszeilen-Teils in der HTTP-Anforderung. Das Filtern nach Elementen der Anforderungszeile (und nicht nach der gesamten Anforderungszeile) ist die bevorzugte Filtermethode.
+* **Element der Anfragenzeile:** Fügen Sie `/method`, `/url`, `/query` oder `/protocol` ein. Fügen Sie außerdem ein Muster zum Filtern von Anfragen hinzu. Filtern Sie sie nach bestimmten Teilen der Anfragezeile in der HTTP-Anfrage. Das Filtern nach Elementen der Anforderungszeile (und nicht nach der gesamten Anforderungszeile) ist die bevorzugte Filtermethode.
 
 * **Erweiterte Elemente der Anforderungszeile:** Ab Dispatcher 4.2.0 sind vier neue Filterelemente verfügbar. Diese neuen Elemente sind `/path`, `/selectors`, `/extension` bzw. `/suffix`. Nutzen Sie eines oder mehrere dieser Elemente zur weiteren Kontrolle von URL-Mustern.
 
@@ -662,7 +662,7 @@ Wenn Ihre Veröffentlichungsinstanz einen Web-Anwendungskontext verwendet (z. B
 /0003   { /type "deny"  /url "/publish/libs/cq/workflow/content/console/archive*"  }
 ```
 
-Wenn Sie innerhalb eines eingeschränkten Bereichs auf einzelne Seiten zugreifen müssen, können Sie den Zugriff auf diese zulassen. Um beispielsweise den Zugriff auf die Registerkarte Archiv in der Workflow-Konsole zu ermöglichen, fügen Sie den folgenden Abschnitt hinzu:
+Wenn Sie innerhalb eines eingeschränkten Bereichs auf einzelne Seiten zugreifen müssen, können Sie den Zugriff auf diese zulassen. Um beispielsweise den Zugriff auf die Registerkarte „Archiv“ in der Workflow-Konsole zuzulassen, fügen Sie den folgenden Abschnitt hinzu:
 
 ```xml
 /0004  { /type "allow"  /url "/libs/cq/workflow/content/console/archive*"   }
@@ -693,7 +693,7 @@ Mit dem nachstehenden Regelbeispiel wird der Inhaltsabruf aus dem `/content`-Pfa
         }
 ```
 
-### Beispiel `/filter` Abschnitt {#example-filter-section}
+### Beispielabschnitt `/filter` {#example-filter-section}
 
 Wenn Sie den Dispatcher konfigurieren, schränken Sie externe Zugriffe so weit wie möglich ein. Im folgenden Beispiel wird externen Besucherinnen und Besuchern ein minimaler Zugriff gewährt:
 
@@ -809,7 +809,7 @@ Je nach Installation stehen unter `/libs`, `/apps` oder an einem anderen Ort mö
 
 ### Einschränken von Abfragezeichenfolgen {#restricting-query-strings}
 
-Seit der Dispatcher-Version 4.1.5 können Sie den `/filter`-Abschnitt zum Einschränken von Abfragezeichenfolgen nutzen. Es wird empfohlen, Abfragezeichenfolgen explizit zuzulassen und die generische Berechtigung durch `allow` Filterelemente.
+Seit der Dispatcher-Version 4.1.5 können Sie den Abschnitt `/filter` zum Einschränken von Abfragezeichenfolgen nutzen. Es wird empfohlen, mit `allow`-Filterelementen bestimmte Abfragezeichenfolgen explizit zuzulassen und alle anderen zu verweigern.
 
 Ein einzelner Eintrag kann entweder `glob` oder eine Kombination von `method`, `url`, `query` und `version` aufweisen, aber nicht beides. Im folgenden Beispiel wird die Abfragezeichenfolge `a=*` zugelassen. Alle anderen Abfragezeichenfolgen für URLs, die zum Knoten `/etc` auflösen, werden verweigert:
 
@@ -946,13 +946,13 @@ Führen Sie die folgenden Schritte aus, um den Zugriff auf Vanity-URLs zu aktivi
 1. Ergänzen Sie den `/vanity_urls`-Abschnitt, der sich unter `/farms` befindet.
 1. Starten Sie den Apache-Webserver neu.
 
-## Weiterleiten von Syndizierungsanforderungen - `/propagateSyndPost` {#forwarding-syndication-requests-propagatesyndpost}
+## Weiterleiten von Syndizierungsanfragen – `/propagateSyndPost`  {#forwarding-syndication-requests-propagatesyndpost}
 
 Syndizierungsanfragen beziehen sich nur auf den Dispatcher, sodass sie standardmäßig nicht an den Renderer (z. B. eine AEM-Instanz) gesendet werden.
 
 Falls erforderlich, können Sie die Eigenschaft `/propagateSyndPost` auf `"1"` festlegen, damit Syndizierungsanfragen an den Dispatcher weitergeleitet werden. Wenn diese Einstellung festgelegt ist, müssen Sie sicherstellen, dass POST-Anfragen im Filterabschnitt nicht verweigert werden.
 
-## Konfigurieren des Dispatcher-Caches - `/cache` {#configuring-the-dispatcher-cache-cache}
+## Konfigurieren des Dispatcher-Caches – `/cache` {#configuring-the-dispatcher-cache-cache}
 
 Über den `/cache`-Abschnitt wird gesteuert, wie der Dispatcher Dokumente zwischenspeichert. Konfigurieren Sie Untereigenschaften, um das Caching entsprechend Ihren Strategien zu implementieren:
 
@@ -999,7 +999,7 @@ Ein Cacheabschnitt kann beispielsweise wie folgt aussehen:
 
 ### Festlegen des Cacheordners  {#specifying-the-cache-directory}
 
-Die `/docroot`-Eigenschaft identifiziert den Ordner, in dem die Cachedateien gespeichert werden.
+Die Eigenschaft `/docroot` identifiziert den Ordner, in dem die Cachedateien gespeichert werden.
 
 >[!NOTE]
 >
@@ -1020,9 +1020,9 @@ Die Stat-Datei hat keinen Inhalt. Wenn der Inhalt aktualisiert wird, aktualisier
 
 ### Bereitstellen veralteter Dokumente, wenn Fehler auftreten {#serving-stale-documents-when-errors-occur}
 
-Die `/serveStaleOnError`-Eigenschaft steuert, ob der Dispatcher als invalidiert gekennzeichnete Dokumente zurückgibt, wenn der Renderserver einen Fehler zurückgibt. Wenn eine Statfile geändert wird und zwischengespeicherten Inhalt invalidiert, löscht der Dispatcher standardmäßig den zwischengespeicherten Inhalt. Diese Aktion wird ausgeführt, wenn sie das nächste Mal angefordert wird.
+Die Eigenschaft `/serveStaleOnError` steuert, ob der Dispatcher als invalidiert gekennzeichnete Dokumente zurückgibt, wenn der Render-Server einen Fehler zurückgibt. Wenn eine Statfile geändert wird und zwischengespeicherten Inhalt invalidiert, löscht der Dispatcher standardmäßig den zwischengespeicherten Inhalt. Diese Aktion wird ausgeführt, wenn sie das nächste Mal angefordert wird.
 
-Wenn `/serveStaleOnError` auf `"1"`, löscht der Dispatcher keine invalidierten Inhalte aus dem Cache. Das heißt, es sei denn, der Renderserver gibt eine erfolgreiche Antwort zurück. Eine 5xx-Antwort von AEM oder einem Verbindungs-Timeout bewirkt, dass der Dispatcher den veralteten Inhalt bereitstellt und mit dem HTTP-Status 111 antwortet (Erneute Validierung fehlgeschlagen).
+Wenn `/serveStaleOnError` auf `"1"` festgelegt ist, löscht der Dispatcher keine invalidierten Inhalte aus dem Cache, es sei denn, der Render-Server gibt eine „Erfolgreich“-Antwort zurück. Eine 5xx-Antwort von AEM oder einem Verbindungs-Timeout bewirkt, dass der Dispatcher den veralteten Inhalt bereitstellt und mit dem HTTP-Status 111 antwortet (Erneute Validierung fehlgeschlagen).
 
 ### Zwischenspeicherung bei Verwendung von Authentifizierung {#caching-when-authentication-is-used}
 
@@ -1064,7 +1064,7 @@ Die `/rules`-Eigenschaft steuert anhand des Dokumentenpfads, welche Dokumente zw
 Jedes Element in der Eigenschaft `/rules` umfasst ein [`glob`](#designing-patterns-for-glob-properties)-Muster und einen Typ:
 
 * Das `glob`-Muster wird zum Abgleichen des Dokumentenpfads verwendet.
-* Der Typ gibt an, ob die Dokumente, die dem `glob`-Muster entsprechen, zwischengespeichert werden sollen. Der Wert kann `allow` (Dokument zwischenspeichern) oder `deny` (Dokument rendern).
+* Der Typ gibt an, ob die Dokumente, die dem `glob`-Muster entsprechen, zwischengespeichert werden sollen. Der Wert kann `allow` lauten (das Dokument wird im Cache gespeichert) oder `deny` (das Dokument wird gerendert).
 
 Wenn Sie keine dynamischen Seiten haben (abgesehen von denen, die durch die oben genannten Regeln bereits ausgeschlossen sind), können Sie den Dispatcher so konfigurieren, dass alles zwischengespeichert wird. Der rules-Abschnitt sieht wie folgt aus:
 
@@ -1075,13 +1075,13 @@ Wenn Sie keine dynamischen Seiten haben (abgesehen von denen, die durch die oben
   }
 ```
 
-Weitere Informationen zu Glob-Eigenschaften finden Sie unter [Entwerfen von Mustern für globale Eigenschaften](#designing-patterns-for-glob-properties).
+Weitere Informationen zu glob-Eigenschaften finden Sie unter [Entwerfen von Mustern für glob-Eigenschaften](#designing-patterns-for-glob-properties).
 
 Für dynamische Bereiche Ihrer Seite (z. B. eine App für Neuigkeiten) oder für geschlossene Benutzergruppen können Sie Ausnahmen definieren:
 
 >[!NOTE]
 >
->Schließen Sie keine geschlossenen Benutzergruppen im Cache. Der Grund dafür ist, dass Benutzerrechte für zwischengespeicherte Seiten nicht überprüft werden.
+>Schließen Sie die Zwischenspeicherung für geschlossene Benutzergruppen aus. Der Grund dafür ist, dass Benutzerrechte für zwischengespeicherte Seiten nicht überprüft werden.
 
 ```xml
 /rules
@@ -1189,15 +1189,15 @@ Die automatische Invalidierung wird in der Regel für HTML-Seiten verwendet. HTM
   }
 ```
 
-Weitere Informationen zu Glob-Eigenschaften finden Sie unter [Entwerfen von Mustern für globale Eigenschaften](#designing-patterns-for-glob-properties).
+Weitere Informationen zu Glob-Eigenschaften finden Sie unter [Entwerfen von Mustern für Glob-Eigenschaften](#designing-patterns-for-glob-properties).
 
 Diese Konfiguration löst die folgende Aktivität aus, wenn `/content/wknd/us/en` aktiviert wird:
 
 * Alle Dateien mit dem Muster „en.*“ werden aus dem Ordner `/content/wknd/us` entfernt.
 * Der Ordner `/content/wknd/us/en./_jcr_content` wird entfernt.
-* Alle anderen Dateien, die mit der `/invalidate`-Konfiguration übereinstimmen, werden nicht sofort gelöscht. Diese Dateien werden bei der nächsten Anfrage gelöscht. Im Beispiel `/content/wknd.html` wird nicht gelöscht; sie wird gelöscht, wenn `/content/wknd.html` angefordert wird.
+* Alle anderen Dateien, die mit der `/invalidate`-Konfiguration übereinstimmen, werden nicht sofort gelöscht. Diese Dateien werden bei der nächsten Anfrage gelöscht. Im Beispiel wird `/content/wknd.html` nicht sofort gelöscht, sondern erst bei Anforderung von `/content/wknd.html`.
 
-Wenn Sie automatisch generierte PDF- und ZIP-Dateien zum Herunterladen anbieten, müssen Sie diese Dateien möglicherweise auch automatisch ungültig machen. Eine mögliche Konfiguration sieht wie folgt aus:
+Wenn Sie automatisch generierte PDF-Dateien und ZIP-Dateien zum Download anbieten, müssen Sie diese ggf. ebenfalls automatisch invalidieren. Eine mögliche Konfiguration sieht wie folgt aus:
 
 ```xml
 /invalidate
@@ -1219,7 +1219,7 @@ Die AEM-Integration in Adobe Analytics liefert Konfigurationsdaten in einer Date
 
 ### Verwenden von benutzerdefinierten Skripts zur Invalidierung  {#using-custom-invalidation-scripts}
 
-Die `/invalidateHandler` -Eigenschaft können Sie ein Skript definieren, das für jede vom Dispatcher empfangene Invalidierungsanforderung aufgerufen wird.
+Die Eigenschaft `/invalidateHandler` ermöglicht es Ihnen, ein Skript zu definieren, das bei jeder vom Dispatcher empfangenen Invalidierungsanfrage aufgerufen wird.
 
 Es wird mit folgenden Argumenten aufgerufen:
 
@@ -1260,7 +1260,7 @@ Im folgenden Beispiel:
   }
 ```
 
-Weitere Informationen zu Glob-Eigenschaften finden Sie unter [Entwerfen von Mustern für globale Eigenschaften](#designing-patterns-for-glob-properties).
+Weitere Informationen zu Glob-Eigenschaften finden Sie unter [Entwerfen von Mustern für Glob-Eigenschaften](#designing-patterns-for-glob-properties).
 
 >[!CAUTION]
 >
@@ -1275,7 +1275,7 @@ Im `ignoreUrlParams`-Abschnitt wird definiert, welche URL-Parameter bei der Prü
 * Wenn eine Anfrage-URL Parameter enthält, die alle ignoriert werden, wird die Seite zwischengespeichert.
 * Wenn eine Anfrage-URL mindestens einen Parameter enthält, der nicht ignoriert wird, wird die Seite nicht zwischengespeichert.
 
-Wenn ein Parameter für eine Seite ignoriert wird, wird die Seite bei der ersten Anfrage zwischengespeichert. Nachfolgende Anforderungen für die Seite werden unabhängig vom Wert des Parameters in der Anfrage an die zwischengespeicherte Seite gesendet.
+Wenn ein Parameter für eine Seite ignoriert wird, wird die Seite bei der ersten Anfrage zwischengespeichert. Nachfolgende Anfragen für die Seite werden an die zwischengespeicherte Seite weitergeleitet, unabhängig vom Wert des Parameters in der Anfrage.
 
 >[!NOTE]
 >
@@ -1283,7 +1283,7 @@ Wenn ein Parameter für eine Seite ignoriert wird, wird die Seite bei der ersten
 
 Um festzulegen, welche Parameter ignoriert werden, fügen Sie glob-Regeln zu der Eige nschaft `ignoreUrlParams`hinzu:
 
-* Um eine Seite unabhängig von der Anforderung mit einem URL-Parameter zwischenzuspeichern, erstellen Sie eine glob-Eigenschaft, die den Parameter ermöglicht (zu ignorieren).
+* Um eine Seite zwischenzuspeichern, obwohl die Anfrage einen URL-Parameter enthält, erstellen Sie eine Glob-Eigenschaft, die das Ignorieren des Parameters zulässt.
 * Damit die Seite nicht zwischengespeichert wird, erstellen Sie eine glob-Eigenschaft, die das Ignorieren des Parameters verweigert.
 
 >[!NOTE]
@@ -1291,7 +1291,7 @@ Um festzulegen, welche Parameter ignoriert werden, fügen Sie glob-Regeln zu der
 >Beim Konfigurieren der glob-Eigenschaft sollte diese mit dem Namen des Abfrageparameters übereinstimmen. Wenn Sie beispielsweise den Parameter „p1“ der URL `http://example.com/path/test.html?p1=test&p2=v2` ignorieren möchten, dann sollte die glob-Eigenschaft wie folgt lauten:
 > `/0002 { /glob "p1" /type "allow" }`
 
-Das folgende Beispiel führt dazu, dass der Dispatcher alle Parameter außer `nocache` ignoriert. Daher speichert der Dispatcher Anforderungs-URLs, die die `nocache` Parameter:
+Das folgende Beispiel führt dazu, dass der Dispatcher alle Parameter außer `nocache` ignoriert. Daher speichert der Dispatcher niemals URL-Anfragen, die den Parameter `nocache` enthalten:
 
 ```xml
 /ignoreUrlParams
@@ -1309,14 +1309,14 @@ Im Kontext des Konfigurationsbeispiels für `ignoreUrlParams` oben bewirkt die f
 GET /mypage.html?willbecached=true
 ```
 
-Im Kontext der `ignoreUrlParams` Konfigurationsbeispiel: Die folgende HTTP-Anforderung verursacht die Seite **not** zwischengespeichert werden, weil die `nocache` -Parameter wird nicht ignoriert:
+Im Kontext des Konfigurationsbeispiels für `ignoreUrlParams` bewirkt die folgende HTTP-Anfrage, dass die Seite **nicht** zwischengespeichert wird, da der Parameter `nocache` nicht ignoriert wird:
 
 ```xml
 GET /mypage.html?nocache=true
 GET /mypage.html?nocache=true&willbecached=true
 ```
 
-Weitere Informationen zu Glob-Eigenschaften finden Sie unter [Entwerfen von Mustern für globale Eigenschaften](#designing-patterns-for-glob-properties).
+Weitere Informationen zu Glob-Eigenschaften finden Sie unter [Entwerfen von Mustern für Glob-Eigenschaften](#designing-patterns-for-glob-properties).
 
 ### Zwischenspeichern von HTTP-Antwort-Headern {#caching-http-response-headers}
 
@@ -1324,9 +1324,9 @@ Weitere Informationen zu Glob-Eigenschaften finden Sie unter [Entwerfen von Must
 >
 >Diese Funktion ist in Version **4.1.11** des Dispatchers verfügbar.
 
-Die `/headers` -Eigenschaft können Sie die HTTP-Header-Typen definieren, die der Dispatcher zwischenspeichern soll. Bei der ersten Anfrage an eine nicht zwischengespeicherte Ressource werden alle Header, die mit einem der konfigurierten Werte übereinstimmen (siehe Konfigurationsbeispiel unten), in einer separaten Datei neben der Cache-Datei gespeichert. Bei nachfolgenden Anfragen an die zwischengespeicherte Ressource werden die gespeicherten Header zur Antwort hinzugefügt.
+Mit der Eigenschaft `/headers` können Sie die HTTP-Header-Typen definieren, die der Dispatcher zwischenspeichern soll. Bei der ersten Anfrage an eine nicht zwischengespeicherte Ressource werden alle Header, die mit einem der konfigurierten Werte übereinstimmen (siehe Konfigurationsbeispiel unten), in einer separaten Datei neben der Cache-Datei gespeichert. Bei nachfolgenden Anfragen an die zwischengespeicherte Ressource werden die gespeicherten Header zur Antwort hinzugefügt.
 
-Nachfolgend finden Sie ein Beispiel aus der Standardkonfiguration:
+Im Folgenden ein Beispiel aus der Standardkonfiguration:
 
 ```xml
 /cache {
@@ -1345,13 +1345,13 @@ Nachfolgend finden Sie ein Beispiel aus der Standardkonfiguration:
 
 >[!NOTE]
 >
->Datei-Globbing-Zeichen sind nicht zulässig. Weitere Informationen finden Sie unter [Entwerfen von Mustern für globale Eigenschaften](#designing-patterns-for-glob-properties).
+>Datei-Globbing-Zeichen sind nicht zulässig. Weitere Einzelheiten finden Sie unter [Entwerfen von Mustern für Glob-Eigenschaften](#designing-patterns-for-glob-properties).
 
 >[!NOTE]
 >
 >Wenn der Dispatcher ETag-Antwortheader von AEM speichern und bereitstellen muss, gehen Sie wie folgt vor:
 >
->* Fügen Sie den Headernamen in den `/cache/headers`-Abschnitt ein.
+>* Fügen Sie den Header-Namen in den Abschnitt `/cache/headers` ein.
 >* Fügen Sie die folgende [Apache-Anweisung](https://httpd.apache.org/docs/2.4/mod/core.html#fileetag) im Dispatcher-Abschnitt hinzu:
 >
 >```xml
@@ -1360,7 +1360,7 @@ Nachfolgend finden Sie ein Beispiel aus der Standardkonfiguration:
 
 ### Dispatcher-Cache-Dateiberechtigungen {#dispatcher-cache-file-permissions}
 
-Die `mode`-Eigenschaft gibt an, welche Dateiberechtigungen auf neue Verzeichnisse und Dateien im Cache angewendet werden. Die `umask` des aufrufenden Prozesses beschränkt diese Einstellung. Es ist eine Oktalzahl, die aus der Summe eines oder mehrerer der folgenden Werte gebildet wird:
+Die Eigenschaft `mode` gibt an, welche Dateiberechtigungen auf neue Verzeichnisse und Dateien im Cache angewendet werden. Die `umask` des aufrufenden Prozesses schränkt diese Einstellung ein. Es handelt sich um eine Oktalzahl, die aus der Summe eines oder mehrerer der folgenden Werte gebildet wird:
 
 * `0400`: Lesen durch die Inhaberin oder den Inhaber zulassen
 * `0200`: Schreiben durch die Inhaberin oder den Inhaber zulassen
@@ -1372,7 +1372,7 @@ Die `mode`-Eigenschaft gibt an, welche Dateiberechtigungen auf neue Verzeichniss
 * `0002`: Schreiben durch andere zulassen
 * `0001`: Verzeichnissuche für andere zulassen
 
-Der Standardwert ist `0755`, wodurch der Eigentümer lesen, schreiben oder suchen kann und die Gruppe und andere lesen oder suchen können.
+Der Standardwert ist `0755`. Dies ermöglicht der Inhaberin oder dem Inhaber, zu lesen, zu schreiben oder zu suchen, und der Gruppe sowie anderen, zu lesen oder zu suchen.
 
 ### Einschränken von .stat-Dateiänderungen {#throttling-stat-file-touching}
 
@@ -1382,18 +1382,18 @@ Die Eigenschaft `/gracePeriod` definiert die Anzahl der Sekunden, während derer
 
 Weitere Informationen finden Sie unter `/invalidate` und `/statfileslevel` weiter oben.
 
-### Konfigurieren der zeitbasierten Cache-Invalidierung - `/enableTTL` {#configuring-time-based-cache-invalidation-enablettl}
+### Konfigurieren der zeitbasierten Cache-Invalidierung – `/enableTTL` {#configuring-time-based-cache-invalidation-enablettl}
 
 Die zeitbasierte Cache-Invalidierung hängt zum einen von der Eigenschaft `/enableTTL` ab, zum anderen davon, ob reguläre Ablauf-Header des HTTP-Standards vorhanden sind. Wenn Sie die Eigenschaft auf „1“ setzen (`/enableTTL "1"`), wertet sie die Antwort-Header vom Backend aus. Wenn der Header eine Datumsangabe für `Cache-Control`, `max-age` oder `Expires` enthält, wird eine leere Hilfsdatei neben der zwischengespeicherten Datei erstellt, deren Änderungszeitpunkt dem Ablaufdatum entspricht. Wenn die zwischengespeicherte Datei nach dem Änderungszeitpunkt angefordert wird, wird sie automatisch erneut vom Backend angefordert.
 
 Vor Dispatcher 4.3.5 basierte die TTL-Invalidierungslogik alleine auf dem konfigurierten TTL-Wert. Bei Dispatcher 4.3.5 werden die festgelegte TTL **und** die Dispatcher-Cache-Invalidierungsregeln berücksichtigt. Für eine zwischengespeicherte Datei gilt daher Folgendes:
 
 1. Wenn `/enableTTL` auf „1“ gesetzt ist, wird der Dateiablauf überprüft. Wenn die Datei gemäß der festgelegten TTL abgelaufen ist, werden keine weiteren Prüfungen durchgeführt und die zwischengespeicherte Datei wird erneut vom Backend angefordert.
-2. Wenn die Datei noch nicht abgelaufen ist, oder `/enableTTL` nicht konfiguriert ist, werden die standardmäßigen Cache-Invalidierungsregeln angewendet, z. B. die Regeln, die [`/statfileslevel`](#invalidating-files-by-folder-level) und [`/invalidate`](#automatically-invalidating-cached-files) festgelegt ist. Dieser Ablauf bedeutet, dass der Dispatcher Dateien ungültig machen kann, für die die TTL noch nicht abgelaufen ist.
+2. Wenn die Datei nicht abgelaufen oder `/enableTTL` nicht konfiguriert ist, werden die standardmäßigen Cache-Invalidierungsregeln angewendet, z. B. die durch [`/statfileslevel`](#invalidating-files-by-folder-level) und [`/invalidate`](#automatically-invalidating-cached-files) festgelegten Regeln. Dieser Ablauf bedeutet, dass der Dispatcher Dateien ungültig machen kann, für die die TTL noch nicht abgelaufen ist.
 
-Diese neue Implementierung unterstützt Anwendungsfälle, in denen Dateien eine längere TTL aufweisen (z. B. im CDN). Diese Datei kann jedoch auch dann invalidiert werden, wenn die TTL noch nicht abgelaufen ist. Die Aktualität des Inhalts wird der Cache-Trefferquote im Dispatcher vorgezogen.
+Diese neue Implementierung unterstützt Anwendungsfälle, in denen Dateien eine längere TTL aufweisen (z. B. im CDN). Diese Dateien können jedoch invalidiert werden, auch wenn die TTL noch nicht abgelaufen ist. Die Aktualität des Inhalts wird der Cache-Trefferquote im Dispatcher vorgezogen.
 
-Falls Sie umgekehrt **nur** die auf eine Datei angewendete Ablauflogik benötigen, legen Sie `/enableTTL` auf „1“ fest und schließen Sie diese Datei vom standardmäßigen Cache-Invalidierungsmechanismus aus. Sie können beispielsweise:
+Falls Sie umgekehrt **nur** die auf eine Datei angewendete Ablauflogik benötigen, legen Sie `/enableTTL` auf „1“ fest und schließen Sie diese Datei vom standardmäßigen Cache-Invalidierungsmechanismus aus. Sie haben beispielsweise folgende Möglichkeiten:
 
 * Um die Datei zu ignorieren, konfigurieren Sie die [Invalidierungsregeln](#automatically-invalidating-cached-files) im Cache-Abschnitt. Im folgenden Code-Fragment werden alle mit `.example.html` endenden Dateien ignoriert. Sie laufen erst ab, wenn die festgelegte TTL verstrichen ist.
 
@@ -1406,7 +1406,7 @@ Falls Sie umgekehrt **nur** die auf eine Datei angewendete Ablauflogik benötige
   }
 ```
 
-* Entwerfen Sie die Inhaltsstruktur so, dass Sie einen hohen [`/statfilelevel`](#invalidating-files-by-folder-level) sodass die Datei nicht automatisch invalidiert wird.
+* Gestalten Sie die Inhaltsstruktur so, dass Sie ein hohes [`/statfilelevel`](#invalidating-files-by-folder-level) festlegen können, damit die Datei nicht automatisch invalidiert wird.
 
 Dadurch wird sichergestellt, dass die Invalidierung der `.stat`-Datei nicht zur Anwendung kommt und für die angegebenen Dateien nur der TTL-Ablauf gilt.
 
@@ -1418,7 +1418,7 @@ Dadurch wird sichergestellt, dass die Invalidierung der `.stat`-Datei nicht zur 
 >
 >Diese Funktion ist in Version **4.1.11** oder höher des Dispatchers verfügbar.
 
-## Konfigurieren des Lastenausgleichs - `/statistics` {#configuring-load-balancing-statistics}
+## Konfigurieren des Lastenausgleichs – `/statistics` {#configuring-load-balancing-statistics}
 
 Im `/statistics`-Abschnitt werden Kategorien von Dateien definiert, für die der Dispatcher die Reaktionsfähigkeit jedes Renderers bewertet. Der Dispatcher nutzt diese Bewertung, um festzulegen, an welchen Renderer eine Anfrage gesendet wird.
 
@@ -1488,9 +1488,9 @@ Das folgende Beispiel enthält außerdem eine Kategorie für Suchseiten:
 
 Mit der `/unavailablePenalty`-Eigenschaft wird die Strafzeit (in Zehntelsekunden) für Renderer-Statistiken festgelegt, die beim Fehlschlagen einer Verbindung zu einem Renderer angewendet wird. Der Dispatcher addiert diese Zeit der Statistikkategorie hinzu, die dem angeforderten URI entspricht.
 
-Beispielsweise wird die Strafzeit angewendet, wenn die TCP/IP-Verbindung zum angegebenen Hostnamen/Port nicht hergestellt werden kann. Der Grund dafür ist entweder, dass AEM nicht ausgeführt wird (und nicht überwacht) oder dass ein netzwerkbezogenes Problem vorliegt.
+Beispielsweise wird die Strafzeit angewendet, wenn die TCP/IP-Verbindung zum angegebenen Host-Namen/Port nicht hergestellt werden kann. Der Grund dafür ist entweder, dass AEM nicht ausgeführt (und nicht überwacht) wird oder dass ein Netzwerkproblem vorliegt.
 
-Die `/unavailablePenalty`-Eigenschaft ist ein direktes untergeordnetes Element des `/farm`-Abschnitts (gleichrangig mit dem `/statistics`-Abschnitt).
+Die Eigenschaft `/unavailablePenalty` ist ein direktes untergeordnetes Element des `/farm`-Abschnitts (gleichrangig mit dem `/statistics`-Abschnitt).
 
 Wenn keine Eigenschaft `/unavailablePenalty` vorhanden ist, wird der Wert `"1"` verwendet.
 
@@ -1498,7 +1498,7 @@ Wenn keine Eigenschaft `/unavailablePenalty` vorhanden ist, wird der Wert `"1"` 
 /unavailablePenalty "1"
 ```
 
-## Identifizieren eines Ordners mit gebundener Verbindung - `/stickyConnectionsFor` {#identifying-a-sticky-connection-folder-stickyconnectionsfor}
+## Identifizieren eines „Sticky“-Verbindungsordners – `/stickyConnectionsFor` {#identifying-a-sticky-connection-folder-stickyconnectionsfor}
 
 Mit der Eigenchaft `/stickyConnectionsFor` wird ein Ordner definiert, der „Sticky“-Dokumente enthält. Der Zugriff auf diese Eigenschaft erfolgt über die URL. Der Dispatcher sendet alle Anfragen von einer Person, die sich in diesem Ordner befinden, an eine Renderer-Instanz. Mit Sticky-Verbindungen wird sichergestellt, dass Sitzungsdaten für alle Dokumente vorhanden und konsistent sind. Für diesen Mechanismus wird der `renderid`-Cookie verwendet.
 
@@ -1550,7 +1550,7 @@ Verwenden Sie die Eigenschaft `/health_check`, um eine URL anzugeben, die beim A
 
 Die Eigenschaft `/retryDelay` legt die Zeit (in Sekunden) fest, die der Dispatcher zwischen den einzelnen Runden der Verbindungsherstellung zu den Farm-Renderern abwartet. Die maximale Anzahl der Verbindungsversuche pro Runde entspricht der Anzahl der Renderer in der Farm.
 
-Der Dispatcher verwendet den Wert `"1"`, wenn `/retryDelay` nicht explizit definiert ist. Der Standardwert ist normalerweise angemessen.
+Der Dispatcher verwendet den Wert `"1"`, wenn `/retryDelay` nicht explizit definiert ist. Der Standardwert ist in der Regel angemessen.
 
 ```xml
 /retryDelay "1"
@@ -1572,8 +1572,8 @@ Wenn der Wert nicht explizit definiert ist, ist der Standardwert `5`.
 
 Um Anfragen erneut an andere Renderer zu senden, wenn die ursprüngliche Anfrage fehlschlägt, aktivieren Sie den Failover-Mechanismus in Ihrer Dispatcher-Farm. Wenn das Failover aktiviert ist, weist der Dispatcher folgendes Verhalten auf:
 
-* Wenn eine Renderer-Anforderung den HTTP-Status 503 (UNVERFÜGBAR) zurückgibt, sendet der Dispatcher die Anforderung an einen anderen Renderer.
-* Wenn eine Renderer-Anforderung den HTTP-Status 50x (außer 503) zurückgibt, sendet der Dispatcher eine Anforderung für die Seite, die für die `health_check` -Eigenschaft.
+* Wenn bei einer Renderer-Anfrage der HTTP-Status 503 (Nicht verfügbar) zurückgegeben wird, sendet der Dispatcher die Anfrage an einen anderen Renderer.
+* Wenn bei einer Renderer-Anfrage ein HTTP-Status 50x (außer 503) zurückgegeben wird, sendet der Dispatcher eine Anfrage für die Seite, die in der Eigenschaft `health_check` konfiguriert ist.
    * Wenn bei der Konsistenzprüfung 500 (interner Server-Fehler) zurückgegeben wird, sendet der Dispatcher die ursprüngliche Anfrage an einen anderen Renderer.
    * Wenn die Konsistenzprüfung den HTTP-Status 200 zurückgibt, gibt der Dispatcher den ursprünglichen HTTP 500-Fehler an den Client zurück.
 
@@ -1587,7 +1587,7 @@ Um das Failover zu aktivieren, fügen Sie der Farm (oder Website) folgende Zeile
 >
 >Um HTTP-Anfragen zu wiederholen, die einen Text enthalten, sendet der Dispatcher den Anfrageheader `Expect: 100-continue` an den Renderer, bevor die tatsächlichen Inhalte gespoolt werden. CQ 5.5 mit CQSE antwortet dann umgehend mit 100 (Fortsetzen) oder einem Fehler-Code. Andere Servlet-Container werden ebenfalls unterstützt.
 
-## Ignorieren von Unterbrechungsfehlern - `/ignoreEINTR` {#ignoring-interruption-errors-ignoreeintr}
+## Ignorieren von Netzwerkunterbrechungsfehlern – `/ignoreEINTR` {#ignoring-interruption-errors-ignoreeintr}
 
 >[!CAUTION]
 >
@@ -1609,7 +1609,7 @@ read more data
 }
 ```
 
-Solche Meldungen können generiert werden, wenn die `EINTR` im `read more data` Abschnitt. Und der Empfang eines Signals vor dem Empfang von Daten ist die Ursache.
+Solche Meldungen können generiert werden, wenn `EINTR` im Abschnitt `read more data` vorkommt. Ursache ist der Empfang eines Signals vor dem Empfang von Daten.
 
 Um diese Unterbrechungen zu ignorieren, können Sie die folgenden Parameter zu `dispatcher.any` hinzufügen (vor `/farms`):
 
@@ -1617,19 +1617,19 @@ Um diese Unterbrechungen zu ignorieren, können Sie die folgenden Parameter zu `
 
 Durch das Festlegen von `/ignoreEINTR` auf `"1"` liest der Dispatcher so lange weiter Daten, bis die vollständige Antwort erfasst wurde. Der Standardwert ist `0` und deaktiviert die Option.
 
-## Entwerfen von Mustern für globale Eigenschaften {#designing-patterns-for-glob-properties}
+## Entwerfen von Mustern für Glob-Eigenschaften {#designing-patterns-for-glob-properties}
 
-In einigen Abschnitten in der Dispatcher-Konfigurationsdatei wird die `glob` Eigenschaften als Auswahlkriterien für Clientanforderungen. Die Werte der `glob`-Eigenschaften sind Muster, die der Dispatcher mit einem Aspekt der Anfrage abgleicht, beispielsweise dem Pfad der angeforderten Ressource oder der IP-Adresse des Clients. Die Elemente im Abschnitt `/filter` verwenden etwa `glob`-Muster, um die Pfade der Seiten zu identifizieren, mit denen der Dispatcher interagiert oder die der Dispatcher zurückweist.
+In einigen Abschnitten in der Dispatcher-Konfigurationsdatei können `glob`-Eigenschaften als Auswahlkriterien für Client-Anfragen verwendet werden. Die Werte der `glob`-Eigenschaften sind Muster, die der Dispatcher mit einem Aspekt der Anfrage abgleicht, beispielsweise dem Pfad der angeforderten Ressource oder der IP-Adresse des Clients. Die Elemente im Abschnitt `/filter` verwenden etwa `glob`-Muster, um die Pfade der Seiten zu identifizieren, mit denen der Dispatcher interagiert oder die der Dispatcher zurückweist.
 
 Die `glob`-Werte können Platzhalterzeichen und alphanumerische Zeichen enthalten, um das Muster zu definieren.
 
 | Platzhalterzeichen | Beschreibung | Beispiele |
 |--- |--- |--- |
-| `*` | Entspricht null oder mehreren aufeinanderfolgenden Instanzen eines Zeichens in der Zeichenfolge. In einer der folgenden Situationen wird das endgültige Zeichen der Übereinstimmung bestimmt: <br/>Ein Zeichen in der Zeichenfolge entspricht dem nächsten Zeichen im Muster und das Musterzeichen weist die folgenden Merkmale auf:<br/><ul><li>Keine `*`</li><li>Keine `?`</li><li>Ein Buchstabenzeichen (einschließlich Leerzeichen) oder eine Zeichenklasse</li><li>Das Ende des Musters ist erreicht.</li></ul>Innerhalb einer Zeichenklasse wird das Zeichen wörtlich interpretiert. | `*/geo*` Entspricht allen Seiten unter den Knoten `/content/geometrixx` und `/content/geometrixx-outdoors`. Die folgenden HTTP-Anforderungen entsprechen dem glob-Muster: <br/><ul><li>`"GET /content/geometrixx/en.html"`</li><li>`"GET /content/geometrixx-outdoors/en.html"` </li></ul><br/> `*outdoors/*` <br/>Entspricht allen Seiten unter dem Knoten `/content/geometrixx-outdoors`. Die folgende HTTP-Anforderung entspricht beispielsweise dem glob-Muster: <br/><ul><li>`"GET /content/geometrixx-outdoors/en.html"`</li></ul> |
+| `*` | Entspricht null oder mehreren aufeinanderfolgenden Instanzen eines Zeichens in der Zeichenfolge. Das letzte Zeichen der Übereinstimmung wird durch eine der folgenden Situationen bestimmt: <br/>Ein Zeichen in der Zeichenfolge stimmt mit dem nächsten Zeichen im Muster überein, und das Musterzeichen verfügt über die folgenden Eigenschaften:<br/><ul><li>Es handelt sich nicht um ein `*`</li><li>Es handelt sich nicht um ein `?`</li><li>Ein Buchstabenzeichen (einschließlich Leerzeichen) oder eine Zeichenklasse</li><li>Das Ende des Musters ist erreicht.</li></ul>Innerhalb einer Zeichenklasse wird das Zeichen wörtlich interpretiert. | `*/geo*` Entspricht allen Seiten unter den Knoten `/content/geometrixx` und `/content/geometrixx-outdoors`. Die folgenden HTTP-Anforderungen entsprechen dem glob-Muster: <br/><ul><li>`"GET /content/geometrixx/en.html"`</li><li>`"GET /content/geometrixx-outdoors/en.html"` </li></ul><br/> `*outdoors/*` <br/>Entspricht allen Seiten unter dem Knoten `/content/geometrixx-outdoors`. Die folgende HTTP-Anforderung entspricht beispielsweise dem glob-Muster: <br/><ul><li>`"GET /content/geometrixx-outdoors/en.html"`</li></ul> |
 | `?` | Entspricht einem beliebigen einzelnen Zeichen Zu benutzen außerhalb von Zeichenklassen. Innerhalb einer Zeichenklasse wird dieses Zeichen literal (&quot;wörtlich&quot;) interpretiert. | `*outdoors/??/*`<br/>Entspricht den Seiten für eine beliebige Sprache der Site „geometrixx-outdoors“. Die folgende HTTP-Anforderung entspricht beispielsweise dem glob-Muster: <br/><ul><li>`"GET /content/geometrixx-outdoors/en/men.html"`</li></ul><br/>Die folgende Anforderung entspricht nicht dem glob-Muster: <br/><ul><li>&quot;GET /content/geometrixx-outdoors/en.html&quot;</li></ul> |
-| `[ and ]` | Markiert den Anfang und das Ende einer Zeichenklasse. Zeichenklassen können einen oder mehrere Zeichenbereiche und einzelne Zeichen enthalten.<br/>Eine Übereinstimmung tritt auf, wenn das Zielzeichen einem Zeichen in der Zeichenklasse oder innerhalb eines bestimmten Bereichs entspricht.<br/>Wenn die schließende Klammer nicht vorhanden ist, liefert das Muster keine Treffer. | `*[o]men.html*`<br/> Entspricht der folgenden HTTP-Anfrage:<br/><ul><li>`"GET /content/geometrixx-outdoors/en/women.html"`</li></ul><br/>Entspricht nicht der folgenden HTTP-Anforderung:<br/><ul><li>`"GET /content/geometrixx-outdoors/en/men.html"`</li></ul><br/> `*[o/]men.html*` <br/>Entspricht den folgenden HTTP-Anfragen: <br/><ul><li>`"GET /content/geometrixx-outdoors/en/women.html"`</li><li>`"GET /content/geometrixx-outdoors/en/men.html"`</li></ul> |
-| `-` | Er gibt einen Zeichenbereich an. Zur Verwendung in Zeichenklassen. Außerhalb einer Zeichenklasse wird dieses Zeichen wörtlich interpretiert. | `*[m-p]men.html*` Entspricht der folgenden HTTP-Anforderung: <br/><ul><li>`"GET /content/geometrixx-outdoors/en/women.html"`</li></ul>Entspricht nicht der folgenden HTTP-Anforderung:<br/><ul><li>`"GET /content/geometrixx-outdoors/en/men.html"`</li></ul> |
-| `!` | Schließt das nachfolgende Zeichen oder die nachfolgende Zeichenklasse aus. Verwenden Sie dies nur zum Ausschließen von Zeichen und Zeichenbereichen innerhalb von Zeichenklassen. Entspricht `^ wildcard`. <br/>Außerhalb einer Zeichenklasse wird dieses Zeichen wörtlich interpretiert. | `*[!o]men.html*`<br/> Entspricht der folgenden HTTP-Anfrage: <br/><ul><li>`"GET /content/geometrixx-outdoors/en/men.html"`</li></ul><br/>Entspricht nicht der folgenden HTTP-Anforderung: <br/><ul><li>`"GET /content/geometrixx-outdoors/en/women.html"`</li></ul><br/>`*[!o!/]men.html*`<br/> Entspricht nicht der folgenden HTTP-Anforderung:<br/><ul><li>`"GET /content/geometrixx-outdoors/en/women.html"` oder `"GET /content/geometrixx-outdoors/en/men. html"`</li></ul> |
+| `[ and ]` | Markiert den Anfang und das Ende einer Zeichenklasse. Zeichenklassen können einen oder mehrere Zeichenbereiche und einzelne Zeichen enthalten.<br/>Eine Übereinstimmung tritt auf, wenn das Zielzeichen einem Zeichen in der Zeichenklasse oder innerhalb eines bestimmten Bereichs entspricht.<br/>Wenn die schließende Klammer nicht vorhanden ist, liefert das Muster keine Treffer. | `*[o]men.html*`<br/> Entspricht der folgenden HTTP-Anfrage:<br/><ul><li>`"GET /content/geometrixx-outdoors/en/women.html"`</li></ul><br/>Entspricht nicht der folgenden HTTP-Anfrage:<br/><ul><li>`"GET /content/geometrixx-outdoors/en/men.html"`</li></ul><br/> `*[o/]men.html*` <br/>Entspricht den folgenden HTTP-Anfragen: <br/><ul><li>`"GET /content/geometrixx-outdoors/en/women.html"`</li><li>`"GET /content/geometrixx-outdoors/en/men.html"`</li></ul> |
+| `-` | Steht für einen Zeichenbereich. Zur Verwendung in Zeichenklassen. Außerhalb einer Zeichenklasse wird dieses Zeichen wörtlich interpretiert. | `*[m-p]men.html*` Entspricht der folgenden HTTP-Anforderung: <br/><ul><li>`"GET /content/geometrixx-outdoors/en/women.html"`</li></ul>Entspricht nicht der folgenden HTTP-Anforderung:<br/><ul><li>`"GET /content/geometrixx-outdoors/en/men.html"`</li></ul> |
+| `!` | Schließt das nachfolgende Zeichen oder die nachfolgende Zeichenklasse aus. Verwenden Sie dies nur zum Ausschließen von Zeichen und Zeichenbereichen innerhalb von Zeichenklassen. Entspricht `^ wildcard`. <br/>Außerhalb einer Zeichenklasse wird dieses Zeichen wörtlich interpretiert. | `*[!o]men.html*`<br/> Entspricht der folgenden HTTP-Anfrage: <br/><ul><li>`"GET /content/geometrixx-outdoors/en/men.html"`</li></ul><br/>Entspricht nicht der folgenden HTTP-Anfrage:<br/><ul><li>`"GET /content/geometrixx-outdoors/en/women.html"`</li></ul><br/>`*[!o!/]men.html*`<br/>Entspricht nicht der folgenden HTTP-Anfrage:<br/><ul><li>`"GET /content/geometrixx-outdoors/en/women.html"` oder `"GET /content/geometrixx-outdoors/en/men. html"`</li></ul> |
 | `^` | Schließt das nachfolgende Zeichen oder den nachfolgenden Zeichenbereich aus. Verwenden Sie dies nur zum Ausschließen von Zeichen und Zeichenbereichen innerhalb von Zeichenklassen. Entspricht dem Platzhalterzeichen `!`. <br/>Außerhalb einer Zeichenklasse wird dieses Zeichen wörtlich interpretiert. | Es gelten die Beispiele für das Platzhalterzeichen `!`, wobei die `!`-Zeichen in den Beispielmustern durch `^`-Zeichen ersetzt werden. |
 
 
@@ -1727,7 +1727,7 @@ The following table describes the wildcard characters.
 
 ## Protokollierung {#logging}
 
-In der Webserverkonfiguration können Sie Folgendes festlegen:
+In der Webserver-Konfiguration können Sie Folgendes festlegen:
 
 * Den Speicherort der Dispatcher-Protokolldatei
 * Die Protokollierungsebene.
@@ -1736,7 +1736,7 @@ Weitere Informationen finden Sie in der Dokumentation zum Webserver und in der R
 
 **Rotierende oder wechselnde Protokolle in Apache**
 
-Bei Verwendung von **Apache** Webserver können Sie die Standardfunktionen für Log Rotations, Pipe Logs oder beides verwenden. Beispielsweise mithilfe von Pipe-Protokollen:
+Wenn Sie einen **Apache**-Webserver verwenden, können Sie die Standardfunktionen für rotierende und/oder wechselnde Protokolle verwenden. Beispiel für die Verwendung wechselnder Protokolle:
 
 `DispatcherLog "| /usr/apache/bin/rotatelogs logs/dispatcher.log%Y%m%d 604800"`
 
@@ -1745,7 +1745,7 @@ Diese Funktionalität rotiert Folgendes automatisch:
 * die Dispatcher-Protokolldatei mit einem Zeitstempel in der Erweiterung (`logs/dispatcher.log%Y%m%d`)
 * auf wöchentlicher Basis (60 x 60 x 24 x 7 = 604800 Sekunden).
 
-Weitere Informationen finden Sie in der Apache Web Server-Dokumentation zum Rotieren und Wechseln von Protokollen . z. B. [Apache 2.4](https://httpd.apache.org/docs/2.4/logs.html).
+Weitere Informationen zu rotierenden und wechselnden Protokollen finden Sie in der Dokumentation zum Apache-Webserver. z. B. [Apache 2.4](https://httpd.apache.org/docs/2.4/logs.html).
 
 >[!NOTE]
 >
@@ -1780,7 +1780,7 @@ Nachfolgend finden Sie ein Beispiel für Protokolle mit aktivierter Ablaufverfol
 [Thu Mar 03 16:05:38 2016] [T] [17183] request.headers[Server-Agent] = "Communique-Dispatcher"
 ```
 
-Und ein Ereignis wird protokolliert, wenn eine Datei angefordert wird, die einer Blockierungsregel entspricht:
+Außerdem wird ein Ereignis protokolliert, wenn eine Datei angefordert wird, die einer Blockierungsregel entspricht:
 
 ```xml
 [Thu Mar 03 14:42:45 2016] [T] [11831] 'GET /content.infinity.json HTTP/1.1' was blocked because of /0082
@@ -1853,34 +1853,34 @@ Nachfolgend finden Sie eine Liste mit den Antwort-Headern, die von `X-Dispatcher
   Die Zieldatei ist im Cache enthalten und der Dispatcher hat festgestellt, dass sie bereitgestellt werden kann.
 * **Caching**\
   Die Zieldatei ist nicht im Cache enthalten und der Dispatcher hat festgestellt, dass die Ausgabe zwischengespeichert und bereitgestellt werden kann.
-* **Zwischenspeicherung: stat-Datei ist aktueller**
+* **Caching: stat-Datei ist aktueller**
 Die Zieldatei ist im Cache enthalten. Eine aktuellere stat-Datei kann sie jedoch ungültig machen. Der Dispatcher löscht die Zieldatei, erstellt sie aus der Ausgabe neu und stellt sie bereit.
-* **Nicht zwischenspeicherbar: Basisverzeichnis nicht vorhanden**
-Die Konfiguration der Farm enthält keinen Basisordner (Konfigurationselement `cache.docroot`).
+* **nicht zwischenspeicherbar: Basisverzeichnis existiert nicht**
+Die Konfiguration der Farm enthält kein Basisverzeichnis (Konfigurationselement `cache.docroot`).
 * **Nicht zwischenspeicherbar: Cache-Dateipfad zu lang**\
   Die Zieldatei – die Verknüpfung von Basisverzeichnis und URL-Datei – überschreitet den längsten möglichen Dateinamen im System.
 * **Nicht zwischenspeicherbar: temporärer Dateipfad zu lang**\
   Der temporäre Dateiname überschreitet den längsten möglichen Dateinamen im System. Der Dispatcher erstellt zuerst eine temporäre Datei, bevor er die zwischengespeicherte Datei tatsächlich erstellt oder überschreibt. Der temporäre Dateiname ist der Zieldateiname mit den daran angehängten Zeichen `_YYYYXXXXXX`. `Y` und `X` werden dabei ersetzt, sodass ein eindeutiger Name entsteht.
-* **Nicht zwischenspeicherbar: Anfrage-URL fehlt Erweiterung**\
-  Die Anfrage-URL hat keine Erweiterung oder es liegt ein Pfad nach der Dateiendung vor, z. B.: `/test.html/a/path`.
-* **Nicht zwischenspeicherbar: Anforderung muss ein GET oder HEAD sein**
-Die HTTP-Methode ist kein GET oder HEAD. Der Dispatcher geht davon aus, dass die Ausgabe dynamische Daten enthält, die nicht zwischengespeichert werden sollten.
+* **Nicht zwischenspeicherbar: Anfrage-URL hat keine Erweiterung**\
+  Die Anfrage-URL hat keine Erweiterung oder der Dateiendung folgt ein Pfad, z. B.: `/test.html/a/path`.
+* **Nicht zwischenspeicherbar: Anfrage muss ein GET oder HEAD sein**
+Die HTTP-Methode ist weder ein GET- noch eine HEAD-Anfrage. Der Dispatcher geht davon aus, dass die Ausgabe dynamische Daten enthält, die nicht zwischengespeichert werden sollten.
 * **Nicht zwischenspeicherbar: Anfrage enthielt eine Abfragezeichenfolge**\
   Die Anfrage enthielt eine Abfragezeichenfolge. Der Dispatcher geht davon aus, dass die Ausgabe von der angegebenen Abfragezeichenfolge abhängt, und führt daher keine Zwischenspeicherung durch.
-* **Nicht zwischenspeicherbar: Sitzungsmanager muss authentifiziert werden**\
-  Ein Sitzungsmanager (die Konfiguration enthält eine `sessionmanagement` Knoten) verwaltet den Farm-Cache und die Anfrage enthielt nicht die entsprechenden Authentifizierungsinformationen.
+* **Nicht zwischenspeicherbar: Sitzungs-Manager muss authentifiziert werden**\
+  Ein Sitzungs-Manager (die Konfiguration enthält einen `sessionmanagement`-Knoten) verwaltet den Cache der Farm und die Anfrage enthielt nicht die entsprechenden Authentifizierungsinformationen.
 * **Nicht zwischenspeicherbar: Anfrage enthält Autorisierung**\
   Die Farm darf keine Cache-Ausgaben zwischenspeichern (`allowAuthorized 0`). Die Anfrage enthält Authentifizierungsinformationen.
 * **Nicht zwischenspeicherbar: Ziel ist ein Verzeichnis**\
   Die Zieldatei ist ein Verzeichnis. Dieser Speicherort könnte auf einen konzeptionellen Fehler hinweisen, bei dem sowohl eine URL als auch eine Unter-URL zwischenspeicherbare Ausgaben enthalten. Wenn beispielsweise zuerst eine Anfrage an `/test.html/a/file.ext` gestellt wird und diese eine zwischenspeicherbare Ausgabe enthält, kann der Dispatcher die Ausgabe einer nachfolgenden Anfrage an `/test.html` nicht zwischenspeichern.
 * **Nicht zwischenspeicherbar: nachlaufender Schrägstrich in Anfrage-URL**\
   Die Anfrage-URL ist mit einem Schrägstrich versehen.
-* **Nicht zwischenspeicherbar: Anfrage-URL fehlt in Cache-Regeln**\
+* **nicht zwischenspeicherbar: Anfrage-URL fehlt in den Cache-Regeln**\
   Die Cache-Regeln der Farm lehnen explizit das Zwischenspeichern der Ausgabe einer URL-Abfrage ab.
 * **Nicht zwischenspeicherbar: Berechtigungsprüfung verweigert Zugriff**\
   Die Berechtigungsprüfung der Farm hat den Zugriff auf die zwischengespeicherte Datei verweigert.
-* **Nicht zwischenspeicherbar: Sitzung ist ungültig**
-Ein Sitzungsmanager (Konfiguration enthält eine `sessionmanagement` -Knoten) verwaltet den Cache der Farm und die Sitzung des Benutzers ist nicht oder nicht mehr gültig.
+* **nicht zwischenspeicherbar: Sitzung ist ungültig**
+Ein Sitzungs-Manager (die Konfiguration enthält einen `sessionmanagement`-Knoten) verwaltet den Cache der Farm und die Sitzung der Person ist nicht oder nicht mehr gültig.
 * **Nicht zwischenspeicherbar: Antwort enthält`no_cache`**
 Der Remote-Server gibt einen Header `Dispatcher: no_cache` zurück, der es dem Dispatcher untersagt, die Ausgabe zwischenzuspeichern.
 * **Nicht zwischenspeicherbar: Antwortinhaltslänge ist null**

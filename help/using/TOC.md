@@ -13,7 +13,7 @@ role: Admin
 source-git-commit: 9be9f5935c21ebbf211b5da52280a31772993c2e
 workflow-type: tm+mt
 source-wordcount: '82'
-ht-degree: 78%
+ht-degree: 100%
 
 ---
 
@@ -30,9 +30,9 @@ ht-degree: 78%
    + [Invalidieren zwischengespeicherter Seiten über AEM](page-invalidate.md)
    + [Optimierung von Websites für die Cache-Leistung](https://experienceleague.adobe.com/de/docs/experience-manager-65/content/implementing/deploying/configuring/configuring-performance)
    + [Zwischenspeichern von geschützten Inhalten](permissions-cache.md)
-   + [Verwenden AEM Dispatchers mit mehreren Domänen](dispatcher-domains.md)
-   + [Verwenden von SSL mit AEM Dispatcher](dispatcher-ssl.md)
-   + [Konfigurieren AEM Dispatchers zum Verhindern von CSRF-Angriffen](configuring-dispatcher-to-prevent-csrf.md)
+   + [Verwenden des AEM-Dispatchers mit mehreren Domains](dispatcher-domains.md)
+   + [Verwenden von SSL mit dem AEM-Dispatcher](dispatcher-ssl.md)
+   + [Konfigurieren des AEM-Dispatchers zum Verhindern von CSRF-Angriffen](configuring-dispatcher-to-prevent-csrf.md)
 + Fehlerbehebung {#troubleshooting}
    + [Beheben von Problemen beim Dispatcher](dispatcher-troubleshooting.md)
    + [Am häufigsten gestellte Fragen zu Dispatcher-Problemen](dispatcher-faq.md)
