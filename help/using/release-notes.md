@@ -6,9 +6,9 @@ content-type: reference
 products: SG_EXPERIENCEMANAGER/6.4
 exl-id: b55c7a34-d57b-4d45-bd83-29890f1524de
 source-git-commit: e38352c25737c2b2a2ccd71fe23ce673a2390f51
-workflow-type: tm+mt
+workflow-type: ht
 source-wordcount: '1062'
-ht-degree: 96%
+ht-degree: 100%
 
 ---
 
@@ -50,7 +50,7 @@ Detaillierte Anweisungen finden Sie unter [Installieren des Dispatchers](dispatc
 
 **Verbesserungen**:
 
-* DISP-911 AEM-05 - X-Edge-Key kann in disp_apache2.c durchsickert werden.
+* DISP-911 AEM-05: X-Edge-Key kann in disp_apache2.c weitergeleitet werden.
 * DISP-937 – Protokollieren aller Selektoren
 * DISP-998 – Laden von Vanity-URLs kann beim Start konfiguriert werden
 
@@ -66,7 +66,7 @@ Detaillierte Anweisungen finden Sie unter [Installieren des Dispatchers](dispatc
 **Fehlerbehebungen**:
 
 * DISP-833 – X-Forwarded-Host-Header können eine Liste mit kommagetrennten Host-Namen enthalten
-* DISP-835 - DispatcherUseForwardedHost absorbiert den Host-Header, wenn er zuletzt kommt.
+* DISP-835: DispatcherUseForwardedHost „schluckt“ den Hostheader, sofern dieser als Letztes kommt.
 
 **Verbesserungen**:
 

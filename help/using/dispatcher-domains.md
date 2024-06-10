@@ -1,6 +1,6 @@
 ---
-title: Verwenden des Dispatchers mit mehreren Domänen
-description: Erfahren Sie, wie Sie mit dem Dispatcher Seitenanfragen in mehreren Webdomänen verarbeiten können.
+title: Verwenden des Dispatchers mit mehreren Domains
+description: Erfahren Sie, wie Sie mit dem Dispatcher Seitenanfragen in mehreren Webdomains verarbeiten.
 contentOwner: User
 cq-exporttemplate: /etc/contentsync/templates/geometrixx/page/rewrite
 products: SG_EXPERIENCEMANAGER/DISPATCHER
@@ -8,9 +8,9 @@ topic-tags: dispatcher
 content-type: reference
 exl-id: 1470b636-7e60-48cc-8c31-899f8785dafa
 source-git-commit: 9be9f5935c21ebbf211b5da52280a31772993c2e
-workflow-type: tm+mt
+workflow-type: ht
 source-wordcount: '2929'
-ht-degree: 87%
+ht-degree: 100%
 
 ---
 
@@ -20,7 +20,7 @@ ht-degree: 87%
 >
 >Dispatcher-Versionen sind unabhängig von AEM. Sie wurden möglicherweise zu dieser Seite umgeleitet, wenn Sie einem Link zur Dispatcher-Dokumentation gefolgt sind, der in der AEM- oder CQ-Dokumentation eingebettet ist.
 
-Verwenden Sie den Dispatcher, um Seitenanfragen in mehreren Webdomänen zu verarbeiten und dabei die folgenden Bedingungen zu erfüllen:
+Verwenden Sie den Dispatcher, um Seitenanfragen in mehreren Webdomains zu verarbeiten und gleichzeitig die folgenden Bedingungen zu erfüllen:
 
 * Der Web-Inhalt für beide Domains wird in einem einzelnen AEM-Repository gespeichert.
 * Die Dateien im Dispatcher-Cache können getrennt für jede Domäne ungültig gemacht werden.
@@ -38,7 +38,7 @@ Beispiel: Ein Unternehmen veröffentlicht Websites für zwei seiner Marken – M
 
 Seiten für `BrandA.com` werden unter `/content/sitea` gespeichert. Bei Clientanfragen für die URL `https://BrandA.com/en.html` wird die gerenderte Seite für den `/content/sitea/en`-Knoten zurückgegeben. Entsprechend werden Seiten für `BrandB.com` unter `/content/siteb` gespeichert.
 
-Wenn Sie den Dispatcher zum Zwischenspeichern von Inhalten verwenden, stellen Sie Zuordnungen zwischen der Seiten-URL in der Client-HTTP-Anforderung, dem Pfad der entsprechenden zwischengespeicherten Datei und dem Pfad der entsprechenden Datei im Repository her.
+Erstellen Sie bei Verwendung des Dispatchers zum Speichern von Inhalt im Cache Zuordnungen zwischen der Seiten-URL in der Client-HTTP-Anfrage, dem Pfad der entsprechenden zwischengespeicherten Datei und dem Pfad der entsprechenden Datei im Repository.
 
 ## Clientanforderungen
 
@@ -46,9 +46,9 @@ Wenn Clients HTTP-Anfragen an den Webserver senden, muss die URL der angefordert
 
 ![](assets/chlimage_1-8.png)
 
-1. Das Domänennamensystem erkennt die IP-Adresse des Webservers, der in der HTTP-Anforderung für den Domänennamen registriert ist.
+1. Das Domain Name System erkennt die IP-Adresse des Webservers, der für den Domain-Namen in der HTTP-Anfrage registriert ist.
 1. Die HTTP-Anfrage wird an den Webserver gesendet.
-1. Die HTTP-Anforderung wird an den Dispatcher übergeben.
+1. Die HTTP-Anfrage wird an den Dispatcher übergeben.
 1. Der Dispatcher ermittelt, ob die zwischengespeicherten Dateien gültig sind. Wenn sie gültig sind, werden die zwischengespeicherten Dateien für den Client bereitgestellt.
 1. Falls die zwischengespeicherten Dateien nicht gültig sind, fordert der Dispatcher neu gerenderte Seiten von der AEM-Veröffentlichungsinstanz an.
 
@@ -66,10 +66,10 @@ Um den Dispatcher mit mehreren Domains zu verwenden, müssen Sie AEM, den Dispat
 
 ## URL-Zuordnung {#url-mapping}
 
-Damit Domänen-URLs und Inhaltspfade zu zwischengespeicherten Dateien aufgelöst werden können, muss während des Prozesses ein Dateipfad oder eine Seiten-URL übersetzt werden. Es werden Beschreibungen der folgenden allgemeinen Strategien bereitgestellt, bei denen Pfad- oder URL-Übersetzungen an unterschiedlichen Punkten im Prozess erfolgen:
+Damit Domain-URLs und Inhaltspfade zu zwischengespeicherten Dateien aufgelöst werden können, muss während des Prozesses ein Dateipfad oder eine Seiten-URL übersetzt werden. Es werden Beschreibungen der folgenden allgemeinen Strategien bereitgestellt, bei denen Pfad- oder URL-Übersetzungen an unterschiedlichen Punkten im Prozess erfolgen:
 
 * (Empfohlen) Die AEM-Veröffentlichungsinstanz verwendet die Sling-Zuordnung für die Ressourcenauflösung, um Regeln zum Neuschreiben interner URLs zu implementieren. Domain-URLs werden in Content-Repository-Pfade übersetzt. Siehe [AEM schreibt eingehende URLs neu](#aem-rewrites-incoming-urls).
-* Der Webserver verwendet interne URL-Neuschreibungsregeln, die Domänen-URLs in Cache-Pfade übersetzen. Siehe [Der Webserver schreibt eingehende URLs neu](#the-web-server-rewrites-incoming-urls).
+* Der Webserver verwendet Regeln zum Neuschreiben interner URLs, die Domain-URLs in Cache-Pfade übersetzen. Siehe [Der Webserver schreibt eingehende URLs neu](#the-web-server-rewrites-incoming-urls).
 
 Es sollten nach Möglichkeit kurze URLs für Web-Seiten verwendet werden. Üblicherweise spiegeln Seiten-URLs die Struktur der Repository-Ordner wider, die den Web-Inhalt enthalten. Allerdings zeigen die URLs nicht die höchsten Repositoryknoten, beispielsweise `/content`. Dem Client ist die Struktur des AEM-Repositorys nicht notwendigerweise bekannt.
 
@@ -201,16 +201,16 @@ Virtuelle Hosts übernehmen den Eigenschaftswert [DispatcherConfig](dispatcher-i
 Um URLs zu unterstützen, die Domain-Namen und ihre entsprechenden virtuellen Hosts umfassen, definieren Sie die folgenden Dispatcher-Farmen:
 
 * Konfigurieren Sie eine Dispatcher-Farm für jeden virtuellen Host. Diese Farmen verarbeiten Anforderungen vom Webserver für jede Domäne, überprüfen auf zwischengespeicherte Dateien und fordern Seiten von den Renderknoten an.
-* Konfigurieren Sie eine Dispatcher-Farm, die zur Invalidierung von Inhalten im Cache verwendet wird, unabhängig davon, zu welcher Domäne der Inhalt gehört. Diese Farm verarbeitet Anfragen von Flush-Dispatcher-Replikationsagenten zur Invalidierung von Dateien.
+* Konfigurieren Sie eine Dispatcher-Farm, die zur Invalidierung von Inhalt im Cache verwendet wird, und zwar unabhängig davon, zu welcher Domain der Inhalt gehört. Diese Farm verarbeitet Anfragen von Flush-Dispatcher-Replikationsagenten zur Invalidierung von Dateien.
 
 ### Erstellen von Dispatcher-Farmen für virtuelle Hosts
 
 Farmen für virtuelle Hosts müssen die folgenden Konfigurationen aufweisen, sodass die URLs in Client-HTTP-Anforderungen zu den richtigen Dateien im Dispatcher-Cache aufgelöst werden:
 
-* Der Wert der Eigenschaft `/virtualhosts` ist auf den Domänennamen festgelegt. Diese Eigenschaft ermöglicht es dem Dispatcher, die Farm mit der Domäne zu verknüpfen.
+* Der Wert der Eigenschaft `/virtualhosts` ist auf den Domänennamen festgelegt. Diese Eigenschaft ermöglicht dem Dispatcher die Zuordnung der Farm zur Domain.
 * Die Eigenschaft `/filter` ermöglicht den Zugriff auf den Pfad der Anfrage-URL, die nach dem Domänennamenteil abgeschnitten ist. Beispielsweise wird der Pfad für die `https://branda.com/en.html`-URL als `/en.html` interpretiert, sodass der Filter den Zugriff auf diesen Pfad zulassen muss.
 
-* Die `/docroot` -Eigenschaft auf den Pfad des Stammordners festgelegt. Das heißt, das Stammverzeichnis des Site-Inhalts der Domäne im Dispatcher-Cache. Dieser Pfad wird als Präfix für die verkettete URL von der ursprünglichen Anforderung verwendet. Beispielsweise wird durch den Basisverzeichnis-Prozess `/usr/lib/apache/httpd-2.4.3/htdocs/sitea` die Anfrage `https://branda.com/en.html` an die Datei `/usr/lib/apache/httpd-2.4.3/htdocs/sitea/en.html` aufgelöst.
+* Die Eigenschaft `/docroot` ist auf den Pfad des Stammverzeichnisses festgelegt, d. h., auf das Stammverzeichnis des Site-Inhalts der Domain im Dispatcher-Cache. Dieser Pfad wird als Präfix für die verkettete URL von der ursprünglichen Anforderung verwendet. Beispielsweise wird durch den Basisverzeichnis-Prozess `/usr/lib/apache/httpd-2.4.3/htdocs/sitea` die Anfrage `https://branda.com/en.html` an die Datei `/usr/lib/apache/httpd-2.4.3/htdocs/sitea/en.html` aufgelöst.
 
 Außerdem muss die AEM-Veröffentlichungsinstanz als Render-Knoten für den virtuellen Host festgelegt werden. Konfigurieren Sie nach Bedarf weitere Farm-Eigenschaften. Beim folgenden Code handelt es sich um eine abgekürzte Farm-Konfiguration für die Domain „branda.com“:
 
@@ -236,11 +236,11 @@ Außerdem muss die AEM-Veröffentlichungsinstanz als Render-Knoten für den virt
 
 ### Erstellen einer Dispatcher-Farm zur Cache-Invalidierung
 
-Eine Dispatcher-Farm ist für die Verarbeitung von Anfragen zur Invalidierung zwischengespeicherter Dateien erforderlich. Diese Farm muss auf .stat-Dateien im `docroot` Verzeichnisse der einzelnen virtuellen Hosts.
+Eine Dispatcher-Farm ist für die Verarbeitung von Anfragen zur Invalidierung zwischengespeicherter Dateien erforderlich. Diese Farm muss auf die STAT-Dateien in den `docroot`-Verzeichnissen jedes einzelnen virtuellen Hosts zugreifen können.
 
-Mit den folgenden Eigenschaftskonfigurationen kann der Dispatcher Dateien im AEM Content Repository aus Dateien im Cache auflösen:
+Die folgenden Eigenschaftskonfigurationen ermöglichen es dem Dispatcher, Dateien im AEM-Content-Repository aus Dateien im Cache aufzulösen:
 
-* Die `/docroot` -Eigenschaft auf den Standardwert `docroot` des Webservers. In der Regel wird /`docroot` ist der Ordner, in dem die `/content` -Ordner erstellt. Ein Beispielwert für Apache unter Linux® ist `/usr/lib/apache/httpd-2.4.3/htdocs`.
+* Der Wert der Eigenschaft `/docroot` ist auf das `docroot`-Standardverzeichnis des Webservers festgelegt. Üblicherweise handelt es sich bei /`docroot` um das Verzeichnis, in dem der Ordner `/content` erstellt wird. Ein Beispielwert für Apache unter Linux® ist `/usr/lib/apache/httpd-2.4.3/htdocs`.
 * Die Eigenschaft `/filter` ermöglicht den Zugriff auf Dateien unter dem Verzeichnis `/content`.
 
 Der Wert der Eigenschaft `/statfileslevel` muss groß genug sein, sodass STAT-Dateien im Basisverzeichnis jedes einzelnen virtuellen Hosts erstellt werden. Diese Eigenschaft ermöglicht es, den Cache für jede Domäne einzeln ungültig zu machen. Für das Beispiel-Setup erstellt ein `/statfileslevel`-Wert von `2` .stat-Dateien im Verzeichnis `*docroot*/content/sitea` und im Verzeichnis `*docroot*/content/siteb`.
@@ -302,7 +302,7 @@ Nachdem Sie die Zuordnung für die Inhaltsseite erstellt haben, verwenden Sie zu
 
 ### Beispielknoten für die Ressourcenzuordnung
 
-In der folgenden Tabelle sind die Knoten aufgeführt, die die Ressourcenzuordnung für die Domäne „branda.com“ implementieren. Ähnliche Knoten werden für die Domäne `brandb.com` erstellt, beispielsweise `/etc/map/http/brandb.com`. In allen Fällen sind Zuordnungen erforderlich, wenn Verweise auf der HTML-Seite im Kontext von Sling nicht korrekt aufgelöst werden.
+In der folgenden Tabelle sind die Knoten aufgeführt, die die Ressourcenzuordnung für die Domäne „branda.com“ implementieren. Ähnliche Knoten werden für die Domäne `brandb.com` erstellt, beispielsweise `/etc/map/http/brandb.com`. In allen Fällen sind Zuordnungen erforderlich, wenn Verweise auf der HTML-Seite nicht ordnungsgemäß im Sling-Kontext aufgelöst werden.
 
 | Knotenpfad | Typ | Eigenschaft |
 |--- |--- |--- |
@@ -344,11 +344,11 @@ Konfigurieren Sie die folgenden Aspekte auf dem Webserver:
 
 Die folgende Beispieldatei „httpd.conf“ konfiguriert zwei virtuelle Hosts für einen Apache-Webserver:
 
-* Die Servernamen (die mit den Domänennamen übereinstimmen) sind `brandA.com` (Zeile 16) und `brandB.com` (Linie 32).
+* Die Server-Namen (die mit den Domain-Namen übereinstimmen) lauten `brandA.com` (Zeile 16) und `brandB.com` (Zeile 32).
 
-* Das Basisverzeichnis jeder einzelnen virtuellen Domain ist das Verzeichnis im Dispatcher-Cache, das die Seiten der Site enthält. (Zeilen 20 und 33)
-* Die URL-Neuschreibungsregel für jede virtuelle Domäne ist ein regulärer Ausdruck. Der reguläre Ausdruck präfixiert den Pfad der angeforderten Seite. Der Datei wird der Pfad zu den Seiten im Cache vorangestellt. (Zeilen 19 und 35)
-* Die Eigenschaft `DispatherUseProcessedURL` ist auf `1` festgelegt. (Zeile 10)
+* Das Basisverzeichnis jeder einzelnen virtuellen Domain ist das Verzeichnis im Dispatcher-Cache, das die Seiten der Site enthält. (Zeilen 19 und 35).
+* Die URL-Neuschreibungsregel für jede virtuelle Domain ist ein regulärer Ausdruck. Der Pfad der angeforderten Seite erhält den regulären Ausdruck als Präfix. Es wird der Pfad zu den Seiten im Cache als Präfix vorangestellt. (Zeilen 19 und 35).
+* Die Eigenschaft `DispatherUseProcessedURL` ist auf `1` festgelegt. (Zeile 1).
 
 Beispielsweise führt der Webserver die folgenden Aktionen durch, wenn er eine Anforderung mit der URL `https://brandA.com/en/products.html` erhält:
 
@@ -417,7 +417,7 @@ Wenn der Webserver URLs neu schreibt, erfordert der Dispatcher das Definieren ei
 
 Die folgende Beispielkonfigurationsdatei basiert auf der Beispieldatei `dispatcher.any`, die mit dem Dispatcher installiert wird. Die folgenden Änderungen müssen vorgenommen werden, um die Webserverkonfigurationen der vorherigen Datei `httpd.conf` zu unterstützen:
 
-* Die Eigenschaft `/virtualhosts` veranlasst den Dispatcher zur Verarbeitung von Anforderungen für die Domänen `brandA.com` und `brandB.com`. (Zeile 12)
+* Die Eigenschaft `/virtualhosts` veranlasst den Dispatcher zur Verarbeitung von Anforderungen für die Domänen `brandA.com` und `brandB.com`. (Zeile 1).
 * Der Wert der Eigenschaft `/statfileslevel` ist auf 2 festgelegt, sodass die STAT-Dateien in allen Verzeichnissen erstellt werden, die die Webinhalte der Domäne enthalten (Zeile 41): `/statfileslevel "2"`
 
 Wie üblich ist das Cache-Basisverzeichnis dasselbe wie das Basisverzeichnis des Webservers (Zeile 40): `/usr/lib/apache/httpd-2.4.3/htdocs`
@@ -512,7 +512,7 @@ Der [Sling Rewriter](https://sling.apache.org/documentation/bundles/output-rewri
 
 ### Die standardmäßige AEM-Rewriter-Pipeline  {#the-aem-default-rewriter-pipeline}
 
-AEM verwendet einen standardmäßigen Pipeline-Rewriter, der Dokumente des Typs text/html verarbeitet:
+AEM verwendet eine standardmäßige Rewriter-Pipeline, die Dokumente vom Typ „text/html“ verarbeitet:
 
 * Der Generator analysiert HTML-Dokumente und generiert SAX-Ereignisse, wenn er die folgenden Elemente erkennt: „a“, „img“, „area“, „form“, „base“, „link“, „script“ und „body“. Der Generatoralias lautet `htmlparser`.
 * Die Pipeline enthält die folgenden Transformatoren: `linkchecker`, `mobile`, `mobiledebug`, `contentsync`. Der Transformator `linkchecker` externalisiert Pfade zu referenzierten HTML- oder HTM-Dateien, um fehlerhafte Links zu vermeiden.
@@ -530,7 +530,7 @@ Führen Sie die folgenden Aufgaben aus, um eine Transformatorkomponente zu erste
 1. Um den Transformator zur Pipeline hinzuzufügen, fügen Sie Ihrer AEM-Anwendung einen Konfigurationsknoten hinzu.
 
 >[!TIP]
->Sie können stattdessen die TransformerFactory so konfigurieren, dass der Transformator in jeden definierten Rewriter eingefügt wird. Daher müssen Sie keine Pipeline konfigurieren:
+>Sie können stattdessen „TransformerFactory“ so konfigurieren, dass der Transformator in jeden definierten Rewriter eingefügt wird. Daher müssen Sie keine Pipeline konfigurieren:
 >
 >* Legen Sie die `pipeline.mode`-Eigenschaft auf `global` fest.
 >* Legen Sie den Wert der Eigenschaft `service.ranking` auf eine positive ganze Zahl fest.

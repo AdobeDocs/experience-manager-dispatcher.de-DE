@@ -3,9 +3,9 @@ title: Häufige Dispatcher-Probleme
 description: Häufige Probleme bei Adobe Experience Manager Dispatcher
 exl-id: 4dcc7318-aba5-4b17-8cf4-190ffefbba75
 source-git-commit: 9be9f5935c21ebbf211b5da52280a31772993c2e
-workflow-type: tm+mt
+workflow-type: ht
 source-wordcount: '1547'
-ht-degree: 89%
+ht-degree: 100%
 
 ---
 
@@ -17,13 +17,13 @@ ht-degree: 89%
 
 ### Was genau ist der Dispatcher?
 
-Der Dispatcher ist auch das Caching von Adobe Experience Manager, oder das Lastenausgleichstool oder beides, das bei der Erstellung einer schnellen und dynamischen Web-Authoring-Umgebung hilft. Zum Zwischenspeichern fungiert der Dispatcher als Teil eines HTTP-Servers, z. B. Apache. Es hat das Ziel, so viele statische Website-Inhalte wie möglich zu speichern (oder zu &quot;zwischenspeichern&quot;). Und der Zugriff auf das Layout der Suchmaschine der Website so selten wie möglich. Beim Lastenausgleich verteilt der Dispatcher Benutzeranfragen (Lasten) auf verschiedene AEM-Instanzen (Renderer).
+Der Dispatcher ist das Caching- bzw. Lastenausgleichs-Tool von Adobe Experience Manager, das für eine schnelle und dynamische Web-Authoring-Umgebung sorgt. Zum Zwischenspeichern fungiert der Dispatcher als Teil eines HTTP-Servers, z. B. Apache. Das Ziel besteht darin, so viele statische Website-Inhalte wie möglich zu speichern (bzw. zwischenzuspeichern). Und möglichst selten auf das Layout der Suchmaschine der Website zuzugreifen. Beim Lastenausgleich verteilt der Dispatcher Benutzeranfragen (Lasten) auf verschiedene AEM-Instanzen (Renderer).
 
 Zum Caching nutzt das Dispatcher-Modul die Fähigkeit des Webservers, statische Inhalte bereitzustellen. Der Dispatcher legt die zwischengespeicherten Dokumente im Basisverzeichnis auf dem Webserver ab.
 
 ### Wie führt der Dispatcher das Caching durch?
 
-Das Dispatcher-Modul nutzt die Fähigkeit des Webservers, statische Inhalte bereitzustellen. Der Dispatcher speichert zwischengespeicherte Dokumente im Basisverzeichnis auf dem Webserver. Der Dispatcher setzt auf zwei Hauptverfahren zum Aktualisieren des zwischengespeicherten Inhalts, wenn Änderungen an der Website vorgenommen werden:
+Das Dispatcher-Modul nutzt die Fähigkeit des Webservers, statische Inhalte bereitzustellen. Der Dispatcher speichert die zwischengespeicherten Dokumente im Basisverzeichnis auf dem Webserver. Der Dispatcher setzt auf zwei Hauptverfahren zum Aktualisieren des zwischengespeicherten Inhalts, wenn Änderungen an der Website vorgenommen werden:
 
 * **Inhaltsaktualisierungen** entfernen die geänderten Seiten und die Dateien, die sich direkt auf sie beziehen.
 * **Automatische Invalidierung** macht automatisch jene Teile des Caches ungültig, die nach einer Aktualisierung möglicherweise veraltet sind. Dies bedeutet beispielsweise, dass entsprechende Seiten als veraltet markiert werden, ohne dass diese gelöscht werden.
@@ -70,7 +70,7 @@ Weitere Informationen erhalten Sie unter [Verwenden des Dispatchers mit mehreren
 
 Sie können die Funktion für [Sticky-Verbindungen](dispatcher-configuration.md#identifying-a-sticky-connection-folder-stickyconnectionsfor) verwenden, um sicherzustellen, dass alle Dokumente für einen Benutzer in derselben Instanz von AEM verarbeitet werden. Diese Funktion ist wichtig, wenn Sie personalisierte Seiten und Sitzungsdaten verwenden. Die Daten werden in der Instanz gespeichert. Nachfolgende Anfragen desselben Benutzers müssen daher zu dieser Instanz zurückgegeben werden oder die Daten gehen verloren.
 
-Da durch Sticky-Verbindungen die Fähigkeit des Dispatchers eingeschränkt wird, die Anfragen zu optimieren, sollten Sie diesen Ansatz nur wenn nötig verwenden. Sie können den Ordner angeben, der die &quot;Sticky&quot;-Dokumente enthält, und so sicherstellen, dass alle Dokumente in diesem Ordner für einen Benutzer in derselben Instanz verarbeitet werden.
+Da durch Sticky-Verbindungen die Fähigkeit des Dispatchers eingeschränkt wird, die Anfragen zu optimieren, sollten Sie diesen Ansatz nur wenn nötig verwenden. Sie können den Ordner mit Sticky-Dokumenten angeben und so sicherstellen, dass alle Dokumente in diesem Ordner für jede Benutzerin bzw. jeden Benutzer in derselben Instanz verarbeitet werden.
 
 ### Kann ich Sticky-Verbindungen und Caching gleichzeitig verwenden?
 
@@ -119,7 +119,7 @@ Lesen Sie hierzu die Seiten [Checkliste für die Dispatcher-Sicherheit](security
 
 ### Dispatcher-Problem `jcr:content` geändert in `jcr%3acontent`
 
-**Frage**: Das Unternehmen sah sich vor Kurzem mit einem Problem auf Dispatcher-Ebene konfrontiert. Einer der AJAX-Aufrufe, bei dem einige Daten aus dem CQ-Repository abgerufen wurden, hatte `jcr:content` enthalten. Das wurde zu `jcr%3acontent` verschlüsselt, was zu einem falschen Ergebnissatz führte.
+**Frage**: Das Unternehmen sah sich vor Kurzem mit einem Problem auf Dispatcher-Ebene konfrontiert. In einem der AJAX-Aufrufe, bei dem einige Daten aus dem CQ-Repository abgerufen wurden, war `jcr:content` enthalten. Das wurde zu `jcr%3acontent` verschlüsselt, was zu einem falschen Ergebnissatz führte.
 
 **Antwort**: Verwenden Sie die Methode `ResourceResolver.map()`, um eine benutzerfreundliche URL zu erhalten, von der Anfragen entsprechend abgerufen bzw. ausgegeben werden und die das Caching-Problem mit dem Dispatcher lösen kann. Die Methode map() codiert den Doppelpunkt (`:`) in Unterstriche und die Methode resolve() decodiert diese zurück in das SLING JCR-lesbare Format. Verwenden Sie die Methode map(), um die URL zu generieren, die im Ajax-Aufruf verwendet wird.
 
@@ -139,13 +139,13 @@ Wenn der Dispatcher durch Löschvorgänge geleert wird, können Sie das Problem 
 
 ### Wie lösche ich DAM-Assets aus dem Dispatcher-Cache?
 
-Sie können die Funktion zur Kettenreplikation verwenden. Wenn diese Funktion aktiviert ist, sendet der Flush-Agent des Dispatchers eine Leerungsanfrage, wenn eine Replikation von der -Autoreninstanz empfangen wird.
+Sie können die Funktion zur Kettenreplikation verwenden. Ist diese Funktion aktiviert, sendet der Dispatcher-Flush-Agent eine Leerungsanfrage bei Empfang einer Replikation von der Autoreninstanz.
 
 So aktivieren Sie ihn:
 
 1. Folgen Sie [diesen Schritten](page-invalidate.md#invalidating-dispatcher-cache-from-a-publishing-instance) zur Erstellung von Flushing-Agenten beim Veröffentlichen.
-1. Gehen Sie zur Konfiguration der einzelnen Agenten.
-1. Im **Trigger** Registerkarte, überprüfen Sie die **Bei Erhalt** ankreuzen.
+1. Wechseln Sie zur Konfiguration des jeweiligen Agenten.
+1. Aktivieren Sie auf der Registerkarte **Auslöser** das Kontrollkästchen **Auf Empfang**.
 
 ## Sonstiges
 

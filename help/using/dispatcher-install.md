@@ -1,15 +1,15 @@
 ---
 title: Installieren des Dispatchers
-description: Erfahren Sie, wie Sie das Dispatcher-Modul auf Microsoft&reg, Internet Information Server, Apache Web Server und Sun Java & Trade sowie Web Server-iPlanet installieren.
+description: Installieren des Dispatcher-Moduls auf Microsoft&reg; Internet Information Server, Apache Web Server und Sun Java® Web Server iPlanet.
 contentOwner: User
 converted: true
 topic-tags: dispatcher
 content-type: reference
 exl-id: 9375d1c0-8d9e-46cb-9810-fa4162a8c1ba
 source-git-commit: 9be9f5935c21ebbf211b5da52280a31772993c2e
-workflow-type: tm+mt
+workflow-type: ht
 source-wordcount: '3748'
-ht-degree: 83%
+ht-degree: 100%
 
 ---
 
@@ -88,7 +88,7 @@ Comment Type: draft
 
 ## Microsoft® Internet Information Server {#microsoft-internet-information-server}
 
-Informationen zur Installation dieses Webservers finden Sie in den folgenden Ressourcen:
+Weitere Informationen zur Installation dieses Webservers finden Sie hier:
 
 * in der Dokumentation von Microsoft® zu Internet Information Server
 * auf der [offiziellen Microsoft® IIS-Site](https://www.iis.net/)
@@ -99,11 +99,11 @@ Für die Nutzung der IIS-Versionen 8.5 und 10 müssen die folgenden IIS-Komponen
 
 * ISAPI-Erweiterungen
 
-Außerdem müssen Sie die Rolle Webserver (IIS) hinzufügen. Verwenden Sie den Server-Manager, um die Rolle und Komponenten hinzuzufügen.
+Darüber hinaus müssen Sie die Webserver-Rolle (IIS) hinzufügen. Verwenden Sie den Server-Manager, um die Rolle und Komponenten hinzuzufügen.
 
 ## Microsoft® IIS – Installieren des Dispatcher-Moduls {#microsoft-iis-installing-the-dispatcher-module}
 
-Das erforderliche Archiv für das Microsoft® Internet-Informationssystem ist:
+Das für das Microsoft® Internet Information System benötigte Archiv ist:
 
 * `dispatcher-iis-<operating-system>-<dispatcher-release-number>.zip`
 
@@ -116,7 +116,7 @@ Die ZIP-Datei enthält die folgenden Dateien:
 | `dispatcher.any` | Eine Beispielkonfigurationsdatei für den Dispatcher. |
 | `author_dispatcher.any` | Eine Beispielkonfigurationsdatei für den Dispatcher bei Verwendung der Autoreninstanz. |
 | README | Datei mit Installationsanweisungen und aktuellen Informationen. **Hinweis**: Lesen Sie die Informationen in dieser Datei, bevor Sie mit der Installation beginnen. |
-| CHANGES | Ändert eine Datei, die Probleme auflistet, die in aktuellen und früheren Versionen behoben wurden. |
+| ÄNDERUNGEN | Datei, in der Probleme aufgeführt sind, die in der aktuellen und in vorherigen Versionen behoben wurden. |
 
 Führen Sie die folgenden Schritte aus, um die Dispatcher-Dateien an den richtigen Speicherort zu kopieren.
 
@@ -126,7 +126,7 @@ Führen Sie die folgenden Schritte aus, um die Dispatcher-Dateien an den richtig
 
    * `disp_iis.dll`
    * `disp_iis.ini`
-   * Eine der folgenden Dateien hängt davon ab, ob der Dispatcher mit einer AEM Autoreninstanz oder Veröffentlichungsinstanz arbeitet:
+   * Eine der folgenden Dateien, je nachdem, ob der Dispatcher mit einer AEM-Autoreninstanz oder -Veröffentlichungsinstanz eingesetzt wird:
       * Autoreninstanz: `author_dispatcher.any`
       * Veröffentlichungsinstanz: `dispatcher.any`
 
@@ -147,10 +147,10 @@ In der folgenden Tabelle werden die einzelnen Eigenschaften beschrieben.
 | Parameter | Beschreibung |
 |--- |--- |
 | `configpath` | Der Speicherort von `dispatcher.any` im lokalen Dateisystem (absoluter Pfad). |
-| `logfile` | Der Speicherort der `dispatcher.log`-Datei. Wenn dieser Speicherort nicht festgelegt ist, werden Protokollmeldungen in das Windows-Ereignisprotokoll aufgenommen. |
-| `loglevel` | Definiert die Protokollebene, die für die Ausgabe von Nachrichten in das Ereignisprotokoll verwendet wird. Die folgenden Werte können auf Protokollebene für die Protokolldatei angegeben werden: <br/>0 – nur Fehlermeldungen. <br/>1 – Fehlermeldungen und Warnungen. <br/>2 – Fehlermeldungen, Warnungen und Informationsmeldungen. <br/>3 – Fehlermeldungen, Warnungen, Informations- und Debugging-Meldungen. <br/>**Hinweis**: Legen Sie die Protokollebene während der Installation und der Tests auf 3 fest und setzen Sie sie anschließend beim Ausführen in einer Produktionsumgebung wieder auf 0. |
-| `replaceauthorization` | Legt fest, wie Autorisierungs-Header in der HTTP-Anfrage verarbeitet werden. Die folgenden Werte sind gültig:<br/>0 – Autorisierungs-Header werden nicht geändert. <br/>1 – ersetzt alle Header mit dem Namen „Authorization“ mit Ausnahme von „Basic“ durch die `Basic <IIS:LOGON\_USER>`-Entsprechung.<br/> |
-| `servervariables` | Definiert, wie Server-Variablen verarbeitet werden.<br/>0 - IIS-Servervariablen werden nicht an den Dispatcher oder AEM gesendet. <br/>1 – Alle IIS-Servervariablen (wie `LOGON\_USER, QUERY\_STRING, ...`) werden zusammen mit den Anforderungsheadern an den Dispatcher gesendet (und an die AEM-Instanz, wenn keine Zwischenspeicherung erfolgt).  <br/>Zu den Servervariablen gehören `AUTH\_USER, LOGON\_USER, HTTPS\_KEYSIZE` und viele andere. In der IIS-Dokumentation finden Sie eine umfassende Liste der Variablen mit detaillierten Informationen. |
+| `logfile` | Der Speicherort der Datei `dispatcher.log`. Wenn dieser Speicherort nicht festgelegt ist, werden Protokollmeldungen im Windows-Ereignisprotokoll gespeichert. |
+| `loglevel` | Definiert die Protokollebene, die verwendet wird, um Meldungen im Ereignisprotokoll auszugeben. Die folgenden Werte können auf Protokollebene für die Protokolldatei angegeben werden: <br/>0 – nur Fehlermeldungen. <br/>1 – Fehlermeldungen und Warnungen. <br/>2 – Fehlermeldungen, Warnungen und Informationsmeldungen. <br/>3 – Fehlermeldungen, Warnungen, Informations- und Debugging-Meldungen. <br/>**Hinweis**: Legen Sie die Protokollebene während der Installation und der Tests auf 3 fest und setzen Sie sie anschließend beim Ausführen in einer Produktionsumgebung wieder auf 0. |
+| `replaceauthorization` | Legt fest, wie Autorisierungs-Header in der HTTP-Anfrage verarbeitet werden. Die folgenden Werte sind gültig:<br/>0 – Autorisierungs-Header werden nicht geändert. <br/>1 – ersetzt alle Header mit dem Namen „Authorization“ mit Ausnahme von „Basic“ durch die Entsprechung `Basic <IIS:LOGON\_USER>`.<br/> |
+| `servervariables` | Definiert, wie Server-Variablen verarbeitet werden.<br/>0 – IIS-Server-Variablen werden weder an den Dispatcher noch an AEM gesendet. <br/>1 – Alle IIS-Servervariablen (wie `LOGON\_USER, QUERY\_STRING, ...`) werden zusammen mit den Anforderungsheadern an den Dispatcher gesendet (und an die AEM-Instanz, wenn keine Zwischenspeicherung erfolgt).  <br/>Zu den Servervariablen gehören `AUTH\_USER, LOGON\_USER, HTTPS\_KEYSIZE` und viele andere. In der IIS-Dokumentation finden Sie eine umfassende Liste der Variablen mit detaillierten Informationen. |
 | `enable_chunked_transfer` | Definiert, ob die Blockübertragung für die Client-Antwort aktiviert (1) oder deaktiviert (0) werden soll. Der Standardwert ist 0. |
 
 Eine Beispielkonfiguration:
@@ -179,7 +179,7 @@ Wenn Ihre Website eine Authentifizierungsmethode anwendet, muss der Flush-Replik
 
 ### Integrieren des ISAPI-Moduls des Dispatchers – IIS 8.5 und 10 {#integrating-the-dispatcher-isapi-module-iis-and}
 
-Gehen Sie wie folgt vor, um das ISAPI-Modul des Dispatchers zu IIS hinzuzufügen.
+Führen Sie die folgenden Schritte aus, um das ISAPI-Modul des Dispatchers zu IIS hinzuzufügen.
 
 1. Öffnen Sie den IIS-Manager.
 1. Wählen Sie die Website aus, die Sie als Dispatcher-Cache verwenden.
@@ -190,13 +190,13 @@ Gehen Sie wie folgt vor, um das ISAPI-Modul des Dispatchers zu IIS hinzuzufügen
    * Ausführbare Datei: der absolute Pfad der Datei „disp_iis.dll“, beispielsweise `C:\inetpub\Scripts\disp_iis.dll`.
    * Name: ein beschreibender Name für die Handlerzuordnung, beispielsweise `Dispatcher`.
 
-1. Klicken Sie im angezeigten Dialogfeld auf , um die Bibliothek &quot;disp_iis.dll&quot;zur Liste der ISAPI- und CGI-Einschränkungen hinzuzufügen. **Ja**.
+1. Klicken Sie im daraufhin angezeigten Dialogfeld auf **Ja**, um der Liste „ISAPI- und CGI-Einschränkungen“ die Bibliothek „disp_iis.dll“ hinzuzufügen.
 
    Für IIS 7.0 und 7.5 ist die Konfiguration damit abgeschlossen. Fahren Sie mit den verbleibenden Schritten fort, wenn Sie IIS 8.0 konfigurieren.
 
-1. (IIS 8.0) Wählen Sie in der Liste der Handler-Zuordnungen das von Ihnen erstellte aus und klicken Sie im Bereich &quot;Aktionen&quot;auf &quot;Bearbeiten&quot;.
+1. (IIS 8.0) Wählen Sie in der Liste der Handler-Zuordnungen die Zuordnung aus, die Sie zuvor erstellt haben, und klicken Sie im Bereich „Aktionen“ auf „Bearbeiten“.
 1. (IIS 8.0) Klicken Sie im Dialogfeld „Skriptzuordnung bearbeiten“ auf die Schaltfläche „Einschränkungen“.
-1. (IIS 8.0) Um sicherzustellen, dass der Handler für Dateien und Ordner verwendet wird, die noch nicht zwischengespeichert sind, deaktivieren Sie die Option **Handler nur aufrufen, wenn die Anforderung**. Klicken Sie auf **OK**.
+1. (IIS 8.0) Um sicherzustellen, dass der Handler für Dateien und Ordner verwendet wird, die noch nicht im Cache zwischengespeichert sind, deaktivieren Sie das Kontrollkästchen **Handler nur bei folgender Zuordnung aufrufen**. Klicken Sie auf **OK**.
 1. (IIS 8.0) Klicken Sie im Dialogfeld „Skriptzuordnung bearbeiten“ auf „OK“.
 
 ### Konfigurieren des Zugriffs auf den Cache – IIS 8.5 und 10 {#configuring-access-to-the-cache-iis-and}
@@ -204,7 +204,7 @@ Gehen Sie wie folgt vor, um das ISAPI-Modul des Dispatchers zu IIS hinzuzufügen
 Geben Sie den standardmäßigen Anwendungspoolbenutzer mit Schreibzugriff auf den Ordner an, der als Dispatcher-Cache verwendet werden soll.
 
 1. Klicken Sie mit der rechten Maustaste auf den Basisordner der Website, die Sie als Dispatcher-Cache verwenden, und klicken Sie auf „Eigenschaften“, beispielsweise `C:\inetpub\wwwroot`
-1. Klicken Sie auf der Registerkarte Sicherheit auf Bearbeiten und klicken Sie anschließend im Dialogfeld Berechtigungen auf Hinzufügen. Daraufhin wird ein Dialogfeld zum Auswählen von Benutzerkonten geöffnet. Klicken Sie auf die Schaltfläche „Speicherorte“, wählen Sie den Namen Ihres Computers aus und klicken Sie dann auf „OKׅ“.
+1. Klicken Sie auf der Registerkarte „Sicherheit“ auf „Bearbeiten“ und dann im Dialogfeld „Berechtigungen“ auf „Hinzufügen“. Daraufhin wird ein Dialogfeld zum Auswählen von Benutzerkonten geöffnet. Klicken Sie auf die Schaltfläche „Speicherorte“, wählen Sie den Namen Ihres Computers aus und klicken Sie dann auf „OKׅ“.
 
    Lassen Sie dieses Dialogfeld geöffnet, während Sie den nächsten Schritt durchführen.
 
@@ -215,13 +215,13 @@ Geben Sie den standardmäßigen Anwendungspoolbenutzer mit Schreibzugriff auf de
    `IIS AppPool\DefaultAppPool`
 
 1. Klicken Sie auf die Schaltfläche „Namen überprüfen“. Wenn Windows das Benutzerkonto auflöst, klicken Sie auf „OK“.
-1. Wählen Sie im Dialogfeld &quot;Berechtigungen&quot;für den Ordner &quot;Dispatcher&quot;das Konto aus, das Sie gerade hinzugefügt haben, aktivieren Sie alle Berechtigungen für das Konto **mit Ausnahme der vollständigen Kontrolle** und klicken Sie auf OK. Klicken Sie auf „OK“, um das Dialogfeld mit den Ordnereigenschaften zu schließen.
+1. Wählen Sie im Dialogfeld „Berechtigungen“ für den Dispatcher-Ordner das Konto aus, das Sie gerade hinzugefügt haben, aktivieren Sie alle Berechtigungen für das Konto **außer dem Vollzugriff** und klicken Sie auf „OK“. Klicken Sie auf „OK“, um das Dialogfeld mit den Ordnereigenschaften zu schließen.
 
 ### Registrieren des JSON-MIME-Typs – IIS 8.5 und 10 {#registering-the-json-mime-type-iis-and}
 
-Führen Sie das folgende Verfahren aus, um den JSON-MIME-Typ zu registrieren, wenn der Dispatcher JSON-Aufrufe zulassen soll.
+Führen Sie die folgenden Schritte aus, um den JSON-MIME-Typ zu registrieren, wenn Sie möchten, dass der Dispatcher JSON-Aufrufe zulässt.
 
-1. Wählen Sie im IIS-Manager Ihre Website aus und doppelklicken Sie in der Funktionsansicht auf MIME-Typen.
+1. Wählen Sie im IIS-Manager Ihre Website aus und doppelklicken Sie unter Verwendung der Ansicht „Features“ auf „MIME-Typen“.
 1. Wenn die JSON-Erweiterung nicht in der Liste aufgeführt wird, klicken Sie im Bereich „Aktionen“ auf „Hinzufügen“, geben Sie die folgenden Eigenschaftswerte ein und klicken Sie dann auf „OK“:
 
    * Dateinamenerweiterung: `.json`
@@ -231,18 +231,18 @@ Führen Sie das folgende Verfahren aus, um den JSON-MIME-Typ zu registrieren, we
 
 Führen Sie die folgenden Schritte aus, um das ausgeblendete Segment `bin` zu entfernen. Websites, die nicht neu sind, können dieses ausgeblendete Segment enthalten.
 
-1. Wählen Sie im IIS-Manager Ihre Website aus und doppelklicken Sie in der Ansicht &quot;Features&quot;auf &quot;Request Filtering&quot;.
+1. Wählen Sie im IIS-Manager Ihre Website und doppelklicken Sie unter Verwendung der Ansicht „Features“ auf „Anfragefilterung“.
 1. Wählen Sie das Segment `bin`, klicken Sie auf „Entfernen“ und klicken Sie im Bestätigungsdialogfeld auf „Ja“.
 
 ### Protokollieren von IIS-Meldungen in einer Datei – IIS 8.5 und 10 {#logging-iis-messages-to-a-file-iis-and}
 
-Führen Sie die folgenden Schritte aus, damit Dispatcher-Protokollmeldungen in eine Protokolldatei und nicht in das Windows-Ereignisprotokoll geschrieben werden. Konfigurieren Sie den Dispatcher für die Verwendung der Protokolldatei und gewähren Sie IIS Schreibzugriff auf die Datei.
+Führen Sie die folgenden Schritte aus, damit Dispatcher-Protokollmeldungen in eine Protokolldatei und nicht in das Windows-Ereignisprotokoll geschrieben werden. Konfigurieren Sie den Dispatcher zur Verwendung der Protokolldatei und gewähren Sie IIS Schreibzugriff auf die Datei.
 
 1. Verwenden Sie Windows Explorer, um unter dem Protokollordner der IIS-Installation einen Ordner mit dem Namen `dispatcher` zu erstellen. Der Pfad dieses Ordners für eine Standardinstallation lautet `C:\inetpub\logs\dispatcher`.
 
-1. Klicken Sie mit der rechten Maustaste auf den Ordner Dispatcher und klicken Sie auf **Eigenschaften**.
-1. Klicken Sie auf der Registerkarte Sicherheit auf **Bearbeiten**.
-1. Klicken Sie im Dialogfeld &quot;Berechtigungen&quot;auf **Hinzufügen**. Daraufhin wird ein Dialogfeld zum Auswählen von Benutzerkonten geöffnet. Klicken Sie auf die Schaltfläche „Speicherorte“, wählen Sie den Namen Ihres Computers aus und klicken Sie dann auf „OKׅ“.
+1. Klicken Sie mit der rechten Maustaste auf den Dispatcher-Ordner und klicken Sie dann auf **Eigenschaften**.
+1. Klicken Sie auf der Registerkarte „Sicherheit“ auf **Bearbeiten**.
+1. Klicken Sie im Dialogfeld „Berechtigungen“ auf **Hinzufügen**. Daraufhin wird ein Dialogfeld zum Auswählen von Benutzerkonten geöffnet. Klicken Sie auf die Schaltfläche „Speicherorte“, wählen Sie den Namen Ihres Computers aus und klicken Sie dann auf „OKׅ“.
 
    Lassen Sie dieses Dialogfeld geöffnet, während Sie den nächsten Schritt durchführen.
 
@@ -280,7 +280,7 @@ Weitere Informationen zum Installieren eines Apache-Webservers finden Sie im ent
 
 >[!CAUTION]
 >
->Wenn Sie eine Apache-Binärdatei durch Kompilieren der Quelldateien erstellen, denken Sie daran, **`dynamic modules support`** zu aktivieren. Die Aktivierung dieser Option kann mit einer der folgenden Methoden durchgeführt werden: **—enable-shared** Optionen. Nehmen Sie mindestens das `mod_so`-Modul auf.
+>Wenn Sie eine Apache-Binärdatei durch Kompilieren der Quelldateien erstellen, denken Sie daran, **`dynamic modules support`** zu aktivieren. Die Aktivierung dieser Option kann mit einer der Optionen von **--enable-shared** durchgeführt werden. Nehmen Sie mindestens das `mod_so`-Modul auf.
 >
 >Weitere Informationen finden Sie im Installationshandbuch für Apache-Webserver.
 
@@ -303,9 +303,9 @@ Die Installationsarchivdateien enthalten die folgenden Dateien, je nachdem, ob S
 | http.conf.disp&lt;x> | Eine Beispielkonfigurationsdatei für den Apache-Server. |
 | dispatcher.any | Eine Beispielkonfigurationsdatei für den Dispatcher. |
 | README | Datei mit Installationsanweisungen und aktuellen Informationen. **Hinweis**: Lesen Sie die Informationen in dieser Datei, bevor Sie mit der Installation beginnen. |
-| CHANGES | Ändert eine Datei, die Probleme auflistet, die in aktuellen und früheren Versionen behoben wurden. |
+| ÄNDERUNGEN | Datei, in der Probleme aufgeführt sind, die in der aktuellen und in vorherigen Versionen behoben wurden. |
 
-Führen Sie die folgenden Schritte aus, um den Dispatcher Ihrem Apache-Webserver hinzuzufügen:
+Führen Sie die folgenden Schritte aus, um den Dispatcher zum Apache-Webserver hinzuzufügen:
 
 1. Platzieren Sie die Dispatcher-Datei im entsprechenden Verzeichnis des Apache-Moduls:
 
@@ -325,7 +325,7 @@ Wenn Sie den Dispatcher auf Red Hat® Linux® Kernel 2.6 ausführen und SELinux 
 
 `Mon Jun 30 00:03:59 2013] [E] [16561(139642697451488)] Unable to connect to backend rend01 (10.122.213.248:4502): Permission denied`
 
-Dieser Fehler ist wahrscheinlich auf eine aktivierte SELinux-Sicherheit zurückzuführen. Wenn ja, führen Sie die folgenden Aufgaben aus:
+Grund hierfür sind wahrscheinlich die aktivierten SELinux-Sicherheitseinstellungen. Wenn ja, führen Sie die folgenden Aufgaben aus:
 
 * Konfigurieren des SELinux-Kontextes der Dispatcher-Moduldatei
 * Aktivieren von HTTPD-Skripten und -Modulen zum Herstellen von Netzwerkverbindungen
@@ -353,9 +353,9 @@ Die folgenden Schritte sind erforderlich:
    * **LoadModule** zum Laden des Moduls beim Start
    * Dispatcher-spezifische Konfigurationseinträge, einschließlich **DispatcherConfig, DispatcherLog** und **DispatcherLogLevel**
    * **SetHandler** zum Aktivieren des **LoadModule** des Dispatchers.
-   * **ModMimeUsePathInfo** , um das Verhalten von **mod_mime**.
+   * **ModMimeUsePathInfo** zum Konfigurieren des Verhaltens von **mod_mime**.
 
-1. (Optional) Es wird empfohlen, den Inhaber des Verzeichnisses „htdocs“ zu ändern:
+1. (Optional) Es wird empfohlen, die Inhaberin oder den Inhaber des Verzeichnisses „htdocs“ zu ändern:
 
    * Der Apache-Server startet (aus Sicherheitsgründen) als Root, auch wenn die untergeordneten Prozesse als Daemon starten. DocumentRoot (`<APACHE_ROOT>/htdocs`) muss dem Benutzer Daemon angehören:
 
@@ -409,9 +409,9 @@ Die einzelnen Konfigurationsparameter lauten:
 | DispatcherConfig | Speicherort und Name der Dispatcher-Konfigurationsdatei. <br/>Wenn sich diese Eigenschaft in der Haupt-Server-Konfiguration befindet, übernehmen alle virtuellen Hosts den Eigenschaftenwert. Allerdings können virtuelle Hosts die Eigenschaft DispatcherConfig einschließen, um die Hauptserverkonfiguration zu überschreiben. |
 | DispatcherLog | Speicherort und Name der Protokolldatei. |
 | DispatcherLogLevel | Protokollebene für die Protokolldatei: <br/>0 – Fehlermeldungen <br/>1 – Warnungen <br/>2 – Informationen <br/>3 – Debug-Meldungen <br/>**Hinweis**: Legen Sie die Protokollebene während der Installation und der Tests auf 3 fest und setzen Sie sie anschließend beim Ausführen in einer Produktionsumgebung wieder auf 0. |
-| DispatcherNoServerHeader | *Dieser Parameter ist veraltet und unwirksam.*<br/><br/> Definiert den zu verwendenden Server-Header: <br/><ul><li>undefined oder 0 - Der HTTP-Server-Header enthält die AEM Version. </li><li>1 - Der Apache-Server-Header wird verwendet.</li></ul> |
-| DispatcherDeclineRoot | Definiert, ob Anforderungen an den Stamm &quot;/&quot;abgelehnt werden sollen: <br/>**0** - Anforderungen akzeptieren an / <br/>**1** - Der Dispatcher verarbeitet keine Anforderungen an /. Verwenden Sie stattdessen mod_alias für die korrekte Zuordnung. |
-| DispatcherUseProcessedURL | Legt fest, ob vorverarbeitete URLs für die weitere Verarbeitung durch den Dispatcher verwendet werden sollen:<br/>**0** – die an den Webserver übergebene ursprüngliche URL wird verwendet. <br/>**1** – Der Dispatcher verwendet die URL, die bereits von den Handlern verarbeitet wurde, die dem Dispatcher vorausgehen (d. h. `mod_rewrite`), anstelle der ursprünglichen URL, die an den Webserver übergeben wurde. Beispielsweise wird entweder die ursprüngliche oder verarbeitete URL mit den Dispatcher-Filtern abgeglichen. Die URL wird auch als Grundlage für die Cache-Dateistruktur verwendet. Informationen zu &quot;mod_rewrite&quot;finden Sie in der Dokumentation auf der Apache-Website, z. B. Apache 2.4. Verwenden Sie bei Verwendung von mod_rewrite das Flag &quot;passthrough&quot;(Weiterleiten an den nächsten Handler), um die Rewrite-Engine zu zwingen, das URI-Feld der internen Struktur &quot;request_rec&quot;auf den Wert des Dateinamenfelds festzulegen. |
+| DispatcherNoServerHeader | *Dieser Parameter ist veraltet und unwirksam.*<br/><br/> Definiert den zu verwendenden Server-Header: <br/><ul><li>nicht definiert oder 0 – der HTTP-Server-Header enthält die AEM-Version. </li><li>1 – der Apache-Server-Header wird verwendet.</li></ul> |
+| DispatcherDeclineRoot | Definiert, ob Anfragen an den Stamm „/“ abgelehnt werden sollen: <br/>**0** – Anfragen an / akzeptieren <br/>**1** – Der Dispatcher verarbeitet keine Anfragen an /. Verwenden Sie stattdessen „mod_alias“ für die korrekte Zuordnung. |
+| DispatcherUseProcessedURL | Legt fest, ob vorverarbeitete URLs für die weitere Verarbeitung durch den Dispatcher verwendet werden sollen:<br/>**0** – die an den Webserver übergebene ursprüngliche URL wird verwendet. <br/>**1** – Der Dispatcher verwendet die URL, die bereits von den Handlern verarbeitet wurde, die dem Dispatcher vorausgehen (d. h. `mod_rewrite`), anstelle der ursprünglichen URL, die an den Webserver übergeben wurde. Beispielsweise wird entweder die ursprüngliche oder verarbeitete URL mit den Dispatcher-Filtern abgeglichen. Die URL wird auch als Grundlage für die Cache-Dateistruktur verwendet. Informationen zu „mod_rewrite“ finden Sie in der Dokumentation auf der Apache-Website, z. B. Apache 2.4. Verwenden Sie bei Nutzung von „mod_rewrite“ das Flag „passthrough“ (Durchleitung an nächsten Handler), um die Rewrite-Engine zu zwingen, das URI-Feld der internen request_rec-Struktur auf den Wert des Dateinamen-Felds zu setzen. |
 | DispatcherPassError | Definiert, wie Fehler-Codes für die ErrorDocument-Verarbeitung unterstützt werden: <br/>**0** – Der Dispatcher spoolt alle Fehlerantworten an den Client. <br/>**1** – Der Dispatcher sendet keine Fehlerantwort an den Client (wenn der Status-Code größer oder gleich 400 ist). Stattdessen übergibt er den Status-Code an Apache, wodurch eine ErrorDocument-Anweisung einen solchen Status-Code verarbeiten kann. <br/>**Code-Bereich** – Geben Sie eine Reihe von Fehler-Codes an, für die die Antwort an Apache übergeben wird. Andere Fehlercodes werden an den Client übergeben. Beispielsweise übergibt die folgende Konfiguration Antworten für Fehler 412 an den Client und alle anderen Fehler werden an Apache übergeben: DispatcherPassError 400-411,413-417 |
 | DispatcherKeepAliveTimeout | Gibt den Keep-Alive-Timeout in Sekunden an. Ab Dispatcher-Version 4.2.0 beträgt der Standardwert für die Keep-Alive-Funktion 60. Wenn der Wert 0 lautet, wird der Keep-Alive-Timeout deaktiviert. |
 | DispatcherNoCanonURL | Wenn Sie diesen Parameter auf „Ein“ setzen, wird die unformatierte URL anstelle der kanonisierten URL an das Backend übergeben und die Einstellungen von DispatcherUseProcessedURL überschrieben.  Der Standardwert ist „Off“. <br/>**Hinweis**: Die Filterregeln in der Dispatcher-Konfiguration werden immer anhand der bereinigten URL und nicht anhand der unformatierten URL ausgewertet. |
@@ -491,7 +491,7 @@ AllowOverride None
 
 >[!NOTE]
 >
->Der -Parameter der **SetHandler** muss *genau das Gleiche wie in den obigen Beispielen* weil es der Name des im Modul definierten Handlers ist.
+>Der Parameter der Anweisung **SetHandler** muss *genau wie in den oben aufgeführten Beispielen* geschrieben sein, da dies der Name des im Modul definierten Handlers ist.
 >
 >Umfassende Informationen zu diesem Befehl finden Sie in den Beispielkonfigurationsdateien und in der Apache-Webserver-Dokumentation.
 
@@ -503,13 +503,13 @@ Nach der Anweisung **SetHandler** sollten Sie auch die Definition **ModMimeUsePa
 >
 >Benutzen und konfigurieren Sie den Parameter `ModMimeUsePathInfo` nur, wenn Sie die Dispatcher-Version 4.0.9 oder höher verwenden.
 >
->Die Dispatcher-Version 4.0.9 wurde 2011 veröffentlicht. Wenn Sie eine ältere Version verwenden, ist ein Upgrade auf eine aktuelle Dispatcher-Version angezeigt.
+>Die Dispatcher-Version 4.0.9 wurde im Jahr 2011 veröffentlicht. Wenn Sie eine ältere Version verwenden, ist ein Upgrade auf eine aktuelle Dispatcher-Version angezeigt.
 
 Der Parameter **ModMimeUsePathInfo** sollte für alle Apache-Konfigurationen auf `On` festgelegt sein:
 
 `ModMimeUsePathInfo On`
 
-Mit dem mod_mime-Modul (siehe beispielsweise [Apache Module mod_mime](https://httpd.apache.org/docs/2.4/mod/mod_mime.html)) werden Inhaltsmetadaten dem Inhalt zugewiesen, der für eine HTTP-Antwort ausgewählt wurde. Die standardmäßige Einrichtung bedeutet, dass `mod_mime` bestimmt den Inhaltstyp. Daher wird nur der Teil der URL berücksichtigt, der einer Datei oder einem Verzeichnis zugeordnet ist.
+Mit dem mod_mime-Modul (siehe beispielsweise [Apache Module mod_mime](https://httpd.apache.org/docs/2.4/mod/mod_mime.html)) werden Inhaltsmetadaten dem Inhalt zugewiesen, der für eine HTTP-Antwort ausgewählt wurde. Das standardmäßige Setup bedeutet, dass `mod_mime` den Inhaltstyp bestimmt. Daher wird nur der Teil der URL berücksichtigt, der einer Datei oder einem Verzeichnis zugeordnet ist.
 
 Wenn die Angabe `On` lautet, gibt der Parameter `ModMimeUsePathInfo` an, dass `mod_mime` den Inhaltstypen anhand der *vollständigen* URL bestimmen wird. Das bedeutet, dass auf virtuelle Ressourcen anhand ihrer Erweiterung Metainformationen angewendet werden.
 
@@ -533,7 +533,7 @@ AllowOverride None
 
 ### Aktivieren der Unterstützung für HTTPS (UNIX® and Linux®) {#enable-support-for-https-unix-and-linux}
 
-Der Dispatcher verwendet OpenSSL, um eine sichere Kommunikation über HTTP zu implementieren. Ab Dispatcher-Version **4.2.0** werden OpenSSL 1.0.0 und OpenSSL 1.0.1 unterstützt. Der Dispatcher verwendet standardmäßig OpenSSL 1.0.0. Verwenden Sie zur Verwendung von OpenSSL 1.0.1 das folgende Verfahren, um symbolische Links zu erstellen, sodass der Dispatcher die installierten OpenSSL-Bibliotheken verwendet.
+Der Dispatcher verwendet OpenSSL, um eine sichere Kommunikation über HTTP zu implementieren. Ab Dispatcher-Version **4.2.0** werden OpenSSL 1.0.0 und OpenSSL 1.0.1 unterstützt. Der Dispatcher verwendet standardmäßig OpenSSL 1.0.0. Gehen Sie zur Nutzung von OpenSSL 1.0.1 wie folgt vor, um symbolische Verknüpfungen zu erstellen, sodass der Dispatcher die installierten OpenSSL-Bibliotheken verwendet.
 
 1. Öffnen Sie ein Terminal-Fenster und ändern Sie das aktuelle Verzeichnis in das Verzeichnis, in dem die OpenSSL-Bibliotheken installiert sind, beispielsweise:
 
@@ -591,7 +591,7 @@ Die Installationsarchivdateien enthalten die folgenden Dateien, je nachdem, ob S
 | `obj.conf.disp` | Eine Beispielkonfigurationsdatei für den iPlanet-/Sun Java™-System-Webserver. |
 | `dispatcher.any` | Eine Beispielkonfigurationsdatei für den Dispatcher. |
 | README | Datei mit Installationsanweisungen und aktuellen Informationen. **Hinweis:** Lesen Sie die Informationen in dieser Datei, bevor Sie mit der Installation beginnen. |
-| CHANGES | Ändert eine Datei, die Probleme auflistet, die in aktuellen und früheren Versionen behoben wurden. |
+| ÄNDERUNGEN | Datei, in der Probleme aufgeführt sind, die in der aktuellen und in vorherigen Versionen behoben wurden. |
 
 Führen Sie die folgenden Schritte aus, um den Dispatcher zu Ihrem Webserver hinzuzufügen:
 
@@ -619,7 +619,7 @@ Der Webserver muss mithilfe von `obj.conf` konfiguriert werden. Im Dispatcher In
 
 >[!NOTE]
 >
->Die folgenden Konfigurationen sollten sich alle in einer Zeile befinden. Außerdem wird die `$(SERVER_ROOT)` und `$(PRODUCT_SUBDIR)` durch ihre jeweiligen Werte ersetzt werden.
+>Die folgenden Konfigurationen sollten sich alle in einer Zeile befinden. Außerdem müssen `$(SERVER_ROOT)` und `$(PRODUCT_SUBDIR)` durch ihre jeweiligen Werte ersetzt werden.
 
 **Init**
 

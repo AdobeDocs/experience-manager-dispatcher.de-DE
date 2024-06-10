@@ -3,9 +3,9 @@ title: Konfigurieren des AEM Dispatchers
 description: Erfahren Sie, wie Sie den Dispatcher konfigurieren. Informationen über die Unterstützung für IPv4 und IPv6, Konfigurationsdateien, Umgebungsvariablen und die Benennung der Instanz. Weitere Informationen über das Definieren von Farmen, das Identifizieren von virtuellen Hosts und mehr.
 exl-id: 91159de3-4ccb-43d3-899f-9806265ff132
 source-git-commit: 9be9f5935c21ebbf211b5da52280a31772993c2e
-workflow-type: tm+mt
+workflow-type: ht
 source-wordcount: '8876'
-ht-degree: 95%
+ht-degree: 100%
 
 ---
 
@@ -152,7 +152,7 @@ Verwenden Sie die `/name`-Eigenschaft, um einen eindeutigen Namen für die Dispa
 
 Die `/farms`-Eigenschaft definiert eine oder mehrere Gruppen von Dispatcher-Verhalten, wobei jede Gruppe mit verschiedenen Websites oder URLs verknüpft ist. Die `/farms`-Eigenschaft kann eine oder mehrere Farmen umfassen:
 
-* Verwenden Sie eine einzelne Farm, wenn Sie möchten, dass der Dispatcher alle Webseiten oder Websites auf die gleiche Weise verarbeitet.
+* Verwenden Sie eine einzelne Farm, wenn der Dispatcher alle Ihre Web-Seiten oder Websites auf dieselbe Art und Weise verarbeiten soll.
 * Erstellen Sie mehrere Farmen, wenn verschiedene Bereiche Ihrer Website oder verschiedene Websites unterschiedliches Verhalten des Dispatchers erfordern.
 
 Diese `/farms`-Eigenschaft ist eine Eigenschaft der obersten Ebene in der Konfigurationsstruktur. Zum Definieren einer Farm fügen Sie der `/farms`-Eigenschaft eine untergeordnete Eigenschaft hinzu. Verwenden Sie einen Eigenschaftsnamen, der die Farm in der Dispatcher-Instanz eindeutig identifiziert.
@@ -259,7 +259,7 @@ Comment Type: draft
 
 Die Eigenschaft `/clientheaders` definiert eine Liste von HTTP-Headern, die der Dispatcher von der Client-HTTP-Anfrage an den Renderer (AEM-Instanz) übergibt.
 
-Standardmäßig leitet der Dispatcher die standardmäßigen HTTP-Header an die AEM-Instanz weiter. In einigen Fällen kann es notwendig werden, zusätzliche Header weiterzuleiten oder bestimmte Header zu entfernen:
+Standardmäßig leitet der Dispatcher die Standard-HTTP-Header an die AEM-Instanz weiter. In einigen Fällen kann es notwendig werden, zusätzliche Header weiterzuleiten oder bestimmte Header zu entfernen:
 
 * Hinzufügen von Headern, z. B. benutzerdefinierten Headern, die von der AEM-Instanz in der HTTP-Anfrage erwartet werden.
 * Entfernen von Headern wie Authentifizierungs-Headern, die nur für den Webserver relevant sind
@@ -455,7 +455,7 @@ Eine Beispielkonfiguration sieht wie folgt aus:
 
 ## Definieren von Seiten-Renderern {#defining-page-renderers-renders}
 
-Die `/renders` -Eigenschaft definiert die URL, an die der Dispatcher Anforderungen zum Rendern eines Dokuments sendet. Im folgenden beispielhaften `/renders`-Abschnitt wird eine einzelne AEM-Instanz zum Rendern definiert:
+Mit der Eigenschaft `/renders` wird die URL definiert, an die der Dispatcher Anfragen zum Rendern eines Dokuments sendet. Im folgenden beispielhaften `/renders`-Abschnitt wird eine einzelne AEM-Instanz zum Rendern definiert:
 
 ```xml
 /renders
@@ -618,7 +618,7 @@ Falls Ihre Filter nicht so ausgelöst werden, wie Sie es erwarten, können Sie i
 
 #### Beispielfilter: Alle verweigern {#example-filter-deny-all}
 
-Im folgenden Beispielfilterabschnitt verweigert der Dispatcher die Anforderungen für alle Dateien. Verweigern Sie den Zugriff auf alle Dateien und lassen Sie dann den Zugriff auf bestimmte Bereiche zu.
+Bei dem folgenden Beispiel-Filterabschnitt verweigert der Dispatcher Anfragen für alle Dateien. Verweigern Sie den Zugriff auf alle Dateien und lassen Sie dann den Zugriff auf bestimmte Bereiche zu.
 
 ```xml
 /0001  { /type "deny" /url "*"  }
@@ -914,7 +914,7 @@ Last Modified Date: 2015-03-25T14:23:05.185-0400
 <p style="font-family: tahoma, arial, helvetica, sans-serif; font-size: 12px;">The "com.adobe.granite.dispatcher.vanityurl.content" package needs to be made public before publishing this contnet.</p>
  -->
 
-Konfigurieren Sie den Dispatcher, um den Zugriff auf Vanity-URLs zu aktivieren, die für Ihre AEM-Seiten konfiguriert sind.
+Sie können den Dispatcher so konfigurieren, dass der Zugriff auf Vanity-URLs möglich ist, die für Ihre AEM-Seiten konfiguriert sind.
 
 Wenn der Zugriff auf Vanity-URLs aktiviert ist, ruft der Dispatcher regelmäßig einen Dienst in der Render-Instanz auf, um eine Liste der Vanity-URLs abzurufen. Der Dispatcher speichert diese Liste in einer lokalen Datei. Wenn eine Seitenanfrage wegen eines Filters im `/filter`-Abschnitt verweigert wird, prüft der Dispatcher diese Liste von Vanity-URLs. Befindet sich die abgelehnte URL in der Liste, wird der Dispatcher den Zugriff auf diese Vanity-URL zulassen.
 
@@ -932,7 +932,7 @@ Der `/vanity_urls`-Abschnitt enthält die folgenden Eigenschaften:
 
 * `/url`: Der Pfad zum Vanity-URL-Dienst, der auf der Renderer-Instanz ausgeführt wird. Der Wert dieser Eigenschaft muss `"/libs/granite/dispatcher/content/vanityUrls.html"` lauten.
 
-* `/file`: Der Pfad zur lokalen Datei, in der der Dispatcher die Liste der Vanity-URLs speichert. Stellen Sie sicher, dass der Dispatcher Schreibzugriff auf diese Datei hat.
+* `/file`: Der Pfad zur lokalen Datei, in der der Dispatcher die Liste der Vanity-URLs speichert. Vergewissern Sie sich, dass der Dispatcher über Schreibzugriff für diese Datei verfügt.
 * `/delay`: (Sekunden) Die Zeit zwischen den einzelnen Aufrufen des Vanity-URL-Diensts.
 
 >[!NOTE]
@@ -1003,7 +1003,7 @@ Die Eigenschaft `/docroot` identifiziert den Ordner, in dem die Cachedateien ges
 
 >[!NOTE]
 >
->Der Wert muss mit dem Dokumentenstamm des Webservers übereinstimmen, damit der Dispatcher und der Webserver dieselben Dateien verarbeiten.\
+>Der Wert muss dem Pfad des Basisverzeichnisses des Webservers entsprechen, damit der Dispatcher und der Webserver dieselben Dateien verarbeiten.\
 >Der Webserver ist für die Bereitstellung des richtigen Status-Codes bei Verwendung der Dispatcher-Cache-Datei zuständig und muss diese daher ebenfalls finden können.
 
 Wenn Sie mehrere Farmen verwenden, muss jede Farm ein anderes Basisverzeichnis nutzen.
@@ -1012,7 +1012,7 @@ Wenn Sie mehrere Farmen verwenden, muss jede Farm ein anderes Basisverzeichnis n
 
 In der `/statfile`-Eigenschaft wird die Datei angegeben, die als Statfile verwendet werden soll. Der Dispatcher verwendet diese Datei, um den Zeitpunkt der letzten Inhaltsaktualisierung zu protokollieren. Die Stat-Datei kann eine beliebige Datei auf dem Webserver sein.
 
-Die Stat-Datei hat keinen Inhalt. Wenn der Inhalt aktualisiert wird, aktualisiert der Dispatcher den Zeitstempel. Die Standard-Stat-Datei heißt `.stat` und ist im Basisverzeichnis gespeichert. Der Dispatcher blockiert den Zugriff auf die Stat-Datei.
+Die Stat-Datei hat keinen Inhalt. Nach einer Inhaltsaktualisierung ändert der Dispatcher lediglich den Zeitstempel. Die Standard-Stat-Datei heißt `.stat` und ist im Basisverzeichnis gespeichert. Der Dispatcher blockiert den Zugriff auf die Stat-Datei.
 
 >[!NOTE]
 >
@@ -1020,9 +1020,9 @@ Die Stat-Datei hat keinen Inhalt. Wenn der Inhalt aktualisiert wird, aktualisier
 
 ### Bereitstellen veralteter Dokumente, wenn Fehler auftreten {#serving-stale-documents-when-errors-occur}
 
-Die Eigenschaft `/serveStaleOnError` steuert, ob der Dispatcher als invalidiert gekennzeichnete Dokumente zurückgibt, wenn der Render-Server einen Fehler zurückgibt. Wenn eine Statfile geändert wird und zwischengespeicherten Inhalt invalidiert, löscht der Dispatcher standardmäßig den zwischengespeicherten Inhalt. Diese Aktion wird ausgeführt, wenn sie das nächste Mal angefordert wird.
+Die Eigenschaft `/serveStaleOnError` steuert, ob der Dispatcher als invalidiert gekennzeichnete Dokumente zurückgibt, wenn der Render-Server einen Fehler zurückgibt. Wenn eine Stat-Datei geändert wird und zwischengespeicherten Inhalt invalidiert, löscht der Dispatcher standardmäßig den zwischengespeicherten Inhalt. Diese Aktion wird ausgeführt, wenn sie das nächste Mal angefordert wird.
 
-Wenn `/serveStaleOnError` auf `"1"` festgelegt ist, löscht der Dispatcher keine invalidierten Inhalte aus dem Cache, es sei denn, der Render-Server gibt eine „Erfolgreich“-Antwort zurück. Eine 5xx-Antwort von AEM oder einem Verbindungs-Timeout bewirkt, dass der Dispatcher den veralteten Inhalt bereitstellt und mit dem HTTP-Status 111 antwortet (Erneute Validierung fehlgeschlagen).
+Wenn `/serveStaleOnError` auf `"1"` festgelegt ist, löscht der Dispatcher keine invalidierten Inhalte aus dem Cache, es sei denn, der Render-Server gibt eine „Erfolgreich“-Antwort zurück. Bei einer 5xx-Antwort von AEM oder einer Zeitüberschreitung gibt der Dispatcher den veralteten Inhalt mit dem HTTP-Status 111 („Erneute Validierung fehlgeschlagen“) zurück.
 
 ### Zwischenspeicherung bei Verwendung von Authentifizierung {#caching-when-authentication-is-used}
 
@@ -1229,7 +1229,7 @@ Es wird mit folgenden Argumenten aufgerufen:
 
 Mit dieser Methode können mehrere unterschiedliche Anwendungsfälle abgedeckt werden, z. B. die Invalidierung anderer anwendungsspezifischer Caches oder für Fälle, in denen die externalisierte URL einer Seite und ihre Position im Basisverzeichnis nicht mit dem Inhaltspfad übereinstimmen.
 
-Das folgende Beispielskript protokolliert jede ungültige Anforderung in eine Datei.
+Das folgende Beispielskript wird jede invalidierte Anfrage in einer Datei protokolliert.
 
 ```xml
 /invalidateHandler "/opt/dispatcher/scripts/invalidate.sh"
@@ -1349,7 +1349,7 @@ Im Folgenden ein Beispiel aus der Standardkonfiguration:
 
 >[!NOTE]
 >
->Wenn der Dispatcher ETag-Antwortheader von AEM speichern und bereitstellen muss, gehen Sie wie folgt vor:
+>Gehen Sie wie folgt vor, wenn der Dispatcher ETag-Antwort-Header von AEM speichern und übermitteln soll:
 >
 >* Fügen Sie den Header-Namen in den Abschnitt `/cache/headers` ein.
 >* Fügen Sie die folgende [Apache-Anweisung](https://httpd.apache.org/docs/2.4/mod/core.html#fileetag) im Dispatcher-Abschnitt hinzu:
@@ -1389,7 +1389,7 @@ Die zeitbasierte Cache-Invalidierung hängt zum einen von der Eigenschaft `/enab
 Vor Dispatcher 4.3.5 basierte die TTL-Invalidierungslogik alleine auf dem konfigurierten TTL-Wert. Bei Dispatcher 4.3.5 werden die festgelegte TTL **und** die Dispatcher-Cache-Invalidierungsregeln berücksichtigt. Für eine zwischengespeicherte Datei gilt daher Folgendes:
 
 1. Wenn `/enableTTL` auf „1“ gesetzt ist, wird der Dateiablauf überprüft. Wenn die Datei gemäß der festgelegten TTL abgelaufen ist, werden keine weiteren Prüfungen durchgeführt und die zwischengespeicherte Datei wird erneut vom Backend angefordert.
-2. Wenn die Datei nicht abgelaufen oder `/enableTTL` nicht konfiguriert ist, werden die standardmäßigen Cache-Invalidierungsregeln angewendet, z. B. die durch [`/statfileslevel`](#invalidating-files-by-folder-level) und [`/invalidate`](#automatically-invalidating-cached-files) festgelegten Regeln. Dieser Ablauf bedeutet, dass der Dispatcher Dateien ungültig machen kann, für die die TTL noch nicht abgelaufen ist.
+2. Wenn die Datei nicht abgelaufen oder `/enableTTL` nicht konfiguriert ist, werden die standardmäßigen Cache-Invalidierungsregeln angewendet, z. B. die durch [`/statfileslevel`](#invalidating-files-by-folder-level) und [`/invalidate`](#automatically-invalidating-cached-files) festgelegten Regeln. Dieser Fluss bedeutet, dass der Dispatcher Dateien mit nicht abgelaufener TTL invalidieren kann.
 
 Diese neue Implementierung unterstützt Anwendungsfälle, in denen Dateien eine längere TTL aufweisen (z. B. im CDN). Diese Dateien können jedoch invalidiert werden, auch wenn die TTL noch nicht abgelaufen ist. Die Aktualität des Inhalts wird der Cache-Trefferquote im Dispatcher vorgezogen.
 
@@ -1431,7 +1431,7 @@ Der Dispatcher unterstützt maximal acht Statistikkategorien. Wenn Sie mehr als 
 
 **Renderer-Auswahl**
 
-Jedes Mal, wenn der Dispatcher eine gerenderte Seite benötigt, verwendet er den folgenden Algorithmus zur Auswahl des Renderers:
+Jedes Mal, wenn der Dispatcher eine gerenderte Seite anfordert, wird der folgende Algorithmus zur Renderer-Auswahl angewendet:
 
 1. Wenn die Anforderung den Namen des Renderers in einem `renderid`-Cookie enthält, verwendet der Dispatcher diesen Renderer.
 1. Wenn die Anforderung keinen `renderid`-Cookie enthält, vergleicht der Dispatcher die Renderer-Statistiken:
@@ -1455,7 +1455,7 @@ Definieren Sie eine Kategorie für jeden Dokumenttyp, für den Sie Statistiken z
 
 Die Kategorie `name` muss für die Farm eindeutig sein. `pattern` wird im Abschnitt [Entwerfen von Mustern für glob-Eigenschaften](#designing-patterns-for-glob-properties) beschrieben.
 
-Um die Kategorie eines URI zu bestimmen, vergleicht der Dispatcher den URI mit jedem Kategoriemuster, bis eine Übereinstimmung gefunden wird. Der Dispatcher beginnt mit der ersten Kategorie in der Liste und geht diese dann weiter nach unten durch. Platzieren Sie daher Kategorien mit spezifischeren Mustern zuerst.
+Um die Kategorie eines URI zu ermitteln, vergleicht der Dispatcher den URI so lange mit den einzelnen Kategoriemustern, bis ein Treffer gefunden wird. Der Dispatcher beginnt mit der ersten Kategorie in der Liste und geht diese dann weiter nach unten durch. Platzieren Sie daher Kategorien mit spezifischeren Mustern zuerst.
 
 Beispielsweise werden in der standardmäßigen Datei `dispatcher.any` eine Kategorie „html“ und eine Kategorie „others“ definiert. Die Kategorie „HTML“ ist die spezifischere und erscheint daher als erste:
 
@@ -1548,7 +1548,7 @@ Verwenden Sie die Eigenschaft `/health_check`, um eine URL anzugeben, die beim A
 
 ### Festlegen der Wiederholungsverzögerung für die Seite {#specifying-the-page-retry-delay}
 
-Die Eigenschaft `/retryDelay` legt die Zeit (in Sekunden) fest, die der Dispatcher zwischen den einzelnen Runden der Verbindungsherstellung zu den Farm-Renderern abwartet. Die maximale Anzahl der Verbindungsversuche pro Runde entspricht der Anzahl der Renderer in der Farm.
+Die Eigenschaft `/retryDelay` legt die Zeit (in Sekunden) fest, die der Dispatcher zwischen den einzelnen Runden der Verbindungsherstellung zu den Farm-Renderern abwartet. Die maximale Anzahl der Dispatcher-Verbindungsversuche pro Runde entspricht der Anzahl der Renderer in der Farm.
 
 Der Dispatcher verwendet den Wert `"1"`, wenn `/retryDelay` nicht explizit definiert ist. Der Standardwert ist in der Regel angemessen.
 
@@ -1560,7 +1560,7 @@ Der Dispatcher verwendet den Wert `"1"`, wenn `/retryDelay` nicht explizit defin
 
 Mit der `/numberOfRetries`-Eigenschaft wird die maximale Anzahl der Runden an Verbindungsversuchen festgelegt, die der Dispatcher für die Renderer durchführt. Wenn der Dispatcher nach diesen Wiederholungen keine erfolgreiche Verbindung zu einem Renderer herstellen konnte, gibt er einen Fehler zurück.
 
-Die maximale Anzahl der Verbindungsversuche pro Runde entspricht der Anzahl der Renderer in der Farm. Daher lautet die maximale Anzahl von Verbindungsversuchen des Dispatchers ( `/numberOfRetries`) x (die Anzahl der Renderer).
+Die maximale Anzahl der Dispatcher-Verbindungsversuche pro Runde entspricht der Anzahl der Renderer in der Farm. Die maximale Anzahl der Dispatcher-Verbindungsversuche berechnet sich daher wie folgt: (`/numberOfRetries`) x (Anzahl der Renderer).
 
 Wenn der Wert nicht explizit definiert ist, ist der Standardwert `5`.
 
@@ -1575,7 +1575,7 @@ Um Anfragen erneut an andere Renderer zu senden, wenn die ursprüngliche Anfrage
 * Wenn bei einer Renderer-Anfrage der HTTP-Status 503 (Nicht verfügbar) zurückgegeben wird, sendet der Dispatcher die Anfrage an einen anderen Renderer.
 * Wenn bei einer Renderer-Anfrage ein HTTP-Status 50x (außer 503) zurückgegeben wird, sendet der Dispatcher eine Anfrage für die Seite, die in der Eigenschaft `health_check` konfiguriert ist.
    * Wenn bei der Konsistenzprüfung 500 (interner Server-Fehler) zurückgegeben wird, sendet der Dispatcher die ursprüngliche Anfrage an einen anderen Renderer.
-   * Wenn die Konsistenzprüfung den HTTP-Status 200 zurückgibt, gibt der Dispatcher den ursprünglichen HTTP 500-Fehler an den Client zurück.
+   * Wenn bei der Konsistenzprüfung der HTTP-Status 200 zurückgegeben wird, gibt der Dispatcher den ursprünglichen HTTP-Fehler 500 an den Client zurück.
 
 Um das Failover zu aktivieren, fügen Sie der Farm (oder Website) folgende Zeile hinzu:
 
