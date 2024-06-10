@@ -7,7 +7,7 @@ products: SG_EXPERIENCEMANAGER/DISPATCHER
 topic-tags: dispatcher
 content-type: reference
 exl-id: 1470b636-7e60-48cc-8c31-899f8785dafa
-source-git-commit: 9be9f5935c21ebbf211b5da52280a31772993c2e
+source-git-commit: 3b24e3eb54aa48c4891943b7458c57525897517f
 workflow-type: ht
 source-wordcount: '2929'
 ht-degree: 100%
@@ -348,7 +348,7 @@ Die folgende Beispieldatei „httpd.conf“ konfiguriert zwei virtuelle Hosts f�
 
 * Das Basisverzeichnis jeder einzelnen virtuellen Domain ist das Verzeichnis im Dispatcher-Cache, das die Seiten der Site enthält. (Zeilen 19 und 35).
 * Die URL-Neuschreibungsregel für jede virtuelle Domain ist ein regulärer Ausdruck. Der Pfad der angeforderten Seite erhält den regulären Ausdruck als Präfix. Es wird der Pfad zu den Seiten im Cache als Präfix vorangestellt. (Zeilen 19 und 35).
-* Die Eigenschaft `DispatherUseProcessedURL` ist auf `1` festgelegt. (Zeile 1).
+* Die Eigenschaft `DispatcherUseProcessedURL` ist auf `1` festgelegt. (Zeile 1).
 
 Beispielsweise führt der Webserver die folgenden Aktionen durch, wenn er eine Anforderung mit der URL `https://brandA.com/en/products.html` erhält:
 
