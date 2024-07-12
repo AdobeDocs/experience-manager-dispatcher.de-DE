@@ -3,7 +3,7 @@ title: Konfigurieren des AEM Dispatchers
 description: Erfahren Sie, wie Sie den Dispatcher konfigurieren. Informationen über die Unterstützung für IPv4 und IPv6, Konfigurationsdateien, Umgebungsvariablen und die Benennung der Instanz. Weitere Informationen über das Definieren von Farmen, das Identifizieren von virtuellen Hosts und mehr.
 exl-id: 91159de3-4ccb-43d3-899f-9806265ff132
 source-git-commit: 9be9f5935c21ebbf211b5da52280a31772993c2e
-workflow-type: ht
+workflow-type: tm+mt
 source-wordcount: '8876'
 ht-degree: 100%
 
