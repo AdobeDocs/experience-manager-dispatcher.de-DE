@@ -6,7 +6,7 @@ content-type: reference
 products: SG_EXPERIENCEMANAGER/6.4
 exl-id: b55c7a34-d57b-4d45-bd83-29890f1524de
 source-git-commit: 5f743be9c143e1e720e59304feebaa2e272dad87
-workflow-type: ht
+workflow-type: tm+mt
 source-wordcount: '1062'
 ht-degree: 100%
 

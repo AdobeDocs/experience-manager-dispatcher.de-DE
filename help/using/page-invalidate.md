@@ -12,7 +12,7 @@ exl-id: 90eb6a78-e867-456d-b1cf-f62f49c91851
 source-git-commit: 9be9f5935c21ebbf211b5da52280a31772993c2e
 workflow-type: tm+mt
 source-wordcount: '1407'
-ht-degree: 100%
+ht-degree: 98%
 
 ---
 
@@ -169,7 +169,7 @@ page_path1
 page_pathn
 ```
 
-Die Seitenpfade für das unmittelbare erneute Zwischenspeichern werden im Nachrichtentext in getrennten Zeilen aufgeführt. Der Wert von `CQ-Handle` ist der Pfad einer Seite, die die erneut zwischenzuspeichernde Seite ungültig macht. (Siehe Parameter `/statfileslevel` des Konfigurationselements [Cache](dispatcher-configuration.md#main-pars_146_44_0010)) Die folgende Beispiel-HTTP-Anfragemeldung löscht und wiederholt `/content/geometrixx-outdoors/en.html page`:
+Die Seitenpfade für das unmittelbare erneute Zwischenspeichern werden im Nachrichtentext in getrennten Zeilen aufgeführt. Der Wert von `CQ-Handle` ist der Pfad einer Seite, die die erneut zwischenzuspeichernde Seite ungültig macht. (Siehe den `/statfileslevel` des Konfigurationselements [Cache](dispatcher-configuration.md#main-pars_146_44_0010).) Die folgende Beispiel-HTTP-Anfragenachricht löscht und speichert die `/content/geometrixx-outdoors/en.html page` zwischen:
 
 ```xml
 POST /dispatcher/invalidate.cache HTTP/1.1  

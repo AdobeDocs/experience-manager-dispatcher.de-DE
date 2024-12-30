@@ -10,9 +10,9 @@ internal: n
 snippet: y
 exl-id: ec378409-ddb7-4917-981d-dbf2198aca98
 source-git-commit: 971cffd4f7ba8b1fa88a8af620a723ce59957007
-workflow-type: ht
+workflow-type: tm+mt
 source-wordcount: '1305'
-ht-degree: 100%
+ht-degree: 98%
 
 ---
 
@@ -139,7 +139,7 @@ Erstellen oder beziehen Sie von einer Zertifizierungsstelle signierte Zertifikat
 
 #### Erstellen einer Zertifizierungsstelle  {#creating-your-ca}
 
-Wenn Sie als Zertifizierungsstelle fungieren, verwenden Sie [OpenSSL](https://www.openssl.org/) zum Erstellen der Zertifizierungsstelle, die die Server- und Client-Zertifikate signiert. (Sie müssen die OpenSSL-Bibliotheken installiert haben.) Wenn Sie eine externe Zertifizierungsstelle verwenden, führen Sie dieses Verfahren nicht durch.
+Wenn Sie als Zertifizierungsstelle fungieren, verwenden Sie [OpenSSL](https://www.openssl.org/) zum Erstellen der Zertifizierungsstelle, die die Server- und Client-Zertifikate signiert. (Die OpenSSL-Bibliotheken müssen installiert sein.) Wenn Sie eine Drittanbieter-Zertifizierungsstelle verwenden, führen Sie dieses Verfahren nicht durch.
 
 1. Öffnen Sie ein Terminal-Fenster und ändern Sie das aktuelle Verzeichnis in das Verzeichnis, in dem sich die Datei `CA.sh` befindet, beispielsweise `/usr/local/ssl/misc`.
 1. Um die Zertifizierungsstelle zu erstellen, geben Sie den folgenden Befehl ein und legen Sie dann Werte fest, wenn Sie dazu aufgefordert werden:
