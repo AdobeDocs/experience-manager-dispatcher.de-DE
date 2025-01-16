@@ -3,9 +3,9 @@ title: Konfigurieren des AEM Dispatchers
 description: Erfahren Sie, wie Sie den Dispatcher konfigurieren. Informationen über die Unterstützung für IPv4 und IPv6, Konfigurationsdateien, Umgebungsvariablen und die Benennung der Instanz. Weitere Informationen über das Definieren von Farmen, das Identifizieren von virtuellen Hosts und mehr.
 exl-id: 91159de3-4ccb-43d3-899f-9806265ff132
 source-git-commit: 23dde3b2ebc6a63d5e1c50e5877338c3bd09d5d2
-workflow-type: tm+mt
+workflow-type: ht
 source-wordcount: '8938'
-ht-degree: 99%
+ht-degree: 100%
 
 ---
 
@@ -420,7 +420,7 @@ Das Verzeichnis, in dem die Sitzungsinformationen gespeichert werden. Wenn das V
 
 >[!CAUTION]
 >
-> Wenn Sie den Unterparameter für das Verzeichnis konfigurieren, verweisen Sie **nicht** auf den Stammordner (`/directory "/"`), da dies schwerwiegende Probleme verursachen kann.  Geben Sie immer den Pfad zu dem Ordner an, in dem die Sitzungsinformationen gespeichert werden. z. B.:
+> Wenn Sie den Unterparameter für das Verzeichnis konfigurieren, verweisen Sie **nicht** auf den Stammordner (`/directory "/"`), da dies schwerwiegende Probleme verursachen kann. Geben Sie immer den Pfad zu dem Ordner an, in dem die Sitzungsinformationen gespeichert werden. Zum Beispiel:
 
 ```xml
 /sessionmanagement
@@ -626,7 +626,7 @@ Bei dem folgenden Beispiel-Filterabschnitt verweigert der Dispatcher Anfragen f�
 
 Anfragen für explizit verweigerte Bereiche führen zur Rückgabe des Fehler-Codes 404 (Seite nicht gefunden).
 
-#### Beispielfilter: Zugriff auf bestimmte Bereiche verweigern  {#example-filter-deny-access-to-specific-areas}
+#### Beispielfilter: Zugriff auf bestimmte Bereiche verweigern {#example-filter-deny-access-to-specific-areas}
 
 Mit Filtern können Sie den Zugriff auf bestimmte Elemente verweigern, z. B. ASP-Seiten und sensible Bereiche innerhalb einer Veröffentlichungsinstanz. Mit dem folgenden Filter wird der Zugriff auf ASP-Seiten verweigert:
 
@@ -698,7 +698,7 @@ Mit dem nachstehenden Regelbeispiel wird der Inhaltsabruf aus dem `/content`-Pfa
 Wenn Sie den Dispatcher konfigurieren, schränken Sie externe Zugriffe so weit wie möglich ein. Im folgenden Beispiel wird externen Besucherinnen und Besuchern ein minimaler Zugriff gewährt:
 
 * `/content`
-* gemischte Inhalte, wie z. B. Designs und Client-Bibliotheken, z. B.:
+* gemischte Inhalte, wie z. B. Designs und Client-Bibliotheken, Zum Beispiel:
 
    * `/etc/designs/default*`
    * `/etc/designs/mydesign*`
@@ -946,9 +946,9 @@ Führen Sie die folgenden Schritte aus, um den Zugriff auf Vanity-URLs zu aktivi
 1. Ergänzen Sie den `/vanity_urls`-Abschnitt, der sich unter `/farms` befindet.
 1. Starten Sie den Apache-Webserver neu.
 
-Mit Dispatcher **Version 4.3** 6 wurde ein neuer `/loadOnStartup` hinzugefügt. Mithilfe dieses Parameters können Sie das Laden von Vanity-URLs beim Start wie folgt konfigurieren:
+Mit Dispatcher **Version 4.3.6** wurde ein neuer Parameter `/loadOnStartup` hinzugefügt. Mithilfe dieses Parameters können Sie das Laden von Vanity-URLs beim Start wie folgt konfigurieren:
 
-Durch Hinzufügen von `/loadOnStartup 0` (siehe Beispiel unten) können Sie das Laden von Vanity-URLs beim Start deaktivieren.
+Durch Hinzufügen von `/loadOnStartup 0` (siehe das Beispiel unten) können Sie das Laden von Vanity-URLs beim Start deaktivieren.
 
 ```
 /vanity_urls {
@@ -959,9 +959,9 @@ Durch Hinzufügen von `/loadOnStartup 0` (siehe Beispiel unten) können Sie das 
       } 
 ```
 
-Während `/loadOnStartup 1` die Vanity-URLs beim Start lädt. Beachten Sie, dass `/loadOnStartup 1` der aktuelle Standardwert für diesen Parameter ist.
+`/loadOnStartup 1` lädt dagegen die Vanity-URLs beim Start. Beachten Sie, dass `/loadOnStartup 1` der aktuelle Standardwert für diesen Parameter ist.
 
-## Weiterleiten von Syndizierungsanfragen – `/propagateSyndPost`  {#forwarding-syndication-requests-propagatesyndpost}
+## Weiterleiten von Syndizierungsanfragen – `/propagateSyndPost` {#forwarding-syndication-requests-propagatesyndpost}
 
 Syndizierungsanfragen beziehen sich nur auf den Dispatcher, sodass sie standardmäßig nicht an den Renderer (z. B. eine AEM-Instanz) gesendet werden.
 
@@ -1012,7 +1012,7 @@ Ein Cacheabschnitt kann beispielsweise wie folgt aussehen:
 >
 >Informationen zum berechtigungsbezogenen Zwischenspeichern finden Sie unter [Zwischenspeichern von geschütztem Inhalt](permissions-cache.md).
 
-### Festlegen des Cacheordners  {#specifying-the-cache-directory}
+### Festlegen des Cacheordners {#specifying-the-cache-directory}
 
 Die Eigenschaft `/docroot` identifiziert den Ordner, in dem die Cachedateien gespeichert werden.
 
@@ -1232,7 +1232,7 @@ Die AEM-Integration in Adobe Analytics liefert Konfigurationsdaten in einer Date
 }
 ```
 
-### Verwenden von benutzerdefinierten Skripts zur Invalidierung  {#using-custom-invalidation-scripts}
+### Verwenden von benutzerdefinierten Skripts zur Invalidierung {#using-custom-invalidation-scripts}
 
 Die Eigenschaft `/invalidateHandler` ermöglicht es Ihnen, ein Skript zu definieren, das bei jeder vom Dispatcher empfangenen Invalidierungsanfrage aufgerufen wird.
 
@@ -1281,9 +1281,9 @@ Weitere Informationen zu Glob-Eigenschaften finden Sie unter [Entwerfen von Must
 >
 >Es wird empfohlen, dass Sie `/allowedClients` definieren.
 >
->Falls Sie darauf verzichten, kann jeder Client einen Aufruf zum Leeren des Caches ausgeben. Wenn dies wiederholt geschieht, kann dadurch die Site-Performance stark beeinträchtigt werden. 
+>Falls Sie darauf verzichten, kann jeder Client einen Aufruf zum Leeren des Caches ausgeben. Wenn dies wiederholt geschieht, kann dadurch die Site-Performance stark beeinträchtigt werden.
 
-### Ignorieren von URL-Parametern  {#ignoring-url-parameters}
+### Ignorieren von URL-Parametern {#ignoring-url-parameters}
 
 Im `ignoreUrlParams`-Abschnitt wird definiert, welche URL-Parameter bei der Prüfung, ob eine Seite zwischengespeichert wird oder aus dem Cache geliefert wird, ignoriert werden sollen:
 
@@ -1462,7 +1462,7 @@ Die Bewertung für eine Renderer-Kategorie basiert auf vorherigen Antwortzeiten 
 >
 >Wenn Sie keinen Lastenausgleich verwenden, können Sie diesen Abschnitt überspringen.
 
-### Definieren von Statistikkategorien  {#defining-statistics-categories}
+### Definieren von Statistikkategorien {#defining-statistics-categories}
 
 Definieren Sie eine Kategorie für jeden Dokumenttyp, für den Sie Statistiken zur Renderer-Auswahl erheben möchten. Der Abschnitt `/statistics` enthält einen Abschnitt `/categories`. Wenn Sie eine Kategorie definieren möchten, fügen Sie unter dem Abschnitt `/categories` eine Zeile mit folgendem Format hinzu:
 
@@ -1571,7 +1571,7 @@ Der Dispatcher verwendet den Wert `"1"`, wenn `/retryDelay` nicht explizit defin
 /retryDelay "1"
 ```
 
-### Konfigurieren der Wiederholungsanzahl  {#configuring-the-number-of-retries}
+### Konfigurieren der Wiederholungsanzahl {#configuring-the-number-of-retries}
 
 Mit der `/numberOfRetries`-Eigenschaft wird die maximale Anzahl der Runden an Verbindungsversuchen festgelegt, die der Dispatcher für die Renderer durchführt. Wenn der Dispatcher nach diesen Wiederholungen keine erfolgreiche Verbindung zu einem Renderer herstellen konnte, gibt er einen Fehler zurück.
 
@@ -1641,7 +1641,7 @@ Die `glob`-Werte können Platzhalterzeichen und alphanumerische Zeichen enthalte
 | Platzhalterzeichen | Beschreibung | Beispiele |
 |--- |--- |--- |
 | `*` | Entspricht null oder mehreren aufeinanderfolgenden Instanzen eines Zeichens in der Zeichenfolge. Das letzte Zeichen der Übereinstimmung wird durch eine der folgenden Situationen bestimmt: <br/>Ein Zeichen in der Zeichenfolge stimmt mit dem nächsten Zeichen im Muster überein, und das Musterzeichen verfügt über die folgenden Eigenschaften:<br/><ul><li>Es handelt sich nicht um ein `*`</li><li>Es handelt sich nicht um ein `?`</li><li>Ein Buchstabenzeichen (einschließlich Leerzeichen) oder eine Zeichenklasse</li><li>Das Ende des Musters ist erreicht.</li></ul>Innerhalb einer Zeichenklasse wird das Zeichen wörtlich interpretiert. | `*/geo*` Entspricht allen Seiten unter den Knoten `/content/geometrixx` und `/content/geometrixx-outdoors`. Die folgenden HTTP-Anforderungen entsprechen dem glob-Muster: <br/><ul><li>`"GET /content/geometrixx/en.html"`</li><li>`"GET /content/geometrixx-outdoors/en.html"` </li></ul><br/> `*outdoors/*` <br/>Entspricht allen Seiten unter dem Knoten `/content/geometrixx-outdoors`. Die folgende HTTP-Anforderung entspricht beispielsweise dem glob-Muster: <br/><ul><li>`"GET /content/geometrixx-outdoors/en.html"`</li></ul> |
-| `?` | Entspricht einem beliebigen einzelnen Zeichen Zu benutzen außerhalb von Zeichenklassen. Innerhalb einer Zeichenklasse wird dieses Zeichen literal (&quot;wörtlich&quot;) interpretiert. | `*outdoors/??/*`<br/>Entspricht den Seiten für eine beliebige Sprache der Site „geometrixx-outdoors“. Die folgende HTTP-Anforderung entspricht beispielsweise dem glob-Muster: <br/><ul><li>`"GET /content/geometrixx-outdoors/en/men.html"`</li></ul><br/>Die folgende Anforderung entspricht nicht dem glob-Muster: <br/><ul><li>&quot;GET /content/geometrixx-outdoors/en.html&quot;</li></ul> |
+| `?` | Entspricht einem beliebigen einzelnen Zeichen. Zu benutzen außerhalb von Zeichenklassen. Innerhalb einer Zeichenklasse wird dieses Zeichen literal (&quot;wörtlich&quot;) interpretiert. | `*outdoors/??/*`<br/>Entspricht den Seiten für eine beliebige Sprache der Site „geometrixx-outdoors“. Die folgende HTTP-Anforderung entspricht beispielsweise dem glob-Muster: <br/><ul><li>`"GET /content/geometrixx-outdoors/en/men.html"`</li></ul><br/>Die folgende Anforderung entspricht nicht dem glob-Muster: <br/><ul><li>&quot;GET /content/geometrixx-outdoors/en.html&quot;</li></ul> |
 | `[ and ]` | Markiert den Anfang und das Ende einer Zeichenklasse. Zeichenklassen können einen oder mehrere Zeichenbereiche und einzelne Zeichen enthalten.<br/>Eine Übereinstimmung tritt auf, wenn das Zielzeichen einem Zeichen in der Zeichenklasse oder innerhalb eines bestimmten Bereichs entspricht.<br/>Wenn die schließende Klammer nicht vorhanden ist, liefert das Muster keine Treffer. | `*[o]men.html*`<br/> Entspricht der folgenden HTTP-Anfrage:<br/><ul><li>`"GET /content/geometrixx-outdoors/en/women.html"`</li></ul><br/>Entspricht nicht der folgenden HTTP-Anfrage:<br/><ul><li>`"GET /content/geometrixx-outdoors/en/men.html"`</li></ul><br/> `*[o/]men.html*` <br/>Entspricht den folgenden HTTP-Anfragen: <br/><ul><li>`"GET /content/geometrixx-outdoors/en/women.html"`</li><li>`"GET /content/geometrixx-outdoors/en/men.html"`</li></ul> |
 | `-` | Steht für einen Zeichenbereich. Zur Verwendung in Zeichenklassen. Außerhalb einer Zeichenklasse wird dieses Zeichen wörtlich interpretiert. | `*[m-p]men.html*` Entspricht der folgenden HTTP-Anforderung: <br/><ul><li>`"GET /content/geometrixx-outdoors/en/women.html"`</li></ul>Entspricht nicht der folgenden HTTP-Anforderung:<br/><ul><li>`"GET /content/geometrixx-outdoors/en/men.html"`</li></ul> |
 | `!` | Schließt das nachfolgende Zeichen oder die nachfolgende Zeichenklasse aus. Verwenden Sie dies nur zum Ausschließen von Zeichen und Zeichenbereichen innerhalb von Zeichenklassen. Entspricht `^ wildcard`. <br/>Außerhalb einer Zeichenklasse wird dieses Zeichen wörtlich interpretiert. | `*[!o]men.html*`<br/> Entspricht der folgenden HTTP-Anfrage: <br/><ul><li>`"GET /content/geometrixx-outdoors/en/men.html"`</li></ul><br/>Entspricht nicht der folgenden HTTP-Anfrage:<br/><ul><li>`"GET /content/geometrixx-outdoors/en/women.html"`</li></ul><br/>`*[!o!/]men.html*`<br/>Entspricht nicht der folgenden HTTP-Anfrage:<br/><ul><li>`"GET /content/geometrixx-outdoors/en/women.html"` oder `"GET /content/geometrixx-outdoors/en/men. html"`</li></ul> |
@@ -1801,7 +1801,7 @@ Außerdem wird ein Ereignis protokolliert, wenn eine Datei angefordert wird, die
 [Thu Mar 03 14:42:45 2016] [T] [11831] 'GET /content.infinity.json HTTP/1.1' was blocked because of /0082
 ```
 
-## Bestätigen der normalen Funktionsweise  {#confirming-basic-operation}
+## Bestätigen der normalen Funktionsweise {#confirming-basic-operation}
 
 Um die normale Funktionsweise und Interaktion des Webservers, des Dispatchers und der AEM-Instanz zu prüfen, können Sie folgende Schritte ausführen:
 
@@ -1824,7 +1824,7 @@ Um die normale Funktionsweise und Interaktion des Webservers, des Dispatchers un
 1. Um festzustellen, ob der Cache korrekt geleert wird, aktivieren Sie eine Seite.
 1. Wenn alles ordnungsgemäß funktioniert, können Sie das `loglevel` auf `0` herabstufen.
 
-## Verwenden mehrerer Dispatcher  {#using-multiple-dispatchers}
+## Verwenden mehrerer Dispatcher {#using-multiple-dispatchers}
 
 In komplexen Umgebungen können Sie mehrere Dispatcher verwenden. Folgende Szenarien sind möglich:
 
