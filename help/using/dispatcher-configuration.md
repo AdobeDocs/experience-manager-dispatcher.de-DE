@@ -3,9 +3,9 @@ title: Konfigurieren des AEM Dispatchers
 description: Erfahren Sie, wie Sie den Dispatcher konfigurieren. Informationen über die Unterstützung für IPv4 und IPv6, Konfigurationsdateien, Umgebungsvariablen und die Benennung der Instanz. Weitere Informationen über das Definieren von Farmen, das Identifizieren von virtuellen Hosts und mehr.
 exl-id: 91159de3-4ccb-43d3-899f-9806265ff132
 source-git-commit: da9bf0c1f4cceccfc6be9f4871a21d2bb703f0a4
-workflow-type: tm+mt
+workflow-type: ht
 source-wordcount: '8938'
-ht-degree: 99%
+ht-degree: 100%
 
 ---
 
@@ -17,7 +17,7 @@ ht-degree: 99%
 
 In den folgenden Abschnitten wird beschrieben, wie Sie verschiedene Aspekte des Dispatchers konfigurieren.
 
-## Unterstützung für IPv6 und IPv4  {#support-for-ipv-and-ipv}
+## Unterstützung für IPv6 und IPv4 {#support-for-ipv-and-ipv}
 
 Alle Elemente von AEM und Dispatcher können sowohl in IPv4- als auch in IPv6-Netzwerken installiert werden. Siehe [IPV4 und IPV6](https://experienceleague.adobe.com/de/docs/experience-manager-65/content/implementing/deploying/introduction/technical-requirements#ipv-and-ipv).
 
@@ -199,7 +199,7 @@ Jede Farmeigenschaft kann die folgenden untergeordneten Eigenschaften enthalten:
 | [/renders](#defining-page-renderers-renders) | Die Server, welche die gerenderten Seiten liefern (in der Regel AEM-Veröffentlichungsinstanzen). |
 | [/filter](#configuring-access-to-content-filter) | Definiert die URLs, auf die der Dispatcher den Zugriff ermöglicht. |
 | [/vanity_urls](#enabling-access-to-vanity-urls-vanity-urls) | Konfiguriert den Zugriff auf Vanity-URLs. |
-| [/propagateSyndPost](#forwarding-syndication-requests-propagatesyndpost) | Unterstützung bei der Weiterleitung von Syndizierungsanforderungen |
+| [/propagateSyndPost](#forwarding-syndication-requests-propagatesyndpost) | Unterstützung bei der Weiterleitung von Syndizierungsanforderungen. |
 | [/cache](#configuring-the-dispatcher-cache-cache) | Konfiguriert das Cache-Verhalten. |
 | [/statistics](#configuring-load-balancing-statistics) | Definieren von statistischen Kategorien zur Berechnung des Lastenausgleichs. |
 | [/stickyConnectionsFor](#identifying-a-sticky-connection-folder-stickyconnectionsfor) | Der Ordner, der „Sticky“-Dokumente enthält. |
@@ -262,7 +262,7 @@ Die Eigenschaft `/clientheaders` definiert eine Liste von HTTP-Headern, die der 
 Standardmäßig leitet der Dispatcher die Standard-HTTP-Header an die AEM-Instanz weiter. In einigen Fällen kann es notwendig werden, zusätzliche Header weiterzuleiten oder bestimmte Header zu entfernen:
 
 * Hinzufügen von Headern, z. B. benutzerdefinierten Headern, die von der AEM-Instanz in der HTTP-Anfrage erwartet werden.
-* Entfernen von Headern wie Authentifizierungs-Headern, die nur für den Webserver relevant sind
+* Entfernen von Headern wie Authentifizierungs-Headern, die nur für den Webserver relevant sind.
 
 Wenn Sie die Header zur Durchleitung anpassen, müssen Sie diese in einer vollständigen Header-Liste angeben, die auch die normalerweise standardmäßig eingeschlossenen Header umfasst.
 
@@ -320,7 +320,7 @@ Die Eigenschaft `/virtualhosts` definiert eine Liste aller Hostnamen- und URI-Ko
 
 * `scheme`: (optional) Entweder `https://` oder `https://.`
 * `host`: Der Name oder die IP-Adresse des Hostcomputers und die Portnummer, falls erforderlich. (Siehe [https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.23](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.23).)
-* `uri`: (Optional) Der Pfad zu den Ressourcen
+* `uri`: (Optional) Der Pfad zu den Ressourcen.
 
 Mit der folgenden Beispielkonfiguration werden Anfragen für die Domains `.com` und `.ch` von „myCompany“ und alle Domains von „mySubDivision“ verarbeitet:
 
@@ -355,7 +355,7 @@ Der Dispatcher ermittelt wie folgt den passendsten Wert für den virtuellen Host
 * Wenn keine `virtualhosts`-Werte die Teile `scheme` und `uri` aufweisen, die mit dem `scheme` und `uri` der Anfrage übereinstimmen, wird der erste virtuelle Host verwendet, der mit dem Teil `host` der Anfrage übereinstimmt.
 * Wenn keine `virtualhosts`-Werte einen Host-Teil haben, der mit dem Host der Anfrage übereinstimmt, wird der oberste virtuelle Host der obersten Farm verwendet.
 
-Daher sollten Sie Ihren standardmäßigen virtuellen Host an den Anfang der Eigenschaft `virtualhosts` setzen. Platzieren Sie sie in der obersten Farm Ihrer `dispatcher.any`.
+Daher sollten Sie Ihren standardmäßigen virtuellen Host an den Anfang der Eigenschaft `virtualhosts` setzen. Platzieren Sie ihn in der obersten Farm Ihrer Datei `dispatcher.any`.
 
 ### Beispiel für die Auflösung von virtuellen Hosts {#example-virtual-host-resolution}
 
@@ -1208,7 +1208,7 @@ Weitere Informationen zu Glob-Eigenschaften finden Sie unter [Entwerfen von Must
 
 Diese Konfiguration löst die folgende Aktivität aus, wenn `/content/wknd/us/en` aktiviert wird:
 
-* Alle Dateien mit dem Muster „en.*“ werden aus dem Ordner `/content/wknd/us` entfernt.
+* Alle Dateien mit dem Muster en.* werden aus dem Ordner `/content/wknd/us` entfernt.
 * Der Ordner `/content/wknd/us/en./_jcr_content` wird entfernt.
 * Alle anderen Dateien, die mit der `/invalidate`-Konfiguration übereinstimmen, werden nicht sofort gelöscht. Diese Dateien werden bei der nächsten Anfrage gelöscht. Im Beispiel wird `/content/wknd.html` nicht sofort gelöscht, sondern erst bei Anforderung von `/content/wknd.html`.
 
@@ -1366,7 +1366,7 @@ Im Folgenden ein Beispiel aus der Standardkonfiguration:
 >
 >Gehen Sie wie folgt vor, wenn der Dispatcher ETag-Antwort-Header von AEM speichern und übermitteln soll:
 >
->* Fügen Sie den Header-Namen in den Abschnitt `/cache/headers` ein.
+>* Fügen Sie den Header-Namen in den Abschnitt `/cache/headers`ein.
 >* Fügen Sie die folgende [Apache-Anweisung](https://httpd.apache.org/docs/2.4/mod/core.html#fileetag) im Dispatcher-Abschnitt hinzu:
 >
 >```xml
@@ -1377,15 +1377,15 @@ Im Folgenden ein Beispiel aus der Standardkonfiguration:
 
 Die Eigenschaft `mode` gibt an, welche Dateiberechtigungen auf neue Verzeichnisse und Dateien im Cache angewendet werden. Die `umask` des aufrufenden Prozesses schränkt diese Einstellung ein. Es handelt sich um eine Oktalzahl, die aus der Summe eines oder mehrerer der folgenden Werte gebildet wird:
 
-* `0400`: Lesen durch die Inhaberin oder den Inhaber zulassen
-* `0200`: Schreiben durch die Inhaberin oder den Inhaber zulassen
-* `0100`: Verzeichnissuche für die Inhaberin oder den Inhaber zulassen
-* `0040`: Lesen durch Gruppenmitglieder zulassen
+* `0400`: Lesen durch die Inhaberin oder den Inhaber zulassen.
+* `0200`: Schreiben durch die Inhaberin oder den Inhaber zulassen.
+* `0100`: Verzeichnissuche für die Inhaberin oder den Inhaber zulassen.
+* `0040`: Lesen durch Gruppenmitglieder zulassen.
 * `0020`: Schreiben durch Gruppenmitglieder zulassen
-* `0010`: Verzeichnissuche für Gruppenmitglieder zulassen
-* `0004`: Lesen durch andere zulassen
-* `0002`: Schreiben durch andere zulassen
-* `0001`: Verzeichnissuche für andere zulassen
+* `0010`: Verzeichnissuche für Gruppenmitglieder zulassen.
+* `0004`: Lesen durch andere zulassen.
+* `0002`: Schreiben durch andere zulassen.
+* `0001`: Verzeichnissuche für andere zulassen.
 
 Der Standardwert ist `0755`. Dies ermöglicht der Inhaberin oder dem Inhaber, zu lesen, zu schreiben oder zu suchen, und der Gruppe sowie anderen, zu lesen oder zu suchen.
 
@@ -1640,7 +1640,7 @@ Die `glob`-Werte können Platzhalterzeichen und alphanumerische Zeichen enthalte
 
 | Platzhalterzeichen | Beschreibung | Beispiele |
 |--- |--- |--- |
-| `*` | Entspricht null oder mehreren aufeinanderfolgenden Instanzen eines Zeichens in der Zeichenfolge. Das letzte Zeichen der Übereinstimmung wird durch eine der folgenden Situationen bestimmt: <br/>Ein Zeichen in der Zeichenfolge stimmt mit dem nächsten Zeichen im Muster überein, und das Musterzeichen verfügt über die folgenden Eigenschaften:<br/><ul><li>Es handelt sich nicht um ein `*`</li><li>Es handelt sich nicht um ein `?`</li><li>Ein Buchstabenzeichen (einschließlich Leerzeichen) oder eine Zeichenklasse</li><li>Das Ende des Musters ist erreicht.</li></ul>Innerhalb einer Zeichenklasse wird das Zeichen wörtlich interpretiert. | `*/geo*` Entspricht allen Seiten unter den Knoten `/content/geometrixx` und `/content/geometrixx-outdoors`. Die folgenden HTTP-Anforderungen entsprechen dem glob-Muster: <br/><ul><li>`"GET /content/geometrixx/en.html"`</li><li>`"GET /content/geometrixx-outdoors/en.html"` </li></ul><br/> `*outdoors/*` <br/>Entspricht allen Seiten unter dem Knoten `/content/geometrixx-outdoors`. Die folgende HTTP-Anforderung entspricht beispielsweise dem glob-Muster: <br/><ul><li>`"GET /content/geometrixx-outdoors/en.html"`</li></ul> |
+| `*` | Entspricht null oder mehreren aufeinanderfolgenden Instanzen eines Zeichens in der Zeichenfolge. Das letzte Zeichen der Übereinstimmung wird durch eine der folgenden Situationen bestimmt: <br/>Ein Zeichen in der Zeichenfolge stimmt mit dem nächsten Zeichen im Muster überein, und das Musterzeichen verfügt über die folgenden Eigenschaften:<br/><ul><li>Es handelt sich nicht um ein `*`</li><li>Es handelt sich nicht um ein `?`</li><li>Ein Buchstabenzeichen (einschließlich Leerzeichen) oder eine Zeichenklasse.</li><li>Das Ende des Musters ist erreicht.</li></ul>Innerhalb einer Zeichenklasse wird das Zeichen wörtlich interpretiert. | `*/geo*` Entspricht allen Seiten unter den Knoten `/content/geometrixx` und `/content/geometrixx-outdoors`. Die folgenden HTTP-Anforderungen entsprechen dem glob-Muster: <br/><ul><li>`"GET /content/geometrixx/en.html"`</li><li>`"GET /content/geometrixx-outdoors/en.html"` </li></ul><br/> `*outdoors/*` <br/>Entspricht allen Seiten unter dem Knoten `/content/geometrixx-outdoors`. Die folgende HTTP-Anforderung entspricht beispielsweise dem glob-Muster: <br/><ul><li>`"GET /content/geometrixx-outdoors/en.html"`</li></ul> |
 | `?` | Entspricht einem beliebigen einzelnen Zeichen. Zu benutzen außerhalb von Zeichenklassen. Innerhalb einer Zeichenklasse wird dieses Zeichen literal (&quot;wörtlich&quot;) interpretiert. | `*outdoors/??/*`<br/>Entspricht den Seiten für eine beliebige Sprache der Site „geometrixx-outdoors“. Die folgende HTTP-Anforderung entspricht beispielsweise dem glob-Muster: <br/><ul><li>`"GET /content/geometrixx-outdoors/en/men.html"`</li></ul><br/>Die folgende Anforderung entspricht nicht dem glob-Muster: <br/><ul><li>&quot;GET /content/geometrixx-outdoors/en.html&quot;</li></ul> |
 | `[ and ]` | Markiert den Anfang und das Ende einer Zeichenklasse. Zeichenklassen können einen oder mehrere Zeichenbereiche und einzelne Zeichen enthalten.<br/>Eine Übereinstimmung tritt auf, wenn das Zielzeichen einem Zeichen in der Zeichenklasse oder innerhalb eines bestimmten Bereichs entspricht.<br/>Wenn die schließende Klammer nicht vorhanden ist, liefert das Muster keine Treffer. | `*[o]men.html*`<br/> Entspricht der folgenden HTTP-Anfrage:<br/><ul><li>`"GET /content/geometrixx-outdoors/en/women.html"`</li></ul><br/>Entspricht nicht der folgenden HTTP-Anfrage:<br/><ul><li>`"GET /content/geometrixx-outdoors/en/men.html"`</li></ul><br/> `*[o/]men.html*` <br/>Entspricht den folgenden HTTP-Anfragen: <br/><ul><li>`"GET /content/geometrixx-outdoors/en/women.html"`</li><li>`"GET /content/geometrixx-outdoors/en/men.html"`</li></ul> |
 | `-` | Steht für einen Zeichenbereich. Zur Verwendung in Zeichenklassen. Außerhalb einer Zeichenklasse wird dieses Zeichen wörtlich interpretiert. | `*[m-p]men.html*` Entspricht der folgenden HTTP-Anforderung: <br/><ul><li>`"GET /content/geometrixx-outdoors/en/women.html"`</li></ul>Entspricht nicht der folgenden HTTP-Anforderung:<br/><ul><li>`"GET /content/geometrixx-outdoors/en/men.html"`</li></ul> |
@@ -1744,7 +1744,7 @@ The following table describes the wildcard characters.
 
 In der Webserver-Konfiguration können Sie Folgendes festlegen:
 
-* Den Speicherort der Dispatcher-Protokolldatei
+* Den Speicherort der Dispatcher-Protokolldatei.
 * Die Protokollierungsebene.
 
 Weitere Informationen finden Sie in der Dokumentation zum Webserver und in der Readme-Datei Ihrer Dispatcher-Instanz.
@@ -1757,7 +1757,7 @@ Wenn Sie einen **Apache**-Webserver verwenden, können Sie die Standardfunktione
 
 Diese Funktionalität rotiert Folgendes automatisch:
 
-* die Dispatcher-Protokolldatei mit einem Zeitstempel in der Erweiterung (`logs/dispatcher.log%Y%m%d`)
+* die Dispatcher-Protokolldatei mit einem Zeitstempel in der Erweiterung (`logs/dispatcher.log%Y%m%d`).
 * auf wöchentlicher Basis (60 x 60 x 24 x 7 = 604800 Sekunden).
 
 Weitere Informationen zu rotierenden und wechselnden Protokollen finden Sie in der Dokumentation zum Apache-Webserver. z. B. [Apache 2.4](https://httpd.apache.org/docs/2.4/logs.html).
@@ -1775,7 +1775,7 @@ Neben weiteren Verbesserungen beim Dispatcher wurde mit der Version 4.2.0 auch d
 Diese Funktion entspricht einer höheren Ebene als die Debug-Protokollierungsebene, bei der zusätzliche Informationen in den Protokollen angezeigt werden. Folgende Informationen werden protokolliert:
 
 * Werte der weitergeleiteten Header
-* Die Regel, die für eine bestimmte Aktion angewendet wurde
+* Die Regel, die für eine bestimmte Aktion angewendet wurde.
 
 Sie können die Ablaufprotokollierung aktivieren, indem Sie die Protokollierungsebene in Ihrem Webserver auf `4` festlegen.
 
@@ -1829,7 +1829,7 @@ Um die normale Funktionsweise und Interaktion des Webservers, des Dispatchers un
 In komplexen Umgebungen können Sie mehrere Dispatcher verwenden. Folgende Szenarien sind möglich:
 
 * ein Dispatcher zum Veröffentlichen einer Website im Intranet
-* ein zweiter Dispatcher mit einer anderen Adresse und anderen Sicherheitseinstellungen zum Veröffentlichen desselben Inhalts im Internet
+* ein zweiter Dispatcher mit einer anderen Adresse und anderen Sicherheitseinstellungen zum Veröffentlichen desselben Inhalts im Internet.
 
 In einem solchen Fall müssen Sie sicherstellen, dass jede Anfrage nur einen Dispatcher durchläuft. Ein Dispatcher verarbeitet keine Anfragen, die von einem anderen Dispatcher stammen. Stellen Sie daher sicher, dass beide Dispatcher direkt auf die AEM-Website zugreifen.
 
