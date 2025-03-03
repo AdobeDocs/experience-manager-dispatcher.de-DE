@@ -8,9 +8,9 @@ topic-tags: dispatcher
 content-type: reference
 exl-id: 1470b636-7e60-48cc-8c31-899f8785dafa
 source-git-commit: b8dc67a9633c1a459a2851f4be99a5fcbec7fe79
-workflow-type: tm+mt
+workflow-type: ht
 source-wordcount: '3008'
-ht-degree: 97%
+ht-degree: 100%
 
 ---
 
@@ -198,9 +198,9 @@ Virtuelle Hosts übernehmen den Eigenschaftswert [DispatcherConfig](dispatcher-i
 
 >[!NOTE]
 >
->In AEM as a Cloud Service muss eine separate vhost-Konfiguration mit einem DocumentRoot-Element auf einer höheren Ebene als jeder der Unterseiten verwendet werden. Dies wird im Archetyp standardmäßig behandelt. Wenn jedoch mehrere DocumentRoots verwendet werden, muss eine vhost-Konfiguration mit höherer Priorität verwendet werden, damit die Cache-Invalidierung für den gesamten Cache verarbeitet werden kann, da sie nicht für jede Site separat konfiguriert werden kann. Der ServerAlias dieser neuen Konfiguration muss den Host-Header „localhost“ akzeptieren.
+>In AEM as a Cloud Service muss eine separate vhost-Konfiguration mit einem DocumentRoot auf einer höheren Ebene als jeder der Unterseiten verwendet werden. Dies wird standardmäßig im Archetyp verarbeitet. Wenn jedoch mehrere DocumentRoots verwendet werden, muss eine vhost-Konfiguration mit höherer Priorität verwendet werden, damit die Cache-Invalidierung für den gesamten Cache verarbeitet werden kann, da sie nicht für jede Site separat konfiguriert werden kann. Der ServerAlias dieser neuen Konfiguration muss den Host-Header „localhost“ akzeptieren.
 
-### Konfigurieren des Dispatchers zur Verarbeitung mehrerer Domänen  {#configure-dispatcher-to-handle-multiple-domains}
+### Konfigurieren des Dispatchers zur Verarbeitung mehrerer Domains {#configure-dispatcher-to-handle-multiple-domains}
 
 Um URLs zu unterstützen, die Domain-Namen und ihre entsprechenden virtuellen Hosts umfassen, definieren Sie die folgenden Dispatcher-Farmen:
 
