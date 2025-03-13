@@ -3,9 +3,9 @@ title: Konfigurieren des AEM Dispatchers
 description: Erfahren Sie, wie Sie den Dispatcher konfigurieren. Informationen über die Unterstützung für IPv4 und IPv6, Konfigurationsdateien, Umgebungsvariablen und die Benennung der Instanz. Weitere Informationen über das Definieren von Farmen, das Identifizieren von virtuellen Hosts und mehr.
 exl-id: 91159de3-4ccb-43d3-899f-9806265ff132
 source-git-commit: a9ef9d7d2fe5c421cd8039579fd84961ea901def
-workflow-type: tm+mt
+workflow-type: ht
 source-wordcount: '8941'
-ht-degree: 99%
+ht-degree: 100%
 
 ---
 
@@ -1037,7 +1037,7 @@ Die Stat-Datei hat keinen Inhalt. Nach einer Inhaltsaktualisierung ändert der D
 
 Die Eigenschaft `/serveStaleOnError` steuert, ob der Dispatcher als invalidiert gekennzeichnete Dokumente zurückgibt, wenn der Render-Server einen Fehler zurückgibt. Wenn eine Stat-Datei geändert wird und zwischengespeicherten Inhalt invalidiert, löscht der Dispatcher standardmäßig den zwischengespeicherten Inhalt. Diese Aktion wird ausgeführt, wenn sie das nächste Mal angefordert wird.
 
-Wenn `/serveStaleOnError` auf `"1"` festgelegt ist, löscht der Dispatcher keine invalidierten Inhalte aus dem Cache, es sei denn, der Render-Server gibt eine „Erfolgreich“-Antwort zurück. Eine 502-, 503- oder 504-Antwort von AEM oder ein Verbindungs-Timeout führt dazu, dass Dispatcher den veralteten Inhalt bereitstellt und mit dem HTTP-Status und 111 antwortet (Erneute Überprüfung fehlgeschlagen).
+Wenn `/serveStaleOnError` auf `"1"` festgelegt ist, löscht der Dispatcher keine invalidierten Inhalte aus dem Cache, es sei denn, der Render-Server gibt eine „Erfolgreich“-Antwort zurück. Bei einer 502-, 503- oder 504-Antwort von AEM oder bei einer Verbindungszeitüberschreitung gibt der Dispatcher den veralteten Inhalt mit dem HTTP-Status 111 (Erneute Validierung fehlgeschlagen) zurück.
 
 ### Zwischenspeicherung bei Verwendung von Authentifizierung {#caching-when-authentication-is-used}
 
