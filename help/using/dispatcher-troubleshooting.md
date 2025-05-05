@@ -26,7 +26,7 @@ ht-degree: 100%
 
 >[!NOTE]
 >
->Weitere Informationen erhalten Sie auch in der [Dispatcher-Wissensdatenbank](https://helpx.adobe.com/de/experience-manager/kb/index/dispatcher.html), unter [Fehlerbehebung bei Problemen mit dem Leeren des Dispatchers](https://experienceleague.adobe.com/search.html?lang=en#q=troubleshooting%20dispatcher%20flushing%20issues&amp;sort=relevancy&amp;lang=de&amp;f:el_product=[Experience%20Manager]) sowie in den [am häufigsten gestellten Fragen zu Dispatcher-Problemen](dispatcher-faq.md).
+>Weitere Informationen erhalten Sie auch in der [Dispatcher-Wissensdatenbank](https://helpx.adobe.com/de/experience-manager/kb/index/dispatcher.html), unter [Fehlerbehebung bei Problemen mit dem Leeren des Dispatchers](https://experienceleague.adobe.com/search.html?lang=de#q=troubleshooting%20dispatcher%20flushing%20issues&amp;sort=relevancy&amp;lang=de&amp;f:el_product=[Experience%20Manager]) sowie in den [am häufigsten gestellten Fragen zu Dispatcher-Problemen](dispatcher-faq.md).
 
 ## Überprüfen der Basiskonfiguration {#check-the-basic-configuration}
 

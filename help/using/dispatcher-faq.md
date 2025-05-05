@@ -133,7 +133,7 @@ Lesen Sie hierzu die Seite [Replikation](https://experienceleague.adobe.com/de/d
 
 ### Wie kann ich Probleme bei der Dispatcher-Leerung beheben?
 
-Lesen Sie hierzu diese Artikel zur [Fehlerbehebung](https://experienceleague.adobe.com/search.html?lang=en#q=troubleshooting%20dispatcher%20flushing%20issues&amp;sort=relevancy&amp;lang=de&amp;f:el_product=[Experience%20Manager]).
+Lesen Sie hierzu diese Artikel zur [Fehlerbehebung](https://experienceleague.adobe.com/search.html?lang=de#q=troubleshooting%20dispatcher%20flushing%20issues&amp;sort=relevancy&amp;lang=de&amp;f:el_product=[Experience%20Manager]).
 
 Wenn der Dispatcher durch Löschvorgänge geleert wird, können Sie das Problem so umgehen, [wie in diesem Community-Blog-Beitrag von Sensei Martin beschrieben](https://mkalugin-cq.blogspot.com/2012/04/i-have-been-working-on-following.html).
 
