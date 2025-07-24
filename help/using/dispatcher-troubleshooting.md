@@ -1,5 +1,5 @@
 ---
-title: Beheben von Problemen beim Dispatcher
+title: Fehlerbehebung bei Dispatcher-Problemen
 description: Erfahren Sie mehr zur Fehlerbehebung bei Dispatcher-Problemen.
 cmgrlastmodified: 01.11.2007 08 22 29 [aheimoz]
 pageversionid: 1193211344162
@@ -9,14 +9,14 @@ products: SG_EXPERIENCEMANAGER/DISPATCHER
 topic-tags: dispatcher
 content-type: reference
 exl-id: 29f338ab-5d25-48a4-9309-058e0cc94cff
-source-git-commit: 0a1aa854ea286a30c3527be8fc7c0998726a663f
+source-git-commit: c41b4026a64f9c90318e12de5397eb4c116056d9
 workflow-type: tm+mt
-source-wordcount: '539'
-ht-degree: 100%
+source-wordcount: '472'
+ht-degree: 93%
 
 ---
 
-# Beheben von Problemen beim Dispatcher {#troubleshooting-dispatcher-problems}
+# Fehlerbehebung bei Dispatcher-Problemen {#troubleshooting-dispatcher-problems}
 
 >[!NOTE]
 >
@@ -26,7 +26,7 @@ ht-degree: 100%
 
 >[!NOTE]
 >
->Weitere Informationen erhalten Sie auch in der [Dispatcher-Wissensdatenbank](https://helpx.adobe.com/de/experience-manager/kb/index/dispatcher.html), unter [Fehlerbehebung bei Problemen mit dem Leeren des Dispatchers](https://experienceleague.adobe.com/search.html?lang=de#q=troubleshooting%20dispatcher%20flushing%20issues&amp;sort=relevancy&amp;lang=de&amp;f:el_product=[Experience%20Manager]) sowie in den [am häufigsten gestellten Fragen zu Dispatcher-Problemen](dispatcher-faq.md).
+>Weitere Informationen finden <!-- URL is 404[Dispatcher Knowledge Base](https://helpx.adobe.com/experience-manager/kb/index/dispatcher.html), -->[ in den Häufig gestellten Fragen ](https://experienceleague.adobe.com/search.html?lang=en#q=troubleshooting%20dispatcher%20flushing%20issues&sort=relevancy&lang=de&f:el_product=[Experience%20Manager]) Beheben von Problemen mit der Leerung in Dispatcher und [ Häufig gestellten Fragen zu ](dispatcher-faq.md)Dispatcher.
 
 ## Überprüfen der Basiskonfiguration {#check-the-basic-configuration}
 
@@ -54,14 +54,15 @@ IIS bietet verschiedene Werkzeuge für die Ablaufverfolgung, abhängig von der j
 
 Mit diesen Tools können Sie die Aktivität überwachen.
 
-## IIS und 404 (Nicht gefunden) {#iis-and-not-found}
+<!-- Both URLs in this topic 404! >
+## IIS and 404 Not Found {#iis-and-not-found}
 
-Wenn Sie IIS verwenden, wird möglicherweise in verschiedenen Situationen `404 Not Found` zurückgegeben. Wenn dies der Fall ist, finden Sie weitere Informationen in den folgenden Knowledgebase-Artikeln.
+When using IIS, you might experience `404 Not Found` being returned in various scenarios. If so, see the following Knowledge Base articles.
 
-* [IIS 6/7: POST-Methode gibt 404 zurück](https://helpx.adobe.com/de/experience-manager/kb/IIS6IsapiFilters.html)
-* [IIS 6: Anfragen an URLs mit Basispfad `/bin` geben `404 Not Found`](https://helpx.adobe.com/de/experience-manager/kb/RequestsToBinDirectoryFailInIIS6.html) zurück
+* [IIS 6/7: POST method returns 404](https://helpx.adobe.com/experience-manager/kb/IIS6IsapiFilters.html)
+* [IIS 6: Requests to URLs that contain the base path `/bin` return a `404 Not Found`](https://helpx.adobe.com/experience-manager/kb/RequestsToBinDirectoryFailInIIS6.html)
 
-Überprüfen Sie außerdem, ob das Cache-Stammverzeichnis des Dispatchers und das IIS-Basisverzeichnis auf denselben Ordner festgelegt wurden.
+Also check that the Dispatcher cache root and the IIS document root are set to the same directory. -->
 
 ## Probleme beim Löschen von Workflow-Modellen {#problems-deleting-workflow-models}
 

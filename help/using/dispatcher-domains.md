@@ -1,5 +1,5 @@
 ---
-title: Verwenden des Dispatchers mit mehreren Domains
+title: Verwenden von Dispatcher mit mehreren Domains
 description: Erfahren Sie, wie Sie mit dem Dispatcher Seitenanfragen in mehreren Webdomains verarbeiten.
 contentOwner: User
 cq-exporttemplate: /etc/contentsync/templates/geometrixx/page/rewrite
@@ -7,14 +7,16 @@ products: SG_EXPERIENCEMANAGER/DISPATCHER
 topic-tags: dispatcher
 content-type: reference
 exl-id: 1470b636-7e60-48cc-8c31-899f8785dafa
-source-git-commit: b8dc67a9633c1a459a2851f4be99a5fcbec7fe79
-workflow-type: ht
-source-wordcount: '3008'
-ht-degree: 100%
+source-git-commit: c41b4026a64f9c90318e12de5397eb4c116056d9
+workflow-type: tm+mt
+source-wordcount: '2986'
+ht-degree: 89%
 
 ---
 
-# Verwenden des Dispatchers mit mehreren Domains {#using-dispatcher-with-multiple-domains}
+# Verwenden von Dispatcher mit mehreren Domains {#using-dispatcher-with-multiple-domains}
+
+<!-- This article is missing required metadata image ALT tags throughout -->
 
 >[!NOTE]
 >
@@ -54,12 +56,12 @@ Wenn Clients HTTP-Anfragen an den Webserver senden, muss die URL der angefordert
 
 ## Cache-Invalidierung
 
-Wenn Flush-Replikationsagenten eines Dispatchers anfordern, dass der Dispatcher zwischengespeicherte Dateien invalidiert, muss der Pfad des Inhalts im Repository zum Inhalt im Cache aufgelöst werden.
+Wenn `Dispatcher Flush` Replikationsagenten Dispatcher anfordern, dass zwischengespeicherte Dateien ungültig gemacht werden, muss der Pfad des Inhalts im Repository auf den Inhalt im Cache aufgelöst werden.
 
 ![](assets/chlimage_1-9.png)
 
 * A: Eine Seite wird in der AEM-Autoreninstanz aktiviert und der Inhalt wird in die Veröffentlichungsinstanz repliziert.
-* B: Der Flush-Agent des Dispatchers ruft den Dispatcher zur Invalidierung des Caches für den replizierten Inhalt auf.
+* b - Der `Dispatcher Flush`-Agent ruft Dispatcher auf, um den Cache für den replizierten Inhalt ungültig zu machen.
 * C: Der Dispatcher nimmt Bearbeitungen an einer oder mehreren STAT-Dateien vor, um die zwischengespeicherten Dateien zu invalidieren.
 
 Um den Dispatcher mit mehreren Domains zu verwenden, müssen Sie AEM, den Dispatcher und Ihren Webserver konfigurieren. Bei den auf dieser Seite beschriebenen Lösungen handelt es sich um allgemeine Lösungen, die sich für die meisten Umgebungen eignen. Aufgrund der Komplexität einiger AEM-Topologien erfordert Ihre Lösung möglicherweise weitere benutzerdefinierte Konfigurationen, um bestimmte Probleme zu beheben. Sie müssen die Beispiele ggf. gemäß den Anforderungen Ihrer vorhandenen IT-Infrastruktur und Verwaltungsrichtlinien anpassen.
@@ -82,7 +84,7 @@ In Ihrer Umgebung müssen die folgenden Konfigurationen implementiert werden, um
 * Das Domain-Namenssystem löst die Domain-Namen zu der IP-Adresse des Webservers auf.
 * Der Dispatcher-Cache spiegelt die Verzeichnisstruktur des AEM-Content-Repositorys wider. Die Dateipfade unter dem Basisverzeichnis des Webservers stimmen mit den Pfaden der Dateien im Repository überein.
 
-## Umgebung für die aufgeführten Beispiele  {#environment-for-the-provided-examples}
+## Umgebung für die angegebenen Beispiele {#environment-for-the-provided-examples}
 
 Die aufgeführten Beispiellösungen gelten für Umgebungen mit den folgenden Eigenschaften:
 
@@ -198,9 +200,9 @@ Virtuelle Hosts übernehmen den Eigenschaftswert [DispatcherConfig](dispatcher-i
 
 >[!NOTE]
 >
->In AEM as a Cloud Service muss eine separate vhost-Konfiguration mit einem DocumentRoot auf einer höheren Ebene als jeder der Unterseiten verwendet werden. Dies wird standardmäßig im Archetyp verarbeitet. Wenn jedoch mehrere DocumentRoots verwendet werden, muss eine vhost-Konfiguration mit höherer Priorität verwendet werden, damit die Cache-Invalidierung für den gesamten Cache verarbeitet werden kann, da sie nicht für jede Site separat konfiguriert werden kann. Der ServerAlias dieser neuen Konfiguration muss den Host-Header „localhost“ akzeptieren.
+>In AEM as a Cloud Service muss eine separate vhost-Konfiguration mit einem DocumentRoot-Element auf einer höheren Ebene als jeder der Unterseiten verwendet werden. Dieser Prozess wird standardmäßig im Archetyp verarbeitet. Wenn jedoch mehrere DocumentRoots verwendet werden, ist eine vhost-Konfiguration mit höherer Priorität erforderlich, um die Cache-Invalidierung für den gesamten Cache zu verarbeiten, da sie nicht für jede Site separat konfiguriert werden kann. Der ServerAlias dieser neuen Konfiguration muss den Host-Header „localhost“ akzeptieren.
 
-### Konfigurieren des Dispatchers zur Verarbeitung mehrerer Domains {#configure-dispatcher-to-handle-multiple-domains}
+### Konfigurieren von Dispatcher für die Verarbeitung mehrerer Domains {#configure-dispatcher-to-handle-multiple-domains}
 
 Um URLs zu unterstützen, die Domain-Namen und ihre entsprechenden virtuellen Hosts umfassen, definieren Sie die folgenden Dispatcher-Farmen:
 
@@ -282,11 +284,11 @@ Dispatcher initializing (build 4.1.2)
 [Fri Nov 02 16:27:18 2012] [I] [24974(140006182991616)] Dispatcher initialized (build 4.1.2)
 ```
 
-### Konfigurieren der Sling-Zuordnung für die Ressourcenauflösung  {#configure-sling-mapping-for-resource-resolution}
+### Konfigurieren der Sling-Zuordnung für die Ressourcenauflösung {#configure-sling-mapping-for-resource-resolution}
 
-Verwenden Sie die Sling-Zuordnung für die Ressourcenauflösung, sodass die Domain-basierten URLs zu Inhalten in der AEM-Veröffentlichungsinstanz aufgelöst werden. Die Ressourcenzuordnung übersetzt die eingehenden URLs vom Dispatcher (ursprünglich aus Client-HTTP-Anfragen) in Inhaltsknoten.
+Verwenden Sie `Sling` Zuordnung für die Ressourcenauflösung, damit domänenbasierte URLs in Inhalte auf der AEM-Veröffentlichungsinstanz aufgelöst werden. Die Ressourcenzuordnung übersetzt die eingehenden URLs vom Dispatcher (ursprünglich aus Client-HTTP-Anfragen) in Inhaltsknoten.
 
-Weitere Informationen zur Sling-Ressourcenzuordnung finden Sie unter [Zuordnungen für die Ressourcenauflösung](https://sling.apache.org/documentation/the-sling-engine/mappings-for-resource-resolution.html) in der Sling-Dokumentation.
+Weitere Informationen `Sling` Ressourcenzuordnung finden Sie unter [Zuordnungen für die Ressourcenauflösung](https://sling.apache.org/documentation/the-sling-engine/mappings-for-resource-resolution.html) in der `Sling`.
 
 Üblicherweise sind Zuordnungen für die folgenden Ressourcen erforderlich, auch wenn möglicherweise weitere Zuordnungen benötigt werden:
 
@@ -302,7 +304,7 @@ Nachdem Sie die Zuordnung für die Inhaltsseite erstellt haben, verwenden Sie zu
 
 >[!NOTE]
 >
->Der Transformator „Linkchecker“ des standardmäßigen Apache Sling Rewriter ändert automatisch Hyperlinks auf der Seite, um fehlerhafte Links zu vermeiden. Allerdings erfolgt das Neuschreiben von Links nur, wenn das Link-Ziel eine HTML- oder HTM-Datei ist. Um Links zu anderen Dateitypen zu aktualisieren, erstellen Sie eine Transformatorkomponente und fügen Sie sie zu einer HTML-Rewriter-Pipeline hinzu.
+>Der Linkchecker-Transformator des standardmäßigen Apache `Sling` Rewriters ändert automatisch Hyperlinks auf der Seite, um fehlerhafte Links zu verhindern. Allerdings erfolgt das Neuschreiben von Links nur, wenn das Link-Ziel eine HTML- oder HTM-Datei ist. Um Links zu anderen Dateitypen zu aktualisieren, erstellen Sie eine Transformatorkomponente und fügen Sie sie zu einer HTML-Rewriter-Pipeline hinzu.
 
 ### Beispielknoten für die Ressourcenzuordnung
 
@@ -316,9 +318,9 @@ In der folgenden Tabelle sind die Knoten aufgeführt, die die Ressourcenzuordnun
 | `/etc/map/http/branda.com/etc/designs` | `sling:Mapping` | `Name: sling:internalRedirect <br/>VType: String <br/>VValue: /etc/designs` |
 | `/etc/map/http/branda.com/etc/clientlibs` | `sling:Mapping` | `Name: sling:internalRedirect <br/>VType: String <br/>VValue: /etc/clientlibs` |
 
-## Konfigurieren des Dispatcher Flush-Relikationsagenten {#configuring-the-dispatcher-flush-replication-agent}
+## Konfigurieren des Dispatcher Flush-Replikationsagenten {#configuring-the-dispatcher-flush-replication-agent}
 
-Der Dispatcher Flush-Replikationsagent auf der AEM-Veröffentlichungsinstanz muss Invalidierungsanforderungen an die richtige Dispatcher-Farm senden. Verwenden Sie zum Bestimmen einer Farm die URI-Eigenschaft des Dispatcher-Flush-Replikationsagenten (auf der Registerkarte „Transport“). Binden Sie den Wert der Eigenschaft `/virtualhost` für die Dispatcher-Farm ein, die für die Cache-Invalidierung konfiguriert ist:
+Der `Dispatcher Flush` Replikationsagent auf der AEM-Veröffentlichungsinstanz muss Invalidierungsanfragen an die richtige Dispatcher-Farm senden. Um eine Farm auszuwählen, verwenden Sie die URI-Eigenschaft des `Dispatcher Flush` Replikationsagenten (auf der Registerkarte Transport ). Binden Sie den Wert der Eigenschaft `/virtualhost` für die Dispatcher-Farm ein, die für die Cache-Invalidierung konfiguriert ist:
 
 `https://*webserver_name*:*port*/*virtual_host*/dispatcher/invalidate.cache`
 
@@ -498,23 +500,23 @@ Wie üblich ist das Cache-Basisverzeichnis dasselbe wie das Basisverzeichnis des
 
 >[!NOTE]
 >
->Da eine einzelne Dispatcher-Farm definiert ist, sind für den Dispatcher-Flush-Replikationsagenten in der AEM-Veröffentlichungsinstanz keine speziellen Konfigurationen erforderlich.
+>Da eine einzelne Dispatcher-Farm definiert ist, erfordert der `Dispatcher Flush` Replikationsagent auf der AEM-Veröffentlichungsinstanz keine besonderen Konfigurationen.
 
-## Neuschreiben von Links zu Nicht-HTML-Dateien  {#rewriting-links-to-non-html-files}
+## Links zu Dateien umschreiben, die nicht mit HTML verbunden sind {#rewriting-links-to-non-html-files}
 
 Um Verweise auf Dateien mit anderen Erweiterungen als „HTML“ oder „HTM“ neu zu schreiben, erstellen Sie eine Transformatorkomponente für Sling-Rewriter und fügen Sie sie zur standardmäßigen Rewriter-Pipeline hinzu.
 
 Schreiben Sie Verweise neu, wenn Ressourcenpfade nicht ordnungsgemäß im Webserver-Kontext aufgelöst werden. Beispielsweise ist ein Transformator erforderlich, wenn bildgenerierende Komponenten Links wie „/content/sitea/en/products.navimage.png“ erstellen. Die `topnav`-Komponente unter [Erstellen von Websites mit vollem Funktionsumfang](https://experienceleague.adobe.com/de/docs/experience-manager-65/content/implementing/developing/introduction/the-basics) erstellt solche Links.
 
-Der [Sling Rewriter](https://sling.apache.org/documentation/bundles/output-rewriting-pipelines-org-apache-sling-rewriter.html) ist ein Modul, das die Sling-Ausgabe nachbearbeitet. SAX-Pipeline-Implementierungen von Rewriter bestehen aus einem Generator, einem oder mehreren Transformatoren und einem Serialisierungsprogramm:
+Der [`Sling` Rewriter](https://sling.apache.org/documentation/bundles/output-rewriting-pipelines-org-apache-sling-rewriter.html) ist ein Modul, das `Sling` Ausgabe nachbearbeitet. SAX-Pipeline-Implementierungen von Rewriter bestehen aus einem Generator, einem oder mehreren Transformatoren und einem Serialisierungsprogramm:
 
-* **Generator:** Analysiert den Sling-Ausgabestream (HTML-Dokument) und generiert SAX-Ereignisse, wenn er bestimmte Elementtypen erkennt.
+* **Generator:** Analysiert den `Sling`-Ausgabestream (HTML-Dokument) und generiert SAX-Ereignisse, wenn bestimmte Elementtypen auftreten.
 * **Transformator:** Lauscht auf SAX-Ereignisse und ändert daher das Ereignisziel (ein HTML-Element). Eine Rewriter-Pipeline enthält null oder mehr Transformatoren. Transformatoren werden nacheinander ausgeführt und übergeben dabei die SAX-Ereignisse an den jeweils nächsten Transformator.
 * **Serialisierungsprogramm:** Serialisiert die Ausgabe, einschließlich der Änderungen durch die einzelnen Transformatoren.
 
 ![](assets/chlimage_1-15.png)
 
-### Die standardmäßige AEM-Rewriter-Pipeline  {#the-aem-default-rewriter-pipeline}
+### Die standardmäßige AEM Rewriter-Pipeline {#the-aem-default-rewriter-pipeline}
 
 AEM verwendet eine standardmäßige Rewriter-Pipeline, die Dokumente vom Typ „text/html“ verarbeitet:
 
@@ -577,7 +579,7 @@ public class MyRewriterTransformerFactory implements TransformerFactory {
 }
 ```
 
-### Beispiel für eine Transformator-Implementierung {#example-transformer-implementation}
+### Beispiel für eine Transformatorimplementierung {#example-transformer-implementation}
 
 ```java
 package com.adobe.example;

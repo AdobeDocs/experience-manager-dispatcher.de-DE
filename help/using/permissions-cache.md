@@ -1,19 +1,19 @@
 ---
-title: Zwischenspeichern von geschützten Inhalten
+title: Caching von geschütztem Content
 description: Erfahren Sie, wie die Zwischenspeicherung mit Berechtigungen im Dispatcher funktioniert.
 contentOwner: User
 products: SG_EXPERIENCEMANAGER/DISPATCHER
 topic-tags: dispatcher
 content-type: reference
 exl-id: 3d8d8204-7e0d-44ad-b41b-6fec2689c6a6
-source-git-commit: 9be9f5935c21ebbf211b5da52280a31772993c2e
+source-git-commit: c41b4026a64f9c90318e12de5397eb4c116056d9
 workflow-type: tm+mt
-source-wordcount: '924'
-ht-degree: 100%
+source-wordcount: '923'
+ht-degree: 97%
 
 ---
 
-# Zwischenspeichern von geschützten Inhalten {#caching-secured-content}
+# Caching von geschütztem Content {#caching-secured-content}
 
 Mit dem Zwischenspeichern unter Beachtung von Berechtigungen können Sie gesicherte Seiten zwischenspeichern. Der Dispatcher prüft die Zugriffsberechtigungen der Benutzenden für eine Seite, bevor die zwischengespeicherte Seite bereitgestellt wird.
 
@@ -23,7 +23,7 @@ Da die Methoden zur Authentifizierung und Autorisierung spezifisch für die AEM-
 
 >[!NOTE]
 >
->Verwenden Sie `deny`-Filter, um allgemeine Sicherheitseinschränkungen zu erzwingen. Verwenden Sie die Zwischenspeicherung unter Berücksichtigung von Berechtigungen für Seiten, die zum Zulassen des Zugriffs auf eine Untergruppe von Benutzenden oder Gruppen konfiguriert sind.
+>Verwenden Sie `deny`-Filter, um allgemeine Sicherheitseinschränkungen zu erzwingen. Verwenden Sie die Zwischenspeicherung unter Berücksichtigung von Berechtigungen für Seiten, die zum Zulassen des Zugriffs auf eine Teilmenge von Benutzenden oder Gruppen konfiguriert sind.
 
 Die folgenden Abbildungen zeigen die Abfolge der Ereignisse, wenn ein Webbrowser eine Seite anfordert, für die die Zwischenspeicherung unter Berücksichtigung von Berechtigungen verwendet wird.
 
@@ -56,7 +56,7 @@ Die folgenden Abbildungen zeigen die Abfolge der Ereignisse, wenn ein Webbrowser
 1. Der Renderer ruft das autorisierende AEM-Servlet (dies ist nicht das Dispatcher-AuthChecker-Servlet) auf, um eine Sicherheitsprüfung durchzuführen. Wenn die Person autorisiert ist, schließt der Renderer die gerenderte Seite im Text der Antwortnachricht ein.
 1. Der Dispatcher leitet die Antwort an den Browser weiter. Der Dispatcher fügt den Text der Antwortnachricht des Renderers zum Cache hinzu. 
 
-## Implementieren der Zwischenspeicherung unter Berücksichtigung von Berechtigungen {#implementing-permission-sensitive-caching}
+## Implementieren von Zwischenspeicherung unter Berücksichtigung von Berechtigungen {#implementing-permission-sensitive-caching}
 
 Wenn Sie die Zwischenspeicherung unter Berücksichtigung von Berechtigungen implementieren möchten, führen Sie die folgenden Schritte aus:
 
@@ -70,7 +70,7 @@ Wenn Sie die Zwischenspeicherung unter Berücksichtigung von Berechtigungen impl
 >[!NOTE]
 >
 >Wenn sich ein CDN (oder ein anderer Cache) vor dem Dispatcher befindet, sollten Sie die Caching-Header entsprechend festlegen, damit das CDN den privaten Inhalt nicht zwischenspeichert. Beispiel: `Header always set Cache-Control private`.
->Weitere Informationen zum Festlegen von privaten Caching-Headern finden Sie für AEM as a Cloud Service auf der Seite [Caching](https://experienceleague.adobe.com/de/docs/experience-manager-cloud-service/content/implementing/content-delivery/caching).
+>>Weitere Informationen zum Festlegen von privaten Caching-Headern finden Sie für AEM as a Cloud Service auf der Seite [Caching](https://experienceleague.adobe.com/de/docs/experience-manager-cloud-service/content/implementing/content-delivery/caching).
 
 ## Erstellen des Auth-Checker-Servlets {#create-the-auth-checker-servlet}
 
@@ -92,7 +92,7 @@ Das folgende Beispiel-Servlet ruft die URL der angeforderten Ressource aus der H
 
 >[!NOTE]
 >
->Der Wert der Eigenschaft „sling.servlet.paths“ muss im Sling Servlet Resolver-Dienst (org.apache.sling.servlets.resolver.SlingServletResolver) aktiviert werden.
+>Der Wert der Eigenschaft „sling.servlet.pfads“ muss im Service &quot;`Sling` Servlet Resolver“ (org.apache.sling.servlets.resolver.SlingServletResolver) aktiviert werden.
 
 ### Beispielservlet  {#example-servlet}
 

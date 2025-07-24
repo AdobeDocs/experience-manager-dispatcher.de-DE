@@ -1,23 +1,23 @@
 ---
-title: Optimierung von Websites für die Cache-Leistung
+title: Optimieren einer Website für Cache-Leistung
 description: Sie erfahren, wie Sie Ihre Website einrichten, um die Vorteile der Zwischenspeicherung zu maximieren.
 contentOwner: User
 products: SG_EXPERIENCEMANAGER/DISPATCHER
 topic-tags: dispatcher
 content-type: reference
-redirecttarget: https://helpx.adobe.com/de/experience-manager/6-4/sites/deploying/using/configuring-performance.html
+redirecttarget: https://helpx.adobe.com/experience-manager/6-4/sites/deploying/using/configuring-performance.html
 index: y
 internal: n
 snippet: y
-source-git-commit: 9be9f5935c21ebbf211b5da52280a31772993c2e
+source-git-commit: c41b4026a64f9c90318e12de5397eb4c116056d9
 workflow-type: tm+mt
 source-wordcount: '1128'
-ht-degree: 100%
+ht-degree: 97%
 
 ---
 
 
-# Optimierung von Websites für die Cache-Leistung {#optimizing-a-website-for-cache-performance}
+# Optimieren einer Website für Cache-Leistung {#optimizing-a-website-for-cache-performance}
 
 <!-- 
 
@@ -44,7 +44,7 @@ Der Dispatcher bietet verschiedene integrierte Mechanismen, mit denen Sie die Le
 >
 >Allgemein beinhalten viele Caching-Strategien die Auswahl geeigneter URLs, ohne dabei von diesen zusätzlichen Daten abhängig zu sein.
 
-## Verwenden einer einheitlichen Seitenkodierung  {#using-consistent-page-encoding}
+## Verwenden einer konsistenten Seitencodierung {#using-consistent-page-encoding}
 
 HTTP-Anfrage-Header werden nicht zwischengespeichert. Daher können Probleme auftreten, wenn Sie Seiten-Codierungsinformationen im Header speichern. In diesem Fall wird die Standardkodierung des Webservers für die Seite verwendet, wenn der Dispatcher eine Seite aus dem Cache bereitstellt. Es gibt zwei Möglichkeiten, dieses Problem zu vermeiden:
 
@@ -55,7 +55,7 @@ HTTP-Anfrage-Header werden nicht zwischengespeichert. Daher können Probleme auf
         <META http-equiv="Content-Type" content="text/html; charset=EUC-JP">
 ```
 
-## Vermeiden von URL-Parametern {#avoid-url-parameters}
+## URL-Parameter vermeiden {#avoid-url-parameters}
 
 Vermeiden Sie nach Möglichkeit URL-Parameter für Seiten, die Sie zwischenspeichern möchten. Wenn Sie beispielsweise über eine Bildergalerie verfügen, wird die folgende URL nie zwischengespeichert (es sei denn, der Dispatcher ist [entsprechend konfiguriert](dispatcher-configuration.md#main-pars_title_24)):
 
@@ -95,7 +95,7 @@ www.myCompany.com/news/main.large.html
 >
 >Mithilfe des Skript-Globbings der Vorlagendefinition können Sie ein separates Skript angeben, das die Druckseiten rendert.
 
-## Invalidierung von als Titel verwendeten Bilddateien  {#invalidating-image-files-used-as-titles}
+## Ungültigmachen von Bilddateien als Titel {#invalidating-image-files-used-as-titles}
 
 Wenn Sie Seitentitel oder anderen Text als Bilder gerendert haben, speichern Sie die Dateien so, dass sie bei einer Inhaltsaktualisierung auf der Seite gelöscht werden:
 
@@ -110,7 +110,7 @@ Beispielsweise können Sie den Titel der Seite „myPage.html“ in der Datei �
 >
 >Die Bilddatei ist nicht unbedingt in der AEM-Instanz vorhanden. Sie können ein Skript verwenden, das die Bilddatei dynamisch erstellt. Der Dispatcher speichert die Datei dann auf dem Webserver.
 
-## Invalidierung von Bilddateien für die Navigation  {#invalidating-image-files-used-for-navigation}
+## Invalidierung der für die Navigation verwendeten Bilddateien {#invalidating-image-files-used-for-navigation}
 
 Wenn Sie Bilder als Navigationseinträge verwenden, gehen Sie im Prinzip wie bei Titeln vor, das Verfahren ist nur ein wenig komplexer. Speichern Sie alle Navigationsbilder mit den Zielseiten. Wenn Sie zwei Bilder für „normal“ und „aktiv“ verwenden, können Sie die folgenden Skripte verwenden:
 
@@ -139,7 +139,7 @@ Der Dispatcher kann keine personalisierten Daten zwischenspeichern. Sie sollten 
 >* Sie können mit Client-seitigem JavaScript personalisierte Informationen anzeigen. Sie müssen jedoch sicherstellen, dass die Seite weiterhin richtig angezeigt wird, wenn jemand JavaScript deaktiviert.
 >
 
-## Sticky-Verbindungen  {#sticky-connections}
+## Sticky-Verbindungen {#sticky-connections}
 
 [Sticky-Verbindungen](dispatcher.md#TheBenefitsofLoadBalancing) stellen sicher, dass die Dokumente für eine Benutzerin oder einen Benutzer alle auf demselben Server erstellt werden. Wenn eine Benutzerin oder ein Benutzer diesen Ordner verlässt und später zu ihm zurückkehrt, bleibt die Verbindung erhalten. Definieren Sie einen Ordner zum Speichern aller Dokumente, die Sticky-Verbindungen für die Website benötigen. Dieser sollte keine anderen Dokumente enthalten. Dies wirkt sich auf den Lastenausgleich aus, wenn Sie personalisierte Seiten und Sitzungsdaten verwenden.
 

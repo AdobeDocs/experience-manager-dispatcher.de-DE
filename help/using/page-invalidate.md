@@ -1,5 +1,5 @@
 ---
-title: Invalidieren zwischengespeicherter Seiten über AEM
+title: Invalidierung zwischengespeicherter Seiten aus AEM
 description: Erfahren Sie, wie Sie die Interaktion zwischen Dispatcher und AEM konfigurieren, um eine effektive Cache-Verwaltung sicherzustellen.
 cmgrlastmodified: 01.11.2007 08 22 29 [aheimoz]
 pageversionid: 1193211344162
@@ -9,10 +9,10 @@ products: SG_EXPERIENCEMANAGER/DISPATCHER
 topic-tags: dispatcher
 content-type: reference
 exl-id: 90eb6a78-e867-456d-b1cf-f62f49c91851
-source-git-commit: 9be9f5935c21ebbf211b5da52280a31772993c2e
+source-git-commit: c41b4026a64f9c90318e12de5397eb4c116056d9
 workflow-type: tm+mt
 source-wordcount: '1407'
-ht-degree: 98%
+ht-degree: 95%
 
 ---
 
@@ -20,15 +20,15 @@ ht-degree: 98%
 
 Bei Verwendung des Dispatchers mit AEM muss die Interaktion konfiguriert werden, um eine effektive Cacheverwaltung zu ermöglichen. Je nach Umgebung kann die Konfiguration auch zu einer Leistungsverbesserung führen.
 
-## Einrichten von AEM-Benutzerkonten  {#setting-up-aem-user-accounts}
+## Einrichten von AEM-Benutzerkonten {#setting-up-aem-user-accounts}
 
 Das Standardbenutzerkonto `admin` wird zur Authentifizierung der Replikationsagenten verwendet, die standardmäßig installiert sind. Erstellen Sie ein dediziertes Benutzerkonto zur Verwendung mit Replikationsagenten. 
 
-Weitere Informationen finden Sie im Abschnitt [Konfigurieren von Benutzerreplikation und -transport](https://experienceleague.adobe.com/de/docs/experience-manager-release-information/aem-release-updates/previous-updates/aem-previous-versions#VerificationSteps) der Checkliste für die AEM-Sicherheit.
+Weitere Informationen finden Sie im Abschnitt [Konfigurieren von Replikations- und Transport](https://experienceleague.adobe.com/de/docs/experience-manager-release-information/aem-release-updates/previous-updates/aem-previous-versions#VerificationSteps) der AEM-Sicherheitscheckliste.
 
-<!-- OLD URL from above https://helpx.adobe.com/de/experience-manager/6-3/sites/administering/using/security-checklist.html#VerificationSteps -->
+<!-- OLD URL from above https://helpx.adobe.com/experience-manager/6-3/sites/administering/using/security-checklist.html#VerificationSteps -->
 
-## Invalidierung des Dispatcher-Caches aus der Autorenumgebung {#invalidating-dispatcher-cache-from-the-authoring-environment}
+## Invalidierung des Dispatcher-Cache in der Autorenumgebung {#invalidating-dispatcher-cache-from-the-authoring-environment}
 
 Ein Replikationsagent auf der AEM-Autoreninstanz sendet eine Anforderung zur Invalidierung des Caches an den Dispatcher, wenn eine Seite veröffentlicht wird. Der Dispatcher aktualisiert die Datei schließlich im Cache, wenn neue Inhalte veröffentlicht werden.
 
@@ -80,7 +80,7 @@ Dieser Ansatz hat zwei mögliche Probleme:
 
 * Die Veröffentlichung und die Invalidierung des Caches finden gleichzeitig statt. Eine Person kann eine Seite anfordern, nachdem diese gerade aus dem Cache entfernt wurde und kurz bevor die neue Seite veröffentlicht wird. AEM gibt dann die alte Seite zurück und der Dispatcher speichert sie erneut im Cache. Dies stellt vor allem für große Sites ein Problem dar.
 
-## Invalidierung des Dispatcher-Caches von einer Veröffentlichungsinstanz  {#invalidating-dispatcher-cache-from-a-publishing-instance}
+## Invalidierung des Dispatcher-Cache von einer Veröffentlichungsinstanz {#invalidating-dispatcher-cache-from-a-publishing-instance}
 
 Unter bestimmten Umständen lassen sich Leistungsverbesserungen erzielen, indem die Cache-Verwaltung von der Autorenumgebung in eine Veröffentlichungsinstanz verlagert wird. Dann sendet die Veröffentlichungsumgebung (nicht die AEM-Autorenumgebung) eine Anfrage zur Cache-Invalidierung an den Dispatcher, wenn eine veröffentlichte Seite empfangen wird.
 
@@ -120,7 +120,7 @@ Wenn Sie nach der Konfiguration eine Seite von Author to Publish aktivieren, ini
 
 1. `<publishserver> 13:29:47 127.0.0.1 POST /dispatcher/invalidate.cache 200`
 
-## Manuelle Invalidierung des Dispatcher-Caches {#manually-invalidating-the-dispatcher-cache}
+## Dispatcher-Cache manuell invalidieren {#manually-invalidating-the-dispatcher-cache}
 
 Um den Dispatcher-Cache zu invalidieren (oder zu leeren), ohne eine Seite zu aktivieren, können Sie eine HTTP-Anfrage an den Dispatcher ausgeben. Sie können beispielsweise eine AEM-Anwendung erstellen, die es Admins oder anderen Anwendungen ermöglicht, den Cache zu leeren.
 

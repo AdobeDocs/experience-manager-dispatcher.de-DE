@@ -1,5 +1,5 @@
 ---
-title: Die Dispatcher-Sicherheitscheckliste
+title: Dispatcher-Sicherheitscheckliste
 description: Erfahren Sie mehr über die Dispatcher-Sicherheitscheckliste, die vor dem Produktionsstart ausgefüllt werden sollte.
 contentOwner: User
 products: SG_EXPERIENCEMANAGER/DISPATCHER
@@ -10,14 +10,14 @@ index: y
 internal: n
 snippet: y
 exl-id: 49009810-b5bf-41fd-b544-19dd0c06b013
-source-git-commit: 0a1aa854ea286a30c3527be8fc7c0998726a663f
+source-git-commit: c41b4026a64f9c90318e12de5397eb4c116056d9
 workflow-type: tm+mt
-source-wordcount: '590'
-ht-degree: 100%
+source-wordcount: '582'
+ht-degree: 85%
 
 ---
 
-# Die Dispatcher-Sicherheitscheckliste{#the-dispatcher-security-checklist}
+# Dispatcher-Sicherheitscheckliste{#the-dispatcher-security-checklist}
 
 <!-- 
 
@@ -36,7 +36,7 @@ Adobe empfiehlt, vor dem Einsatz in einer Produktionsumgebung die folgende Check
 >
 >Gehen Sie vor dem Produktivstart auch die Sicherheitscheckliste für Ihre AEM-Version durch. Siehe die entsprechenden [Adobe Experience Manager-Dokumentation](https://experienceleague.adobe.com/de/docs/experience-manager-65/content/security/security-checklist).
 
-## Verwenden der neuesten Dispatcher-Version {#use-the-latest-version-of-dispatcher}
+## Verwenden der neuesten Version von Dispatcher {#use-the-latest-version-of-dispatcher}
 
 Installieren Sie die neueste Version, die für Ihre Plattform verfügbar ist. Aktualisieren Sie Ihre Dispatcher-Instanz, um die neueste Version zu verwenden und von Produkt- und Sicherheitsverbesserungen zu profitieren. Weitere Informationen finden Sie unter [Installieren des Dispatchers](dispatcher-install.md).
 
@@ -48,7 +48,7 @@ Installieren Sie die neueste Version, die für Ihre Plattform verfügbar ist. Ak
 >
 >Um die Protokolldatei zu finden, überprüfen Sie die Dispatcher-Konfiguration in der Datei `httpd.conf`.
 
-## Einschränken von Clients, die den Cache leeren können {#restrict-clients-that-can-flush-your-cache}
+## Einschränken von Clients, die Ihren Cache leeren können {#restrict-clients-that-can-flush-your-cache}
 
 Adobe empfiehlt, [die Clients einzuschränken, die den Cache leeren können](dispatcher-configuration.md#limiting-the-clients-that-can-flush-the-cache).
 
@@ -73,30 +73,30 @@ Last Modified Date: 2015-06-26T04:41:28.841-0400
 
  -->
 
-## Einschränken des Zugriffs {#restrict-access}
+## Zugriff beschränken {#restrict-access}
 
 Wenn Sie den Dispatcher konfigurieren, schränken Sie externe Zugriffe so weit wie möglich ein. Siehe das [Beispiel für einen Abschnitt /filter](dispatcher-configuration.md#main-pars_184_1_title) in der Dispatcher-Dokumentation.
 
-## Verweigern des Zugriffs auf administrative URLs  {#make-sure-access-to-administrative-urls-is-denied}
+## Stellen Sie sicher, dass der Zugriff auf administrative URLs verweigert wird {#make-sure-access-to-administrative-urls-is-denied}
 
 Stellen Sie sicher, dass Sie Filter verwenden, um den externen Zugriff auf sämtliche administrative URLs wie die Web-Konsole zu blockieren.
 
 Unter [Testen der Dispatcher-Sicherheit](dispatcher-configuration.md#testing-dispatcher-security) finden Sie eine Liste der URLs, die blockiert werden müssen.
 
-## Verwenden von Zulassungslisten anstelle von Blockierungslisten {#use-allowlists-instead-of-blocklists}
+## Zulassungslisten anstelle von Blockierungslisten verwenden {#use-allowlists-instead-of-blocklists}
 
 Zulassungslisten eignen sich besser zur Zugriffskontrolle, da sie grundsätzlich voraussetzen, dass alle Zugriffsanfragen verweigert werden sollten, sofern sie nicht ausdrücklich Teil der Zulassungsliste sind. Dieses Modell ermöglicht eine strengere Kontrolle über neue Anfragen, die während einer bestimmten Konfigurationsphase möglicherweise noch nicht überprüft oder berücksichtigt wurden.
 
-## Ausführen des Dispatchers mit einer dedizierten Systembenutzerin bzw. einem dedizierten Systembenutzer {#run-dispatcher-with-a-dedicated-system-user}
+## Ausführen von Dispatcher mit einem dedizierten Systembenutzer {#run-dispatcher-with-a-dedicated-system-user}
 
-Beim Konfigurieren des Dispatchers sollten Sie sicherstellen, dass der Webserver von dedizierten Benutzenden mit den geringsten Rechten ausgeführt wird. Es wird empfohlen, dass Sie nur Schreibzugriff auf den Dispatcher-Cache-Ordner gewähren.
+Konfigurieren Sie die Dispatcher so, dass der Webserver von einem dedizierten Benutzerkonto mit den geringsten Berechtigungen ausgeführt wird. Adobe empfiehlt, nur Schreibzugriff auf den Dispatcher-Cache-Ordner zu gewähren.
 
 Außerdem müssen IIS-Benutzende ihre Website folgendermaßen konfigurieren:
 
 1. Wählen Sie in den Einstellungen für den physischen Pfad für Ihre Website die Option zum **Verbinden als bestimmter Benutzer** aus.
 1. Legen Sie die Person fest.
 
-## Vermeiden von Denial-of-Service-Angriffen  {#prevent-denial-of-service-dos-attacks}
+## DoS-Angriffe (Denial of Service) verhindern {#prevent-denial-of-service-dos-attacks}
 
 Ein Denial-of-Service-Angriff (DoS) zielt darauf ab, eine Computerressource für die vorgesehenen Personen unzugänglich zu machen.
 
@@ -146,7 +146,7 @@ Last Modified Date: 2015-06-26T04:38:17.016-0400
 
  -->
 
-## Konfigurieren des Dispatchers zum Verhindern von CSRF-Angriffen {#configure-dispatcher-to-prevent-csrf-attacks}
+## Konfigurieren von Dispatcher zur Verhinderung von CSRF-Angriffen {#configure-dispatcher-to-prevent-csrf-attacks}
 
 AEM bietet ein [Framework](https://experienceleague.adobe.com/de/docs/experience-manager-release-information/aem-release-updates/previous-updates/aem-previous-versions#verification-steps), mit dem CSRF-Angriffe (Cross-Site Request Forgery) verhindert werden können. Um dieses Framework ordnungsgemäß nutzen zu können, muss die CSRF-Token-Unterstützung im Dispatcher aktiviert werden:
 
@@ -161,5 +161,5 @@ Weitere Informationen zum Thema Clickjacking finden Sie auf der [OWASP-Website](
 
 ## Durchführen eines Penetrationstests {#perform-a-penetration-test}
 
-Adobe empfiehlt dringend, einen Penetrationstest Ihrer AEM-Infrastruktur durchzuführen, bevor Sie in Produktion gehen.
+Adobe empfiehlt, Ihre AEM-Infrastruktur vor dem Einsatz in einer Produktionsumgebung einem Penetrationstest zu unterziehen.
 

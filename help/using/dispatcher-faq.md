@@ -2,10 +2,10 @@
 title: Häufige Dispatcher-Probleme
 description: Häufige Probleme bei Adobe Experience Manager Dispatcher
 exl-id: 4dcc7318-aba5-4b17-8cf4-190ffefbba75
-source-git-commit: 9be9f5935c21ebbf211b5da52280a31772993c2e
+source-git-commit: c41b4026a64f9c90318e12de5397eb4c116056d9
 workflow-type: tm+mt
-source-wordcount: '1547'
-ht-degree: 100%
+source-wordcount: '1538'
+ht-degree: 99%
 
 ---
 
@@ -121,7 +121,7 @@ Lesen Sie hierzu die Seiten [Checkliste für die Dispatcher-Sicherheit](security
 
 **Frage**: Das Unternehmen sah sich vor Kurzem mit einem Problem auf Dispatcher-Ebene konfrontiert. In einem der AJAX-Aufrufe, bei dem einige Daten aus dem CQ-Repository abgerufen wurden, war `jcr:content` enthalten. Das wurde zu `jcr%3acontent` verschlüsselt, was zu einem falschen Ergebnissatz führte.
 
-**Antwort**: Verwenden Sie die Methode `ResourceResolver.map()`, um eine benutzerfreundliche URL zu erhalten, von der Anfragen entsprechend abgerufen bzw. ausgegeben werden und die das Caching-Problem mit dem Dispatcher lösen kann. Die Methode map() codiert den Doppelpunkt (`:`) in Unterstriche und die Methode resolve() decodiert diese zurück in das SLING JCR-lesbare Format. Verwenden Sie die Methode map(), um die URL zu generieren, die im Ajax-Aufruf verwendet wird.
+**Antwort**: Rufen Sie `ResourceResolver.map()` auf, um eine benutzerfreundliche URL für GET-Anfragen zu generieren und Probleme mit der Dispatcher-Zwischenspeicherung zu beheben. Die Methode map() codiert den Doppelpunkt (`:`) in Unterstriche und die Methode resolve() decodiert diese zurück in das SLING JCR-lesbare Format. Verwenden Sie die Methode map(), um die URL zu generieren, die im Ajax-Aufruf verwendet wird.
 
 Weitere Informationen: [https://sling.apache.org/documentation/the-sling-engine/mappings-for-resource-resolution.html#namespace-mangling](https://sling.apache.org/documentation/the-sling-engine/mappings-for-resource-resolution.html#namespace-mangling)
 
@@ -133,7 +133,7 @@ Lesen Sie hierzu die Seite [Replikation](https://experienceleague.adobe.com/de/d
 
 ### Wie kann ich Probleme bei der Dispatcher-Leerung beheben?
 
-Lesen Sie hierzu diese Artikel zur [Fehlerbehebung](https://experienceleague.adobe.com/search.html?lang=de#q=troubleshooting%20dispatcher%20flushing%20issues&amp;sort=relevancy&amp;lang=de&amp;f:el_product=[Experience%20Manager]).
+Lesen Sie hierzu diese Artikel zur [Fehlerbehebung](https://experienceleague.adobe.com/search.html?lang=en#q=troubleshooting%20dispatcher%20flushing%20issues&sort=relevancy&lang=de&f:el_product=[Experience%20Manager]).
 
 Wenn der Dispatcher durch Löschvorgänge geleert wird, können Sie das Problem so umgehen, [wie in diesem Community-Blog-Beitrag von Sensei Martin beschrieben](https://mkalugin-cq.blogspot.com/2012/04/i-have-been-working-on-following.html).
 

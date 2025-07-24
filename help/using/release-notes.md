@@ -5,23 +5,23 @@ topic-tags: release-notes
 content-type: reference
 products: SG_EXPERIENCEMANAGER/6.4
 exl-id: b55c7a34-d57b-4d45-bd83-29890f1524de
-source-git-commit: 5f743be9c143e1e720e59304feebaa2e272dad87
+source-git-commit: c41b4026a64f9c90318e12de5397eb4c116056d9
 workflow-type: tm+mt
 source-wordcount: '1062'
-ht-degree: 100%
+ht-degree: 99%
 
 ---
 
 # Versionshinweise zu AEM Dispatcher{#aem-dispatcher-release-notes}
 
-## Versionshinweise {#release-information}
+## Versionsinformationen {#release-information}
 
 |  |  |
 |--- |--- |
 | Produkte | Adobe Experience Manager (AEM) Dispatcher |
 | Version | 4.3.7 |
 | Typ | Nebenversion |
-| Datum | 27. März 2024 |
+| Datum | &#x200B;27. März 2024 |
 | Download-URL | <ul><li>[Apache 2.4](#apache)</li><li>[Microsoft®-Internetinformationsdienste (IIS)](#iis)</li></ul> |
 | Kompatibilität | AEM 6.1 oder höher |
 
