@@ -26,7 +26,7 @@ Das Standardbenutzerkonto `admin` wird zur Authentifizierung der Replikationsage
 
 Weitere Informationen finden Sie im Abschnitt [Konfigurieren von Replikations- und Transport](https://experienceleague.adobe.com/de/docs/experience-manager-release-information/aem-release-updates/previous-updates/aem-previous-versions#VerificationSteps) der AEM-Sicherheitscheckliste.
 
-<!-- OLD URL from above https://helpx.adobe.com/experience-manager/6-3/sites/administering/using/security-checklist.html#VerificationSteps -->
+<!-- OLD URL from above https://helpx.adobe.com/de/experience-manager/6-3/sites/administering/using/security-checklist.html#VerificationSteps -->
 
 ## Invalidierung des Dispatcher-Cache in der Autorenumgebung {#invalidating-dispatcher-cache-from-the-authoring-environment}
 

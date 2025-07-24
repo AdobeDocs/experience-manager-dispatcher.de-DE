@@ -26,7 +26,7 @@ ht-degree: 93%
 
 >[!NOTE]
 >
->Weitere Informationen finden <!-- URL is 404[Dispatcher Knowledge Base](https://helpx.adobe.com/experience-manager/kb/index/dispatcher.html), -->[ in den Häufig gestellten Fragen ](https://experienceleague.adobe.com/search.html?lang=en#q=troubleshooting%20dispatcher%20flushing%20issues&sort=relevancy&lang=de&f:el_product=[Experience%20Manager]) Beheben von Problemen mit der Leerung in Dispatcher und [ Häufig gestellten Fragen zu ](dispatcher-faq.md)Dispatcher.
+>Weitere Informationen finden <!-- URL is 404[Dispatcher Knowledge Base](https://helpx.adobe.com/experience-manager/kb/index/dispatcher.html), -->[ in den Häufig gestellten Fragen ](https://experienceleague.adobe.com/search.html?lang=de#q=troubleshooting%20dispatcher%20flushing%20issues&sort=relevancy&lang=de&f:el_product=[Experience%20Manager]) Beheben von Problemen mit der Leerung in Dispatcher und [ Häufig gestellten Fragen zu ](dispatcher-faq.md)Dispatcher.
 
 ## Überprüfen der Basiskonfiguration {#check-the-basic-configuration}
 
