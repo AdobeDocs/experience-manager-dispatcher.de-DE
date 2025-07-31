@@ -10,9 +10,9 @@ topic-tags: dispatcher
 content-type: reference
 exl-id: 90eb6a78-e867-456d-b1cf-f62f49c91851
 source-git-commit: c41b4026a64f9c90318e12de5397eb4c116056d9
-workflow-type: tm+mt
+workflow-type: ht
 source-wordcount: '1407'
-ht-degree: 95%
+ht-degree: 100%
 
 ---
 
@@ -24,9 +24,9 @@ Bei Verwendung des Dispatchers mit AEM muss die Interaktion konfiguriert werden,
 
 Das Standardbenutzerkonto `admin` wird zur Authentifizierung der Replikationsagenten verwendet, die standardmäßig installiert sind. Erstellen Sie ein dediziertes Benutzerkonto zur Verwendung mit Replikationsagenten. 
 
-Weitere Informationen finden Sie im Abschnitt [Konfigurieren von Replikations- und Transport](https://experienceleague.adobe.com/de/docs/experience-manager-release-information/aem-release-updates/previous-updates/aem-previous-versions#VerificationSteps) der AEM-Sicherheitscheckliste.
+Weitere Informationen finden Sie im Abschnitt [Konfigurieren von Benutzerreplikation und -transport](https://experienceleague.adobe.com/de/docs/experience-manager-release-information/aem-release-updates/previous-updates/aem-previous-versions#VerificationSteps) der AEM-Sicherheitscheckliste.
 
-<!-- OLD URL from above https://helpx.adobe.com/de/experience-manager/6-3/sites/administering/using/security-checklist.html#VerificationSteps -->
+<!-- OLD URL from above https://helpx.adobe.com/experience-manager/6-3/sites/administering/using/security-checklist.html#VerificationSteps -->
 
 ## Invalidierung des Dispatcher-Cache in der Autorenumgebung {#invalidating-dispatcher-cache-from-the-authoring-environment}
 
@@ -80,7 +80,7 @@ Dieser Ansatz hat zwei mögliche Probleme:
 
 * Die Veröffentlichung und die Invalidierung des Caches finden gleichzeitig statt. Eine Person kann eine Seite anfordern, nachdem diese gerade aus dem Cache entfernt wurde und kurz bevor die neue Seite veröffentlicht wird. AEM gibt dann die alte Seite zurück und der Dispatcher speichert sie erneut im Cache. Dies stellt vor allem für große Sites ein Problem dar.
 
-## Invalidierung des Dispatcher-Cache von einer Veröffentlichungsinstanz {#invalidating-dispatcher-cache-from-a-publishing-instance}
+## Invalidierung des Dispatcher-Caches von einer Veröffentlichungsinstanz {#invalidating-dispatcher-cache-from-a-publishing-instance}
 
 Unter bestimmten Umständen lassen sich Leistungsverbesserungen erzielen, indem die Cache-Verwaltung von der Autorenumgebung in eine Veröffentlichungsinstanz verlagert wird. Dann sendet die Veröffentlichungsumgebung (nicht die AEM-Autorenumgebung) eine Anfrage zur Cache-Invalidierung an den Dispatcher, wenn eine veröffentlichte Seite empfangen wird.
 
@@ -120,7 +120,7 @@ Wenn Sie nach der Konfiguration eine Seite von Author to Publish aktivieren, ini
 
 1. `<publishserver> 13:29:47 127.0.0.1 POST /dispatcher/invalidate.cache 200`
 
-## Dispatcher-Cache manuell invalidieren {#manually-invalidating-the-dispatcher-cache}
+## Manuelle Invalidierung des Dispatcher-Caches {#manually-invalidating-the-dispatcher-cache}
 
 Um den Dispatcher-Cache zu invalidieren (oder zu leeren), ohne eine Seite zu aktivieren, können Sie eine HTTP-Anfrage an den Dispatcher ausgeben. Sie können beispielsweise eine AEM-Anwendung erstellen, die es Admins oder anderen Anwendungen ermöglicht, den Cache zu leeren.
 
@@ -169,7 +169,7 @@ page_path1
 page_pathn
 ```
 
-Die Seitenpfade für das unmittelbare erneute Zwischenspeichern werden im Nachrichtentext in getrennten Zeilen aufgeführt. Der Wert von `CQ-Handle` ist der Pfad einer Seite, die die erneut zwischenzuspeichernde Seite ungültig macht. (Siehe den `/statfileslevel` des Konfigurationselements [Cache](dispatcher-configuration.md#main-pars_146_44_0010).) Die folgende Beispiel-HTTP-Anfragenachricht löscht und speichert die `/content/geometrixx-outdoors/en.html page` zwischen:
+Die Seitenpfade für das unmittelbare erneute Zwischenspeichern werden im Nachrichtentext in getrennten Zeilen aufgeführt. Der Wert von `CQ-Handle` ist der Pfad einer Seite, die die erneut zwischenzuspeichernde Seite ungültig macht. (Siehe Parameter `/statfileslevel` des Konfigurationselements [Cache](dispatcher-configuration.md#main-pars_146_44_0010).) Die folgenden HTTP-Anfragemethoden löschen die Seite `/content/geometrixx-outdoors/en.html page` und speichern sie erneut zwischen:
 
 ```xml
 POST /dispatcher/invalidate.cache HTTP/1.1  

@@ -1,5 +1,5 @@
 ---
-title: Verwenden von SSL mit Dispatcher
+title: Verwenden von SSL mit dem Dispatcher
 description: Erfahren Sie, wie der Dispatcher für die Kommunikation mit AEM mithilfe von SSL-Verbindungen konfiguriert wird.
 contentOwner: User
 products: SG_EXPERIENCEMANAGER/DISPATCHER
@@ -10,13 +10,13 @@ internal: n
 snippet: y
 exl-id: ec378409-ddb7-4917-981d-dbf2198aca98
 source-git-commit: c41b4026a64f9c90318e12de5397eb4c116056d9
-workflow-type: tm+mt
+workflow-type: ht
 source-wordcount: '1305'
-ht-degree: 91%
+ht-degree: 100%
 
 ---
 
-# Verwenden von SSL mit Dispatcher {#using-ssl-with-dispatcher}
+# Verwenden von SSL mit dem Dispatcher {#using-ssl-with-dispatcher}
 
 Verwenden Sie SSL-Verbindungen zwischen Dispatcher und Render-Computer:
 
@@ -27,7 +27,7 @@ Verwenden Sie SSL-Verbindungen zwischen Dispatcher und Render-Computer:
 >
 >Vorgänge im Zusammenhang mit SSL-Zertifikaten sind von Drittanbieterprodukten abhängig. Sie sind nicht durch den Adobe Platinum Maintenance and Support-Vertrag abgedeckt.
 
-## SSL verwenden, wenn Dispatcher eine Verbindung zu AEM herstellt {#use-ssl-when-dispatcher-connects-to-aem}
+## Verwenden von SSL, wenn der Dispatcher eine Verbindung zu AEM herstellt {#use-ssl-when-dispatcher-connects-to-aem}
 
 Konfigurieren Sie den Dispatcher für die Kommunikation mit der AEM- oder CQ-Render-Instanz mithilfe von SSL-Verbindungen.
 
@@ -36,7 +36,7 @@ Bevor Sie den Dispatcher konfigurieren, konfigurieren Sie zunächst AEM oder CQ 
 * [SSL/TLS By Default](https://experienceleague.adobe.com/de/docs/experience-manager-65/content/security/ssl-by-default)
 * [Verwenden des SSL-Assistenten in AEM](https://experienceleague.adobe.com/de/docs/experience-manager-learn/foundation/security/use-the-ssl-wizard)
 
-### SSL-bezogene Anfragekopfzeilen {#ssl-related-request-headers}
+### SSL-bezogene Anforderungs-Header {#ssl-related-request-headers}
 
 Wenn der Dispatcher eine HTTPS-Anfrage erhält, nimmt der Dispatcher die folgenden Header in die nachfolgende Anfrage auf, die an AEM oder CQ gesendet wird:
 
@@ -53,7 +53,7 @@ X-Forwarded-SSL-Cipher: DHE-RSA-AES256-SHA
 X-Forwarded-SSL-Session-ID: 814825E8CD055B4C166C2EF6D75E1D0FE786FFB29DEB6DE1E239D5C771CB5B4D
 ```
 
-### Konfigurieren von Dispatcher für die Verwendung von SSL {#configuring-dispatcher-to-use-ssl}
+### Konfigurieren des Dispatchers für die Verwendung von SSL {#configuring-dispatcher-to-use-ssl}
 
 Um den Dispatcher so zu konfigurieren, dass über SSL eine Verbindung mit AEM oder CQ hergestellt wird, muss die Datei [dispatcher.any](dispatcher-configuration.md) die folgenden Eigenschaften aufweisen:
 
@@ -111,7 +111,7 @@ Im folgenden Beispiel weist die Datei `dispatcher.any` die Eigenschaftswerte fü
 }
 ```
 
-## Konfigurieren von gegenseitigem SSL zwischen Dispatcher und AEM {#configuring-mutual-ssl-between-dispatcher-and-aem}
+## Konfigurieren der bidirektionalen SSL-Kommunikation zwischen dem Dispatcher und AEM {#configuring-mutual-ssl-between-dispatcher-and-aem}
 
 Konfigurieren Sie die Verbindungen zwischen dem Dispatcher und dem Render-Computer (normalerweise eine AEM- oder CQ-Veröffentlichungsinstanz) zur Verwendung der bidirektionalen SSL-Kommunikation:
 
@@ -131,15 +131,15 @@ Gehen Sie wie folgt vor, um die bidirektionale SSL-Kommunikation zu konfiguriere
 1. [Installieren](dispatcher-install.md) Sie die neueste Dispatcher-Version für Ihre Plattform. Verwenden Sie eine Dispatcher-Binärdatei, die SSL unterstützt (SSL ist im Dateinamen enthalten, z. B. `dispatcher-apache2.4-linux-x86-64-ssl10-4.1.7.tar`).
 1. [Erstellen oder beziehen Sie ein von einer Zertifizierungsstelle signiertes Zertifikat](dispatcher-ssl.md#main-pars-title-3) für den Dispatcher und die Render-Instanz.
 1. [Erstellen Sie einen Keystore, der das Render-Zertifikat enthält](dispatcher-ssl.md#main-pars-title-6) und konfigurieren Sie den HTTP-Dienst der Render-Instanz.
-1. [Konfigurieren Sie das Dispatcher-Webservermodul](dispatcher-ssl.md#main-pars-title-4) für die bidirektionale SSL-Kommunikation.
+1. [Konfigurieren Sie das Dispatcher-Webserver-Modul](dispatcher-ssl.md#main-pars-title-4) für die bidirektionale SSL-Kommunikation.
 
-### Erstellen oder Abrufen von Zertifizierungsstellen-signierten Zertifikaten {#creating-or-obtaining-ca-signed-certificates}
+### Erstellen oder Beziehen von Zertifikaten, die von Zertifizierungsstellen signiert wurden {#creating-or-obtaining-ca-signed-certificates}
 
 Erstellen oder beziehen Sie von einer Zertifizierungsstelle signierte Zertifikate, die die Veröffentlichungsinstanz und den Dispatcher authentifizieren.
 
-#### Erstellen der Zertifizierungsstelle {#creating-your-ca}
+#### Erstellen einer Zertifizierungsstelle {#creating-your-ca}
 
-Wenn Sie als Zertifizierungsstelle fungieren, verwenden Sie [OpenSSL](https://www.openssl.org/) zum Erstellen der Zertifizierungsstelle, die die Server- und Client-Zertifikate signiert. (Die OpenSSL-Bibliotheken müssen installiert sein.) Wenn Sie eine Drittanbieter-Zertifizierungsstelle verwenden, führen Sie dieses Verfahren nicht durch.
+Wenn Sie als Zertifizierungsstelle fungieren, verwenden Sie [OpenSSL](https://www.openssl.org/) zum Erstellen der Zertifizierungsstelle, die die Server- und Client-Zertifikate signiert. (Sie müssen die OpenSSL-Bibliotheken installiert haben.) Führen Sie diese Schritte nicht durch, wenn Sie eine externe Zertifizierungsstelle verwenden.
 
 1. Öffnen Sie ein Terminal-Fenster und ändern Sie das aktuelle Verzeichnis in das Verzeichnis, in dem sich die Datei `CA.sh` befindet, beispielsweise `/usr/local/ssl/misc`.
 1. Um die Zertifizierungsstelle zu erstellen, geben Sie den folgenden Befehl ein und legen Sie dann Werte fest, wenn Sie dazu aufgefordert werden:
@@ -152,7 +152,7 @@ Wenn Sie als Zertifizierungsstelle fungieren, verwenden Sie [OpenSSL](https://ww
    >
    >Einige Eigenschaften in der Datei `openssl.cnf` steuern das Verhalten des Skripts „CA.sh“. Bearbeiten Sie diese Datei nach Bedarf, bevor Sie Ihre Zertifizierungsstelle erstellen.
 
-#### Erstellen der Zertifikate {#creating-the-certificates}
+#### Erstellen von Zertifikaten {#creating-the-certificates}
 
 Verwenden Sie OpenSSL, um die Zertifikatanforderungen zu erstellen, die an die externe Zertifizierungsstelle gesendet oder von Ihrer Zertifizierungsstelle signiert werden sollen.
 
@@ -183,7 +183,7 @@ Wenn Sie ein Zertifikat erstellen, verwendet OpenSSL die Eigenschaft für den al
 
 Konfigurieren Sie SSL in der Render-Instanz mithilfe der Dateien `rendercert.pem` und `renderkey.pem`.
 
-#### Konvertieren des Render-Zertifikats in das JKS-Format (Java™ KeyStore) {#converting-the-render-certificate-to-jks-format}
+#### Konvertieren des Renderzertifikats in das JKS-Format (Java™ KeyStore) {#converting-the-render-certificate-to-jks-format}
 
 Verwenden Sie den folgenden Befehl, um das Render-Zertifikat, bei dem es sich um eine PEM-Datei handelt, in eine Datei im PKCS#12-Format zu konvertieren. Schließen Sie außerdem das Zertifikat der Zertifizierungsstelle ein, die das Render-Zertifikat signiert hat:
 
@@ -206,7 +206,7 @@ Verwenden Sie den folgenden Befehl, um das Render-Zertifikat, bei dem es sich um
    keytool -changealias -alias 1 -destalias jettyhttp -keystore render.keystore
    ```
 
-#### Hinzufügen des Zertifizierungsstellen-Zertifikats zum TrustStore des Renderings {#adding-the-ca-cert-to-the-render-s-truststore}
+#### Hinzufügen des Zertifizierungsstellenzertifikats zum Render-TrustStore {#adding-the-ca-cert-to-the-render-s-truststore}
 
 Wenn Sie als Zertifizierungsstelle fungieren, importieren Sie das Zertifizierungsstellenzertifikat in einen Keystore. Konfigurieren Sie anschließend die JVM, auf der die Render-Instanz ausgeführt wird, so, dass sie dem Keystore vertraut.
 
@@ -244,7 +244,7 @@ Last Modified Date: 2014-08-12T13:11:21.401-0400
    CQ_JVM_OPTS='-server -Xmx2048m -XX:MaxPermSize=512M -Djavax.net.ssl.trustStore=/usr/lib/cq6.0/publish/ssl/cacerts.keystore'
    ```
 
-#### Render-Instanz konfigurieren {#configuring-the-render-instance}
+#### Konfigurieren der Renderinstanz {#configuring-the-render-instance}
 
 Um den HTTP-Dienst der Render-Instanz für SSL zu konfigurieren, verwenden Sie das Render-Zertifikat mit den Anweisungen im Abschnitt *`Enable SSL on the Publish Instance`*:
 
@@ -254,7 +254,7 @@ Um den HTTP-Dienst der Render-Instanz für SSL zu konfigurieren, verwenden Sie d
 
 ### Konfigurieren von SSL für das Dispatcher-Modul {#configuring-ssl-for-the-dispatcher-module}
 
-Um den Dispatcher für die Verwendung der bidirektionalen SSL-Kommunikation zu konfigurieren, bereiten Sie das Dispatcher-Zertifikat vor und konfigurieren Sie dann das Webservermodul.
+Um den Dispatcher für die Verwendung der bidirektionalen SSL-Kommunikation zu konfigurieren, bereiten Sie das Dispatcher-Zertifikat vor und konfigurieren Sie dann das Webserver-Modul.
 
 ### Erstellen eines einheitlichen Dispatcher-Zertifikats {#creating-a-unified-dispatcher-certificate}
 
@@ -280,7 +280,7 @@ Führen Sie das Dispatcher-Zertifikat und den unverschlüsselten privaten Schlü
    -----END CERTIFICATE-----
    ```
 
-### Zertifikat angeben, das für Dispatcher verwendet werden soll {#specifying-the-certificate-to-use-for-dispatcher}
+### Festlegen des Zertifikats, das für den Dispatcher verwendet werden soll {#specifying-the-certificate-to-use-for-dispatcher}
 
 Fügen Sie die folgenden Eigenschaften zur [Konfiguration des Dispatcher-Moduls](dispatcher-install.md#main-pars-55-35-1022) (in der Datei `httpd.conf`) hinzu:
 

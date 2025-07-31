@@ -1,5 +1,5 @@
 ---
-title: Fehlerbehebung bei Dispatcher-Problemen
+title: Beheben von Problemen beim Dispatcher
 description: Erfahren Sie mehr zur Fehlerbehebung bei Dispatcher-Problemen.
 cmgrlastmodified: 01.11.2007 08 22 29 [aheimoz]
 pageversionid: 1193211344162
@@ -10,13 +10,13 @@ topic-tags: dispatcher
 content-type: reference
 exl-id: 29f338ab-5d25-48a4-9309-058e0cc94cff
 source-git-commit: c41b4026a64f9c90318e12de5397eb4c116056d9
-workflow-type: tm+mt
+workflow-type: ht
 source-wordcount: '472'
-ht-degree: 93%
+ht-degree: 100%
 
 ---
 
-# Fehlerbehebung bei Dispatcher-Problemen {#troubleshooting-dispatcher-problems}
+# Beheben von Problemen beim Dispatcher {#troubleshooting-dispatcher-problems}
 
 >[!NOTE]
 >
@@ -26,7 +26,7 @@ ht-degree: 93%
 
 >[!NOTE]
 >
->Weitere Informationen finden <!-- URL is 404[Dispatcher Knowledge Base](https://helpx.adobe.com/experience-manager/kb/index/dispatcher.html), -->[ in den Häufig gestellten Fragen ](https://experienceleague.adobe.com/search.html?lang=de#q=troubleshooting%20dispatcher%20flushing%20issues&sort=relevancy&lang=de&f:el_product=[Experience%20Manager]) Beheben von Problemen mit der Leerung in Dispatcher und [ Häufig gestellten Fragen zu ](dispatcher-faq.md)Dispatcher.
+>Weitere Informationen finden Sie unter <!-- URL is 404[Dispatcher Knowledge Base](https://helpx.adobe.com/experience-manager/kb/index/dispatcher.html), -->[Fehlerbehebung bei Problemen mit dem Leeren des Dispatchers](https://experienceleague.adobe.com/search.html?lang=de#q=troubleshooting%20dispatcher%20flushing%20issues&sort=relevancy&f:el_product=[Experience%20Manager]) sowie in den [häufig gestellten Fragen zu Dispatcher-Problemen](dispatcher-faq.md).
 
 ## Überprüfen der Basiskonfiguration {#check-the-basic-configuration}
 
