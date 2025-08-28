@@ -3,9 +3,9 @@ title: Konfigurieren von AEM Dispatcher
 description: Erfahren Sie, wie Sie den Dispatcher konfigurieren. Informationen über die Unterstützung für IPv4 und IPv6, Konfigurationsdateien, Umgebungsvariablen und die Benennung der Instanz. Weitere Informationen über das Definieren von Farmen, das Identifizieren von virtuellen Hosts und mehr.
 exl-id: 91159de3-4ccb-43d3-899f-9806265ff132
 source-git-commit: fbfbe76b730d4037cccb400b70619fbe24b3b1bc
-workflow-type: tm+mt
+workflow-type: ht
 source-wordcount: '8938'
-ht-degree: 99%
+ht-degree: 100%
 
 ---
 
@@ -209,7 +209,7 @@ Jede Farmeigenschaft kann die folgenden untergeordneten Eigenschaften enthalten:
 | [/failover](#using-the-failover-mechanism) | Anfragen werden erneut an andere Renderer gesendet, wenn die ursprüngliche Anfrage fehlschlägt. |
 | [/auth_checker](permissions-cache.md) | Informationen zum Zwischenspeichern unter Berücksichtigung von Berechtigungen finden Sie unter [Zwischenspeichern von geschützten Inhalten](permissions-cache.md). |
 
-## Angeben einer Standardseite (nur IIS) - /homepage {#specify-a-default-page-iis-only-homepage}
+## Angeben einer Standardseite (nur IIS) – /homepage {#specify-a-default-page-iis-only-homepage}
 
 >[!CAUTION]
 >
@@ -1304,7 +1304,7 @@ Um festzulegen, welche Parameter ignoriert werden, fügen Sie glob-Regeln zu der
 >[!NOTE]
 >
 >Beim Konfigurieren der glob-Eigenschaft sollte diese mit dem Namen des Abfrageparameters übereinstimmen. Wenn Sie beispielsweise den Parameter „p1“ der URL `http://example.com/path/test.html?p1=test&p2=v2` ignorieren möchten, dann sollte die glob-Eigenschaft wie folgt lauten:
->&#x200B;> `/0002 { /glob "p1" /type "allow" }`
+>> `/0002 { /glob "p1" /type "allow" }`
 
 Das folgende Beispiel führt dazu, dass der Dispatcher alle Parameter außer `nocache` ignoriert. Daher speichert der Dispatcher niemals URL-Anfragen, die den Parameter `nocache` enthalten:
 
@@ -1644,7 +1644,7 @@ Die `glob`-Werte können Platzhalterzeichen und alphanumerische Zeichen enthalte
 | `?` | Entspricht einem beliebigen einzelnen Zeichen. Zu benutzen außerhalb von Zeichenklassen. Innerhalb einer Zeichenklasse wird dieses Zeichen literal (&quot;wörtlich&quot;) interpretiert. | `*outdoors/??/*`<br/>Entspricht den Seiten für eine beliebige Sprache der Site „geometrixx-outdoors“. Die folgende HTTP-Anforderung entspricht beispielsweise dem glob-Muster: <br/><ul><li>`"GET /content/geometrixx-outdoors/en/men.html"`</li></ul><br/>Die folgende Anforderung entspricht nicht dem glob-Muster: <br/><ul><li>&quot;GET /content/geometrixx-outdoors/en.html&quot;</li></ul> |
 | `[ and ]` | Markiert den Anfang und das Ende einer Zeichenklasse. Zeichenklassen können einen oder mehrere Zeichenbereiche und einzelne Zeichen enthalten.<br/>Eine Übereinstimmung tritt auf, wenn das Zielzeichen einem Zeichen in der Zeichenklasse oder innerhalb eines bestimmten Bereichs entspricht.<br/>Wenn die schließende Klammer nicht vorhanden ist, liefert das Muster keine Treffer. | `*[o]men.html*`<br/> Entspricht der folgenden HTTP-Anfrage:<br/><ul><li>`"GET /content/geometrixx-outdoors/en/women.html"`</li></ul><br/>Entspricht nicht der folgenden HTTP-Anfrage:<br/><ul><li>`"GET /content/geometrixx-outdoors/en/men.html"`</li></ul><br/> `*[o/]men.html*` <br/>Entspricht den folgenden HTTP-Anfragen: <br/><ul><li>`"GET /content/geometrixx-outdoors/en/women.html"`</li><li>`"GET /content/geometrixx-outdoors/en/men.html"`</li></ul> |
 | `-` | Steht für einen Zeichenbereich. Zur Verwendung in Zeichenklassen. Außerhalb einer Zeichenklasse wird dieses Zeichen wörtlich interpretiert. | `*[m-p]men.html*` Entspricht der folgenden HTTP-Anforderung: <br/><ul><li>`"GET /content/geometrixx-outdoors/en/women.html"`</li></ul>Entspricht nicht der folgenden HTTP-Anforderung:<br/><ul><li>`"GET /content/geometrixx-outdoors/en/men.html"`</li></ul> |
-| `!` | Schließt das nachfolgende Zeichen oder die nachfolgende Zeichenklasse aus. Verwenden Sie dies nur zum Ausschließen von Zeichen und Zeichenbereichen innerhalb von Zeichenklassen. Entspricht `^ wildcard`. <br/>Außerhalb einer Zeichenklasse wird dieses Zeichen wörtlich interpretiert. | `*[ !o]men.html*`<br/> Entspricht der folgenden HTTP-Anfrage: <br/><ul><li>`"GET /content/geometrixx-outdoors/en/men.html"`</li></ul><br/>Entspricht nicht der folgenden HTTP-Anfrage:<br/><ul><li>`"GET /content/geometrixx-outdoors/en/women.html"`</li></ul><br/>`*[ !o!/]men.html*`<br/>Entspricht nicht der folgenden HTTP-Anfrage:<br/><ul><li>`"GET /content/geometrixx-outdoors/en/women.html"` oder `"GET /content/geometrixx-outdoors/en/men. html"`</li></ul> |
+| `!` | Schließt das nachfolgende Zeichen oder die nachfolgende Zeichenklasse aus. Verwenden Sie dies nur zum Ausschließen von Zeichen und Zeichenbereichen innerhalb von Zeichenklassen. Entspricht `^ wildcard`. <br/>Außerhalb einer Zeichenklasse wird dieses Zeichen wörtlich interpretiert. | `*[!o]men.html*`<br/> Entspricht der folgenden HTTP-Anfrage: <br/><ul><li>`"GET /content/geometrixx-outdoors/en/men.html"`</li></ul><br/>Entspricht nicht der folgenden HTTP-Anfrage:<br/><ul><li>`"GET /content/geometrixx-outdoors/en/women.html"`</li></ul><br/>`*[!o!/]men.html*`<br/>Entspricht nicht der folgenden HTTP-Anfrage:<br/><ul><li>`"GET /content/geometrixx-outdoors/en/women.html"` oder `"GET /content/geometrixx-outdoors/en/men. html"`</li></ul> |
 | `^` | Schließt das nachfolgende Zeichen oder den nachfolgenden Zeichenbereich aus. Verwenden Sie dies nur zum Ausschließen von Zeichen und Zeichenbereichen innerhalb von Zeichenklassen. Entspricht dem Platzhalterzeichen `!`. <br/>Außerhalb einer Zeichenklasse wird dieses Zeichen wörtlich interpretiert. | Es gelten die Beispiele für das Platzhalterzeichen `!`, wobei die `!`-Zeichen in den Beispielmustern durch `^`-Zeichen ersetzt werden. |
 
 
