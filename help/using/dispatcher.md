@@ -5,10 +5,10 @@ pageversionid: 1193211344162
 topic-tags: dispatcher
 content-type: reference
 exl-id: c9266683-6890-4359-96db-054b7e856dd0
-source-git-commit: c41b4026a64f9c90318e12de5397eb4c116056d9
-workflow-type: ht
-source-wordcount: '3073'
-ht-degree: 100%
+source-git-commit: 5cdfdb6d49f7d37a309fef9c5a4eb72409b54b13
+workflow-type: tm+mt
+source-wordcount: '3075'
+ht-degree: 99%
 
 ---
 
@@ -83,11 +83,11 @@ Ein statischer Webserver, wie z. B. Apache oder IIS, stellt statische HTML-Date
 
 Dieser Vorgang ist sehr einfach und effizient. Wenn jemand eine Datei anfordert (z. B. eine HTML-Seite), wird die Datei direkt aus dem Speicher abgerufen und allenfalls von der lokalen Festplatte gelesen. Statische Webserver sind seit geraumer Zeit verfügbar. Daher gibt es eine breite Palette von Tools für die Verwaltung und das Sicherheits-Management. Diese Instrumente sind gut in die Netzwerkinfrastruktur integriert.
 
-### Inhaltsverwaltungs-Server {#content-management-servers}
+### Content-Management-Server {#content-management-servers}
 
 ![](assets/chlimage_1-4.png)
 
-Wenn Sie einen Inhaltsverwaltungs-Server wie AEM verwenden, wird die Anfrage einer Besucherin oder eines Besuchers durch eine erweiterte Layout-Engine verarbeitet. Die Engine liest Inhalte aus einem Repository, das diese kombiniert mit Stilen, Formaten und Zugriffsrechten in ein Dokument umwandelt, das individuell auf die Anforderungen der Besucherin oder des Besuchers abgestimmt ist.
+Wenn Sie einen Content-Management-Server wie AEM verwenden, wird die Anfrage einer Besucherin oder eines Besuchers durch eine erweiterte Layout-Engine verarbeitet. Die Engine liest Inhalte aus einem Repository, das diese kombiniert mit Stilen, Formaten und Zugriffsrechten in ein Dokument umwandelt, das individuell auf die Anforderungen der Besucherin oder des Besuchers abgestimmt ist.
 
 Mit diesem Workflow können Sie vielseitigere, dynamische Inhalte erstellen und die Flexibilität und Funktionalität Ihrer Website steigern. Allerdings ist für die Layout-Engine mehr Verarbeitungsleistung als für einen statischen Server erforderlich. Daher ist dieses Setup für Verzögerungen anfällig, wenn viele Besucherinnen und Besucher das System verwenden.
 
@@ -129,7 +129,7 @@ Bei einer Inhaltsaktualisierung werden ein oder mehrere AEM-Dokumente geändert.
 Beachten Sie die folgenden Punkte:
 
 * Inhaltsaktualisierungen werden in der Regel mit einem Authoring-System verwendet, das „weiß“, was ersetzt werden muss.
-* Inhaltsaktualisierungen, die sich auf Dateien auswirken, werden entfernt, aber nicht sofort ersetzt. Das nächste Mal, wenn eine solche Datei angefordert wird, ruft der Dispatcher die neue Datei aus der AEM-Instanz ab und speichert sie im Cache, sodass der alte Inhalt überschrieben wird.
+* Dateien, die von einer Inhaltsaktualisierung betroffen sind, werden entfernt, aber nicht sofort ersetzt. Wenn das nächste Mal eine solche Datei angefordert wird, ruft der Dispatcher die neue Datei von der AEM-Instanz ab und platziert sie im Cache, wodurch der alte Inhalt überschrieben wird.
 * In der Regel werden automatisch generierte Bilder, die Text von einer Seite enthalten, in den Bilddateien gespeichert, die mit demselben Handle beginnen. So wird gewährleistet, dass die Zuordnung zum Löschen vorhanden ist. Sie können z. B. den Titeltext der Seite „mypage.html“ als Bilddatei „mypage.titlePicture.gif“ im selben Ordner speichern. Auf diese Weise wird das Bild automatisch jedes Mal aus dem Cache gelöscht, wenn die Seite aktualisiert wird. So können Sie sicher sein, dass das Bild immer die aktuelle Version der Seite darstellt.
 * Sie können mehrere Stat-Dateien verwenden, z. B. eine pro Sprachen-Ordner. Wenn eine Seite aktualisiert wird, sucht AEM den nächsten übergeordneten Ordner, der eine Statfile enthält, und *ändert*  diese Datei.
 
