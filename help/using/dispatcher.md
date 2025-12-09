@@ -281,7 +281,7 @@ Für eine präzisere Steuerung können Sie mit der API-basierten Invalidierung d
 
 >[!NOTE]
 >
->Siehe auch [AEM (CQ) Dispatcher-Sicherheit und CDN+Browser-Caching](https://www.slideshare.net/slideshow/dispatcher-caching-aemgemspart2jan2015/44053023) und die aufgezeichnete Präsentation zu [Dispatcher-Caching](https://experienceleague.adobe.com/en/docs/events/experience-manager-gems-recordings/overview#).
+>Siehe auch [AEM (CQ) Dispatcher-Sicherheit und CDN+Browser-Caching](https://www.slideshare.net/slideshow/dispatcher-caching-aemgemspart2jan2015/44053023) und die aufgezeichnete Präsentation zu [Dispatcher-Caching](https://experienceleague.adobe.com/de/docs/events/experience-manager-gems-recordings/overview#).
 
 ## Verwenden eines Dispatchers mit einem Author-Server {#using-a-dispatcher-with-an-author-server}
 
