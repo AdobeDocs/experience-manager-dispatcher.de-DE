@@ -5,10 +5,10 @@ topic-tags: release-notes
 content-type: reference
 products: SG_EXPERIENCEMANAGER/6.4
 exl-id: b55c7a34-d57b-4d45-bd83-29890f1524de
-source-git-commit: b7ab59ad2da1b73ebbf7819670f056a68162796d
+source-git-commit: f4ed724deccf14c570ca873728a97d0ae5fe0e4f
 workflow-type: tm+mt
-source-wordcount: '1098'
-ht-degree: 94%
+source-wordcount: '1105'
+ht-degree: 93%
 
 ---
 
@@ -41,9 +41,8 @@ Detaillierte Anweisungen finden Sie unter [Installieren des Dispatchers](dispatc
 
 **Verbesserungen**:
 
-* DISP-1040 - Fehlerbehebung für Kunden, die URLs umschreiben
+* DISP-1040 - Implementieren Sie `/allowedClients` in der Dispatcher-Konfiguration, um zu steuern, welche IPs Cache-Invalidierungen durchführen und Header (`handle`, `cq-handle` usw.) blockieren oder entfernen können, es sei denn, dies ist explizit erforderlich
 * DISP-1046 - stale-while-error sollte auch 429-Antworten von AEM verarbeiten
-* DISP-1041 - Invalidierungs-URI konfigurierbar machen (#179)
 * SKYOPS-107219 - Optimieren der aktuellen Implementierung des Ladens von VanityUrls
 
 ### Version 4.3.7 (27. März 2024) {#march}
