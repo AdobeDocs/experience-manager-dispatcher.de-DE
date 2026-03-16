@@ -67,6 +67,6 @@ Nach der Aktivierung der Umgebungsvariablen und der Bereitstellung der Konfigura
 
 Eine kundenorientierte Grundlinie zum Kopfzeilen-Caching und zur `ETag` in Dispatcher finden Sie unter:
 
-- [Konfigurieren von Dispatcher - Zwischenspeichern von HTTP-Antwortkopfzeilen](https://experienceleague.adobe.com/en/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration#caching-http-response-headers)
+- [Konfigurieren von Dispatcher - Zwischenspeichern von HTTP-Antwortkopfzeilen](https://experienceleague.adobe.com/de/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration#caching-http-response-headers)
 
 „Diese Funktion ist in Dispatcher `2.0.264` (AEM SDK `2026.2.24464`) verfügbar. Wenn diese Option aktiviert ist, kann Dispatcher `If-None-Match` anhand zwischengespeicherter `ETag` validieren und `304 Not Modified` bei Cache-Treffern zurückgeben. In AEM as a Cloud Service wird dies unterstützt und kann über die Cloud Manager-Umgebungskonfiguration aktiviert werden.“
