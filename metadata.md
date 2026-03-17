@@ -2,28 +2,28 @@
 cloud: Experience Cloud
 solution: Experience Manager
 type: Documentation
-git-repo: https://github.com/AdobeDocs/experience-manager-dispatcher.de-DE
-index: y
+git-repo: https://github.com/AdobeDocs/experience-manager-dispatcher.en
+index: true
 recommendations: noDisplay
-source-git-commit: 0a1aa854ea286a30c3527be8fc7c0998726a663f
+source-git-commit: 53781f068db078045ae366d3494cd7d1b78c4a7e
 workflow-type: tm+mt
-source-wordcount: '112'
-ht-degree: 100%
+source-wordcount: '129'
+ht-degree: 0%
 
 ---
 
 
 # Metadaten für die interne Verwendung
 
-Die metadata.md-Datei enthält Metadaten auf Repo-Ebene, die über die TOC.md-Dateien des Benutzerhandbuchs zu Repo weitergegeben werden. Wenn Sie den Inhalt von metadata.md für ein beliebiges Benutzerhandbuch ändern möchten, tun Sie dies in einer TOC.md-Datei.
+Die Datei „metadata.md“ enthält Metadaten auf Repo-Ebene, die an die im Repository enthaltenen TOC.md-Dateien des Benutzerhandbuchs weitergegeben werden. Wenn Sie den Inhalt von „metadata.md“ für ein Benutzerhandbuch ändern möchten, verwenden Sie dazu eine beliebige Inhaltsverzeichnisdatei (.md).
 
-| metadata | Funktion |
+| Metadaten | Funktion |
 |--- |--- |
 | solution-title | Wird in der Artikelkopfzeile als Link verwendet. |
-| solution-hub-url | Öffnet die Hub-Seite der Hilfe. |
-| solution-icon | Zeigt das Lösungssymbol neben dem Lösungstitel an. Noch nicht implementiert. |
-| getting-started-url | Link zur Hilfeseite „Erste Schritte“. |
-| tutorials-url | Link zu Videotutorials – entweder Hilfs-Tutorials oder KT-Tutorials. |
-| mini-toc-levels | Legt die Anzahl der Überschriftenebenen fest, die in der rechten Leiste angezeigt werden. Standard ist 2. |
-| git-repo | Gibt den Speicherort des primären Repos für die interne Verwendung an. |
+| solution-hub-url | Öffnet die Hilfe-Hub-Seite. |
+| solution-icon | Zeigt ein Lösungssymbol neben dem Lösungstitel an. Noch nicht implementiert. |
+| getting-started-url | Link zur Hilfeseite mit den ersten Schritten. |
+| tutorials-url | Link zu Video-Tutorials - entweder Hilfe-Tutorials oder KT-Tutorials. |
+| Mini-Inhaltsverzeichnisebenen | Bestimmt die Anzahl der Überschriftenebenen, die in der rechten Leiste angezeigt werden. Der Standardwert ist 2. |
+| git-repo | Gibt den Speicherort des primären Repository für die interne Verwendung an. |
 

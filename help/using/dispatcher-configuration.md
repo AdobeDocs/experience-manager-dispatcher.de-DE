@@ -2,10 +2,10 @@
 title: Konfigurieren von AEM Dispatcher
 description: Erfahren Sie, wie Sie den Dispatcher konfigurieren. Informationen über die Unterstützung für IPv4 und IPv6, Konfigurationsdateien, Umgebungsvariablen und die Benennung der Instanz. Weitere Informationen über das Definieren von Farmen, das Identifizieren von virtuellen Hosts und mehr.
 exl-id: 91159de3-4ccb-43d3-899f-9806265ff132
-source-git-commit: fbfbe76b730d4037cccb400b70619fbe24b3b1bc
-workflow-type: ht
-source-wordcount: '8938'
-ht-degree: 100%
+source-git-commit: 53781f068db078045ae366d3494cd7d1b78c4a7e
+workflow-type: tm+mt
+source-wordcount: '9194'
+ht-degree: 99%
 
 ---
 
@@ -225,7 +225,7 @@ Comment Type: draft
 <p>Typically this situation occurs when a user specifies an URL for which neither IIS or AEM provides an automatic redirection target. For example, if the AEM render instance is shut down after the content is cached, the content redirect URL is unavailable.</p> 
 <p>The following example configuration displays the <span class="code">index.html</span> page in such circumstances:</p>
 
- -->
+-->
 
 <!-- 
 
@@ -235,7 +235,7 @@ Comment Type: draft
   /homepage&nbsp;"/index.html" 
 </codeblock>
 
- -->
+-->
 
 <!-- 
 
@@ -243,7 +243,7 @@ Comment Type: draft
 
 <p>The <span class="code">/homepage</span> section is located inside the <span class="code">/farms</span> section, for example:<br /> </p>
 
- -->
+-->
 
 <!-- 
 
@@ -253,7 +253,7 @@ Comment Type: draft
   #name&nbsp;of&nbsp;dispatcher!!discoiqbr!!/name&nbsp;"day&nbsp;sites"!!discoiqbr!!!!discoiqbr!!#farms&nbsp;section&nbsp;defines&nbsp;a&nbsp;list&nbsp;of&nbsp;farms&nbsp;or&nbsp;sites!!discoiqbr!!/farms!!discoiqbr!!{!!discoiqbr!!&nbsp;&nbsp;&nbsp;/daycom!!discoiqbr!!&nbsp;&nbsp;&nbsp;{!!discoiqbr!!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/homepage&nbsp;"/index.html"!!discoiqbr!!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...!!discoiqbr!!&nbsp;&nbsp;&nbsp;}!!discoiqbr!!&nbsp;&nbsp;&nbsp;/docdaycom!!discoiqbr!!&nbsp;&nbsp;&nbsp;{!!discoiqbr!!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...!!discoiqbr!!&nbsp;&nbsp;&nbsp;}!!discoiqbr!!} 
 </codeblock>
 
- -->
+-->
 
 ## Festlegen der HTTP-Header zur Durchleitung {#specifying-the-http-headers-to-pass-through-clientheaders}
 
@@ -719,7 +719,7 @@ Last Modified Date: 2015-06-26T04:32:37.986-0400
 
 <p>We should mention the config files that are shipped with the dispatcher distribution and only give a few examples here. This aims to avoid confusion and reduce content maintenance.<br /> </p>
 
- -->
+-->
 
 ```xml
   /filter
@@ -778,10 +778,11 @@ Last Modified Date: 2015-06-26T04:32:37.986-0400
 >
 >Wenn Sie Apache verwenden, gestalten Sie Ihre Filter-URL-Muster entsprechend der Dispatcher UseProcessedURL-Eigenschaft des Dispatcher-Moduls. (Siehe [Apache-Webserver – Konfigurieren des Apache-Webservers für den Dispatcher](dispatcher-install.md##apache-web-server-configure-apache-web-server-for-dispatcher).)
 
-<!----
+<!--
 >[!NOTE]
 >
->Filters `0030` and `0031` regarding Dynamic Media are applicable to AEM 6.0 and higher. -->
+>Filters `0030` and `0031` regarding Dynamic Media are applicable to AEM 6.0 and higher. 
+-->
 
 Berücksichtigen Sie die folgenden Empfehlungen, wenn Sie den Zugriff erweitern möchten:
 
@@ -912,7 +913,7 @@ Last Modified Date: 2015-03-25T14:23:05.185-0400
 
 <p style="font-family: tahoma, arial, helvetica, sans-serif; font-size: 12px;">For https://jira.corp.adobe.com/browse/DOC-4812</p> 
 <p style="font-family: tahoma, arial, helvetica, sans-serif; font-size: 12px;">The "com.adobe.granite.dispatcher.vanityurl.content" package needs to be made public before publishing this contnet.</p>
- -->
+-->
 
 Sie können den Dispatcher so konfigurieren, dass der Zugriff auf Vanity-URLs möglich ist, die für Ihre AEM-Seiten konfiguriert sind.
 
@@ -1130,7 +1131,7 @@ Comment Type: draft
  <p> </p> 
 </note>
 
- -->
+-->
 
 <!-- 
 
@@ -1138,7 +1139,7 @@ Comment Type: draft
 
 <p>The following rule caches all documents in compressed form; Apache can return either the uncompressed or the compressed form to the client:</p>
 
- -->
+-->
 
 <!-- 
 
@@ -1148,7 +1149,7 @@ Comment Type: draft
   /rules!!discoiqbr!!&nbsp;&nbsp;{!!discoiqbr!!&nbsp;&nbsp;&nbsp;/rulelabel&nbsp;&nbsp;{&nbsp;&nbsp;/glob&nbsp;"*"&nbsp;/type&nbsp;"allow"&nbsp;&nbsp;/compress&nbsp;"gzip"&nbsp;}!!discoiqbr!!&nbsp;&nbsp;} 
 </codeblock>
 
- -->
+-->
 
 <!-- 
 
@@ -1158,7 +1159,7 @@ Last Modified Date: 2017-11-13T09:23:24.326-0500
 
 <p>Hidden the <span class="code">mod_gzip</span> content as requested in CQDOC-11124.</p>
 
- -->
+-->
 
 ### Invalidierung von Dateien nach Ordnerebene {#invalidating-files-by-folder-level}
 
@@ -1304,7 +1305,7 @@ Um festzulegen, welche Parameter ignoriert werden, fügen Sie glob-Regeln zu der
 >[!NOTE]
 >
 >Beim Konfigurieren der glob-Eigenschaft sollte diese mit dem Namen des Abfrageparameters übereinstimmen. Wenn Sie beispielsweise den Parameter „p1“ der URL `http://example.com/path/test.html?p1=test&p2=v2` ignorieren möchten, dann sollte die glob-Eigenschaft wie folgt lauten:
->> `/0002 { /glob "p1" /type "allow" }`
+> `/0002 { /glob "p1" /type "allow" }`
 
 Das folgende Beispiel führt dazu, dass der Dispatcher alle Parameter außer `nocache` ignoriert. Daher speichert der Dispatcher niemals URL-Anfragen, die den Parameter `nocache` enthalten:
 
@@ -1610,7 +1611,7 @@ Um das Failover zu aktivieren, fügen Sie der Farm (oder Website) folgende Zeile
 >
 >`Error while reading response: Interrupted system call`
 
-Jeder dateisystemorientierte Systemaufruf kann mit `EINTR` unterbrochen werden, wenn sich das Objekt des Systemaufrufs auf einem Remote-System befindet, auf das über NFS zugegriffen wird. Ob diese Systemaufrufe ein Zeit-Limit überschreiten oder unterbrochen werden können, richtet sich danach, wie das zugrunde liegende Dateisystem auf dem lokalen Computer bereitgestellt wurde.
+Jeder dateisystemorientierte Systemaufruf kann mit `EINTR` unterbrochen werden, wenn sich das Objekt des Systemaufrufs auf einem Remote-System befindet, auf das über NFS zugegriffen wird. Ob diese Systemaufrufe einen Timeout erreichen oder unterbrochen werden können, richtet sich danach, wie das zugrunde liegende Dateisystem auf dem lokalen Computer bereitgestellt wurde.
 
 Verwenden Sie den Parameter `/ignoreEINTR`, wenn Ihre Instanz eine solche Konfiguration aufweist und das Protokoll folgende Meldung enthält:
 
@@ -1642,13 +1643,14 @@ Die `glob`-Werte können Platzhalterzeichen und alphanumerische Zeichen enthalte
 |--- |--- |--- |
 | `*` | Entspricht null oder mehreren aufeinanderfolgenden Instanzen eines Zeichens in der Zeichenfolge. Das letzte Zeichen der Übereinstimmung wird durch eine der folgenden Situationen bestimmt: <br/>Ein Zeichen in der Zeichenfolge stimmt mit dem nächsten Zeichen im Muster überein, und das Musterzeichen verfügt über die folgenden Eigenschaften:<br/><ul><li>Es handelt sich nicht um ein `*`</li><li>Es handelt sich nicht um ein `?`</li><li>Ein Buchstabenzeichen (einschließlich Leerzeichen) oder eine Zeichenklasse.</li><li>Das Ende des Musters ist erreicht.</li></ul>Innerhalb einer Zeichenklasse wird das Zeichen wörtlich interpretiert. | `*/geo*` Entspricht allen Seiten unter den Knoten `/content/geometrixx` und `/content/geometrixx-outdoors`. Die folgenden HTTP-Anforderungen entsprechen dem glob-Muster: <br/><ul><li>`"GET /content/geometrixx/en.html"`</li><li>`"GET /content/geometrixx-outdoors/en.html"` </li></ul><br/> `*outdoors/*` <br/>Entspricht allen Seiten unter dem Knoten `/content/geometrixx-outdoors`. Die folgende HTTP-Anforderung entspricht beispielsweise dem glob-Muster: <br/><ul><li>`"GET /content/geometrixx-outdoors/en.html"`</li></ul> |
 | `?` | Entspricht einem beliebigen einzelnen Zeichen. Zu benutzen außerhalb von Zeichenklassen. Innerhalb einer Zeichenklasse wird dieses Zeichen literal (&quot;wörtlich&quot;) interpretiert. | `*outdoors/??/*`<br/>Entspricht den Seiten für eine beliebige Sprache der Site „geometrixx-outdoors“. Die folgende HTTP-Anforderung entspricht beispielsweise dem glob-Muster: <br/><ul><li>`"GET /content/geometrixx-outdoors/en/men.html"`</li></ul><br/>Die folgende Anforderung entspricht nicht dem glob-Muster: <br/><ul><li>&quot;GET /content/geometrixx-outdoors/en.html&quot;</li></ul> |
-| `[ and ]` | Markiert den Anfang und das Ende einer Zeichenklasse. Zeichenklassen können einen oder mehrere Zeichenbereiche und einzelne Zeichen enthalten.<br/>Eine Übereinstimmung tritt auf, wenn das Zielzeichen einem Zeichen in der Zeichenklasse oder innerhalb eines bestimmten Bereichs entspricht.<br/>Wenn die schließende Klammer nicht vorhanden ist, liefert das Muster keine Treffer. | `*[o]men.html*`<br/> Entspricht der folgenden HTTP-Anfrage:<br/><ul><li>`"GET /content/geometrixx-outdoors/en/women.html"`</li></ul><br/>Entspricht nicht der folgenden HTTP-Anfrage:<br/><ul><li>`"GET /content/geometrixx-outdoors/en/men.html"`</li></ul><br/> `*[o/]men.html*` <br/>Entspricht den folgenden HTTP-Anfragen: <br/><ul><li>`"GET /content/geometrixx-outdoors/en/women.html"`</li><li>`"GET /content/geometrixx-outdoors/en/men.html"`</li></ul> |
+| `[ and ]` | Markiert den Anfang und das Ende einer Zeichenklasse. Zeichenklassen können einen oder mehrere Zeichenbereiche und einzelne Zeichen enthalten.<br/>Eine Übereinstimmung tritt auf, wenn das Zielzeichen mit einem der Zeichen in der Zeichenklasse übereinstimmt, oder innerhalb eines definierten Bereichs.<br/>Wenn die schließende Klammer nicht enthalten ist, erzeugt das Muster keine Übereinstimmungen. | `*[o]men.html*`<br/> Entspricht der folgenden HTTP-Anfrage:<br/><ul><li>`"GET /content/geometrixx-outdoors/en/women.html"`</li></ul><br/>Entspricht nicht der folgenden HTTP-Anfrage:<br/><ul><li>`"GET /content/geometrixx-outdoors/en/men.html"`</li></ul><br/> `*[o/]men.html*` <br/>Entspricht den folgenden HTTP-Anfragen: <br/><ul><li>`"GET /content/geometrixx-outdoors/en/women.html"`</li><li>`"GET /content/geometrixx-outdoors/en/men.html"`</li></ul> |
 | `-` | Steht für einen Zeichenbereich. Zur Verwendung in Zeichenklassen. Außerhalb einer Zeichenklasse wird dieses Zeichen wörtlich interpretiert. | `*[m-p]men.html*` Entspricht der folgenden HTTP-Anforderung: <br/><ul><li>`"GET /content/geometrixx-outdoors/en/women.html"`</li></ul>Entspricht nicht der folgenden HTTP-Anforderung:<br/><ul><li>`"GET /content/geometrixx-outdoors/en/men.html"`</li></ul> |
-| `!` | Schließt das nachfolgende Zeichen oder die nachfolgende Zeichenklasse aus. Verwenden Sie dies nur zum Ausschließen von Zeichen und Zeichenbereichen innerhalb von Zeichenklassen. Entspricht `^ wildcard`. <br/>Außerhalb einer Zeichenklasse wird dieses Zeichen wörtlich interpretiert. | `*[!o]men.html*`<br/> Entspricht der folgenden HTTP-Anfrage: <br/><ul><li>`"GET /content/geometrixx-outdoors/en/men.html"`</li></ul><br/>Entspricht nicht der folgenden HTTP-Anfrage:<br/><ul><li>`"GET /content/geometrixx-outdoors/en/women.html"`</li></ul><br/>`*[!o!/]men.html*`<br/>Entspricht nicht der folgenden HTTP-Anfrage:<br/><ul><li>`"GET /content/geometrixx-outdoors/en/women.html"` oder `"GET /content/geometrixx-outdoors/en/men. html"`</li></ul> |
-| `^` | Schließt das nachfolgende Zeichen oder den nachfolgenden Zeichenbereich aus. Verwenden Sie dies nur zum Ausschließen von Zeichen und Zeichenbereichen innerhalb von Zeichenklassen. Entspricht dem Platzhalterzeichen `!`. <br/>Außerhalb einer Zeichenklasse wird dieses Zeichen wörtlich interpretiert. | Es gelten die Beispiele für das Platzhalterzeichen `!`, wobei die `!`-Zeichen in den Beispielmustern durch `^`-Zeichen ersetzt werden. |
+| `!` | Schließt das nachfolgende Zeichen oder die nachfolgende Zeichenklasse aus. Verwenden Sie dies nur zum Ausschließen von Zeichen und Zeichenbereichen innerhalb von Zeichenklassen. Entspricht dem `^ wildcard`. <br/>Außerhalb einer Zeichenklasse wird dieses Zeichen wörtlich interpretiert. | `*[!o]men.html*`<br/> Entspricht der folgenden HTTP-Anforderung: <br/><ul><li>`"GET /content/geometrixx-outdoors/en/men.html"`</li></ul><br/>Entspricht nicht der folgenden HTTP-Anfrage:<br/><ul><li>`"GET /content/geometrixx-outdoors/en/women.html"`</li></ul><br/>`*[!o!/]men.html*`<br/>Entspricht nicht der folgenden HTTP-Anfrage:<br/><ul><li>`"GET /content/geometrixx-outdoors/en/women.html"` oder `"GET /content/geometrixx-outdoors/en/men. html"`</li></ul> |
+| `^` | Schließt das nachfolgende Zeichen oder den nachfolgenden Zeichenbereich aus. Verwenden Sie dies nur zum Ausschließen von Zeichen und Zeichenbereichen innerhalb von Zeichenklassen. Entspricht dem `!` Platzhalterzeichen. <br/>Außerhalb einer Zeichenklasse wird dieses Zeichen wörtlich interpretiert. | Es gelten die Beispiele für das Platzhalterzeichen `!`, wobei die `!`-Zeichen in den Beispielmustern durch `^`-Zeichen ersetzt werden. |
 
 
-<!--- need to troubleshoot table
+<!--
+need to troubleshoot table
 
 The following table describes the wildcard characters.
 

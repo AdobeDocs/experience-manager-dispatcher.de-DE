@@ -5,9 +5,9 @@ pageversionid: 1193211344162
 topic-tags: dispatcher
 content-type: reference
 exl-id: c9266683-6890-4359-96db-054b7e856dd0
-source-git-commit: b7ab59ad2da1b73ebbf7819670f056a68162796d
+source-git-commit: 53781f068db078045ae366d3494cd7d1b78c4a7e
 workflow-type: tm+mt
-source-wordcount: '3065'
+source-wordcount: '3227'
 ht-degree: 98%
 
 ---
@@ -40,7 +40,7 @@ Ziehen Sie bei Bedarf die folgenden Ressourcen hinzu:
 
 * [Die Dispatcher-Sicherheitscheckliste](security-checklist.md)
 <!-- URL is 404! * [The Dispatcher Knowledge Base](https://helpx.adobe.com/experience-manager/kb/index/dispatcher.html) -->
-* [Optimierung von Websites für die Cache-Leistung](https://experienceleague.adobe.com/de/docs/experience-manager-65/content/implementing/deploying/configuring/configuring-performance)
+* [Optimieren einer Website für Cache-Leistung](https://experienceleague.adobe.com/de/docs/experience-manager-65/content/implementing/deploying/configuring/configuring-performance)
 * [Verwenden des Dispatchers mit mehreren Domains](dispatcher-domains.md)
 * [Verwenden von SSL mit dem Dispatcher](dispatcher-ssl.md)
 * [Implementieren der Zwischenspeicherung unter Berücksichtigung von Berechtigungen](permissions-cache.md)
@@ -217,7 +217,7 @@ Für andere Arten von Anfragen können andere durchschnittliche Bearbeitungszeit
 
 Wenn Sie eine umfangreiche Suchfunktion verwenden, können Sie eine Kategorie für Suchabfragen erstellen. So kann der Dispatcher Suchabfragen an diejenige Instanz senden, die am schnellsten antwortet. Diese Methode verhindert zudem, dass eine langsamere Instanz nicht mehr reagiert, wenn sie mehrere „schwere“ Suchabfragen erhält, während die anderen „leichtere“ Anfragen erhalten.
 
-### Personalisierte Inhalte („Sticky-Verbindungen“) 
+### Personalisierte Inhalte („Sticky-Verbindungen“)
 
 Sticky-Verbindungen stellen sicher, dass alle Dokumente für eine Person in derselben AEM-Instanz erstellt werden. Dieser Punkt ist wichtig, wenn Sie personalisierte Seiten und Sitzungsdaten verwenden. Die Daten werden in der Instanz gespeichert, sodass nachfolgende Anfragen von derselben Person zu dieser Instanz zurückführen müssen. Andernfalls gehen die Daten verloren.
 
@@ -273,7 +273,7 @@ Durch CDNs können Ressourcen über Web-Schnittstellen aus dem Cache entfernt we
 1. API-basierte Invalidierung.\
    Die meisten CDNs bieten außerdem ein REST- und/oder ein SOAP-API, mit dem Ressourcen aus dem Cache entfernt werden können.
 
-In einem typischen AEM-Setup bietet die Konfiguration per Erweiterung und/oder Pfad, die durch die Punkte 1 und 2 oben erreicht werden kann, Möglichkeiten zum Festlegen angemessener Caching-Zeiträume.  Diese Caching-Zeiträume gelten für häufig genutzte Ressourcen, die sich nicht oft ändern, z. B. Bilder im Design und Client-Bibliotheken. Wenn neue Versionen bereitgestellt werden, ist in der Regel eine manuelle Invalidierung erforderlich.
+In einem typischen AEM-Setup bietet die Konfiguration per Erweiterung und/oder Pfad, die durch die Punkte 1 und 2 oben erreicht werden kann, Möglichkeiten zum Festlegen angemessener Caching-Zeiträume. Diese Caching-Zeiträume gelten für häufig genutzte Ressourcen, die sich nicht oft ändern, z. B. Bilder im Design und Client-Bibliotheken. Wenn neue Versionen bereitgestellt werden, ist in der Regel eine manuelle Invalidierung erforderlich.
 
 Wenn dieser Ansatz für die Zwischenspeicherung verwalteter Inhalte verwendet wird, bedeutet dies, dass Änderungen an den Inhalten für die Benutzenden erst sichtbar werden, wenn der konfigurierte Caching-Zeitraum abgelaufen ist. Und auch, wenn das Dokument erneut vom Dispatcher abgerufen wird.
 
@@ -281,7 +281,7 @@ Für eine präzisere Steuerung können Sie mit der API-basierten Invalidierung d
 
 >[!NOTE]
 >
->Siehe auch [AEM (CQ) Dispatcher-Sicherheit und CDN+Browser-Caching](https://www.slideshare.net/slideshow/dispatcher-caching-aemgemspart2jan2015/44053023) und die aufgezeichnete Präsentation zu [Dispatcher-Caching](https://experienceleague.adobe.com/de/docs/events/experience-manager-gems-recordings/overview#).
+>Siehe auch [AEM (CQ) Dispatcher-Sicherheit und CDN+Browser-Caching](https://www.slideshare.net/slideshow/dispatcher-caching-aemgemspart2jan2015/44053023) und die aufgezeichnete Präsentation zu [Dispatcher-Caching](https://experienceleague.adobe.com/en/docs/events/experience-manager-gems-recordings/overview#).
 
 ## Verwenden eines Dispatchers mit einem Author-Server {#using-a-dispatcher-with-an-author-server}
 
@@ -312,13 +312,13 @@ Ein Dispatcher kann vor einer Autoreninstanz verwendet werden, um die Authoring-
 1. Löschen Sie alle vorhandenen Dateien im Verzeichnis `/cache` > `/docroot`, das oben konfiguriert wurde.
 1. Starten Sie den Webserver neu.
 
->[!NOTE]
->
->Wenn Sie mit der bereitgestellten Konfiguration von `author_dispatcher.any` ein CQ5-Feature-Pack, einen Hotfix oder ein Anwendungs-Code-Paket installieren, das sich auf einen Inhalt unter `/libs` oder `/apps` auswirkt, müssen Sie die zwischengespeicherten Dateien löschen. Die Dateien befinden sich unter diesen Ordnern im Dispatcher-Cache. Dadurch wird sichergestellt, dass bei der nächsten Anfrage die neu aktualisierten Dateien abgerufen werden und nicht die alten zwischengespeicherten Dateien.
+   >[!NOTE]
+   >
+   >Wenn Sie mit der bereitgestellten Konfiguration von `author_dispatcher.any` ein CQ5-Feature-Pack, einen Hotfix oder ein Anwendungs-Code-Paket installieren, das sich auf einen Inhalt unter `/libs` oder `/apps` auswirkt, müssen Sie die zwischengespeicherten Dateien löschen. Die Dateien befinden sich unter diesen Ordnern im Dispatcher-Cache. Dadurch wird sichergestellt, dass bei der nächsten Anfrage die neu aktualisierten Dateien abgerufen werden und nicht die alten zwischengespeicherten Dateien.
 
->[!CAUTION]
->
->Wenn Sie den vorher konfigurierten Autoren-Dispatcher verwendet und einen *Dispatcher-Flushing-Agenten* aktiviert haben, führen Sie folgende Schritte aus:
+   >[!CAUTION]
+   >
+   >Wenn Sie den vorher konfigurierten Autoren-Dispatcher verwendet und einen *Dispatcher-Flushing-Agenten* aktiviert haben, führen Sie folgende Schritte aus:
 
 1. Löschen oder deaktivieren Sie den Flushing-Agenten des **Autoren-Dispatchers** in Ihrer AEM-Autoreninstanz.
 1. Wiederholen Sie die Konfiguration des Autoren-Dispatchers, indem Sie den neuen Anweisungen oben folgen.
@@ -326,7 +326,9 @@ Ein Dispatcher kann vor einer Autoreninstanz verwendet werden, um die Authoring-
 <!--
 [Author Dispatcher configuration file (Dispatcher 4.1.2 or later)](assets/author_dispatchernew.any)
 -->
-<!--[!NOTE]
+
+<!--
+>[!NOTE]
 >
 >A related knowledge base article can be found here:  
 >[How to configure the dispatcher in front of an authoring environment](https://helpx.adobe.com/cq/kb/HowToConfigureDispatcherForAuthoringEnvironment.html)
