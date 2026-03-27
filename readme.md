@@ -1,10 +1,16 @@
 ---
-source-git-commit: d889ccdf4b8ea169a21658e8a2251e70dfa5596c
+source-git-commit: 9be9f5935c21ebbf211b5da52280a31772993c2e
 workflow-type: tm+mt
-source-wordcount: '7'
-ht-degree: 0%
+source-wordcount: '72'
+ht-degree: 5%
 
 ---
-# ARCHIVIERT
+# Adobe Experience Manager-Mustererkennung
 
-Dieses Repository wurde nach <https://github.com/Adobe-Enterprise-Docs/experience-manager-dispatcher.de-DE> migriert
+Dieses Repository für die Mustererkennung in Adobe Experience Manager.
+
+Ihre Beiträge zur Dokumentation sind willkommen. Sehen Sie sich die folgenden Ressourcen an:
+
+* [contributor.md](contributing.md) Einen Überblick darüber, wie Sie zur Dokumentation beitragen können.
+* [guidelines.md](guidelines.md) Einen Überblick darüber, was an Beiträgen erwartet wird und wie Sie Ihre Dokumentationsbeiträge zusammenstellen.
+* [code-of-conduct.md](code-of-conduct.md) Für einen Überblick über die Verhaltensstandards, die Adobe beim Beitrag zu diesem Dokumentationsprojekt erwartet.
