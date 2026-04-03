@@ -2,10 +2,10 @@
 title: Konfigurieren von AEM Dispatcher
 description: Erfahren Sie, wie Sie den Dispatcher konfigurieren. Informationen über die Unterstützung für IPv4 und IPv6, Konfigurationsdateien, Umgebungsvariablen und die Benennung der Instanz. Weitere Informationen über das Definieren von Farmen, das Identifizieren von virtuellen Hosts und mehr.
 exl-id: 91159de3-4ccb-43d3-899f-9806265ff132
-source-git-commit: 53781f068db078045ae366d3494cd7d1b78c4a7e
+source-git-commit: 97c7cec0b89dd20532e35e026281c19a55aa61f9
 workflow-type: tm+mt
 source-wordcount: '9194'
-ht-degree: 99%
+ht-degree: 97%
 
 ---
 
@@ -127,7 +127,7 @@ Wenn beispielsweise die Dateien `farm_1.any` bis `farm_5.any` die Konfiguration 
 
 Anstatt einer Hartkodierung von Werten können Sie in der Datei „dispatcher.any“ Umgebungsvariablen in Zeichenfolgen-Eigenschaften verwenden. Um den Wert einer Umgebungsvariablen einzubeziehen, verwenden Sie das Format `${variable_name}`.
 
-Wenn sich beispielsweise die Datei „dispatcher.any“ im selben Verzeichnis wie das Cache-Verzeichnis befindet, kann der folgende Wert für die Eigenschaft [docroot](#specifying-the-cache-directory) verwendet werden:
+Wenn sich die `dispatcher.any`-Datei beispielsweise im selben Verzeichnis wie das Cache-Verzeichnis befindet, kann der folgende Wert für die Eigenschaft [docroot](#specifying-the-cache-directory) verwendet werden:
 
 ```xml
 /docroot "${PWD}/cache"
@@ -1643,10 +1643,10 @@ Die `glob`-Werte können Platzhalterzeichen und alphanumerische Zeichen enthalte
 |--- |--- |--- |
 | `*` | Entspricht null oder mehreren aufeinanderfolgenden Instanzen eines Zeichens in der Zeichenfolge. Das letzte Zeichen der Übereinstimmung wird durch eine der folgenden Situationen bestimmt: <br/>Ein Zeichen in der Zeichenfolge stimmt mit dem nächsten Zeichen im Muster überein, und das Musterzeichen verfügt über die folgenden Eigenschaften:<br/><ul><li>Es handelt sich nicht um ein `*`</li><li>Es handelt sich nicht um ein `?`</li><li>Ein Buchstabenzeichen (einschließlich Leerzeichen) oder eine Zeichenklasse.</li><li>Das Ende des Musters ist erreicht.</li></ul>Innerhalb einer Zeichenklasse wird das Zeichen wörtlich interpretiert. | `*/geo*` Entspricht allen Seiten unter den Knoten `/content/geometrixx` und `/content/geometrixx-outdoors`. Die folgenden HTTP-Anforderungen entsprechen dem glob-Muster: <br/><ul><li>`"GET /content/geometrixx/en.html"`</li><li>`"GET /content/geometrixx-outdoors/en.html"` </li></ul><br/> `*outdoors/*` <br/>Entspricht allen Seiten unter dem Knoten `/content/geometrixx-outdoors`. Die folgende HTTP-Anforderung entspricht beispielsweise dem glob-Muster: <br/><ul><li>`"GET /content/geometrixx-outdoors/en.html"`</li></ul> |
 | `?` | Entspricht einem beliebigen einzelnen Zeichen. Zu benutzen außerhalb von Zeichenklassen. Innerhalb einer Zeichenklasse wird dieses Zeichen literal (&quot;wörtlich&quot;) interpretiert. | `*outdoors/??/*`<br/>Entspricht den Seiten für eine beliebige Sprache der Site „geometrixx-outdoors“. Die folgende HTTP-Anforderung entspricht beispielsweise dem glob-Muster: <br/><ul><li>`"GET /content/geometrixx-outdoors/en/men.html"`</li></ul><br/>Die folgende Anforderung entspricht nicht dem glob-Muster: <br/><ul><li>&quot;GET /content/geometrixx-outdoors/en.html&quot;</li></ul> |
-| `[ and ]` | Markiert den Anfang und das Ende einer Zeichenklasse. Zeichenklassen können einen oder mehrere Zeichenbereiche und einzelne Zeichen enthalten.<br/>Eine Übereinstimmung tritt auf, wenn das Zielzeichen mit einem der Zeichen in der Zeichenklasse übereinstimmt, oder innerhalb eines definierten Bereichs.<br/>Wenn die schließende Klammer nicht enthalten ist, erzeugt das Muster keine Übereinstimmungen. | `*[o]men.html*`<br/> Entspricht der folgenden HTTP-Anfrage:<br/><ul><li>`"GET /content/geometrixx-outdoors/en/women.html"`</li></ul><br/>Entspricht nicht der folgenden HTTP-Anfrage:<br/><ul><li>`"GET /content/geometrixx-outdoors/en/men.html"`</li></ul><br/> `*[o/]men.html*` <br/>Entspricht den folgenden HTTP-Anfragen: <br/><ul><li>`"GET /content/geometrixx-outdoors/en/women.html"`</li><li>`"GET /content/geometrixx-outdoors/en/men.html"`</li></ul> |
+| `[ and ]` | Markiert den Anfang und das Ende einer Zeichenklasse. Zeichenklassen können einen oder mehrere Zeichenbereiche und einzelne Zeichen enthalten.<br/>Eine Übereinstimmung tritt auf, wenn das Zielzeichen mit einem der Zeichen in der Zeichenklasse oder innerhalb eines definierten Bereichs übereinstimmt.<br/>Wenn die schließende Klammer nicht vorhanden ist, liefert das Muster keine Treffer. | `*[o]men.html*`<br/> Entspricht der folgenden HTTP-Anfrage:<br/><ul><li>`"GET /content/geometrixx-outdoors/en/women.html"`</li></ul><br/>Entspricht nicht der folgenden HTTP-Anfrage:<br/><ul><li>`"GET /content/geometrixx-outdoors/en/men.html"`</li></ul><br/> `*[o/]men.html*` <br/>Entspricht den folgenden HTTP-Anfragen: <br/><ul><li>`"GET /content/geometrixx-outdoors/en/women.html"`</li><li>`"GET /content/geometrixx-outdoors/en/men.html"`</li></ul> |
 | `-` | Steht für einen Zeichenbereich. Zur Verwendung in Zeichenklassen. Außerhalb einer Zeichenklasse wird dieses Zeichen wörtlich interpretiert. | `*[m-p]men.html*` Entspricht der folgenden HTTP-Anforderung: <br/><ul><li>`"GET /content/geometrixx-outdoors/en/women.html"`</li></ul>Entspricht nicht der folgenden HTTP-Anforderung:<br/><ul><li>`"GET /content/geometrixx-outdoors/en/men.html"`</li></ul> |
-| `!` | Schließt das nachfolgende Zeichen oder die nachfolgende Zeichenklasse aus. Verwenden Sie dies nur zum Ausschließen von Zeichen und Zeichenbereichen innerhalb von Zeichenklassen. Entspricht dem `^ wildcard`. <br/>Außerhalb einer Zeichenklasse wird dieses Zeichen wörtlich interpretiert. | `*[ !o]men.html*`<br/> Entspricht der folgenden HTTP-Anforderung: <br/><ul><li>`"GET /content/geometrixx-outdoors/en/men.html"`</li></ul><br/>Entspricht nicht der folgenden HTTP-Anfrage:<br/><ul><li>`"GET /content/geometrixx-outdoors/en/women.html"`</li></ul><br/>`*[ !o!/]men.html*`<br/>Entspricht nicht der folgenden HTTP-Anfrage:<br/><ul><li>`"GET /content/geometrixx-outdoors/en/women.html"` oder `"GET /content/geometrixx-outdoors/en/men. html"`</li></ul> |
-| `^` | Schließt das nachfolgende Zeichen oder den nachfolgenden Zeichenbereich aus. Verwenden Sie dies nur zum Ausschließen von Zeichen und Zeichenbereichen innerhalb von Zeichenklassen. Entspricht dem `!` Platzhalterzeichen. <br/>Außerhalb einer Zeichenklasse wird dieses Zeichen wörtlich interpretiert. | Es gelten die Beispiele für das Platzhalterzeichen `!`, wobei die `!`-Zeichen in den Beispielmustern durch `^`-Zeichen ersetzt werden. |
+| `!` | Schließt das nachfolgende Zeichen oder die nachfolgende Zeichenklasse aus. Verwenden Sie dies nur zum Ausschließen von Zeichen und Zeichenbereichen innerhalb von Zeichenklassen. Entspricht `^ wildcard`. <br/>Außerhalb einer Zeichenklasse wird dieses Zeichen wörtlich interpretiert. | `*[ !o]men.html*`<br/> Entspricht der folgenden HTTP-Anforderung: <br/><ul><li>`"GET /content/geometrixx-outdoors/en/men.html"`</li></ul><br/>Entspricht nicht der folgenden HTTP-Anfrage:<br/><ul><li>`"GET /content/geometrixx-outdoors/en/women.html"`</li></ul><br/>`*[ !o!/]men.html*`<br/>Entspricht nicht der folgenden HTTP-Anfrage:<br/><ul><li>`"GET /content/geometrixx-outdoors/en/women.html"` oder `"GET /content/geometrixx-outdoors/en/men. html"`</li></ul> |
+| `^` | Schließt das nachfolgende Zeichen oder den nachfolgenden Zeichenbereich aus. Verwenden Sie dies nur zum Ausschließen von Zeichen und Zeichenbereichen innerhalb von Zeichenklassen. Entspricht dem Platzhalterzeichen `!`. <br/>Außerhalb einer Zeichenklasse wird dieses Zeichen wörtlich interpretiert. | Es gelten die Beispiele für das Platzhalterzeichen `!`, wobei die `!`-Zeichen in den Beispielmustern durch `^`-Zeichen ersetzt werden. |
 
 
 <!--
@@ -1870,18 +1870,18 @@ Nachfolgend finden Sie eine Liste mit den Antwort-Headern, die von `X-Dispatcher
   Die Zieldatei ist im Cache enthalten und der Dispatcher hat festgestellt, dass sie bereitgestellt werden kann.
 * **Caching**\
   Die Zieldatei ist nicht im Cache enthalten und der Dispatcher hat festgestellt, dass die Ausgabe zwischengespeichert und bereitgestellt werden kann.
-* **Caching: stat-Datei ist aktueller**
+* **Zwischenspeicherung: Die stat-Datei ist neuer**
 Die Zieldatei ist im Cache enthalten. Eine aktuellere stat-Datei kann sie jedoch ungültig machen. Der Dispatcher löscht die Zieldatei, erstellt sie aus der Ausgabe neu und stellt sie bereit.
-* **nicht zwischenspeicherbar: Basisverzeichnis existiert nicht**
-Die Konfiguration der Farm enthält kein Basisverzeichnis (Konfigurationselement `cache.docroot`).
+* **Nicht zwischenspeicherbar: Dokumentstamm nicht vorhanden**
+Die Konfiguration der Farm enthält keinen Dokumentstamm (Konfigurationselement `cache.docroot`).
 * **Nicht zwischenspeicherbar: Cache-Dateipfad zu lang**\
   Die Zieldatei – die Verknüpfung von Basisverzeichnis und URL-Datei – überschreitet den längsten möglichen Dateinamen im System.
 * **Nicht zwischenspeicherbar: temporärer Dateipfad zu lang**\
   Der temporäre Dateiname überschreitet den längsten möglichen Dateinamen im System. Der Dispatcher erstellt zuerst eine temporäre Datei, bevor er die zwischengespeicherte Datei tatsächlich erstellt oder überschreibt. Der temporäre Dateiname ist der Zieldateiname mit den daran angehängten Zeichen `_YYYYXXXXXX`. `Y` und `X` werden dabei ersetzt, sodass ein eindeutiger Name entsteht.
 * **Nicht zwischenspeicherbar: Anfrage-URL hat keine Erweiterung**\
   Die Anfrage-URL hat keine Erweiterung oder der Dateiendung folgt ein Pfad, z. B.: `/test.html/a/path`.
-* **Nicht zwischenspeicherbar: Anfrage muss ein GET oder HEAD sein**
-Die HTTP-Methode ist weder ein GET- noch eine HEAD-Anfrage. Der Dispatcher geht davon aus, dass die Ausgabe dynamische Daten enthält, die nicht zwischengespeichert werden sollten.
+* **Nicht zwischenspeicherbar: Anfrage muss eine GET oder HEAD sein**
+Die HTTP-Methode ist keine GET oder HEAD. Der Dispatcher geht davon aus, dass die Ausgabe dynamische Daten enthält, die nicht zwischengespeichert werden sollten.
 * **Nicht zwischenspeicherbar: Anfrage enthielt eine Abfragezeichenfolge**\
   Die Anfrage enthielt eine Abfragezeichenfolge. Der Dispatcher geht davon aus, dass die Ausgabe von der angegebenen Abfragezeichenfolge abhängt, und führt daher keine Zwischenspeicherung durch.
 * **Nicht zwischenspeicherbar: Sitzungs-Manager muss authentifiziert werden**\
@@ -1896,10 +1896,10 @@ Die HTTP-Methode ist weder ein GET- noch eine HEAD-Anfrage. Der Dispatcher geht 
   Die Cache-Regeln der Farm lehnen explizit das Zwischenspeichern der Ausgabe einer URL-Abfrage ab.
 * **Nicht zwischenspeicherbar: Berechtigungsprüfung verweigert Zugriff**\
   Die Berechtigungsprüfung der Farm hat den Zugriff auf die zwischengespeicherte Datei verweigert.
-* **nicht zwischenspeicherbar: Sitzung ist ungültig**
-Ein Sitzungs-Manager (die Konfiguration enthält einen `sessionmanagement`-Knoten) verwaltet den Cache der Farm und die Sitzung der Person ist nicht oder nicht mehr gültig.
+* **Nicht zwischenspeicherbar: Sitzung ist ungültig**
+Ein Sitzungs-Manager (Konfiguration enthält einen `sessionmanagement`) steuert den Cache der Farm, und die Sitzung des Benutzers ist nicht oder nicht mehr gültig.
 * **Nicht zwischenspeicherbar: Antwort enthält`no_cache`**
-Der Remote-Server gibt einen Header `Dispatcher: no_cache` zurück, der es dem Dispatcher untersagt, die Ausgabe zwischenzuspeichern.
-* **Nicht zwischenspeicherbar: Antwortinhaltslänge ist null**
-Die Inhaltslänge der Antwort ist null; der Dispatcher erstellt keine Datei mit einer Länge von null.
+Der Remoteserver hat einen `Dispatcher: no_cache`-Header zurückgegeben, der es der Dispatcher untersagt, die Ausgabe zwischenzuspeichern.
+* **Nicht zwischenspeicherbar: Länge des Antwortinhalts ist null**
+Die Inhaltslänge der Antwort ist null. Der Dispatcher erstellt keine Datei mit der Länge null.
 
