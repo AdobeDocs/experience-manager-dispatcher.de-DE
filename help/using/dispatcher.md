@@ -5,10 +5,15 @@ pageversionid: 1193211344162
 topic-tags: dispatcher
 content-type: reference
 exl-id: c9266683-6890-4359-96db-054b7e856dd0
-source-git-commit: 53781f068db078045ae366d3494cd7d1b78c4a7e
+TQID: https://experienceleague.adobe.com/Ir-slXay90FcQsvKGLioMgFhmhsaTfkYxIQJzfjDsfY
+product_v2: id: fd1f54a9-f50c-467d-8956-cebbaf4f3eb8
+feature_v2: id: b1210526-416b-4ef6-bcc0-1692e99f30e9
+role_v2: id: c66ffd68-0f65-42bb-aa23-b4020f12e0bd
+topic_v2: id: c1579802-ddd4-4214-8a91-97b2066abe11id: d095671a-1355-40aa-8b5f-06c33c68080bid: eddd9b14-83bd-4ff4-9072-54a4a484abb7
+source-git-commit: b68483fc6956bc0e6c2b1939d2203311da62987e
 workflow-type: tm+mt
-source-wordcount: '3227'
-ht-degree: 98%
+source-wordcount: 3227
+ht-degree: 96%
 
 ---
 
@@ -191,11 +196,11 @@ Beim Lastenausgleich wird die Rechenleistung für eine Website auf mehrere Insta
 
 Vorteile:
 
-* **Verbesserte Verarbeitungsleistung**
-In der Praxis bedeutet eine verbesserte Verarbeitungsleistung, dass der Dispatcher Dokumentanforderungen zwischen mehreren Instanzen von AEM aufteilt. Da jede Instanz jetzt weniger Dokumente verarbeiten muss, sind die Reaktionszeiten kürzer. Der Dispatcher führt interne Statistiken für jede Dokumentenkategorie, sodass die Anforderungen geschätzt und die Abfragen effizient aufgeteilt werden können.
+* **Höhere Rechenleistung**
+In der Praxis bedeutet eine höhere Verarbeitungsleistung, dass Dispatcher Dokumentanforderungen zwischen mehreren Instanzen von AEM freigibt. Da jede Instanz jetzt weniger Dokumente verarbeiten muss, sind die Reaktionszeiten kürzer. Der Dispatcher führt interne Statistiken für jede Dokumentenkategorie, sodass die Anforderungen geschätzt und die Abfragen effizient aufgeteilt werden können.
 
-* **Verbesserte Fail-Safe-Abdeckung**
-Wenn der Dispatcher keine Antworten von einer Instanz empfängt, werden Anfragen automatisch an eine der anderen Instanzen weitergeleitet. Wenn eine Instanz nicht verfügbar ist, verlangsamt sich dadurch lediglich die Site, und zwar proportional zur verloren gegangenen Rechenleistung. Alle Dienste werden jedoch fortgesetzt.
+* **Erhöhte Ausfallsicherheit**
+Wenn der Dispatcher keine Antworten von einer -Instanz erhält, leitet er Anfragen automatisch an eine der anderen Instanzen weiter. Wenn eine Instanz nicht verfügbar ist, verlangsamt sich dadurch lediglich die Site, und zwar proportional zur verloren gegangenen Rechenleistung. Alle Dienste werden jedoch fortgesetzt.
 
 * Sie können auch verschiedene Websites auf demselben statischen Webserver verwalten.
 
@@ -281,7 +286,7 @@ Für eine präzisere Steuerung können Sie mit der API-basierten Invalidierung d
 
 >[!NOTE]
 >
->Siehe auch [AEM (CQ) Dispatcher-Sicherheit und CDN+Browser-Caching](https://www.slideshare.net/slideshow/dispatcher-caching-aemgemspart2jan2015/44053023) und die aufgezeichnete Präsentation zu [Dispatcher-Caching](https://experienceleague.adobe.com/de/docs/events/experience-manager-gems-recordings/overview#).
+>Siehe auch [AEM (CQ) Dispatcher-Sicherheit und CDN+Browser-Caching](https://www.slideshare.net/slideshow/dispatcher-caching-aemgemspart2jan2015/44053023) und die aufgezeichnete Präsentation zu [Dispatcher-Caching](https://experienceleague.adobe.com/en/docs/events/experience-manager-gems-recordings/overview#).
 
 ## Verwenden eines Dispatchers mit einem Author-Server {#using-a-dispatcher-with-an-author-server}
 

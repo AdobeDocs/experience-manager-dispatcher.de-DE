@@ -1,15 +1,19 @@
 ---
 title: Installieren des Dispatchers
-description: Installieren des Dispatcher-Moduls auf Microsoft&reg; Internet Information Server, Apache Web Server und Sun Java® Web Server iPlanet.
+description: Erfahren Sie, wie Sie das Dispatcher-Modul auf Microsoft&reg; Internet Information Server, Apache Web Server und Sun Java &trade; Web Server-iPlanet installieren.
 contentOwner: User
 converted: true
 topic-tags: dispatcher
 content-type: reference
 exl-id: 9375d1c0-8d9e-46cb-9810-fa4162a8c1ba
-source-git-commit: c41b4026a64f9c90318e12de5397eb4c116056d9
-workflow-type: ht
-source-wordcount: '3720'
-ht-degree: 100%
+TQID: https://experienceleague.adobe.com/o-B8WewNSKJhcw8UXJsWg6scuVEgrUU30R1q6VkYMnQ
+product_v2: id: fd1f54a9-f50c-467d-8956-cebbaf4f3eb8
+role_v2: id: c66ffd68-0f65-42bb-aa23-b4020f12e0bd
+topic_v2: id: a004cc84-67b9-4a33-a3a7-8ec7273ef4dcid: d095671a-1355-40aa-8b5f-06c33c68080bid: eddd9b14-83bd-4ff4-9072-54a4a484abb7
+source-git-commit: b68483fc6956bc0e6c2b1939d2203311da62987e
+workflow-type: tm+mt
+source-wordcount: 3754
+ht-degree: 97%
 
 ---
 
@@ -91,7 +95,7 @@ Comment Type: draft
 Weitere Informationen zur Installation dieses Webservers finden Sie hier:
 
 * in der Dokumentation von Microsoft® zu Internet Information Server
-* auf der [offiziellen Microsoft® IIS-Site](https://www.iis.net/)
+* [„Die offizielle Microsoft® IIS-Website“](https://www.iis.net/)
 
 ### Erforderliche IIS-Komponenten {#required-iis-components}
 
@@ -150,7 +154,7 @@ In der folgenden Tabelle werden die einzelnen Eigenschaften beschrieben.
 | `logfile` | Der Speicherort der Datei `dispatcher.log`. Wenn dieser Speicherort nicht festgelegt ist, werden Protokollmeldungen im Windows-Ereignisprotokoll gespeichert. |
 | `loglevel` | Definiert die Protokollebene, die verwendet wird, um Meldungen im Ereignisprotokoll auszugeben. Die folgenden Werte können auf Protokollebene für die Protokolldatei angegeben werden: <br/>0 – nur Fehlermeldungen. <br/>1 – Fehlermeldungen und Warnungen. <br/>2 – Fehlermeldungen, Warnungen und Informationsmeldungen. <br/>3 – Fehlermeldungen, Warnungen, Informations- und Debugging-Meldungen. <br/>**Hinweis**: Legen Sie die Protokollebene während der Installation und der Tests auf 3 fest und setzen Sie sie anschließend beim Ausführen in einer Produktionsumgebung wieder auf 0. |
 | `replaceauthorization` | Legt fest, wie Autorisierungs-Header in der HTTP-Anfrage verarbeitet werden. Die folgenden Werte sind gültig:<br/>0 – Autorisierungs-Header werden nicht geändert. <br/>1 – ersetzt alle Header mit dem Namen „Authorization“ mit Ausnahme von „Basic“ durch die Entsprechung `Basic <IIS:LOGON\_USER>`.<br/> |
-| `servervariables` | Definiert, wie Server-Variablen verarbeitet werden.<br/>0 – IIS-Server-Variablen werden weder an den Dispatcher noch an AEM gesendet. <br/>1 – Alle IIS-Server-Variablen (wie `LOGON\_USER, QUERY\_STRING, ...`) werden zusammen mit den Anforderungs-Headern an den Dispatcher gesendet (und an die AEM-Instanz, wenn keine Zwischenspeicherung erfolgt).  <br/>Zu den Servervariablen gehören `AUTH\_USER, LOGON\_USER, HTTPS\_KEYSIZE` und viele andere. In der IIS-Dokumentation finden Sie eine umfassende Liste der Variablen mit detaillierten Informationen. |
+| `servervariables` | Definiert, wie Servervariablen verarbeitet werden.<br/>0 - IIS-Servervariablen werden nicht an Dispatcher oder AEM gesendet. <br/>1 – Alle IIS-Server-Variablen (wie `LOGON\_USER, QUERY\_STRING, ...`) werden zusammen mit den Anforderungs-Headern an den Dispatcher gesendet (und an die AEM-Instanz, wenn keine Zwischenspeicherung erfolgt).  <br/>Zu den Servervariablen gehören `AUTH\_USER, LOGON\_USER, HTTPS\_KEYSIZE` und viele andere. In der IIS-Dokumentation finden Sie eine umfassende Liste der Variablen mit detaillierten Informationen. |
 | `enable_chunked_transfer` | Definiert, ob die Blockübertragung für die Client-Antwort aktiviert (1) oder deaktiviert (0) werden soll. Der Standardwert ist 0. |
 
 Eine Beispielkonfiguration:
@@ -329,7 +333,7 @@ Grund hierfür sind wahrscheinlich die aktivierten SELinux-Sicherheitseinstellun
 
 * Konfigurieren des SELinux-Kontextes der Dispatcher-Moduldatei
 * Aktivieren von HTTPD-Skripten und -Modulen zum Herstellen von Netzwerkverbindungen
-* Konfigurieren des SELinux-Kontextes des Dokumentenstamms, in dem die zwischengespeicherten Dateien gespeichert sind 
+* Konfigurieren des SELinux-Kontextes des Dokumentenstamms, in dem die zwischengespeicherten Dateien gespeichert sind
 
 Geben Sie in einem Terminal-Fenster die folgenden Befehle ein und ersetzen Sie dabei `[path to the dispatcher.so file]` durch den Pfad zum Dispatcher-Modul, das Sie auf dem Apache-Webserver installiert haben, und *`path to the docroot`* durch den Pfad zum Basisverzeichnis (z. B. `/opt/cq/cache`):
 
@@ -402,19 +406,19 @@ DispatcherKeepAliveTimeout 60
 >
 >Kundinnen und Kunden, die von Version 4.3.3 auf die Version 4.3.4 aktualisieren, werden wahrscheinlich ein anderes Verhalten in Bezug darauf bemerken, wie Caching-Header für nicht zwischenspeicherbare Inhalte festgelegt werden. Weitere Informationen zu dieser Änderung finden Sie auf der Seite [Versionshinweise](/help/using/release-notes.md#nov).
 
-Die einzelnen Konfigurationsparameter lauten: 
+Die einzelnen Konfigurationsparameter lauten:
 
 | Parameter | Beschreibung |
 |--- |--- |
 | DispatcherConfig | Speicherort und Name der Dispatcher-Konfigurationsdatei. <br/>Wenn sich diese Eigenschaft in der Haupt-Server-Konfiguration befindet, übernehmen alle virtuellen Hosts den Eigenschaftenwert. Allerdings können virtuelle Hosts die Eigenschaft DispatcherConfig einschließen, um die Hauptserverkonfiguration zu überschreiben. |
 | DispatcherLog | Speicherort und Name der Protokolldatei. |
 | DispatcherLogLevel | Protokollebene für die Protokolldatei: <br/>0 – Fehlermeldungen <br/>1 – Warnungen <br/>2 – Informationen <br/>3 – Debug-Meldungen <br/>**Hinweis**: Legen Sie die Protokollebene während der Installation und der Tests auf 3 fest und setzen Sie sie anschließend beim Ausführen in einer Produktionsumgebung wieder auf 0. |
-| DispatcherNoServerHeader | *Dieser Parameter ist veraltet und unwirksam.*<br/><br/> Definiert den zu verwendenden Server-Header: <br/><ul><li>nicht definiert oder 0 – der HTTP-Server-Header enthält die AEM-Version. </li><li>1 – der Apache-Server-Header wird verwendet.</li></ul> |
+| DispatcherNoServerHeader | *Dieser Parameter ist veraltet und ineffektiv.*<br/><br/> Definiert die zu verwendende Server-Kopfzeile: <br/><ul><li>nicht definiert oder 0 – der HTTP-Server-Header enthält die AEM-Version. </li><li>1 – der Apache-Server-Header wird verwendet.</li></ul> |
 | DispatcherDeclineRoot | Definiert, ob Anfragen an den Stamm „/“ abgelehnt werden sollen: <br/>**0** – Anfragen an / akzeptieren <br/>**1** – Der Dispatcher verarbeitet keine Anfragen an /. Verwenden Sie stattdessen „mod_alias“ für die korrekte Zuordnung. |
-| DispatcherUseProcessedURL | Legt fest, ob vorverarbeitete URLs für die weitere Verarbeitung durch den Dispatcher verwendet werden sollen:<br/>**0** – die an den Webserver übergebene ursprüngliche URL wird verwendet. <br/>**1** – Der Dispatcher verwendet die URL, die bereits von den Handlern verarbeitet wurde, die dem Dispatcher vorausgehen (d. h. `mod_rewrite`), anstelle der ursprünglichen URL, die an den Webserver übergeben wurde. Beispielsweise wird entweder die ursprüngliche oder verarbeitete URL mit den Dispatcher-Filtern abgeglichen. Die URL wird auch als Grundlage für die Cache-Dateistruktur verwendet. Informationen zu „mod_rewrite“ finden Sie in der Dokumentation auf der Apache-Website, z. B. Apache 2.4. Verwenden Sie bei Nutzung von „mod_rewrite“ das Flag „passthrough“ (Durchleitung an nächsten Handler), um die Rewrite-Engine zu zwingen, das URI-Feld der internen request_rec-Struktur auf den Wert des Dateinamen-Felds zu setzen. |
+| DispatcherUseProcessedURL | Legt fest, ob vorverarbeitete URLs für die weitere Verarbeitung durch den Dispatcher verwendet werden sollen:<br/>**0** – die an den Webserver übergebene ursprüngliche URL wird verwendet. <br/>**1** – Der Dispatcher verwendet die URL, die bereits von den Handlern verarbeitet wurde, die dem Dispatcher vorausgehen (d. h. `mod_rewrite`), anstelle der ursprünglichen URL, die an den Webserver übergeben wurde. Beispielsweise wird entweder die ursprüngliche oder verarbeitete URL mit den Dispatcher-Filtern abgeglichen. Die URL wird auch als Grundlage für die Cache-Dateistruktur verwendet. Informationen zu mod_rewrite; zum Beispiel für Apache 2.4 finden Sie in der Dokumentation zur Apache-Website . Verwenden Sie bei Verwendung von mod_rewrite das Flag „passthrough“ (zum nächsten Handler übergeben), um die Rewrite-Engine zu zwingen, das URI-Feld der internen request_rec-Struktur auf den Wert des Dateinamenfelds festzulegen. |
 | DispatcherPassError | Definiert, wie Fehler-Codes für die ErrorDocument-Verarbeitung unterstützt werden: <br/>**0** – Der Dispatcher spoolt alle Fehlerantworten an den Client. <br/>**1** – Der Dispatcher sendet keine Fehlerantwort an den Client (wenn der Status-Code größer oder gleich 400 ist). Stattdessen übergibt er den Status-Code an Apache, wodurch eine ErrorDocument-Anweisung einen solchen Status-Code verarbeiten kann. <br/>**Code-Bereich** – Geben Sie eine Reihe von Fehler-Codes an, für die die Antwort an Apache übergeben wird. Andere Fehlercodes werden an den Client übergeben. Beispielsweise übergibt die folgende Konfiguration Antworten für Fehler 412 an den Client und alle anderen Fehler werden an Apache übergeben: DispatcherPassError 400-411,413-417 |
 | DispatcherKeepAliveTimeout | Gibt den Keep-Alive-Timeout in Sekunden an. Ab Dispatcher-Version 4.2.0 beträgt der Standardwert für die Keep-Alive-Funktion 60. Wenn der Wert 0 lautet, wird der Keep-Alive-Timeout deaktiviert. |
-| DispatcherNoCanonURL | Wenn Sie diesen Parameter auf „Ein“ setzen, wird die unformatierte URL anstelle der kanonisierten URL an das Backend übergeben und die Einstellungen von DispatcherUseProcessedURL überschrieben.  Der Standardwert ist „Off“. <br/>**Hinweis**: Die Filterregeln in der Dispatcher-Konfiguration werden immer anhand der bereinigten URL und nicht anhand der unformatierten URL ausgewertet. |
+| DispatcherNoCanonURL | Wenn Sie diesen Parameter auf „Ein“ setzen, wird die unformatierte URL anstelle der kanonisierten URL an das Backend übergeben und die Einstellungen von DispatcherUseProcessedURL überschrieben. Der Standardwert ist „Off“. <br/>**Hinweis**: Die Filterregeln in der Dispatcher-Konfiguration werden immer anhand der bereinigten URL und nicht anhand der unformatierten URL ausgewertet. |
 
 >[!NOTE]
 >
@@ -428,7 +432,7 @@ Die einzelnen Konfigurationsparameter lauten:
 >
 >`DispatcherNoServerHeader 0`
 >
->Dies zeigt die AEM-Version für statistische Zwecke.  Wenn Sie diese Informationen im Header deaktivieren möchten, können Sie Folgendes festlegen:
+>Dies zeigt die AEM-Version für statistische Zwecke. Wenn Sie diese Informationen im Header deaktivieren möchten, können Sie Folgendes festlegen:
 >
 >`ServerTokens Prod`
 >

@@ -9,10 +9,14 @@ products: SG_EXPERIENCEMANAGER/DISPATCHER
 topic-tags: dispatcher
 content-type: reference
 exl-id: 90eb6a78-e867-456d-b1cf-f62f49c91851
-source-git-commit: c41b4026a64f9c90318e12de5397eb4c116056d9
-workflow-type: ht
-source-wordcount: '1407'
-ht-degree: 100%
+TQID: https://experienceleague.adobe.com/yeMU0lrfxz38PkwRYZ6tcXVBp4obt9qxJAiGi0GGsX4
+product_v2: id: fd1f54a9-f50c-467d-8956-cebbaf4f3eb8
+role_v2: id: c66ffd68-0f65-42bb-aa23-b4020f12e0bd
+topic_v2: id: d095671a-1355-40aa-8b5f-06c33c68080bid: eddd9b14-83bd-4ff4-9072-54a4a484abb7
+source-git-commit: b68483fc6956bc0e6c2b1939d2203311da62987e
+workflow-type: tm+mt
+source-wordcount: 1447
+ht-degree: 98%
 
 ---
 
@@ -22,11 +26,11 @@ Bei Verwendung des Dispatchers mit AEM muss die Interaktion konfiguriert werden,
 
 ## Einrichten von AEM-Benutzerkonten {#setting-up-aem-user-accounts}
 
-Das Standardbenutzerkonto `admin` wird zur Authentifizierung der Replikationsagenten verwendet, die standardmäßig installiert sind. Erstellen Sie ein dediziertes Benutzerkonto zur Verwendung mit Replikationsagenten. 
+Das Standardbenutzerkonto `admin` wird zur Authentifizierung der Replikationsagenten verwendet, die standardmäßig installiert sind. Erstellen Sie ein dediziertes Benutzerkonto zur Verwendung mit Replikationsagenten.
 
 Weitere Informationen finden Sie im Abschnitt [Konfigurieren von Benutzerreplikation und -transport](https://experienceleague.adobe.com/de/docs/experience-manager-release-information/aem-release-updates/previous-updates/aem-previous-versions#VerificationSteps) der AEM-Sicherheitscheckliste.
 
-<!-- OLD URL from above https://helpx.adobe.com/de/experience-manager/6-3/sites/administering/using/security-checklist.html#VerificationSteps -->
+<!-- OLD URL from above https://helpx.adobe.com/experience-manager/6-3/sites/administering/using/security-checklist.html#VerificationSteps -->
 
 ## Invalidierung des Dispatcher-Cache in der Autorenumgebung {#invalidating-dispatcher-cache-from-the-authoring-environment}
 
@@ -54,7 +58,7 @@ Gehen Sie wie folgt vor, um einen Replikationsagenten auf der AEM-Autoreninstanz
 
 1. Öffnen Sie die AEM-Tools-Konsole. (`https://localhost:4502/miscadmin#/etc`)
 1. Öffnen Sie den erforderlichen Replikationsagenten unter „Werkzeuge/Replikation/Agenten“ auf der Autoreninstanz. Sie können den Dispatcher Flush-Agenten verwenden, der standardmäßig installiert ist.
-1. Klicken Sie auf „Bearbeiten“ und stellen Sie sicher, dass auf der Registerkarte „Einstellungen“ **Aktiviert** ausgewählt ist. 
+1. Klicken Sie auf „Bearbeiten“ und stellen Sie sicher, dass auf der Registerkarte „Einstellungen“ **Aktiviert** ausgewählt ist.
 
 1. (Optional) Um Alias- oder Vanity Path-Invalidierungsanforderungen zu aktivieren, wählen Sie die Option **Alias-Aktualisierung**.
 1. Rufen Sie auf der Registerkarte „Transport“ den Dispatcher auf, indem Sie den URI eingeben.
@@ -63,7 +67,7 @@ Gehen Sie wie folgt vor, um einen Replikationsagenten auf der AEM-Autoreninstanz
 
    **Hinweis:** Bei Dispatcher-Flush-Agenten wird die URI-Eigenschaft nur verwendet, wenn Sie pfadbasierte Einträge für den virtuellen Host verwenden, um zwischen den Farmen zu unterscheiden. Sie verwenden dieses Feld zum Bestimmen der Farm, die invalidiert werden soll. Beispiel: Farm 1 hat den virtuellen Host `www.mysite.com/path1/*` und Farm 2 den virtuellen Host `www.mysite.com/path2/*`. Mit der URL `/path1/invalidate.cache` können Sie die erste Farm und mit `/path2/invalidate.cache` die zweite Farm bestimmen. Weitere Informationen finden Sie unter [Verwenden des Dispatchers mit mehreren Domänen](dispatcher-domains.md).
 
-1. Konfigurieren Sie ggf. weitere Parameter. 
+1. Konfigurieren Sie ggf. weitere Parameter.
 1. Klicken Sie auf „OK“, um den Agenten zu aktivieren.
 
 Sie können den Dispatcher-Flush-Agenten auch über die [Touch-optimierte Benutzeroberfläche von AEM](https://experienceleague.adobe.com/de/docs/experience-manager-65/content/implementing/deploying/configuring/replication#configuring-a-dispatcher-flush-agent) aufrufen und konfigurieren.
@@ -105,14 +109,14 @@ Ein Replikationsagent, der auf der Veröffentlichungsinstanz ausgeführt wird, s
 
 1. Öffnen Sie die AEM-Tools-Konsole.
 1. Öffnen Sie den erforderlichen Replikationsagenten unter „Werkzeuge/Replikation/Agenten“ auf der Veröffentlichungsinstanz. Sie können den Dispatcher Flush-Agenten verwenden, der standardmäßig installiert ist.
-1. Klicken Sie auf „Bearbeiten“ und stellen Sie sicher, dass auf der Registerkarte „Einstellungen“ **Aktiviert** ausgewählt ist. 
+1. Klicken Sie auf „Bearbeiten“ und stellen Sie sicher, dass auf der Registerkarte „Einstellungen“ **Aktiviert** ausgewählt ist.
 1. (Optional) Um Alias- oder Vanity Path-Invalidierungsanforderungen zu aktivieren, wählen Sie die Option **Alias-Aktualisierung**.
 1. Rufen Sie auf der Registerkarte „Transport“ den Dispatcher auf, indem Sie den erforderlichen URI eingeben.\
    Wenn Sie den standardmäßigen Dispatcher-Leerungs-Agenten verwenden, aktualisieren Sie den Host-Namen und den Port; zum Beispiel `http://<dispatcherHost>:<portApache>/dispatcher/invalidate.cache`
 
    **Hinweis:** Bei Dispatcher-Flush-Agenten wird die URI-Eigenschaft nur verwendet, wenn Sie pfadbasierte Einträge für den virtuellen Host verwenden, um zwischen den Farmen zu unterscheiden. Sie verwenden dieses Feld zum Bestimmen der Farm, die invalidiert werden soll. Beispiel: Farm 1 hat den virtuellen Host `www.mysite.com/path1/*` und Farm 2 den virtuellen Host `www.mysite.com/path2/*`. Mit der URL `/path1/invalidate.cache` können Sie die erste Farm und mit `/path2/invalidate.cache` die zweite Farm bestimmen. Weitere Informationen finden Sie unter [Verwenden des Dispatchers mit mehreren Domänen](dispatcher-domains.md).
 
-1. Konfigurieren Sie ggf. weitere Parameter. 
+1. Konfigurieren Sie ggf. weitere Parameter.
 1. Melden Sie sich bei der Veröffentlichungsinstanz an und validieren Sie die Konfiguration des Flush-Agenten. Stellen Sie außerdem sicher, dass er aktiviert ist.
 1. Wiederholen Sie den Vorgang für jede betreffende Veröffentlichungsinstanz.
 
@@ -126,7 +130,7 @@ Um den Dispatcher-Cache zu invalidieren (oder zu leeren), ohne eine Seite zu akt
 
 Die HTTP-Anfrage führt dazu, dass der AEM-Dispatcher bestimmte Dateien aus dem Cache löscht. Der Dispatcher aktualisiert den Cache dann mit einer neuen Kopie (optional).
 
-### Löschen zwischengespeicherter Dateien  {#delete-cached-files}
+### Löschen zwischengespeicherter Dateien {#delete-cached-files}
 
 Stellen Sie eine HTTP-Anfrage, durch die der Dispatcher Dateien aus dem Cache löscht. Der Dispatcher speichert die Dateien nur dann erneut im Cache, wenn eine Clientanfrage für die Seite eingeht. Auf diese Weise zwischengespeicherte Dateien zu löschen, empfiehlt sich für Websites mit geringer Wahrscheinlichkeit, gleichzeitige Anfragen für ein und dieselbe Seite zu empfangen.
 
@@ -169,7 +173,7 @@ page_path1
 page_pathn
 ```
 
-Die Seitenpfade für das unmittelbare erneute Zwischenspeichern werden im Nachrichtentext in getrennten Zeilen aufgeführt. Der Wert von `CQ-Handle` ist der Pfad einer Seite, die die erneut zwischenzuspeichernde Seite ungültig macht. (Siehe Parameter `/statfileslevel` des Konfigurationselements [Cache](dispatcher-configuration.md#main-pars_146_44_0010).) Die folgenden HTTP-Anfragemethoden löschen die Seite `/content/geometrixx-outdoors/en.html page` und speichern sie erneut zwischen:
+Die Seitenpfade für das unmittelbare erneute Zwischenspeichern werden im Nachrichtentext in getrennten Zeilen aufgeführt. Der Wert von `CQ-Handle` ist der Pfad einer Seite, die die erneut zwischenzuspeichernde Seite ungültig macht. (Siehe den `/statfileslevel` des Konfigurationselements [Cache](dispatcher-configuration.md#main-pars_146_44_0010).) Die folgende Beispiel-HTTP-Anfragenachricht löscht und speichert die `/content/geometrixx-outdoors/en.html page` zwischen:
 
 ```xml
 POST /dispatcher/invalidate.cache HTTP/1.1  

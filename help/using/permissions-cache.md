@@ -6,9 +6,13 @@ products: SG_EXPERIENCEMANAGER/DISPATCHER
 topic-tags: dispatcher
 content-type: reference
 exl-id: 3d8d8204-7e0d-44ad-b41b-6fec2689c6a6
-source-git-commit: c41b4026a64f9c90318e12de5397eb4c116056d9
-workflow-type: ht
-source-wordcount: '923'
+TQID: https://experienceleague.adobe.com/oBC-6k0HhbUhVz-Q55DypYbl3PCJ8PYpXT6-zk6sz-s
+product_v2: id: fd1f54a9-f50c-467d-8956-cebbaf4f3eb8
+role_v2: id: c66ffd68-0f65-42bb-aa23-b4020f12e0bd
+topic_v2: id: d095671a-1355-40aa-8b5f-06c33c68080bid: eddd9b14-83bd-4ff4-9072-54a4a484abb7
+source-git-commit: b68483fc6956bc0e6c2b1939d2203311da62987e
+workflow-type: tm+mt
+source-wordcount: 948
 ht-degree: 100%
 
 ---
@@ -27,7 +31,7 @@ Da die Methoden zur Authentifizierung und Autorisierung spezifisch für die AEM-
 
 Die folgenden Abbildungen zeigen die Abfolge der Ereignisse, wenn ein Webbrowser eine Seite anfordert, für die die Zwischenspeicherung unter Berücksichtigung von Berechtigungen verwendet wird.
 
-## Die Seite wurde zwischengespeichert und der Benutzer ist autorisiert  {#page-is-cached-and-user-is-authorized}
+## Die Seite wurde zwischengespeichert und der Benutzer ist autorisiert {#page-is-cached-and-user-is-authorized}
 
 ![](assets/chlimage_1.png)
 
@@ -36,16 +40,16 @@ Die folgenden Abbildungen zeigen die Abfolge der Ereignisse, wenn ein Webbrowser
 1. Der Renderer ruft das Auth-Checker-Servlet auf, um die Sicherheitsprüfung durchzuführen, und antwortet dem Dispatcher. Die Antwortnachricht enthält den HTTP-Status-Code „200“, um anzuzeigen, dass die Person autorisiert ist.
 1. Der Dispatcher sendet eine Antwortnachricht an den Browser, die aus den Kopfzeilen der Renderer-Antwort und dem zwischengespeicherten Inhalt im Textkörper besteht.
 
-## Die Seite wurde nicht zwischengespeichert und der Benutzer ist autorisiert  {#page-is-not-cached-and-user-is-authorized}
+## Die Seite wurde nicht zwischengespeichert und der Benutzer ist autorisiert {#page-is-not-cached-and-user-is-authorized}
 
 ![](assets/chlimage_1-1.png)
 
 1. Der Dispatcher ermittelt, dass der Inhalt nicht zwischengespeichert wurde oder aktualisiert werden muss.
 1. Der Dispatcher leitet die ursprüngliche Anfrage an den Renderer weiter.
 1. Der Renderer ruft das autorisierende AEM-Servlet (dies ist nicht das Dispatcher-AuthChecker-Servlet) auf, um eine Sicherheitsprüfung durchzuführen. Wenn die Person autorisiert ist, schließt der Renderer die gerenderte Seite im Text der Antwortnachricht ein.
-1. Der Dispatcher leitet die Antwort an den Browser weiter. Der Dispatcher fügt den Text der Antwortnachricht des Renderers zum Cache hinzu. 
+1. Der Dispatcher leitet die Antwort an den Browser weiter. Der Dispatcher fügt den Text der Antwortnachricht des Renderers zum Cache hinzu.
 
-## Der Benutzer ist nicht autorisiert  {#user-is-not-authorized}
+## Der Benutzer ist nicht autorisiert {#user-is-not-authorized}
 
 ![](assets/chlimage_1-2.png)
 
@@ -54,7 +58,7 @@ Die folgenden Abbildungen zeigen die Abfolge der Ereignisse, wenn ein Webbrowser
 1. Der Renderer ruft das Auth-Checker-Servlet auf, um eine Sicherheitsprüfung durchzuführen. Diese führt zu einem Fehler und der Renderer leitet die ursprüngliche Anfrage an den Dispatcher weiter.
 1. Der Dispatcher leitet die ursprüngliche Anfrage an den Renderer weiter.
 1. Der Renderer ruft das autorisierende AEM-Servlet (dies ist nicht das Dispatcher-AuthChecker-Servlet) auf, um eine Sicherheitsprüfung durchzuführen. Wenn die Person autorisiert ist, schließt der Renderer die gerenderte Seite im Text der Antwortnachricht ein.
-1. Der Dispatcher leitet die Antwort an den Browser weiter. Der Dispatcher fügt den Text der Antwortnachricht des Renderers zum Cache hinzu. 
+1. Der Dispatcher leitet die Antwort an den Browser weiter. Der Dispatcher fügt den Text der Antwortnachricht des Renderers zum Cache hinzu.
 
 ## Implementieren der Zwischenspeicherung unter Berücksichtigung von Berechtigungen {#implementing-permission-sensitive-caching}
 
@@ -70,7 +74,7 @@ Wenn Sie die Zwischenspeicherung unter Berücksichtigung von Berechtigungen impl
 >[!NOTE]
 >
 >Wenn sich ein CDN (oder ein anderer Cache) vor dem Dispatcher befindet, sollten Sie die Caching-Header entsprechend festlegen, damit das CDN den privaten Inhalt nicht zwischenspeichert. Beispiel: `Header always set Cache-Control private`.
->>Weitere Informationen zum Festlegen von privaten Caching-Headern finden Sie für AEM as a Cloud Service auf der Seite [Caching](https://experienceleague.adobe.com/de/docs/experience-manager-cloud-service/content/implementing/content-delivery/caching).
+>Weitere Informationen zum Festlegen von privaten Caching-Headern finden Sie für AEM as a Cloud Service auf der Seite [Caching](https://experienceleague.adobe.com/de/docs/experience-manager-cloud-service/content/implementing/content-delivery/caching).
 
 ## Erstellen des Auth-Checker-Servlets {#create-the-auth-checker-servlet}
 
@@ -94,7 +98,7 @@ Das folgende Beispiel-Servlet ruft die URL der angeforderten Ressource aus der H
 >
 >Der Wert der „sling.servlet.paths“-Eigenschaft muss im `Sling` Servlet Resolver-Dienst (org.apache.sling.servlets.resolver.SlingServletResolver) aktiviert werden.
 
-### Beispiel-Servlet  {#example-servlet}
+### Beispiel-Servlet {#example-servlet}
 
 ```java
 package com.adobe.example;
@@ -163,7 +167,7 @@ Beim Start des Dispatchers enthält die Dispatcher-Protokolldatei die folgende N
 
 Im folgenden „auth_checker“-Beispielabschnitt wird der Dispatcher für die Verwendung des Servlets aus dem vorherigen Thema konfiguriert. Durch die Angaben im Abschnitt „filter“ werden Berechtigungsprüfungen nur für sichere HTML-Ressourcen durchgeführt.
 
-### Beispielkonfiguration  {#example-configuration}
+### Beispielkonfiguration {#example-configuration}
 
 ```xml
 /auth_checker

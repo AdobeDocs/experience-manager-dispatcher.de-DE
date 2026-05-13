@@ -7,9 +7,14 @@ products: SG_EXPERIENCEMANAGER/DISPATCHER
 topic-tags: dispatcher
 content-type: reference
 exl-id: 1470b636-7e60-48cc-8c31-899f8785dafa
-source-git-commit: c41b4026a64f9c90318e12de5397eb4c116056d9
-workflow-type: ht
-source-wordcount: '2986'
+TQID: https://experienceleague.adobe.com/aNgoMYEPgCXSaSS4YOpmeZvlNx29K1cfBmBy80wS3Iw
+product_v2: id: fd1f54a9-f50c-467d-8956-cebbaf4f3eb8
+feature_v2: id: eb3ad9f8-54a2-45f3-abb1-d3976415a718
+role_v2: id: c66ffd68-0f65-42bb-aa23-b4020f12e0bd
+topic_v2: id: a004cc84-67b9-4a33-a3a7-8ec7273ef4dcid: b5ce8718-c3af-4fdb-a1a9-fca32f83a87cid: d095671a-1355-40aa-8b5f-06c33c68080bid: e0eb8757-182f-49f3-94a4-1587d16f5094id: eddd9b14-83bd-4ff4-9072-54a4a484abb7
+source-git-commit: b68483fc6956bc0e6c2b1939d2203311da62987e
+workflow-type: tm+mt
+source-wordcount: 3042
 ht-degree: 100%
 
 ---
@@ -84,7 +89,7 @@ In Ihrer Umgebung müssen die folgenden Konfigurationen implementiert werden, um
 * Das Domain-Namenssystem löst die Domain-Namen zu der IP-Adresse des Webservers auf.
 * Der Dispatcher-Cache spiegelt die Verzeichnisstruktur des AEM-Content-Repositorys wider. Die Dateipfade unter dem Basisverzeichnis des Webservers stimmen mit den Pfaden der Dateien im Repository überein.
 
-## Umgebung für die aufgeführten Beispiele  {#environment-for-the-provided-examples}
+## Umgebung für die aufgeführten Beispiele {#environment-for-the-provided-examples}
 
 Die aufgeführten Beispiellösungen gelten für Umgebungen mit den folgenden Eigenschaften:
 
@@ -148,7 +153,7 @@ Mit dieser Konfiguration führt der Webserver die folgenden Aktionen durch, wenn
 
 * Leitet die URL an den Dispatcher weiter.
 
-### httpd.conf  {#httpd-conf}
+### httpd.conf {#httpd-conf}
 
 ```xml
 # load the Dispatcher module
@@ -318,7 +323,7 @@ In der folgenden Tabelle sind die Knoten aufgeführt, die die Ressourcenzuordnun
 | `/etc/map/http/branda.com/etc/designs` | `sling:Mapping` | `Name: sling:internalRedirect <br/>VType: String <br/>VValue: /etc/designs` |
 | `/etc/map/http/branda.com/etc/clientlibs` | `sling:Mapping` | `Name: sling:internalRedirect <br/>VType: String <br/>VValue: /etc/clientlibs` |
 
-## Konfigurieren des Dispatcher Flush-Relikationsagenten {#configuring-the-dispatcher-flush-replication-agent}
+## Konfigurieren des Dispatcher Flush-Replikationsagenten {#configuring-the-dispatcher-flush-replication-agent}
 
 Der `Dispatcher Flush`-Replikationsagent auf der AEM-Veröffentlichungsinstanz muss Invalidierungsanforderungen an die richtige Dispatcher-Farm senden. Verwenden Sie zum Bestimmen einer Farm die URI-Eigenschaft des `Dispatcher Flush`-Replikationsagenten (auf der Registerkarte „Transport“). Binden Sie den Wert der Eigenschaft `/virtualhost` für die Dispatcher-Farm ein, die für die Cache-Invalidierung konfiguriert ist:
 
@@ -362,7 +367,7 @@ Beispielsweise führt der Webserver die folgenden Aktionen durch, wenn er eine A
 * Schreibt die URL neu, sodass sie `/content/sitea/en/products.html.` lautet.
 * Leitet die URL an den Dispatcher weiter.
 
-### httpd.conf  {#httpd-conf-1}
+### httpd.conf {#httpd-conf-1}
 
 ```xml
 # load the Dispatcher module
@@ -551,9 +556,9 @@ In den folgenden Beispielen wird ein Transformator implementiert, der Verweise a
 * Die Klasse „MyRewriterTransformerFactory“ instanziiert Objekte des Typs „MyRewriterTransformer“. Die Eigenschaft „pipeline.type“ legt den Transformatoralias auf `mytransformer` fest. Um den Alias in eine Pipeline aufzunehmen, sollte der Pipeline-Konfigurationsknoten diesen Alias in die Liste der Transformatoren aufnehmen.
 * Die Klasse „MyRewriterTransformer“ überschreibt die Methode „startElement“ der Klasse „AbstractSAXTransformer“. Die Methode „startElement“ schreibt den Wert der Attribute vom Typ „src“ für Elemente vom Typ „img“ neu.
 
-Die Beispiele sind nicht robust. Verwenden Sie sie daher nicht in einer Produktionsumgebung. 
+Die Beispiele sind nicht robust. Verwenden Sie sie daher nicht in einer Produktionsumgebung.
 
-### Beispiel für eine TransformerFactory-Implementierung  {#example-transformerfactory-implementation}
+### Beispiel für eine TransformerFactory-Implementierung {#example-transformerfactory-implementation}
 
 ```java
 package com.adobe.example;
