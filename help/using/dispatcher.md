@@ -6,19 +6,13 @@ topic-tags: dispatcher
 content-type: reference
 exl-id: c9266683-6890-4359-96db-054b7e856dd0
 TQID: https://experienceleague.adobe.com/Ir-slXay90FcQsvKGLioMgFhmhsaTfkYxIQJzfjDsfY
-product_v2:
-  - id: fd1f54a9-f50c-467d-8956-cebbaf4f3eb8
-feature_v2:
-  - id: b1210526-416b-4ef6-bcc0-1692e99f30e9
-role_v2:
-  - id: c66ffd68-0f65-42bb-aa23-b4020f12e0bd
-topic_v2:
-  - id: c1579802-ddd4-4214-8a91-97b2066abe11
-  - id: d095671a-1355-40aa-8b5f-06c33c68080b
-  - id: eddd9b14-83bd-4ff4-9072-54a4a484abb7
+product_v2: id: fd1f54a9-f50c-467d-8956-cebbaf4f3eb8
+feature_v2: id: b1210526-416b-4ef6-bcc0-1692e99f30e9
+role_v2: id: c66ffd68-0f65-42bb-aa23-b4020f12e0bd
+topic_v2: id: c1579802-ddd4-4214-8a91-97b2066abe11id: d095671a-1355-40aa-8b5f-06c33c68080bid: eddd9b14-83bd-4ff4-9072-54a4a484abb7
 source-git-commit: b68483fc6956bc0e6c2b1939d2203311da62987e
 workflow-type: tm+mt
-source-wordcount: 3227
+source-wordcount: 3169
 ht-degree: 96%
 
 ---
@@ -274,13 +268,13 @@ Normalerweise ist der Dispatcher der nächstgelegene Server, der das Dokument au
 Es gibt eine Reihe von Möglichkeiten, um zu steuern, wie lange ein CDN eine Ressource zwischenspeichert, bevor sie erneut vom Dispatcher abgerufen wird.
 
 1. Explizite Konfiguration.
-Sie können konfigurieren, wie lange bestimmte Ressourcen im Cache des CDN beibehalten werden, abhängig von MIME-Typ, Erweiterung, Anfragetyp usw.
+Konfigurieren Sie, wie lange bestimmte Ressourcen im CDN-Cache aufbewahrt werden, abhängig von MIME-Typ, Erweiterung, Anfragetyp usw.
 
-1. Ablauf- und Cache-Steuerungs-Header.
-Die meisten CDNs berücksichtigen die HTTP-Header `Expires:` und `Cache-Control:`, wenn sie vom Upstream-Server gesendet werden. Dies kann beispielsweise mit dem Apache-Modul [mod_ expires](https://httpd.apache.org/docs/2.4/mod/mod_expires.html) erreicht werden.
+1. Ablaufdatum- und Cache-Control-Kopfzeilen.
+Die meisten CDNs berücksichtigen `Expires:` und `Cache-Control:` HTTP-Header, wenn sie vom Upstream-Server gesendet werden. Diese Methode kann beispielsweise mithilfe des Apache-Moduls [mod_expires](https://httpd.apache.org/docs/2.4/mod/mod_expires.html) erreicht werden.
 
 1. Manuelle Invalidierung.
-Durch CDNs können Ressourcen über Web-Schnittstellen aus dem Cache entfernt werden.
+CDNs ermöglichen es, Ressourcen über Web-Schnittstellen aus dem Cache zu entfernen.
 1. API-basierte Invalidierung.\
    Die meisten CDNs bieten außerdem ein REST- und/oder ein SOAP-API, mit dem Ressourcen aus dem Cache entfernt werden können.
 
@@ -292,7 +286,7 @@ Für eine präzisere Steuerung können Sie mit der API-basierten Invalidierung d
 
 >[!NOTE]
 >
->Siehe auch [AEM (CQ) Dispatcher-Sicherheit und CDN+Browser-Caching](https://www.slideshare.net/slideshow/dispatcher-caching-aemgemspart2jan2015/44053023) und die aufgezeichnete Präsentation zu [Dispatcher-Caching](https://experienceleague.adobe.com/de/docs/events/experience-manager-gems-recordings/overview#).
+>Siehe auch [AEM (CQ) Dispatcher-Sicherheit und CDN+Browser-Caching](https://www.slideshare.net/slideshow/dispatcher-caching-aemgemspart2jan2015/44053023) und die aufgezeichnete Präsentation zu [Dispatcher-Caching](https://experienceleague.adobe.com/en/docs/events/experience-manager-gems-recordings/overview#).
 
 ## Verwenden eines Dispatchers mit einem Author-Server {#using-a-dispatcher-with-an-author-server}
 
