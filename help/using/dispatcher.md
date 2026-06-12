@@ -18,7 +18,7 @@ topic_v2:
   - id: eddd9b14-83bd-4ff4-9072-54a4a484abb7
 source-git-commit: b68483fc6956bc0e6c2b1939d2203311da62987e
 workflow-type: tm+mt
-source-wordcount: 3227
+source-wordcount: 3169
 ht-degree: 96%
 
 ---
@@ -274,13 +274,13 @@ Normalerweise ist der Dispatcher der nächstgelegene Server, der das Dokument au
 Es gibt eine Reihe von Möglichkeiten, um zu steuern, wie lange ein CDN eine Ressource zwischenspeichert, bevor sie erneut vom Dispatcher abgerufen wird.
 
 1. Explizite Konfiguration.
-Sie können konfigurieren, wie lange bestimmte Ressourcen im Cache des CDN beibehalten werden, abhängig von MIME-Typ, Erweiterung, Anfragetyp usw.
+Konfigurieren Sie, wie lange bestimmte Ressourcen im CDN-Cache aufbewahrt werden, abhängig von MIME-Typ, Erweiterung, Anfragetyp usw.
 
-1. Ablauf- und Cache-Steuerungs-Header.
-Die meisten CDNs berücksichtigen die HTTP-Header `Expires:` und `Cache-Control:`, wenn sie vom Upstream-Server gesendet werden. Dies kann beispielsweise mit dem Apache-Modul [mod_ expires](https://httpd.apache.org/docs/2.4/mod/mod_expires.html) erreicht werden.
+1. Ablaufdatum- und Cache-Control-Kopfzeilen.
+Die meisten CDNs berücksichtigen `Expires:` und `Cache-Control:` HTTP-Header, wenn sie vom Upstream-Server gesendet werden. Diese Methode kann beispielsweise mithilfe des Apache-Moduls [mod_expires](https://httpd.apache.org/docs/2.4/mod/mod_expires.html) erreicht werden.
 
 1. Manuelle Invalidierung.
-Durch CDNs können Ressourcen über Web-Schnittstellen aus dem Cache entfernt werden.
+CDNs ermöglichen es, Ressourcen über Web-Schnittstellen aus dem Cache zu entfernen.
 1. API-basierte Invalidierung.\
    Die meisten CDNs bieten außerdem ein REST- und/oder ein SOAP-API, mit dem Ressourcen aus dem Cache entfernt werden können.
 

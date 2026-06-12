@@ -13,8 +13,8 @@ topic_v2:
   - id: eddd9b14-83bd-4ff4-9072-54a4a484abb7
 source-git-commit: b68483fc6956bc0e6c2b1939d2203311da62987e
 workflow-type: tm+mt
-source-wordcount: 1625
-ht-degree: 100%
+source-wordcount: 1530
+ht-degree: 97%
 
 ---
 
@@ -112,9 +112,9 @@ Content-Length: 0
 
 Der Dispatcher leert (löscht) die zwischengespeicherten Dateien und Ordner mit Namen, die dem Wert des Headers des CQ-Handles entsprechen. Beispielsweise entspricht der CQ-Handle mit dem Wert `/content/geomtrixx-outdoors/en`:
 
-Allen Dateien (mit beliebiger Dateierweiterung) mit dem Namen „en“ im Verzeichnis „geometrixx-outdoors“.
-Allen Verzeichnissen mit dem Namen `_jcr_content` unter dem Verzeichnis „en“ (das, sofern vorhanden, zwischengespeicherte Renderings von Unterknoten der Seite enthält).
-Das Verzeichnis `en` wird nur gelöscht, wenn die `CQ-Action` auf `Delete` oder `Deactivate` eingestellt ist.
+Alle Dateien (unabhängig von Dateierweiterungen) mit dem Namen en im Verzeichnis geometrixx-outdoors.
+Ein beliebiges Verzeichnis mit dem Namen `_jcr_content` unter dem Verzeichnis en (das, falls vorhanden, zwischengespeicherte Renderings von Unterknoten der Seite enthält).
+Das Verzeichnis `en` wird nur gelöscht, wenn die `CQ-Action` `Delete` oder `Deactivate` ist.
 
 Weitere Einzelheiten zu diesem Thema finden Sie unter [Manuelle Invalidierung des Dispatcher-Caches](page-invalidate.md).
 
@@ -158,11 +158,11 @@ So aktivieren Sie ihn:
 
 ## Sonstiges
 
-Wie erkennt der Dispatcher, ob ein Dokument aktuell ist?
-Um zu bestimmen, ob ein Dokument aktuell ist, führt der Dispatcher diese Aktionen durch:
+Wie ermittelt Dispatcher, ob ein Dokument aktuell ist?
+Um festzustellen, ob ein Dokument aktuell ist, führt der Dispatcher die folgenden Schritte aus:
 
-Es wird geprüft, ob für das Dokument die automatische Invalidierung ausgeführt wird. Ist dies nicht der Fall, wird das Dokument als aktuell betrachtet.
-Wenn das Dokument für die automatische Invalidierung konfiguriert wurde, überprüft der Dispatcher, ob es älter oder neuer als die letzte verfügbare Änderung ist. Wenn es älter ist, ruft der Dispatcher die aktuelle Version von der AEM-Instanz ab und ersetzt die Version im Cache.
+Dabei wird geprüft, ob das Dokument automatisch ungültig gemacht wird. Ist dies nicht der Fall, wird das Dokument als aktuell betrachtet.
+Wenn das Dokument für die automatische Invalidierung konfiguriert ist, prüft Dispatcher, ob es älter oder neuer als die letzte verfügbare Änderung ist. Wenn sie älter ist, fordert der Dispatcher die aktuelle Version von der AEM-Instanz an und ersetzt die Version im Cache.
 
 ### Wie werden die Dispatcher-Rückgabedokumente zurückgegeben?
 
