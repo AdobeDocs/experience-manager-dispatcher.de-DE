@@ -16,8 +16,8 @@ topic_v2:
   - id: eddd9b14-83bd-4ff4-9072-54a4a484abb7
 source-git-commit: b68483fc6956bc0e6c2b1939d2203311da62987e
 workflow-type: tm+mt
-source-wordcount: 948
-ht-degree: 100%
+source-wordcount: 926
+ht-degree: 96%
 
 ---
 
@@ -77,8 +77,8 @@ Wenn Sie die Zwischenspeicherung unter Berücksichtigung von Berechtigungen impl
 
 >[!NOTE]
 >
->Wenn sich ein CDN (oder ein anderer Cache) vor dem Dispatcher befindet, sollten Sie die Caching-Header entsprechend festlegen, damit das CDN den privaten Inhalt nicht zwischenspeichert. Beispiel: `Header always set Cache-Control private`.
->Weitere Informationen zum Festlegen von privaten Caching-Headern finden Sie für AEM as a Cloud Service auf der Seite [Caching](https://experienceleague.adobe.com/de/docs/experience-manager-cloud-service/content/implementing/content-delivery/caching).
+>Wenn ein CDN (oder ein anderer Cache) vor dem Dispatcher vorhanden ist, sollten Sie die Caching-Kopfzeilen entsprechend festlegen, sodass das CDN den privaten Inhalt nicht zwischenspeichert. Beispiel: `Header always set Cache-Control private`.
+>Für AEM as a Cloud Service finden Sie auf der Seite [Caching](https://experienceleague.adobe.com/de/docs/experience-manager-cloud-service/content/implementing/content-delivery/caching) weitere Informationen zum Festlegen privater Caching-Kopfzeilen.
 
 ## Erstellen des Auth-Checker-Servlets {#create-the-auth-checker-servlet}
 
