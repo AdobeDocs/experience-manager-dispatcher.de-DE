@@ -1,7 +1,8 @@
 ---
 title: Dispatcher-E-Tag-Verbesserung für CDN-Verlängerung
 description: Verfügbarkeit, Support-Status und Verhalten von INTERNAL_AEM_DISPATCHER_ETAG_ENHANCEMENT in AEM as a Cloud Service.
-source-git-commit: ac0fafd060643903735ff565072ef2c5bee970be
+exl-id: 4409d0f0-05db-42f3-ace9-1516f1970891
+source-git-commit: cddffe2194beea628f71b6631faada5df4555267
 workflow-type: tm+mt
 source-wordcount: '308'
 ht-degree: 0%
@@ -67,6 +68,6 @@ Nach der Aktivierung der Umgebungsvariablen und der Bereitstellung der Konfigura
 
 Eine kundenorientierte Grundlinie zum Kopfzeilen-Caching und zur `ETag` in Dispatcher finden Sie unter:
 
-- [Konfigurieren von Dispatcher - Zwischenspeichern von HTTP-Antwortkopfzeilen](https://experienceleague.adobe.com/de/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration#caching-http-response-headers)
+- [Konfigurieren von Dispatcher - Zwischenspeichern von HTTP-Antwortkopfzeilen](https://experienceleague.adobe.com/en/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration#caching-http-response-headers)
 
 „Diese Funktion ist in Dispatcher `2.0.264` (AEM SDK `2026.2.24464`) verfügbar. Wenn diese Option aktiviert ist, kann Dispatcher `If-None-Match` anhand zwischengespeicherter `ETag` validieren und `304 Not Modified` bei Cache-Treffern zurückgeben. In AEM as a Cloud Service wird dies unterstützt und kann über die Cloud Manager-Umgebungskonfiguration aktiviert werden.“
