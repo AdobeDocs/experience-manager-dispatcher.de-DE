@@ -7,15 +7,16 @@ topic-tags: dispatcher
 content-type: reference
 redirecttarget: https://helpx.adobe.com/de/experience-manager/6-4/sites/deploying/using/configuring-performance.html
 index: true
-internal: n
-snippet: y
-source-git-commit: 53781f068db078045ae366d3494cd7d1b78c4a7e
+internal: 'n'
+snippet: 'y'
+product_v2:
+  - id: fd1f54a9-f50c-467d-8956-cebbaf4f3eb8
+    internal-label: Experience Manager
+source-git-commit: e2e1f00ed10637e4cbc09d879ef91ec657cab914
 workflow-type: tm+mt
 source-wordcount: '1140'
 ht-degree: 100%
-
 ---
-
 
 # Optimierung von Websites für die Cache-Leistung {#optimizing-a-website-for-cache-performance}
 
